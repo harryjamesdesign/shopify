@@ -1,0 +1,136 @@
+{% comment %}
+    Renders a list of product's price (regular, sale)
+
+    Accepts:
+    - product: {Object} Product Liquid object (optional)
+    - use_variant: {Boolean} Renders selected or first variant price instead of overall product pricing (optional)
+    - show_badges: {Boolean} Renders 'Sale' and 'Sold Out' tags if the product matches the condition (optional)
+    - price_class: {String} Adds a price class to the price element (optional)
+
+    Usage:
+    {% render 'price', product: product %}
+{% endcomment %}
+{%- liquid
+  if use_variant
+    assign target             = product.selected_or_first_available_variant
+  else
+    assign target             = product
+  endif
+
+  assign priceVaries          = product.price_varies
+  assign priceVariesCompare   = product.compare_at_price_varies
+
+  assign compare_at_price     = target.compare_at_price
+  assign price                = target.price | default: 1999
+  assign available            = target.available | default: false
+  assign money_price          = price | money | replace: '.00',''
+  if settings.currency_code_enabled
+    assign money_price        = price | money_with_currency | replace: '.00',''
+  endif
+  assign money_comparePrice   = compare_at_price | money | replace: '.00',''
+  if settings.currency_code_enabled
+    assign money_comparePrice = compare_at_price | money_with_currency | replace: '.00',''
+  endif
+
+  if priceVaries
+    if target == product
+      assign min_price          = target.price_min | money | replace: '.00',''
+      assign max_price          = target.price_max | money | replace: '.00',''
+      assign min_comparePrice   = target.compare_at_price_min | money | replace: '.00',''
+      assign max_comparePrice   = target.compare_at_price_max | money | replace: '.00',''
+      if settings.currency_code_enabled
+        assign min_price          = target.price_min | money_with_currency | replace: '.00',''
+        assign max_price          = target.price_max | money_with_currency | replace: '.00',''
+        assign min_comparePrice   = target.compare_at_price_min | money_with_currency | replace: '.00',''
+        assign max_comparePrice   = target.compare_at_price_max | money_with_currency | replace: '.00',''
+      endif
+      capture money_price 
+        echo min_price | append: ' - ' | append: max_price
+      endcapture 
+      capture money_comparePrice 
+        echo min_comparePrice | append: ' - ' | append: max_comparePrice
+      endcapture 
+    endif
+  endif
+
+  comment
+
+  The product page cannot show the same price setup as the product items. It wouldnt make sense.
+
+  echo '<div>1: ' | append: price | append: '</div>'
+  echo '<div>2: ' | append: compare_at_price | append: '</div>'
+
+  echo '<div>3: ' | append: money_price | append: '</div>'
+  echo '<div>4: ' | append: money_comparePrice | append: '</div>'
+
+  for v in product.variants
+    echo '<div>' | append: v.title | append: ': ' | append: v.price | append: ' - ' | append: v.compare_at_price | append: '</div>'
+  endfor 
+  endcomment
+
+-%}
+
+<div class="price
+  {%- if price_class %} {{ price_class }}{% endif -%}
+  {%- if available == false %} price--sold-out {% endif -%}
+  {%- if compare_at_price > price or min_comparePrice > min_price %} price--on-sale {% endif -%}
+  {%- if priceVaries == false and priceVariesCompare %} price--no-compare{% endif -%}
+  {%- if show_badges %} price--show-badge{% endif -%}">
+  <div class="price__container">
+    {%- comment -%}
+      Explanation of description list:
+        - div.price__regular: Displayed when there are no variants on sale
+        - div.price__sale: Displayed when a variant is a sale
+    {%- endcomment -%}
+    <div class="price__regular">
+      <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+      <span class="price-item price-item--regular">
+        {{ money_price }}
+      </span>
+    </div>
+    <div class="price__sale">
+      <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
+      <span class="price-item price-item--sale price-item--last">
+        {{ money_price }}
+      </span>
+      {%- unless product.price_varies == false and product.compare_at_price_varies %}
+        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+        <span>
+          <s class="price-item price-item--regular">
+            {{money_comparePrice}}
+          </s>
+        </span>
+      {%- endunless -%}
+    </div>
+    <small class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
+      <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+      <span class="price-item price-item--last">
+        <span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span>
+        <span aria-hidden="true">/</span>
+        <span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+        <span>
+          {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
+            {{- product.selected_or_first_available_variant.unit_price_measurement.reference_value -}}
+          {%- endif -%}
+          {{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}
+        </span>
+      </span>
+    </small>
+  </div>
+  {%- if show_badges -%}
+  <div class="pinned small--hide card__badge {{ settings.badge_position }}">
+    {%- if product.available == false -%}
+    {%- elsif product.compare_at_price > product.price and product.available -%}
+      <span class="badge on-sale color-{{ settings.sale_badge_color_scheme }}">{{ 'products.product.on_sale' | t }}</span>
+    {%- endif -%}
+    {% if product.tags contains 'new_badge' %}
+        <span class="badge on-tag color-{{ settings.tag_badge_color_scheme }}"> 
+          <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 1.0234L7.46111 3.63278L7.57374 3.83393L7.79986 3.87889L10.733 4.46215L8.70287 6.65808L8.54637 6.82737L8.57348 7.05631L8.92517 10.0262L6.20936 8.77394L6 8.67741L5.79064 8.77394L3.07483 10.0262L3.42652 7.05631L3.45363 6.82737L3.29713 6.65808L1.26697 4.46215L4.20014 3.87889L4.42626 3.83393L4.53889 3.63278L6 1.0234Z" stroke="white"/>
+          </svg>
+          New
+        </span>
+      {% endif %}
+  </div>
+  {%- endif -%}
+</div>

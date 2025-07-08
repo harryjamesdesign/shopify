@@ -1,0 +1,51 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-404",
+      "disabled": true,
+      "settings": {}
+    },
+    "16632965412b4615ac": {
+      "type": "nine15--ctas",
+      "settings": {
+        "title": "PAGE NOT FOUND",
+        "text": "The page you are looking for cannot be found. Perhaps it used to be here and was moved or deleted, or maybe you’ve simply typed in the wrong address. Whatever the case, let’s just start fresh on the homepage.\n\n{% unless request.design_mode %}\n  <script>\n    window.addEventListener('DOMContentLoaded', (event) => {\n      setTimeout(function () {\n        window.location.href = \"/\";\n      },5000)\n    })\n  </script>\n{% endunless %}",
+        "link_text": "Back to Homepage",
+        "link_url": "/",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "main {\n  min-height: 70vh;\n}\n== .btn{\nmargin: auto;\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "16632965412b4615ac"
+  ]
+}

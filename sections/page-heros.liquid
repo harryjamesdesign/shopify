@@ -1,0 +1,534 @@
+{% liquid
+	assign curURL 		= canonical_url | split: '.com' | last
+	assign curTYP 		= template
+	assign pageFound 	= false
+	assign fallbackHero = ''
+%}
+<!-- 
+    sections/page-heros 
+    current template: {{curTYP}} 
+    current url: {{curURL}} 
+-->
+{% for block in section.blocks %}
+    {% liquid 
+    	assign b 		= block.settings
+	    assign pageUrl 	= b.page_url
+	    assign pageType = b.page_type
+    %}
+    {% comment %}<!--
+        Block ID: {{block.id}}
+        Block Title: {{b.title}}
+        {% if pageUrl != blank %}Block Url: {{pageUrl}}{% endif %} 
+        {% if pageType != blank %}Block Type: {{pageType}}{% endif %} 
+    --> {% endcomment %}
+    {% comment %} Check for exact match {% endcomment %}
+    {% if curURL != blank %}
+        {% if curURL == pageUrl %}
+            <!-- {{curURL}} == {{pageUrl}} -->
+            {% assign pageFound = true %}
+            {% include 'master--page-heros' %}
+            {% break %}
+        {% endif %}
+        {% comment %} Check for similar match {% endcomment %}
+        {% if current_tags and curURL contains pageUrl and pageFound == false %}
+            <!-- {{curURL}} contains {{pageUrl}} -->
+            {% capture fallbackHero %}
+                {% include 'master--page-heros' %}
+            {% endcapture %}
+        {% endif %}
+    {% endif %}
+    {% comment %} Check for default {% endcomment %}
+    {% if pageFound == false and fallbackHero == '' %}
+        {% if curTYP == pageType %}
+            <!-- {{curTYP}} == {{pageType}} -->
+            {% capture fallbackHero %}
+                {% include 'master--page-heros' %}
+            {% endcapture %}
+        {% endif %}
+    {% endif %}
+    {% comment %} If no exact match then use fallback {% endcomment %}
+    {% if forloop.last == true and pageFound == false and fallbackHero != '' %}
+        {{fallbackHero}}
+    {% endif %}
+{% endfor %}
+
+{% comment %}{
+                            "type": "select",
+                            "id": "btn_style",
+                            "label": "Button Type",
+                            "options": [
+                                {
+                                    "value": "primary",
+                                    "label": "Primary"
+                                },
+                                {
+                                    "value": "secondary",
+                                    "label": "Secondary"
+                                },
+                                {
+                                    "value": "tertiary",
+                                    "label": "Tertiary"
+                                }
+                            ],
+                            "default": "primary"
+                        },{% endcomment %}
+
+{% schema %}
+    {
+        "name": "Page Heros",
+        "settings": [
+            {
+                "type": "paragraph",
+                "content": "Works on any Collection, Page, Product, Article, or Blog!"
+            }            
+        ],
+        "blocks": [
+            {
+                "name": "Hero",
+                "type": "hero",
+                "settings": [
+                    {
+                        "type":"header",
+                        "content": "Display Settings"
+                    },
+                        {
+                            "type": "text",
+                            "id": "title",
+                            "label": "Tab Title",
+                            "info": "This is only for giving a title in Theme Editor",
+                            "placeholder": "Alt Collection (Default)"
+                        },
+                        {
+                            "type":"paragraph",
+                            "content": "If you want this hero to appear on every page of a certain template then type that in the select box below. If a page using this template is also assigned an additional Specific Page then that takes precedence."
+                        },
+                        {
+                            "type": "text",
+                            "id": "page_type",
+                            "label": "All content with this Template (default)",
+                            "info": "Type out the template type you want this to be the default hero for.",
+                            "placeholder": "collection.alternate"
+                        },
+                        {
+                            "type":"paragraph",
+                            "content": "If you want this hero to appear on a specific page then find that page in the select box below. This Hero will be applied ONLY on that page and will overwrite any Default Heros."
+                        },
+                        {
+                            "type": "url",
+                            "id": "page_url",
+                            "label": "Specific Page",
+                            "info": "Select the page you want the Hero to appear on."
+                        },
+                        
+                    {
+                        "type":"header",
+                        "content": "Image Settings"
+                    },
+                        {
+                            "type": "checkbox",
+                            "id": "allow_default",
+                            "label": "Allow default image to show.",
+                            "info": "If using as Template Default, checking this allows Default Image from page to take precedance. Only using below images when needed."
+                        },
+                        {
+                            "type": "checkbox",
+                            "id": "use_overlay",
+                            "label": "Use Header Overlay"
+                        },
+                        {
+                            "type": "image_picker",
+                            "id": "image",
+                            "label": "Hero Image"
+                        },
+                        {
+                            "type": "liquid",
+                            "id": "liquid_image_override",
+                            "label": "Hero Image (dev only override)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "align_bg",
+                            "label": "Background Alignment (Focal Point)",
+                            "options": [
+                                {
+                                    "value": "center",
+                                    "label": "Center"
+                                },
+                                {
+                                    "value": "left center",
+                                    "label": "Left Center"
+                                },
+                                {
+                                    "value": "center right",
+                                    "label": "Right Center"
+                                },
+                                {
+                                    "value": "top center",
+                                    "label": "Center Top"
+                                },
+                                {
+                                    "value": "top left",
+                                    "label": "Left Top"
+                                },
+                                {
+                                    "value": "top right",
+                                    "label": "Right Top"
+                                },
+                                {
+                                    "value": "bottom center",
+                                    "label": "Center Bottom"
+                                },
+                                {
+                                    "value": "bottom left",
+                                    "label": "Left Bottom"
+                                },
+                                {
+                                    "value": "bottom right",
+                                    "label": "Right Bottom"
+                                }
+                            ],
+                            "default": "center"
+                        },
+                        {
+                            "type": "select",
+                            "id": "bg_size",
+                            "label": "Background Size",
+                            "options": [
+                                {
+                                    "value": "cover",
+                                    "label": "Cover"
+                                },
+                                {
+                                    "value": "contain",
+                                    "label": "Contain"
+                                },
+                                {
+                                    "value": "custom",
+                                    "label": "Custom"
+                                }
+                                
+                            ],
+                            "default": "cover"
+                        },
+                        {
+                            "type": "text",
+                            "id": "custom_size",
+                            "label": "Custom Background Size",
+                            "info": "Background Size must be set to Custom to use this. Can be by pixel or percentage."
+                        },
+                        {
+                            "type":      "text",
+                            "id":        "section_height",
+                            "label":     "Slider Height",
+                            "info":      "Can be set as: px, em, vh, vw, vmin, %, etc...",
+                            "default":   "500px"
+                        },
+                        {
+                            "type": "image_picker",
+                            "id": "image_mob",
+                            "label": "Mobile Hero Image (optional)"
+                        },
+                        {
+                            "type": "liquid",
+                            "id": "liquid_image_mob_override",
+                            "label": "Mobile Hero Image (dev only override)"
+                        },
+                        {
+                            "type": "select",
+                            "id": "align_bg_mob",
+                            "label": "Mobile Background Alignment (Focal Point)",
+                            "options": [
+                                {
+                                    "value": "center",
+                                    "label": "Center"
+                                },
+                                {
+                                    "value": "left center",
+                                    "label": "Left Center"
+                                },
+                                {
+                                    "value": "center right",
+                                    "label": "Right Center"
+                                },
+                                {
+                                    "value": "top center",
+                                    "label": "Center Top"
+                                },
+                                {
+                                    "value": "top left",
+                                    "label": "Left Top"
+                                },
+                                {
+                                    "value": "top right",
+                                    "label": "Right Top"
+                                },
+                                {
+                                    "value": "bottom center",
+                                    "label": "Center Bottom"
+                                },
+                                {
+                                    "value": "bottom left",
+                                    "label": "Left Bottom"
+                                },
+                                {
+                                    "value": "bottom right",
+                                    "label": "Right Bottom"
+                                }
+                            ],
+                            "default": "center"
+                        },
+                        {
+                            "type": "select",
+                            "id": "bg_size_mob",
+                            "label": "Mobile Background Size",
+                            "options": [
+                                {
+                                    "value": "cover",
+                                    "label": "Cover"
+                                },
+                                {
+                                    "value": "contain",
+                                    "label": "Contain"
+                                },
+                                {
+                                    "value": "custom",
+                                    "label": "Custom"
+                                }
+                                
+                            ],
+                            "default": "cover"
+                        },
+                        {
+                            "type": "text",
+                            "id": "custom_size_mob",
+                            "label": "Mobile Custom Background Size",
+                            "info": "Background Size must be set to Custom to use this. Can be by pixel or percentage."
+                        },
+                        {
+                            "type":      "text",
+                            "id":        "section_height_mobile",
+                            "label":     "Slider Height on Mobile",
+                            "info":      "Can be set as: px, em, vh, vw, vmin, %, etc..."
+                        },
+                        
+
+                    {
+                        "type": "header",
+                        "content": "Video Settings"
+                    },
+                        {
+                            "type": "video_url",
+                            "id": "video_url",
+                            "label": "Video url",
+                            "accept": [
+                                "youtube",
+                                "vimeo"
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "id": "video_hosted",
+                            "label": "Video url if hosted"
+                        },
+                        
+                    {
+                        "type":"header",
+                        "content": "Text Settings"
+                    },
+                        {
+                            "type": "liquid",
+                            "id": "override_title",
+                            "label": "Override Title"
+                        },
+                        {
+                            "type": "checkbox",
+                            "id": "hide_title",
+                            "label": "Hide Title"
+                        },
+                        {
+                            "type": "liquid",
+                            "id": "override_text",
+                            "label": "Override Text"
+                        },
+                        {
+                            "type": "checkbox",
+                            "id": "hide_content",
+                            "label": "Hide Content",
+                            "default": true
+                        },
+                        {
+                            "type": "text",
+                            "id": "btn_txt",
+                            "label": "Button Text",
+                            "default": "Shop Now"
+                        },
+                        {
+                            "type": "url",
+                            "id": "btn_url",
+                            "label": "Button Url"
+                        },
+                        
+                    {
+                        "type": "header",
+                        "content": "Text Align Settings"
+                    },
+                        {
+                            "type": "checkbox",
+                            "id": "separate_text_desktop",
+                            "label": "Place text content below hero on desktop."
+                        },
+                        {
+                            "type": "checkbox",
+                            "id": "separate_text_mobile",
+                            "label": "Place text content below hero on mobile."
+                        },
+                        {
+                            "type": "select",
+                            "id": "align_text",
+                            "label": "Text Alignment",
+                            "options": [
+                                {
+                                    "value": "center",
+                                    "label": "Center"
+                                },
+                                {
+                                    "value": "left",
+                                    "label": "Left"
+                                },
+                                {
+                                    "value": "right",
+                                    "label": "Right"
+                                }
+                            ],
+                            "default": "center"
+                        },
+                        {
+                            "type": "select",
+                            "id": "align_hor",
+                            "label": "Horizontal Content Alignment",
+                            "options": [
+                                {
+                                    "value": "center",
+                                    "label": "Center"
+                                },
+                                {
+                                    "value": "left",
+                                    "label": "Left"
+                                },
+                                {
+                                    "value": "right",
+                                    "label": "Right"
+                                }
+                            ],
+                            "default": "center"
+                        },
+                        {
+                            "type":      "range",
+                            "id":        "vert_align",
+                            "min":       0,
+                            "max":        100,
+                            "step":       1,
+                            "label":     "Vertical Align (optional)",
+                            "default":   50,
+                            "info": "50 is centered"
+                        },
+                        {
+                            "type":      "range",
+                            "id":        "hor_align",
+                            "min":       0,
+                            "max":        100,
+                            "step":       1,
+                            "label":     "Horizontal Align (optional)",
+                            "default":   50,
+                            "info": "50 is centered"
+                        },
+                        {
+                            "type":      "text",
+                            "id":        "width",
+                            "label":     "Content Width",
+                            "info":      "Can be set as: px, em, vh, vw, vmin, %, etc...",
+                            "default":   "450px"
+                        },
+                        
+                    {
+                        "type":"header",
+                        "content": "Color Settings"
+                    },
+                        {
+                            "type": "checkbox",
+                            "id": "set_to_overlay_container",
+                            "label": "Set overlay to Overlay text background instead of Image."
+                        },
+                        {
+                            "type": "color",
+                            "id": "txt_color",
+                            "label": "Text Color",
+                            "default": "#ffffff"
+                        },
+                        {
+                            "type": "color",
+                            "id": "bg_color",
+                            "label": "Overlay Color",
+                            "default": "#333333"
+                        },
+                        {
+                            "type":      "range",
+                            "id":        "opacity",
+                            "min":       0,
+                            "max":        99,
+                            "step":       1,
+                            "label":     "Opacity",
+                            "default":   30
+                        },
+                        
+            {
+              "type":"header",
+              "content": "Custom HTML"
+            },          
+            {
+              "type":"paragraph",
+              "content": "This outputs raw html so write carefully."
+            },
+            {
+              "type": "liquid",
+              "id": "custom_html",
+              "label": "Custom HTML"
+            },
+            {
+                "type":"header",
+                "content": "Custom CSS Rules"
+            },
+						{
+							"type":"paragraph",
+							"content": "Explanation of Custom CSS rules below input."
+						},
+						{
+							"type": "liquid",
+							"id": "custom_css",
+							"label": "Custom CSS"
+						},
+						{
+							"type":"paragraph",
+							"content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+						},
+						{
+							"type":"paragraph",
+							"content": "Ex: '== h2 { font-size: 20px; }'"
+						},
+						{
+							"type":"paragraph",
+							"content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+						},
+						{
+							"type":"paragraph",
+							"content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+						},
+						{
+							"type":"paragraph",
+							"content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+						}
+                ]
+            }
+        ]
+    }
+{% endschema %}

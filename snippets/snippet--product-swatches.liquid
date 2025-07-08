@@ -1,0 +1,69 @@
+<!-- snippet/snippet--product-swatches -->
+
+{% liquid
+  assign values                 = '' 
+  assign totalColors            = 0 
+  assign var_id                 = '' 
+%}
+
+<div class="swatch small--hide card-grid-colors">
+
+
+  {% for product_option in product.options_with_values %}
+    
+    {% if product_option.name contains 'Color' %}
+      
+      {% liquid
+        assign lim              = 5 
+        assign lim              = 6 
+        assign limPls           = lim | plus: 1 
+        if product_option.values.size >= limPls 
+          assign lim            = lim | minus: 1 
+        endif 
+      %}
+
+      {% for value in product_option.values limit: lim %}
+        {% assign value         = value.title %}
+        {% assign color_value   =  value | handle %}
+        {% if forloop.index <= lim %}
+          {% unless product.empty? %}
+            {% for variant in product.variants %}
+              {% if variant.title contains value %}
+                {% capture var_id %} data-varid="{{ variant.id }}"{% endcapture %}
+                {% capture var_img %}{{ variant.featured_media }} data-varimg="{% if variant.featured_media %}{{ variant.featured_media | img_url:'Grande' }}{% endif %}"{% endcapture %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% endunless %}
+          <div class="swatch-element color {{ color_value }} " {{ var_id }} {{ var_img }}>
+            <div class="faux-label color-swatch--{{ value | handle }} product--{{product.handle}}" style="background-color: {{ value | split: ' ' | last | handle }}; ">
+              <div class="visually-hidden">{{ value }}</div>
+            </div>
+          </div>
+        {% endif %}
+        {% assign totalColors = forloop.index %}
+      {% endfor %}
+
+      {% if product_option.values.size >= limPls %}
+        <span class="underline">More...</span>
+      {% endif %}
+
+    {% endif %}
+
+    {% if product.options_with_values.size < 2 %}
+      {% assign btn_text = 'Add' %}
+    {% else %}
+      {% if product_option.name contains 'Color' %}
+        {% assign btn_text = 'Select Color' %}
+      {% else %}
+        {% assign btn_text = 'Add' %}
+      {% endif %}
+    {% endif %}
+
+    {% capture quic_view_mobile %}
+      {{ quic_view_mobile }}
+      <a class=" quick-mobile {{ product_option.name }}" data-sectionid="{{ product.id }}" data-handle="{{ product.handle }}" href="javascript:void(0);">{{ btn_text }}</a>
+    {% endcapture %}
+
+  {% endfor %}
+</div>

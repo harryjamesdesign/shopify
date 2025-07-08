@@ -1,0 +1,5 @@
+{% render 'swym-product-view', product: product %}
+<a href="#" class="wishlist-btn button button--primary" data-swaction="addToWishlist" data-product-id="{{product.id | json}}">
+  {% render 'icon-heart' %}
+  <span class="visually-hidden">Save for later</span>
+</a>

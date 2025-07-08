@@ -1,0 +1,205 @@
+{% if css != blank %}
+  	<!-- snippets/custom-css -->
+  	{% comment %}
+
+	  {% liquid
+
+    		assign s            = section.settings
+		    assign sID          = section.id
+
+		    assign customCSS    = s.custom_css
+		    
+		    assign sectionClass = 'section--' | append: sID
+		    assign cssClass     = '.' | append: sectionClass
+
+		%}
+
+		{{sectionClass}}
+
+	    {% include 'custom-css', css: customCSS, class: cssClass %}
+	
+	    {% include 'custom-css', css: customCSS, class: cssClass, important: false %}
+
+		
+	    {
+			"type":"header",
+			"content": "Custom CSS Rules"
+		},
+		{
+			"type":"paragraph",
+			"content": "Explanation of Custom CSS rules below input."
+		},
+		{
+			"type": "html",
+			"id": "custom_css",
+			"label": "Custom CSS"
+		},
+		{
+			"type":"paragraph",
+			"content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+		},
+		{
+			"type":"paragraph",
+			"content": "Ex: '== h2 { font-size: 20px; }'"
+		},
+		{
+			"type":"paragraph",
+			"content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+		},
+		{
+			"type":"paragraph",
+			"content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+		},
+		{
+			"type":"paragraph",
+			"content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+		}
+
+	    Snippet code
+    	important has to be second
+
+  	{% endcomment %}
+
+  	{% liquid 
+	    assign rplc = '==' 
+
+	    assign cln 					= ';'
+  		assign imp 					= ' !important;'
+  		if important == false
+  			assign imp 				= cln
+  		endif 
+
+	    assign gridNarrow           = 425
+	    assign gridMedium           = 750
+	    assign gridLarge            = 990
+	    assign gridExLarge          = 1200
+	    assign gridWidescreen       = 1440
+
+	    assign minWdth              = "(min-width:"
+	    assign maxWdth              = "(max-width:"
+	    assign cls                  = 'px)'
+	    assign amp                  = ' and '
+	    assign mda                  = '@media screen' | append: amp
+
+	    assign maxNarrow            = gridNarrow | minus: 1 | prepend: maxWdth | append: cls
+	    assign minNarrow            = gridNarrow | prepend: minWdth | append: cls
+	    assign maxMedium            = gridMedium | minus: 1 | prepend: maxWdth | append: cls
+	    assign minMedium            = gridMedium | prepend: minWdth | append: cls
+	    assign maxLarge             = gridLarge | minus: 1 | prepend: maxWdth | append: cls
+	    assign minLarge             = gridLarge | prepend: minWdth | append: cls
+	    assign maxExLarge           = gridExLarge | minus: 1 | prepend: maxWdth | append: cls
+	    assign minExLarge           = gridExLarge | prepend: minWdth | append: cls
+	    assign maxWidescreen        = gridWidescreen | minus: 1 | prepend: maxWdth | append: cls
+	    assign minWidescreen        = gridWidescreen | prepend: minWdth | append: cls
+
+	    assign nrrw_Rplc            = '/narrow/' 
+	    assign notNrrw_Rplc         = '/not-narrow/' 
+	    assign sml_Rplc             = '/small/' 
+	    assign med_Rplc             = '/medium/' 
+	    assign med_up_Rplc          = '/medium-up/' 
+	    assign med_down_Rplc        = '/medium-down/' 
+	    assign lrg_Rplc             = '/large/' 
+	    assign lrg_up_Rplc          = '/large-up/' 
+	    assign lrg_down_Rplc        = '/large-down/' 
+	    assign ex_lrg_Rplc          = '/ex-large/' 
+	    assign ex_lrg_up_Rplc       = '/ex-large-up/' 
+	    assign ex_lrg_down_Rplc     = '/ex-large-down/' 
+	    assign wdscrn_Rplc          = '/widescreen/' 
+
+	    assign Narrow               = mda | append: maxNarrow 
+	    assign NotNarrow            = mda | append: minNarrow | append: amp | append: maxMedium
+	    assign Small                = mda | append: maxMedium  
+	    assign Medium               = mda | append: minMedium | append: amp | append: maxLarge 
+	    assign MediumUp             = mda | append: minMedium 
+	    assign MediumDown           = mda | append: maxLarge 
+	    assign Large                = mda | append: minLarge | append: amp | append: maxExLarge 
+	    assign LargeUp              = mda | append: minLarge 
+	    assign LargeDown            = mda | append: maxExLarge 
+	    assign ExLarge              = mda | append: minExLarge | append: amp | append: maxWidescreen 
+	    assign ExLargeUp            = mda | append: minExLarge 
+	    assign ExLargeDown          = mda | append: maxWidescreen 
+	    assign Widescreen           = mda | append: minWidescreen 
+
+	    assign and_nrrw_Rplc        = '/-narrow/' 
+	    assign and_notNrrw_Rplc     = '/-not-narrow/' 
+	    assign and_sml_Rplc         = '/-small/' 
+	    assign and_med_Rplc         = '/-medium/' 
+	    assign and_med_up_Rplc      = '/-medium-up/' 
+	    assign and_med_down_Rplc    = '/-medium-down/' 
+	    assign and_lrg_Rplc         = '/-large/' 
+	    assign and_lrg_up_Rplc      = '/-large-up/' 
+	    assign and_lrg_down_Rplc    = '/-large-down/' 
+	    assign and_ex_lrg_Rplc      = '/-ex-large/' 
+	    assign and_ex_lrg_up_Rplc   = '/-ex-large-up/' 
+	    assign and_ex_lrg_down_Rplc = '/-ex-large-down/' 
+	    assign and_wdscrn_Rplc      = '/-widescreen/' 
+
+	    assign andNarrow            = maxNarrow 
+	    assign andNotNarrow         = minNarrow | append: amp | append: maxMedium
+	    assign andSmall             = maxMedium  
+	    assign andMedium            = minMedium | append: amp | append: maxLarge 
+	    assign andMediumUp          = minMedium 
+	    assign andMediumDown        = maxLarge 
+	    assign andLarge             = minLarge | append: amp | append: maxExLarge 
+	    assign andLargeUp           = minLarge 
+	    assign andLargeDown         = maxExLarge 
+	    assign andExLarge           = minExLarge | append: amp | append: maxWidescreen 
+	    assign andExLargeUp         = minExLarge 
+	    assign andExLargeDown       = maxWidescreen 
+	    assign andWidescreen        = minWidescreen 
+  	%}
+
+  	{% 
+      	assign cssLoop = css | 
+      	replace: rplc, class | 
+
+      	replace: '&gt;', '>' |
+
+      	replace: ';;', '|force_unimportant|' |
+
+      	replace: cln, imp |
+
+      	replace: '|force_unimportant|',';' |
+
+      	replace: nrrw_Rplc, Narrow | 
+      	replace: notNrrw_Rplc, NotNarrow |
+      	replace: sml_Rplc, Small |
+
+      	replace: med_Rplc, Medium |
+      	replace: med_up_Rplc, MediumUp |
+      	replace: med_down_Rplc, MediumDown |
+
+      	replace: lrg_Rplc, Large |
+      	replace: lrg_up_Rplc, LargeUp |
+      	replace: lrg_down_Rplc, LargeDown |
+
+      	replace: ex_lrg_Rplc, ExLarge |
+      	replace: ex_lrg_up_Rplc, ExLargeUp |
+      	replace: ex_lrg_down_Rplc, ExLargeDown |
+
+      	replace: wdscrn_Rplc, Widescreen |
+
+
+      	replace: and_nrrw_Rplc, andNarrow | 
+      	replace: and_notNrrw_Rplc, andNotNarrow |
+      	replace: and_sml_Rplc, andSmall |
+
+      	replace: and_med_Rplc, andMedium |
+      	replace: and_med_up_Rplc, andMediumUp |
+      	replace: and_med_down_Rplc, andMediumDown |
+
+      	replace: and_lrg_Rplc, andLarge |
+      	replace: and_lrg_up_Rplc, andLargeUp |
+      	replace: and_lrg_down_Rplc, andLargeDown |
+
+      	replace: and_ex_lrg_Rplc, andExLarge |
+      	replace: and_ex_lrg_up_Rplc, andExLargeUp |
+      	replace: and_ex_lrg_down_Rplc, andExLargeDown |
+
+      	replace: and_wdscrn_Rplc, andWidescreen 
+  	%}
+
+  	<style>
+      	{{cssLoop}}
+  	</style>
+{% endif %}

@@ -1,0 +1,75 @@
+<script defer="defer">
+  // var wishlistButtons = document.querySelectorAll(".wishlist-btn");
+
+  // wishlistButtons.forEach(function (wishlistButton, index) {
+  //   function swymCallbackFn(){    
+  //     if(wishlistButton){
+  //       _swat.fetchWrtEventTypeET(fetchCallbackFn, 4);       
+  //       // fetching all wishlist events
+  //     }
+  //   }
+  //   function fetchCallbackFn(products){
+  //     var activeProductId = SwymPageData.empi, 
+  //         activeVariantId = SwymPageData.epi;
+  //     var isInWishlist = products.find(function(p){
+  //       return p.empi == activeProductId && p.epi == activeVariantId;
+  //     });
+  //     if(isInWishlist){
+  //       wishlistButton.setAttribute("disabled", true);
+  //       // wishlistButton.innerHTML = "Saved";
+  //       wishlistButton.getElementsByTagName('span').innerHTML = "Saved";
+  //     } else {
+  //       wishlistButton.addEventListener("click", function(e){
+  //         // e.preventDefault();
+  //         if(SwymPageData){
+  //           SwymPageData.et = 4;  // et 4 stands for wishlist event type
+  //           _swat.addToWishList(SwymPageData, function(e){
+  //             // wishlistButton.innerHTML = "Saved"; 
+  //             wishlistButton.getElementsByTagName('span').innerHTML = "Saved"; 
+  //           });
+  //         }
+  //       });
+  //     }
+  //   }
+  //   if(!window.SwymCallbacks){
+  //    window.SwymCallbacks = [];
+  //   }
+  //   window.SwymCallbacks.push(swymCallbackFn);
+  // });
+
+  var wishlistButton = document.querySelector(".wishlist-btn");
+
+  function swymCallbackFn(){    
+    if(wishlistButton){
+      _swat.fetchWrtEventTypeET(fetchCallbackFn, 4);       
+      // fetching all wishlist events
+    }
+  }
+  function fetchCallbackFn(products){
+    var activeProductId = SwymPageData.empi, 
+        activeVariantId = SwymPageData.epi;
+    var isInWishlist = products.find(function(p){
+      return p.empi == activeProductId && p.epi == activeVariantId;
+    });
+    if(isInWishlist){
+      wishlistButton.setAttribute("disabled", true);
+      // wishlistButton.innerHTML = "Saved";
+      wishlistButton.getElementsByTagName('span').innerHTML = "Saved";
+    } else {
+      wishlistButton.addEventListener("click", function(e){
+        // e.preventDefault();
+        if(SwymPageData){
+          SwymPageData.et = 4;  // et 4 stands for wishlist event type
+          _swat.addToWishList(SwymPageData, function(e){
+            // wishlistButton.innerHTML = "Saved"; 
+            wishlistButton.getElementsByTagName('span').innerHTML = "Saved"; 
+          });
+        }
+      });
+    }
+  }
+  if(!window.SwymCallbacks){
+   window.SwymCallbacks = [];
+  }
+  window.SwymCallbacks.push(swymCallbackFn);
+</script>

@@ -1,0 +1,88 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "background-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "blocks": {
+        "e61bd7fa-f95a-41e8-9a98-96c39c24cdbc": {
+          "type": "ad",
+          "settings": {
+            "title": "PROMO TILE",
+            "placement": "14",
+            "after": false,
+            "show_on_collection": "",
+            "exclude_from_collection": "/collections/handbags,\n/collections/totes,\n/collections/crossbodies,",
+            "content_title": "Free Shipping on Orders $99+",
+            "text": "",
+            "btn_text": "",
+            "btn_url": "shopify://collections/bags",
+            "bg_image": "shopify://shop_images/All_Bags_74001610-2832-4e48-801e-3addbc78b718.jpg",
+            "text_color": "#ffffff",
+            "gradient": "linear-gradient(0deg,rgba(0,0,0,.62),transparent)",
+            "btn_style": "primary",
+            "custom_css": "== {\n  justify-content: flex-end;\n  align-items: flex-start;\n}\n\n== h3 {\n  font-family: var(--font--graphik-cond);\n  text-transform: uppercase;\n  font-style: normal;\n  letter-spacing: 0.05em;\n  font-size: 55px;\n  line-height: 1;\n  text-align: left;\n}\n\n/widescreen/ {\n  == h3 {\n    font-size: 75px;\n  }\n}"
+          }
+        },
+        "eb5baf57-6715-46f5-b2c6-892bc24a2709": {
+          "type": "ad",
+          "settings": {
+            "title": "Handbags",
+            "placement": "14",
+            "after": false,
+            "show_on_collection": "",
+            "exclude_from_collection": "/collections/bags,\n/collections/totes,\ncollections/crossbodies,\ncollections/travel-bags,\ncollections/bestelling-bags",
+            "content_title": "SHOP WALLETS",
+            "text": "",
+            "btn_text": "",
+            "btn_url": "",
+            "bg_image": "shopify://shop_images/Handbags_d68e0757-06b5-4a15-9798-8274563300d9.jpg",
+            "text_color": "#FFFFFF",
+            "gradient": "",
+            "btn_style": "primary",
+            "custom_css": "== {\n  justify-content: flex-end;\n  align-items: flex-start;\n}\n\n== h3 {\n  font-family: var(--font--graphik-cond);\n  text-transform: uppercase;\n  font-style: normal;\n  letter-spacing: 0.05em;\n  font-size: 55px;\n  line-height: 1;\n  text-align: left;\n}\n\n/widescreen/ {\n  == h3 {\n    font-size: 75px;\n  }\n}"
+          }
+        }
+      },
+      "block_order": [
+        "e61bd7fa-f95a-41e8-9a98-96c39c24cdbc",
+        "eb5baf57-6715-46f5-b2c6-892bc24a2709"
+      ],
+      "settings": {
+        "total_rows": 5,
+        "per_row": 4,
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": true,
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "custom_css": "== .cell__item {\n  --border: 1px solid rgba(var(--color--alto-white-rgb),0.5);\n  border-bottom: var(--border);\n  border-right: var(--border);\n  // margin-top: -1px;\n  // margin-left: -1px;\n}\n\n/medium/ {\n  == .cell__item:not(.old-loader):not(#more) {\n      grid-column-end: span 20;\n  }\n}\n\n/widescreen/ {\n  == .cell__item:not(.old-loader):not(#more) {\n      grid-column-end: span 12;\n  }\n}"
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid"
+  ]
+}

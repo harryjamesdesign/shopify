@@ -1,0 +1,271 @@
+<!-- sections/masonry--nine15 -->
+
+{% include 'master--masonry' %}
+
+{% schema %}
+{
+	"name": "Masonry",
+	"settings": [
+		{
+       "type": "header",
+       "content": "Custom CSS Rules"
+     },
+     {
+       "type": "paragraph",
+       "content": "Explanation of Custom CSS rules below input."
+     },
+     {
+       "type": "liquid",
+       "id": "custom_css",
+       "label": "Custom CSS"
+     },
+     {
+       "type": "paragraph",
+       "content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+     },
+     {
+       "type": "paragraph",
+       "content": "Ex: '== h2 { font-size: 20px; }'"
+     },
+     {
+       "type": "paragraph",
+       "content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+     },
+     {
+       "type": "paragraph",
+       "content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+     },
+     {
+       "type": "paragraph",
+       "content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+     }
+	],
+	"blocks": [
+		{
+			"type": "pane",
+			"name": "Pane",
+			"settings": [
+				{
+					"type": "header",
+					"content": "Background Settings"
+				},
+					{
+						"type": "image_picker",
+						"id": "image",
+						"label": "Image (optional)"
+					},
+					{
+						"type": "image_picker",
+						"id": "image_mob",
+						"label": "Mobile Image (optional)"
+					},
+					{
+						"type": "color",
+						"id": "bg_color",
+						"label": "Background Color",
+						"info": "If background image isnt used",
+						"default": "#ffffff"
+					},
+					{
+						"type": "color",
+						"id": "txt_bg_color",
+						"label": "Text Background Color",
+						"default": "#ffffff"
+					},
+					{
+						"type": "color",
+						"id": "txt_color",
+						"label": "Text Color",
+						"default": "#353B40"
+					},
+
+				{
+					"type": "header",
+					"content": "Width / Height Setting"
+				},
+					{
+				    "type": "select",
+				    "id": "width",
+				    "label": "Container width",
+				    "default": "33%",
+				    "options": [
+			        {
+			          "value": "8%",
+			          "label": "8% (1/12)"
+			        },
+			        {
+			          "value": "16%",
+			          "label": "16% (2/12)"
+			        },
+			        {
+			          "value": "25%",
+			          "label": "25% (3/12)"
+			        },
+			        {
+			          "value": "33%",
+			          "label": "33% (4/12)"
+			        },
+			        {
+			          "value": "41%",
+			          "label": "41% (5/12)"
+			        },
+			        {
+			          "value": "50%",
+			          "label": "50% (6/12)"
+			        },
+			        {
+			          "value": "58%",
+			          "label": "58% (7/12)"
+			        },
+			        {
+			          "value": "66%",
+			          "label": "66% (8/12)"
+			        },
+			        {
+			          "value": "75%",
+			          "label": "75% (9/12)"
+			        },
+			        {
+			          "value": "83%",
+			          "label": "83% (10/12)"
+			        },
+			        {
+			          "value": "91%",
+			          "label": "91% (11/12)"
+			        },
+			        {
+			          "value": "100%",
+			          "label": "100%"
+			        }
+				    ]
+					},
+					{
+						"type": "checkbox",
+						"id": "full_width",
+						"label": "Text goes full width"
+					},
+					{
+				    "type": "select",
+				    "id": "align",
+				    "label": "Horizontal Text Align",
+				    "default": "center",
+				    "options": [
+			        {
+			          "value": "left",
+			          "label": "Left"
+			        },
+			        {
+			          "value": "center",
+			          "label": "Center"
+			        },
+			        {
+			          "value": "right",
+			          "label": "Right"
+			        }
+				    ]
+					},
+					{
+				    "type": "select",
+				    "id": "align_vert",
+				    "label": "Vertical Text Align",
+				    "default": "center",
+				    "options": [
+			        {
+			          "value": "top",
+			          "label": "Top"
+			        },
+			        {
+			          "value": "center",
+			          "label": "Center"
+			        },
+			        {
+			          "value": "bottom",
+			          "label": "Bottom"
+			        }
+				    ]
+					},
+					{
+						"type": "checkbox",
+						"id": "stack",
+						"label": "Stack Item"
+					},
+					{
+		        "type":      "range",
+		        "id":        "height",
+		        "min":       0,
+		        "max":        24,
+		        "step":       1,
+		        "label":     "Item Height",
+		        "default":   0,
+		        "info": 	"Leave 0 for auto. Non 0 setting will override Stack Item."
+			    },
+			    {
+		        "type":      "range",
+		        "id":        "height_mob",
+		        "min":       0,
+		        "max":        24,
+		        "step":       1,
+		        "label":     "Item Height for Mobile",
+		        "default":   0,
+		        "info": 	"Leave 0 for auto. Non 0 setting will override Stack Item."
+			    },
+				{
+					"type": "header",
+					"content": "Text Settings"
+				},
+					{
+						"type": "liquid",
+						"id": "title",
+						"label": "Title",
+						"default": "Title Goes Here"
+					},
+					{
+						"type": "checkbox",
+						"id": "bold_title",
+						"label": "Bold Title"
+					},
+					{
+			      "type":      "range",
+			      "id":        "font_size_1",
+			      "min":       10,
+			      "max":        100,
+			      "step":       1,
+			      "label":     "Title Size",
+			      "default":   18
+			    },
+					{
+						"type": "liquid",
+						"id": "text",
+						"label": "Description"
+					},
+					{
+		        "type":      "range",
+		        "id":        "font_size_2",
+		        "min":       10,
+		        "max":        100,
+		        "step":       1,
+		        "label":     "Description Size",
+		        "default":   15
+			    },
+					{
+						"type": "text",
+						"id": "btn_txt",
+						"label": "Button Text",
+						"default": "Shop Now"
+					},
+					{
+						"type": "url",
+						"id": "btn_url",
+						"label": "Button Url"
+					}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Masonry - NINE15",
+       "category": "1 - NINE15"
+		}
+	]
+}
+{% endschema %}

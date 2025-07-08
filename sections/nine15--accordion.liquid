@@ -1,0 +1,255 @@
+<!-- sections/nine15--accordian -->
+
+{% liquid 
+
+    assign s                    = section.settings
+    assign sID                  = section.id
+
+    assign sectionCustomCSS     = s.custom_css
+    assign class                = 'section--' | append: sID
+    assign cssClass             = '.' | append: class
+
+    assign secTtl               = s.title
+    assign secTxt               = s.text
+    
+    assign open_first 			= s.open_first
+    assign first_acc 			= true
+    assign first_ttl 			= true
+    assign inner_ttl 			= false
+    assign hasHeader 			= false
+
+    if s.side_by_side == true
+        assign faq_cell 		= 'large-up--one-half'
+    endif
+
+    assign items          = blank
+ %}
+
+{% capture grdStrt %}<div class="cell vert-top">{% endcapture %}
+{% capture itmStrt %}<div class="cell__item {{faq_cell}}">{% endcapture %}
+{% capture grdEnd %}</div>{% endcapture %}
+
+{% for block in section.blocks %}
+
+  {% liquid
+
+      assign b                = block.settings 
+      assign ttl              = b.title 
+      assign txt              = b.desc 
+      assign page           = b.page_name 
+      assign lqd            = b.liquid 
+
+      if pages[page].content != blank 
+          assign txt        = pages[page].content 
+      endif 
+
+      if lqd != blank 
+          assign txt        = lqd 
+      endif 
+
+      unless txt == blank 
+        assign open       = false 
+        if first_acc == true and open_first == true 
+            assign open     = true 
+        endif 
+            assign first_acc    = false
+      endunless 
+
+      if block.type == 'header' or s.side_by_side == true
+          assign hasHeader    = true 
+          if first_ttl == true 
+              assign first_ttl  = false 
+              echo grdStrt
+              echo itmStrt
+          else 
+              echo grdEnd
+              echo itmStrt
+          endif 
+      endif 
+
+  %}
+    {% capture items -%}
+      {{-items-}}  
+      {%- if block.type == 'header' -%}
+          <div class="acc-header">
+              <h2>{{-ttl-}}</h2>
+              {%- if txt != blank -%}
+                  <div class="rte">{{-txt-}}</div>
+              {%- endif -%}
+          </div>
+      {%- endif -%}
+      {%- if block.type == 'tab' -%}
+          {%- unless txt == blank -%}
+              <div class="acc-btn">
+                  <h3 class="{%- if open == true -%}selected{%- endif -%}">{{- ttl -}}</h3>
+                  <div class="img {%- if open == true -%}selected{%- endif -%}">
+                    {%- include 'icon-accordion-buttons' -%}
+                    {%- comment -%}
+                    {%- include 'icon-arrow-right' -%}
+                    {%- endcomment -%}
+                  </div>
+              </div>
+              <div class="acc-content {%- if open == true -%}open{%- endif -%}">
+                  <div class="acc-content-inner">
+                      <div class="content_inner">
+                          <div class="product-description rte">
+                              {{- txt -}}
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          {%- endunless -%}
+      {%- endif -%}
+      {%- if forloop.last and hasHeader == true -%}
+          {{-grdEnd-}}
+          {{-grdEnd-}}
+      {%- endif -%}
+    {%- endcapture %}
+{% endfor %}
+
+{% if items != blank %}
+  <div class="nine15--accordion-section {{class}}">
+    <div class="acc-container ">
+        <link rel="stylesheet" href="{{ 'nine15-section--accordion.css' | asset_url }}" media="print" onload="this.media='all'">
+        <noscript>{{ 'nine15-section--accordion.css' | asset_url | stylesheet_tag }}</noscript>
+    	<div class="page-width with-padding">
+  	    {% if secTtl != blank or secTxt != blank %}
+          <div class="section--title text-center {% if secTtl != blank and secTxt == blank and use_lnk == true %}inline--link{% endif %}">
+              
+            {% if secTtl != blank %}
+                <h2>{{secTtl}}</h2>
+            {% endif %}
+          
+            {% if secTxt != blank %}
+                <div class="rte">{{secTxt}}</div>
+            {% endif %}
+                    
+          </div>
+        {% endif %}
+
+        {{items}}
+
+    	</div>
+    </div>
+
+
+    {% include 'custom-css', 
+        css: sectionCustomCSS, 
+        class: cssClass 
+    %}
+
+  </div>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Accordian - NINE15",
+	"settings": [
+      {
+        "type":"liquid",
+        "id":"title",
+        "label":"Title"
+      },
+      {
+        "type":"liquid",
+        "id":"text",
+        "label":"Text"
+      },
+      {
+        "type": "checkbox",
+        "id": "open_first",
+        "label": "Open first tab on load."
+      },
+      {
+        "type": "checkbox",
+        "id": "side_by_side",
+        "label": "Show Accordions side by side."
+      },
+  		{
+  			"type":"header",
+  			"content": "Custom CSS Rules"
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Explanation of Custom CSS rules below input."
+  		},
+  		{
+  			"type": "liquid",
+  			"id": "custom_css",
+  			"label": "Custom CSS"
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Ex: '== h2 { font-size: 20px; }'"
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+  		}
+    ],
+    "blocks": [
+        {
+            "type": "header",
+            "name": "Header",
+            "settings": [
+                {
+                    "type": "liquid",
+                    "id": "title",
+                    "label": "Tab Title"
+                },
+                {
+                    "type": "liquid",
+                    "id": "desc",
+                    "label": "Tab Content"
+                }
+            ]
+        },
+        {
+            "type": "tab",
+            "name": "Tab",
+            "settings": [
+                {
+                    "type": "liquid",
+                    "id": "title",
+                    "label": "Tab Title"
+                },
+                {
+                    "type": "richtext",
+                    "id": "desc",
+                    "label": "Tab Content"
+                },
+                {
+                    "type": "page",
+                    "id": "page_name",
+                    "label": "Choose Default Tab Content",
+                    "info": "Leave Tab Content below blank to show the default content"
+                },
+                {
+                    "type": "liquid",
+                    "id": "liquid",
+                    "label": "Custom Liquid"
+                }
+            ]
+        }
+    ],
+	"presets": [
+		{
+			"name": "Accordion - NINE15",
+			"category": "2 - NINE15"
+		}
+	]
+}
+{% endschema %}
+

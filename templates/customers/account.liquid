@@ -1,0 +1,546 @@
+{% include 'master--account-header' %}
+
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'customer.js' | asset_url }}" ></script>
+
+<h1 class="visually-hidden">{{ 'customer.account.title' | t }}</h1>
+
+{% assign curPage = paginate.current_page %}
+{% assign curTemp = template %}
+{% assign curURL = canonical_url | split: '.com' | last %}
+
+<div class="page-width main-container">
+  <div class="cell cell_margin_bottom">
+  
+    {% paginate customer.orders by 20 %}
+      {% assign showOrders = true %}
+      {% if paginate.current_page != 1 %}
+        {% unless curTemp contains 'account' %}
+          {% assign showOrders = false %}
+        {% endunless %}
+      {% endif %}
+
+      {% if showOrders == true %}
+        <div class="cell__item order-grid">
+          <h2>{{ 'customer.orders.title' | t }}</h2>
+          {% if customer.orders.size != 0 %}
+            <table class="responsive-table">
+              <thead>
+                <tr>
+                  <th>{{ 'customer.orders.date' | t }}</th>
+                  <th>{{ 'customer.orders.order_number' | t }}</th>
+                  <th>Ship To</th>
+                  <th>{{ 'customer.orders.total' | t }}</th>
+                  {% comment %}<th>{{ 'customer.orders.payment_status' | t }}</th>{% endcomment %}
+                  <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order in customer.orders %}
+                  <tr class="line-row">
+                    <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'date' }}</td>
+                    <td data-label="{{ 'customer.orders.order_number' | t }}">
+                      {% comment %}{{ order.name | link_to: order.customer_url }}{% endcomment %}
+                      {{ order.name }}
+                    </td>
+                    <td data-label="Ship To">{{customer.name}}</td>
+                    <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+                    {% comment %}<td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>{% endcomment %}
+                    <td data-label="{{ 'customer.orders.fulfillment_status' | t }}" class="{% if order.fulfillment_status_label == 'Fullfilled' %}fulfilled{% endif %}">
+                      {{ order.fulfillment_status_label }}
+                    </td>
+                    <td data-label="">
+                      {%- if line_item.fulfillment -%}
+                        <div class="note">
+                          {%- assign created_at = line_item.fulfillment.created_at | date: format: 'date' -%}
+                          {{ 'customer.order.fulfilled_at' | t: date: created_at }}
+                          <div>
+                            {%- if line_item.fulfillment.tracking_url -%}
+                              <a href="{{ line_item.fulfillment.tracking_url }}">
+                                {{ 'customer.order.track_shipment' | t }}
+                              </a>
+                            {%- endif -%}
+                            <div>
+                              {{ line_item.fulfillment.tracking_company }}
+                              {%- if line_item.fulfillment.tracking_number -%} #{{ line_item.fulfillment.tracking_number }} {%- endif -%}
+                            </div>
+                          </div>
+                        </div>
+                      {%- endif -%}
+                    </td>
+                    <td>
+                      <label class="open-row-label" for="check-{{forloop.index}}">
+                        Order Details
+                      </label>
+                    </td>
+                  </tr>
+                  <tr class="order-row " >
+                    <td colspan="7" class="td-padding">
+                      <input class="order-checkbox" type="checkbox" checked id="check-{{forloop.index}}">
+                      <div class="order-height">
+                        <div class="shipping-row small--text-center">
+                          <div class="cell cell_margin_bottom ">
+                            <div class="cell__item medium-up--one-third">
+                              <h3>{{ 'customer.order.shipping_address' | t }}</h3>
+                              {{ order.shipping_address | format_address }}
+                            </div>
+                            <div class="cell__item medium-up--one-third">
+                              <h3>Shipping Method</h3>
+                              {%- for shipping_method in order.shipping_methods -%}
+                                <div>{{ shipping_method.price | money }}</div>
+                                <div>{{ 'customer.order.shipping' | t }} ({{ shipping_method.title }})</div>
+                              {%- endfor -%}
+                            </div>
+                            <div class="cell__item medium-up--one-third">
+                              <h3>{{ 'customer.order.billing_address' | t }}</h3>
+                              {{ order.billing_address | format_address }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="item-row">
+                          <table class="responsive-table cart-table">
+                            <tbody>
+                              {% for item in order.line_items %}
+                                <tr class="cart__row responsive-table__row">
+                                  <td class="cart__cell--image text-center">
+                                    <div class="cart__image">
+                                      <img src="{{ item | img_url: '240x240' }}" alt="{{ item.title | escape }}">
+                                    </div>
+                                  </td>
+                                  <td>
+                                    <div class="h5">
+                                      {{ item.title }}
+                                    </div>
+                                    {% if item.sku != blank %}
+                                      <div>
+                                        Item: {{item.sku}}
+                                      </div>
+                                    {% endif %}
+                                    {% unless item.variant.title contains 'Default' %}
+                                      <p>{{ item.variant.title }}</p>
+                                    {% endunless %}
+
+                                    {% assign property_size = item.properties | size %}
+                                    {% if property_size > 0 %}
+                                      {% for p in item.properties %}
+                                        {% assign first_character_in_key = p.first | truncate: 1, '' %}
+                                        {% unless p.last == blank or first_character_in_key == '_' %}
+                                          {{ p.first }}:
+                                          {% if p.last contains '/uploads/' %}
+                                            <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
+                                          {% else %}
+                                            {{ p.last }}
+                                          {% endif %}
+
+                                        {% endunless %}
+                                      {% endfor %}
+                                    {% endif %}
+                                  </td>
+                                  <td class="cart__cell--quantity">
+                                    {% comment %}{{ item.quantity }}{% endcomment %}
+                                  </td>
+                                  <td class="cart__cell--total">
+                                    {%- if item.original_line_price != item.final_line_price -%}
+                                      <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+                                      <del class="cart__item-total">{{ item.original_line_price | money }}</del>
+                                      <span class="visually-hidden">{{ 'products.product.sale_price' | t }}</span>
+                                      <span class="cart__item-total">{{ item.final_line_price | money }}</span>
+                                    {%- else -%}
+                                      <span class="cart__item-total">{{ item.original_line_price | money }}</span>
+                                    {%- endif -%}
+                                    {%- if item.unit_price_measurement -%}
+                                      {% include 'product-unit-price', product_variant: item %}
+                                    {%- endif -%}
+
+                                    {%- if item.line_level_discount_allocations != blank -%}
+                                      <ul class="order-discount order-discount--cart order-discount--list order-discount--title" aria-label="{{ 'customer.order.discount' | t }}">
+                                        {%- for discount_allocation in item.line_level_discount_allocations -%}
+                                          <li class="order-discount__item">
+                                            {%- include 'icon-saletag' -%}{{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})
+                                          </li>
+                                        {%- endfor -%}
+                                      </ul>
+                                    {%- endif -%}
+                                  </td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <td class="text-right" colspan="4">
+                                  <h4>{{ 'customer.order.subtotal' | t }}</h4>
+                                  <span>{{ order.line_items_subtotal_price | money }}</span>
+                                </td>
+                              </tr>
+
+                              {%- if order.cart_level_discount_applications != blank -%}
+                                <tr>
+                                  {%- for discount_application in order.cart_level_discount_applications -%}
+                                    <td class="text-right" scope="row" colspan="4">
+                                      <h4>
+                                        {%- include 'icon-saletag' -%}{{- discount_application.title -}}
+                                      </h4>
+                                      <span class="order-discount">-{{ discount_application.total_allocated_amount | money }}</span>
+                                    </td>
+                                  {%- endfor -%}
+                                </tr>
+                              {%- endif -%}
+
+                              {%- for tax_line in order.tax_lines -%}
+                                <tr>
+                                  <td class="text-right" scope="row" colspan="4">
+                                    <h4>{{ 'customer.order.tax' | t }} ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)</h4>
+                                    <span>{{ tax_line.price | money }}</span>
+                                  </td>
+                                </tr>
+                              {%- endfor -%}
+
+                              <tr>
+                                <td class="text-right row-total" colspan="4">
+                                  <h4>{{ 'customer.order.total' | t }}</h4>
+                                  <strong>{{ order.total_price | money }} {{ order.currency }}</strong>
+                                </td>
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </div>
+                      </div> 
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% else %}
+            <p>{{ 'customer.orders.none' | t }}</p>
+          {% endif %}
+          {% if paginate.pages > 1 %}
+            {% if curTemp contains 'account' %}
+              <div class="pagination">
+                {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+              </div>
+            {% else %}
+              <Br>
+              <div class="text-center">
+                <a href="/account?page=2" class="btn button button--primary">
+                  View All Orders
+                </a>
+              </div>
+            {% endif %}
+          {% endif %}
+        </div>
+      {% else %}
+        {% if customer.orders.size != 0 %}
+          <div class="cell__item text-center">
+            <a href="/account/orders" class="btn button button--primary">View Orders</a>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endpaginate %}
+
+    {% paginate customer.addresses by 6 %}
+      {% assign showAddys = true %}
+      {% if paginate.current_page != 1 %}
+        {% unless curTemp contains 'addresses' %}
+          {% assign showAddys = false %}
+        {% endunless %}
+      {% endif %}
+
+      {% if showAddys == true %}
+        <div class="cell__item address-grid">
+     
+          <h2>{{ 'customer.addresses.title' | t }}</h2>
+
+          <div id="AddressNewForm" class="hide  form-vertical">
+            {% form 'customer_address', customer.new_address, class:'add-address-form', return_to: '/account' %}
+              <h2 class="h3">{{ 'customer.addresses.add_new' | t }}</h2>
+
+              <div class="cell cell_margin_bottom">
+
+                <div class="cell__item medium-up--one-half">
+                  <div class="field">
+                    <input class="field__input" type="text" id="AddressFirstNameNew" name="address[first_name]" value="{{ form.first_name }}">
+                    <label class="field__label" for="AddressFirstNameNew">{{ 'customer.addresses.first_name' | t }}</label>
+                  </div>
+                </div>
+
+                <div class="cell__item medium-up--one-half">
+                  <div class="field">
+                    <input class="field__input" type="text" id="AddressLastNameNew" name="address[last_name]" value="{{ form.last_name }}">
+                    <label class="field__label" for="AddressLastNameNew">{{ 'customer.addresses.last_name' | t }}</label>
+                  </div>
+                </div>
+
+
+                <div class="cell__item">
+                  <div class="field">
+                    <input class="field__input" type="text" id="AddressCompanyNew" name="address[company]" value="{{ form.company }}">
+                    <label class="field__label" for="AddressCompanyNew">{{ 'customer.addresses.company' | t }}</label>
+                  </div>
+                </div>
+                <div class="cell__item medium-up--one-half">
+                  <div class="field">
+                    <input class="field__input" type="text" class="field__input" id="AddressAddress1New" name="address[address1]" value="{{ form.address1 }}">
+                    <label class="field__label" for="AddressAddress1New">{{ 'customer.addresses.address1' | t }}</label>
+                    <span class="po_error"></span>
+                  </div>
+                </div>
+
+                <div class="cell__item medium-up--one-half">
+                  <div class="field">
+                    <input class="field__input" type="text" id="AddressAddress2New" name="address[address2]" value="{{ form.address2 }}">
+                    <label class="field__label" for="AddressAddress2New">{{ 'customer.addresses.address2' | t }}</label>
+                  </div>
+                </div>
+
+
+                <div class="cell__item medium-up--one-half">
+                  <div class="field">
+                    <input class="field__input" type="text" id="AddressCityNew" name="address[city]" value="{{ form.city }}">
+                    <label class="field__label" for="AddressCityNew">{{ 'customer.addresses.city' | t }}</label>
+                  </div>
+                </div>
+
+                <div class="cell__item medium-up--one-half">
+                  <label class="field__label" for="AddressCountryNew">{{ 'customer.addresses.country' | t }}</label>
+                  <div class="select">
+                    <select class="select__select" id="AddressCountryNew" name="address[country]" data-default="{{ form.country }}">{{ all_country_option_tags }}</select>
+                    {% include 'icon-caret' %}
+                  </div>
+                </div>
+
+                <div class="cell__item" id="AddressProvinceContainerNew">
+                  <div class="field">
+                    <input class="field__input" type="text" id="AddressStateNew" name="address[province]" value="{{ form.province }}">
+                    <label class="field__label" for="AddressStateNew">State</label>
+                  </div>
+                </div>
+
+                <div class="cell__item medium-up--one-half">
+                  <div class="field">
+                    <input class="field__input" type="text" id="AddressZipNew" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters">
+                    <label class="field__label" for="AddressZipNew">{{ 'customer.addresses.zip' | t }}</label>
+                  </div>
+                </div>
+
+                <div class="cell__item medium-up--one-half">
+                  <div class="field">
+                    <input class="field__input" type="tel" id="AddressPhoneNew" name="address[phone]" value="{{ form.phone }}">
+                    <label class="field__label" for="AddressPhoneNew">{{ 'customer.addresses.phone' | t }}</label>
+                  </div>
+                </div>
+
+                <div class="cell__item">
+
+                  <p>
+                    {{ form.set_as_default_checkbox }}
+                    <label for="address_default_address_new">{{ 'customer.addresses.set_default' | t }}</label>
+                  </p>
+
+                </div>
+
+                <div class="cell__item">
+                  <input type="submit" class="btn button button--secondary" value="{{ 'customer.addresses.add' | t }}">
+                  <button type="button" class="button button--primary btn address-new-toggle">{{ 'customer.addresses.cancel' | t }}</button>
+
+                </div>
+
+              </div>
+
+              <br><br>
+              
+            {% endform %}
+          </div>
+         
+          <div class="">
+
+            {% comment %}
+              List all customer addresses with a unique edit form.
+              Also add pagination in case they have a large number of addresses
+            {% endcomment %}
+            {% for address in customer.addresses %}
+              {% capture addys %}
+                {{addys}}
+                <div class="cell__item medium-up--one-third">
+                  <div class="address-inner">
+                    
+
+                    {% comment %}{{ address | format_address }}{% endcomment %}
+
+                    <div>
+                      <p><b>{{address.name}}</b></p>
+                      <p class="address-info">
+                        <span>{{address.street}}</span>
+                        <span>{{address.city}}, {{address.province_code}} {{address.zip}}</span>
+                        <span>{{address.phone}}</span>
+                      </p>
+                    </div>
+
+                    <div class="edit-row">
+                      <button type="button" class="text-link link-accent-color address-edit-toggle" data-form-id="{{ address.id }}">{{ 'customer.addresses.edit' | t }}</button>
+                      {% if address == customer.default_address %}
+                        <span class="text-link link-accent-color default-address">{{ 'customer.addresses.default' | t }}</span>
+                      {% else %}
+                        <div>
+                          {% form 'customer_address', address, class:"edit-address-form" %}
+                          <input type="checkbox" name="address[default]" class="hide" checked value="1">
+                          <button type="submit" class="text-link link-accent-color default-address" data-form-id="{{ address.id }}" style="color: var(--color--gray);">Make Default</button>
+                          {% endform %}
+                        </div>
+                      {% endif %}
+                      </div>
+                      <button type="button" class="text-link link-accent-color address-delete" data-address-url="{{ address.url }}" data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">
+                        <span class="visually-hidden">{{ 'customer.addresses.delete' | t }}</span>
+                        {% include 'icon-close' %}
+                      </button>
+                  </div>
+                </div>
+              {% endcapture %}
+              <div id="EditAddress_{{ address.id }}" class="hide form-vertical">
+                {% form 'customer_address', address, class:"edit-address-form" %}
+                  {% if form.posted_successfully? %}
+                  <p class="accent-text">Thanks! We will notify you when this product becomes available!</p>
+                  {% endif %}
+                  {% if form.errors %}
+                  <div class="error feedback accent-text">
+                    <p>Please provide a valid email address.</p>
+                  </div>
+                  {% endif %}
+                  <h4>{{ 'customer.addresses.edit_address' | t }}</h4>
+
+                  <div class="cell cell_margin_bottom vert-top">
+                    <div class="cell__item medium-up--one-half">
+                      <div class="field">
+                        <input class="field__input" type="text" id="AddressFirstName_{{ form.id }}" name="address[first_name]" value="{{ form.first_name }}">
+                        <label class="field__label" for="AddressFirstName_{{ form.id }}">{{ 'customer.addresses.first_name' | t }}</label>
+                      </div>
+                    </div>
+
+                    <div class="cell__item medium-up--one-half">
+                      <div class="field">
+                        <input class="field__input" type="text" id="AddressLastName_{{ form.id }}" name="address[last_name]" value="{{ form.last_name }}">
+                        <label class="field__label" for="AddressLastName_{{ form.id }}">{{ 'customer.addresses.last_name' | t }}</label>
+                      </div>
+                    </div>
+                    <div class="cell__item">
+  
+                      <div class="field">
+                        <input class="field__input" type="text" id="AddressCompany_{{ form.id }}" name="address[company]" value="{{ form.company }}">
+                        <label class="field__label" for="AddressCompany_{{ form.id }}">{{ 'customer.addresses.company' | t }}</label>
+                      </div>
+                    </div>
+                    <div class="cell__item">
+                        
+                      <div class="field">
+                        <input type="text" class="field__input" id="AddressAddress1_{{ form.id }}" name="address[address1]" value="{{ form.address1 }}">
+                        <label class="field__label" for="AddressAddress1_{{ form.id }}">{{ 'customer.addresses.address1' | t }}</label>
+                        <span class="po_error"></span>
+                      </div>
+                    </div>
+                    <div class="cell__item">
+  
+                      <div class="field">
+                        <input class="field__input" type="text" id="AddressAddress2_{{ form.id }}" name="address[address2]" value="{{ form.address2 }}">
+                        <label class="field__label" for="AddressAddress2_{{ form.id }}">{{ 'customer.addresses.address2' | t }}</label>
+                      </div>
+                    </div>
+
+                    <div class="cell__item medium-up--one-half">
+                      <div class="field">
+                        <input class="field__input" type="text" id="AddressCity_{{ form.id }}" name="address[city]" value="{{ form.city }}">
+                        <label class="field__label" for="AddressCity_{{ form.id }}">{{ 'customer.addresses.city' | t }}</label>
+                      </div>
+                    </div>
+
+                    <div class="cell__item medium-up--one-half">
+                      <label class="field__label" for="AddressCountry_{{ form.id }}">{{ 'customer.addresses.country' | t }}</label>
+                      <div class="select">
+                        <select id="AddressCountry_{{ form.id }}" class="address-country-option select__select" data-form-id="{{ form.id }}" name="address[country]" data-default="{{ form.country }}">{{ all_country_option_tags }}</select>
+                        {% include 'icon-caret' %}
+                      </div>
+                    </div>
+
+                    <div class="cell__item" id="AddressProvinceContainerNew">
+                      <div class="field">
+                        <input class="field__input" type="text" id="AddressStateNew" name="address[province]" value="{{ form.province }}">
+                        <label class="field__label" for="AddressStateNew">State</label>
+                      </div>
+                    </div>
+
+                    <div class="cell__item medium-up--one-half">
+                      <div class="field">
+                        <input class="field__input" type="text" id="AddressZip_{{ form.id }}" name="address[zip]" value="{{ form.zip }}" autocapitalize="characters">
+                        <label class="field__label" for="AddressZip_{{ form.id }}">{{ 'customer.addresses.zip' | t }}</label>
+                      </div>
+                    </div>
+
+                    <div class="cell__item medium-up--one-half">
+                      <div class="field">
+                        <input class="field__input" type="tel" id="AddressPhone_{{ form.id }}" name="address[phone]" value="{{ form.phone }}">
+                        <label class="field__label" for="AddressPhone_{{ form.id }}">{{ 'customer.addresses.phone' | t }}</label>
+                      </div>
+                    </div>
+                    <div class="cell__item ">
+                      <p>
+                        {{ form.set_as_default_checkbox }}
+                        <label for="address_default_address_{{ form.id }}">{{ 'customer.addresses.set_default' | t }}</label>
+                      </p>
+
+                    </div>
+                    <div class="cell__item ">
+                      <p><input type="submit" class="btn button button--secondary" value="{{ 'customer.addresses.update' | t }}"></p>
+                      <p class="text-center"><button type="button" class="text-link link-accent-color address-edit-toggle" data-form-id="{{ form.id }}">{{ 'customer.addresses.cancel' | t }}</button></p>
+                    </div>
+                  </div>
+                  <br><br>
+
+
+                {% endform %}
+              </div>
+            {% endfor %}
+
+             <div class="cell cell_margin_bottom vert-top match-row">
+              {{addys}}
+            </div>
+          </div>
+
+
+          <div class=" text-center">
+            <p>
+              <button type="button" class="btn address-new-toggle btn--secondary button button--secondary">{{ 'customer.addresses.add_new' | t }}</button>
+            </p>
+
+            {% if paginate.pages > 1 %}
+              {% if curTemp contains 'addresses' %}
+                <div class="pagination">
+                  {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+                </div>
+              {% else %}
+                <Br>
+                <div class="text-center">
+                  <a href="/account/addresses?page=2" class="btn button button--primary">
+                    View All Addresses
+                  </a>
+                </div>
+              {% endif %}
+            {% endif %}
+          </div>
+      
+        </div>
+      {% else %}
+         {% if customer.addresses.size != 0 %}
+          <div class="cell__item text-center">
+            <a href="/account/addresses" class="btn button button--primary">View Addresses</a>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endpaginate %}
+
+    <div class="cell__item text-center">
+      <a href="/account/logout" class="btn button button--primary">
+        Sign Out
+      </a>
+    </div>
+  </div>
+</div>

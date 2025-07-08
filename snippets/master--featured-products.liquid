@@ -1,0 +1,640 @@
+<!-- snippets/master--featured-products -->
+
+{% style %}
+  #shopify-section-{{ section.id }} .card__content{
+    background: none!important;
+  }
+{% endstyle %}
+
+{% liquid 
+
+  assign colRows              = ''
+  assign colTtls              = ''
+  assign featuredProducts     = ''
+
+  assign s                    = section.settings
+  assign sID                  = section.id
+
+  assign sectionCustomCSS     = s.custom_css
+  assign class                = 'section--' | append: sID
+  assign cssClass             = '.' | append: class
+
+  assign groupLimit           = s.limit 
+  assign perRow               = s.per_row 
+
+  assign b                    = block
+  assign lp                   = section.blocks
+  assign blks                 = lp.size
+  assign total                = 200
+
+  if groupLimit == 0 and blks > 0
+    assign groupLimit         = blks
+  endif 
+  
+  assign lnk_url              = s.link_url
+  assign lnk_txt              = s.link_text
+  assign use_lnk              = false
+
+  assign btn_url              = s.button_url
+  assign btn_txt              = s.button_text
+  assign btnStyle             = s.btn_style
+
+  assign use_btn              = false
+  if btn_url != blank and btn_txt != blank
+    assign use_btn            = true
+  endif
+
+  if blks == 0 
+    assign col                = collections[s.collection]
+    assign b                  = product
+    assign lp                 = col.products
+    assign lnk_url            = lnk_txt | default: col.url
+      comment 
+    assign lnk_txt            = lnk_txt | default: 'View All'
+      endcomment 
+    assign total              = groupLimit
+  endif 
+
+  assign secTtl               = s.title 
+  assign secTxt               = s.text
+
+  if lnk_url != blank and lnk_txt != blank
+    assign use_lnk            = true
+  endif
+
+  assign clrTxt               = s.text_color | replace: 'rgba(0,0,0,0)',''
+  assign clrBG                = s.gradient
+
+  assign useSlider            = s.use_slider
+  assign useSliderMob         = s.use_slider_mobile_only
+  assign useArrows            = s.use_arrows
+  assign useDotsDsk           = s.use_dots_desktop
+  assign useDotsMob           = s.use_dots_mobile
+  assign autoSlide            = s.auto_slide
+  assign infinite             = s.infinite
+
+  case perRow
+    when 1  
+      assign width            = ''
+      assign max              = 1
+    when 2 
+      assign width            = 'not-narrow--one-half medium-up--one-half'
+      assign max              = 2
+    when 3  
+      assign width            = 'not-narrow--one-half medium-up--one-third'
+      assign max              = 3
+    when 5 or 9 or 10 
+      assign width            = 'not-narrow--one-half medium--one-third large-up--one-fifth'
+      assign max              = 5
+    when 6 or 11 or 12 
+      assign width            = 'not-narrow--one-half medium--one-third large-up--one-sixth'
+      assign max              = 6
+    else  
+      assign width            = 'not-narrow--one-half medium-up--one-half large-up--one-quarter'
+      assign max              = 4
+  endcase 
+
+  assign first                = true
+  assign colBlocks            = section.blocks | where: 'type', 'collection'
+  assign prdBlocks            = section.blocks | where: 'type', 'product'
+  assign adBlocks             = section.blocks | where: 'type', 'ad'
+
+  comment 
+  if adBlocks.size > 0
+    assign prdBlocks          = prdBlocks | concat: adBlocks
+  endif 
+  endcomment 
+    
+%}
+
+{% if clrTxt != blank or clrBG != blank %}
+  {% capture clrCSS %}
+    {% if clrBG != blank %}
+    == {
+      --color--bg: {{clrBG}};
+      background: var(--color--bg);
+    }
+    {% endif %}
+    {% if clrTxt != blank %}
+    == {
+      --color--text: {{clrTxt}};
+    }
+    == .rte,
+    == .rte *,
+    == h2 {
+      color: var(--color--text);
+    }
+    == .slick-dots li button:before {
+      background: transparent;
+      color: var(--color--text);
+      border-color: var(--color--text);
+    }
+    == .slick-dots li.slick-active button:before, 
+    == .slick-dots li:hover button:before {
+      background-color: var(--color--text);
+    }
+    {% endif %}
+  {% endcapture %}
+  {% assign sectionCustomCSS = clrCSS | append: sectionCustomCSS %}
+{% endif %}
+
+  {% comment %}
+    
+    Version 1 
+    
+    - Applies when NOT using tabs.
+    - Uses either Section level Collection feed, or hand-picked products.
+
+  {% endcomment %}
+{% if colBlocks.size < 1 %}
+  {% assign found = false %}
+  {% capture featuredProducts %}
+    {% if lp.size > 0 %}
+      <div class="cell vert-top cell_margin_bottom double_gutter text-center match-row" >
+        {% for b in lp limit: total %}
+          {% liquid 
+            assign product      = b
+            if blks > 0 
+              assign bs       = b.settings
+              assign product  = all_products[bs.product]
+              assign pTtl     = bs.title 
+              assign pImg     = bs.image
+              assign pSecImg  = bs.second_image
+              assign pPrc     = bs.price
+            endif 
+          %}
+          {% if product.title.size > 1 %}
+            {% assign found = true %}
+            <div class="cell__item {{width}}">
+              {% include 'card-product',                                 
+                overrideTitle: pTtl,
+                overrideImage: pImg,
+                overrideSecondImage: pSecImg,
+                overridePrice: pPrc,
+                show_vendor: false,
+                card_product: product,
+                media_aspect_ratio: s.image_ratio,
+                show_secondary_image: s.show_secondary_image,
+                show_vendor: s.show_vendor,
+                show_rating: s.show_rating,
+                show_quick_add: s.enable_quick_add,
+                section_id: section.id
+              %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endcapture %}
+  {% if found == false %}
+    {% assign featuredProducts = '' %}
+  {% endif %}
+
+
+  {% comment %}
+    
+    Version 2 
+    
+    - Applies when using tabs.
+    - Uses either Block level Collection feed (2.1), or hand-picked products for tabs (2.2).
+
+  {% endcomment %}
+{% else %}
+  
+  {% comment %}
+  
+    Version 2.1 
+    
+    - Applies when using tabs.
+    - Uses Block level Collection feed.
+
+  {% endcomment %}
+  {% if prdBlocks.size < 1 %}
+    {% for i in colBlocks %}
+      {% liquid
+        assign productLimit     = groupLimit
+        assign ads              = ''
+        assign bs               = i.settings
+        assign col              = collections[bs.collection]
+        assign ttl              = bs.grid_handle | default: col.title 
+        assign groupAssignment  = ttl | handleize 
+        assign contClass        = 'container-' | append: groupAssignment
+
+        assign useRecommended   = false
+        if bs.use_recommended and recommendations.performed and recommendations.products_count > 0
+          assign useRecommended = true
+        endif 
+        if bs.use_recommended and template.name == 'product'
+          assign useRecommended = true
+        endif 
+
+      %}
+      {% if ttl != blank %}
+        {% comment %} Capture Ads if there are any {% endcomment %}
+        {% for i in adBlocks %}
+          {% liquid
+            assign bs                     = i.settings
+            assign innerGroupAssignment   = bs.grid_handle | handleize 
+            assign adTtl                  = bs.title 
+            assign adTxt                  = bs.text
+            assign img                    = bs.image
+            assign btnTxt                 = bs.btn_text
+            assign btnUrl                 = bs.btn_url
+            assign btnStl                 = bs.btn_style
+            assign txtClr                 = bs.text_color | replace: 'rgba(0,0,0,0)',''
+            assign bgClr                  = bs.gradient
+            assign blockCustomCSS         = bs.custom_css
+          %}
+          {% if groupAssignment == innerGroupAssignment %}
+            {% if adTtl != blank or adTxt != blank or img != blank %}
+              {% capture ads %}
+                {{ads}}
+                <div class="cell__item {{width}}">
+                  {% include 'card-promo',
+                    cardImage: img,
+                    cardTitle: adTtl,
+                    cardText: adTxt,
+                    cardBtnTxt: btnTxt,
+                    cardBtnUrl: btnUrl,
+                    cardBtnStyle: btnStl,
+                    cardTxtClr: txtClr,
+                    cardBgClr: bgClr,
+                    cardCSS: blockCustomCSS
+                  %}
+                </div>
+              {% endcapture %}
+              {% assign productLimit = productLimit | minus: 1 %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% capture colTtls %}
+          {{colTtls}}
+          <a href="#" data-tab="{{groupAssignment}}" class="tab-trig {% unless first == false %}current{% endunless %}" >
+            {{ttl}}
+          </a>
+        {% endcapture %}
+        {% capture colRows %}
+          {{colRows}}
+          <div class="tab-content {{contClass}} {% unless first == false %}tab--active{% endunless %}" id="{{groupAssignment}}" {{b.shopify_attributes}}>        
+            {% capture collectionProducts %}
+              {% for product in col.products limit: productLimit %}
+                {% if product.title != blank %}
+                  <div class="cell__item {{width}}">
+                    {% include 'card-product',                                 
+                      overrideTitle: pTtl,
+                      overrideImage: pImg,
+                      overrideSecondImage: pSecImg,
+                      overridePrice: pPrc,
+                      show_vendor: false,
+                      card_product: product,
+                      media_aspect_ratio: s.image_ratio,
+                      show_secondary_image: s.show_secondary_image,
+                      show_vendor: s.show_vendor,
+                      show_rating: s.show_rating,
+                      show_quick_add: s.enable_quick_add,
+                      section_id: section.id
+                    %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            {% endcapture %}
+            {% if useRecommended %}
+              <product-recommendations class="product-recommendations" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ productLimit }}">
+                <div class="cell cell_margin_bottom vert-top match-row" role="list">
+                  {% if recommendations.performed and recommendations.products_count > 0 %}
+                    {% for recommendation in recommendations.products %}
+                      <div class="cell__item {{width}}">
+                        {% render 'card-product',
+                          card_product: recommendation,
+                          media_aspect_ratio: section.settings.image_ratio,
+                          show_secondary_image: section.settings.show_secondary_image,
+                          show_vendor: section.settings.show_vendor,
+                          show_quick_add: s.enable_quick_add,
+                          show_rating: section.settings.show_rating
+                        %}
+                      </div>
+                    {% endfor %}
+                  {% else %}
+                    {{collectionProducts}}
+                  {% endif %}
+                </div>
+              </product-recommendations>
+            {% else %}
+              <div class="cell cell_margin_bottom vert-top match-row">
+                {{collectionProducts}}
+                {% comment %} Place Ads if there are any {% endcomment %}
+                {{ads}}
+              </div>
+            {% endif %}
+          </div>
+        {% endcapture %}
+        {% assign first = false %}
+      {% endif %}
+    {% endfor %}
+  
+  {% comment %}
+  
+    Version 2.2 
+    
+    - Applies when using tabs.
+    - Uses hand-picked products.
+
+  {% endcomment %}
+  {% else %}
+    {% for i in colBlocks %}
+      {% liquid
+        assign ads              = ''
+        assign bs               = i.settings
+        assign col              = collections[bs.collection]
+        assign ttl              = bs.title | default: col.title 
+        assign groupAssignment  = bs.grid_handle | default: ttl | handleize 
+        assign contClass        = 'container-' | append: groupAssignment
+        assign productLimit     = groupLimit
+        assign foundCount       = 0 
+      %}
+      {% if ttl != blank %}
+        {% comment %} Capture Ads if there are any {% endcomment %}
+        {% for i in adBlocks %}
+          {% liquid
+            assign bs                     = i.settings
+            assign innerGroupAssignment   = bs.grid_handle | handleize 
+            assign adTtl                  = bs.title 
+            assign adTxt                  = bs.text
+            assign img                    = bs.image
+            assign btnTxt                 = bs.btn_text
+            assign btnUrl                 = bs.btn_url
+            assign btnStl                 = bs.btn_style
+            assign txtClr                 = bs.text_color | replace: 'rgba(0,0,0,0)',''
+            assign bgClr                  = bs.gradient
+            assign blockCustomCSS         = bs.custom_css
+          %}
+          {% if groupAssignment == innerGroupAssignment %}
+            {% if adTtl != blank or adTxt != blank or img != blank %}
+              {% capture ads %}
+                {{ads}}
+                <div class="cell__item {{width}}">
+                  {% include 'card-promo',
+                    cardImage: img,
+                    cardTitle: adTtl,
+                    cardText: adTxt,
+                    cardBtnTxt: btnTxt,
+                    cardBtnUrl: btnUrl,
+                    cardBtnStyle: btnStl,
+                    cardTxtClr: txtClr,
+                    cardBgClr: bgClr,
+                    cardCSS:  blockCustomCSS
+                  %}
+                </div>
+              {% endcapture %}
+              {% assign productLimit = productLimit | minus: 1 %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% capture colTtls %}
+          {{colTtls}}
+          <a href="#" data-tab="{{groupAssignment}}" class="tab-trig {% unless first == false %}current{% endunless %}" >
+            {{ttl}}
+          </a>
+        {% endcapture %}
+        {% capture colRows %}
+          {{colRows}}
+          <div class="tab-content {{contClass}} {% unless first == false %}tab--active{% endunless %}" id="{{groupAssignment}}" {{b.shopify_attributes}}>    
+            <div class="cell cell_margin_bottom vert-top match-row">
+              {% for i in prdBlocks %}
+                {% liquid
+                  assign bs                     = i.settings
+                  assign innerGroupAssignment   = bs.grid_handle | handleize 
+                  assign product                = all_products[bs.product]
+                  assign pTtl                   = bs.title 
+                  assign pImg                   = bs.image
+                  assign pSecImg                = bs.second_image
+                  assign pPrc                   = bs.price
+                %}
+                {% if i.type == 'product' and productLimit >= foundCount %}
+                  {% if product.title != blank and groupAssignment == innerGroupAssignment %}
+                    <div class="cell__item {{width}}">
+                      {% include 'card-product',                                 
+                        overrideTitle: pTtl,
+                        overrideImage: pImg,
+                        overrideSecondImage: pSecImg,
+                        overridePrice: pPrc,
+                        show_vendor: false,
+                        card_product: product,
+                        media_aspect_ratio: s.image_ratio,
+                        show_secondary_image: s.show_secondary_image,
+                        show_vendor: s.show_vendor,
+                        show_rating: s.show_rating,
+                        show_quick_add: s.enable_quick_add,
+                        section_id: section.id
+                      %}
+                    </div>
+                    {% assign foundCount = foundCount | plus: 1 %}
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+              {% comment %} Place Ads if there are any {% endcomment %}
+              {{ads}}
+            </div>
+          </div>
+        {% endcapture %}
+        {% assign first = false %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  {% if colTtls != blank or colRows != blank %}
+    {% capture featuredProducts %}
+      {{featuredProducts}}
+      <div class="tabs-container">
+        <div class="tabs">
+          {{colTtls}}
+        </div>
+        {{colRows}}
+      </div>
+    {% endcapture %}
+  {% endif %}
+{% endif %}
+
+{% if featuredProducts != '' %}
+  <div class="section--featured-products {{class}}" data-section-id="{{ sID }}">
+      
+    
+    {{ 'nine15-section--featured-product.css' | asset_url | stylesheet_tag }}
+
+    {%- if section.settings.enable_quick_add -%}
+      <link rel="stylesheet" href="{{ 'quick-add.css' | asset_url }}" media="print" onload="this.media='all'">
+      <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+      <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+
+    <div class="page-width">
+      {% if secTtl != blank or secTxt != blank %}
+        <div class="section--title text-center">
+          
+          {% if secTtl != blank %}
+            <h2>{{secTtl}}</h2>
+          {% endif %}
+        
+          {% if secTxt != blank %}
+            <div class="rte">{{secTxt}}</div>
+          {% endif %}
+
+          {% if use_lnk == true %}
+            <a href="{{lnk_url}}" class="text-link">{{lnk_txt}}</a>
+          {% endif %}
+                
+        </div>
+      {% endif %}
+
+      {{featuredProducts}}
+
+      {% if use_btn == true %}
+        <div class="text-center btn-container">
+          <a href="{{btn_url}}" class="btn button button--{{btnStyle}}">{{btn_txt}}</a>
+        </div>
+      {% endif %}
+    </div>
+
+    {% include 'custom-css', 
+      css: sectionCustomCSS, 
+      class: cssClass 
+    %}
+
+    <script type="text/javascript" >
+      waitFor_jQuery(function () {
+        // slider
+        $(document).ready(function (){
+          var slds = $('{{cssClass}} .cell');
+          
+          // slick on mobile
+          function slick_on_mobile(slider, settings){
+            $(window).on('load resize', function() {
+              if ($(window).width() > 750) {
+                if (slider.hasClass('slick-initialized')) {
+                  slider.slick('unslick');
+                }
+                return
+              }
+              if (!slider.hasClass('slick-initialized')) {
+                return slider.slick(settings);
+              }
+            });
+          };
+          // init slider
+          function initSlider(slds) {     
+            var slidesCount = slds.find('.cell__item').length,
+                settings_slider = {
+                  // centerMode: true,
+                  autoplay: {{autoSlide}},
+                  dots: {{useDotsDsk}},
+                  arrows: {{useArrows}},
+                  slidesToShow: {{max}},
+                  rows: 0,
+                  infinite: {{infinite}},
+                  responsive: [
+                    {
+                      breakpoint: 990,
+                      settings: {
+                        dots: {{useDotsDsk}},
+                        slidesToShow: ( {{max|at_most:3}} >= +slidesCount ? +slidesCount : {{max|at_most:3}} )
+                      }
+                    },
+                    {
+                      breakpoint: 750,
+                      settings: {
+                        dots: {{useDotsMob}},
+                        slidesToShow: ( {{max|at_most:2}} >= +slidesCount ? +slidesCount : {{max|at_most:2}} )
+                      }
+                    },
+                    {
+                      breakpoint: 500,
+                      settings: {
+                        dots: {{useDotsMob}},
+                        slidesToShow: 1
+                      }
+                    }
+                  ]
+                },
+                settings_slider_mobile = {
+                  autoplay: {{autoSlide}},
+                  dots: {{useDotsMob}},
+                  arrows: {{useArrows}},
+                  slidesToShow: ( {{max|at_most:2}} >= +slidesCount ? +slidesCount : {{max|at_most:2}} ),
+                  rows: 0,
+                  infinite: {{infinite}},
+                  responsive: [
+                    {
+                      breakpoint: 500,
+                      settings: {
+                        slidesToShow: 1
+                      }
+                    }
+                  ]
+                };
+                     
+            if ( slidesCount > 1 ) {
+              {% if useSliderMob == true %}
+              slick_on_mobile( slds, settings_slider_mobile);
+              {% else %}
+              slds.slick(settings_slider);
+              {% endif %}
+            }
+          }
+
+          {% if useSlider == true or useSliderMob == true %}
+          // default init
+          initSlider(slds)
+          {% endif %}
+
+
+          // check for Yotpo and reset when needed, stars wont show on all otherwise
+          // var chkEl = '{{cssClass}} .yotpo-display-wrapper';
+          // watchForElement(chkEl,function() {
+          //   if (slds.hasClass('slick-initialized')) {
+          //     slds.slick('unslick');
+          //   }
+          //   setTimeout(function () {
+          //     initSlider(slds)
+          //   },100)
+          // })
+
+
+
+
+          var section = '.tabs-container',
+            tab_trigger = '.tab-trig',
+            content = '.tab-content',
+            tab_active = 'current',
+            cont_active = 'tab--active';
+
+          $(section+' '+tab_trigger).click(function(e){
+            
+            e.preventDefault();
+            var tab = $(this),
+              par = tab.closest(section),
+              tab_id = tab.attr('data-tab'),
+              cont = $(section+" #"+tab_id);
+
+            // Removes classes from siblings
+            par.find(tab_trigger).removeClass(tab_active);
+            par.find(content).removeClass(cont_active);
+
+            // Adds class to only selected tabs
+            tab.addClass(tab_active);
+            cont.addClass(cont_active);
+
+            {% if useSlider == true or useSliderMob == true %}
+            // default init
+            slds.slick('unslick');
+            initSlider(slds)
+            {% endif %}
+
+          })
+
+        })
+
+      });
+    </script>
+
+      
+  </div>
+{% endif %}

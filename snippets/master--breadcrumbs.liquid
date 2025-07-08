@@ -1,0 +1,248 @@
+<!-- snippets/master--breadcrumbs -->
+{% liquid
+  
+  assign t        = template | split: '.' | first 
+
+  assign product_tags = product.tags
+
+  assign collection_title = product.collections
+
+  assign colMF    = collection.metafields.custom
+  assign subCol   = collections[colMF.sub_category_handle]
+
+%}
+<style>    
+    .breadcrumbs.eci-breadcrumbs{
+      font-size: 14px;
+    }
+
+    nav.breadcrumbs.eci-breadcrumbs {
+        padding: 5px 30px;
+        background: white;
+        color: black !important;
+    }
+    nav.breadcrumbs.eci-breadcrumbs a {
+        color: black !important;
+    }
+    nav.breadcrumbs.eci-breadcrumbs  li:after {
+        color: black;
+    }
+
+    .margin-desktop{
+      margin-top: 38px;
+    }
+
+    .margin-mobile{
+      margin-top: 65px;
+    }
+ 
+    /* .template--product .main-product--container{
+        margin-top: 38px;
+    } */
+
+    /* .dis-flex{
+      display: flex;
+    } */
+
+    
+
+    .template--collection main {
+      display: flex !important;
+      flex-direction: column;
+    }
+    .template--collection .eci-breadcrumbs{
+      order: 0;
+    }
+    .template--collection .eci-breadcrumbs + .shopify-section{
+      order: -1;
+    }
+
+    .breadcrumbs .breadcrumbs__item{
+      font-weight: 400!important;
+    }
+
+  /* @media (max-width: 480px){
+    .product_title{
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  } */
+
+  @media (max-width: 425px){
+    .product_title{
+      max-width: 175px;
+    }
+  }
+
+  @media (max-width: 375px){
+    .product_title{
+      max-width: 150px;
+    }
+  }
+ 
+    @media only screen and (max-width: 989px){
+        nav.breadcrumbs.eci-breadcrumbs {
+            padding: 5px 10px;
+        }
+    }
+
+    @media (max-width: 480px){
+      nav.breadcrumbs.eci-breadcrumbs {
+            padding: 5px 20px;
+        }
+    }
+</style>
+<nav class="breadcrumbs eci-breadcrumbs" role="navigation" aria-label="breadcrumbs">
+  <ol class="breadcrumbs__list">
+    <li class="breadcrumbs__item">
+      <a class="breadcrumbs__link" href="/">Home</a>
+    </li>
+    {%- case t -%}
+      {%- when 'page' -%}
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link" href="{{ page.url }}" aria-current="page">{{ page.title }}</a>
+        </li>
+      {%- when 'product' -%}
+        {%- if product.collections.size > 0 -%}
+          {%- assign collection = product.collections.first -%}
+        {%- endif -%}
+        {%- if collection.url -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link collecion_title" href="{{ collection.url }}">{{ collection.title }}</a>                
+            {% comment %} <a class="breadcrumbs__link collecion_title"></a>                 {% endcomment %}
+          </li>
+        {%- endif -%}
+        <li class="breadcrumbs__item">
+            {% comment %} <div class="dis-flex"> {% endcomment %}
+              <a class="breadcrumbs__link product_title" href="{{ product.url }}" aria-current="page">{{ product.title }}</a>
+            {% comment %} </div> {% endcomment %}
+        </li>
+      {%- when 'collection' and collection.handle -%}
+        {% if subCol.title != blank %}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ subCol.url }}">{{ subCol.title }}</a>
+          </li>
+        {% endif %}
+        {%- if current_tags -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ collection.url }}">{{ collection.title }}</a>
+          </li>
+          <li class="breadcrumbs__item">
+            {%- capture tag_url -%}{{ collection.url }}/{{ current_tags | join: "+"}}{%- endcapture -%}
+            <a class="breadcrumbs__link" href="{{ tag_url }}" aria-current="page">{{ current_tags | join: " + "}}</a>
+          </li>
+        {%- else -%}
+          <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="{{ collection.url }}" aria-current="page">{{ collection.title }}</a>
+          </li>
+        {%- endif -%}
+      {%- when 'blog' -%}
+        {%- if current_tags -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ blog.url }}">{{ blog.title }}</a>
+          </li>
+          <li class="breadcrumbs__item">
+            {%- capture tag_url -%}{{blog.url}}/tagged/{{ current_tags | join: "+" }}{%- endcapture -%}
+            <a class="breadcrumbs__link" href="{{ tag_url }}" aria-current="page">{{ current_tags | join: " + " }}</a>
+          </li>
+        {%- else -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ blog.url }}" aria-current="page">{{ blog.title }}</a>
+          </li>
+        {%- endif -%}
+      {%- when 'article' -%}
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link" href="{{ blog.url }}">{{ blog.title }}</a>
+        </li>
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link" href="{{ article.url }}" aria-current="page">{{ article.title }}</a>
+        </li>
+      {%- else -%}
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link" href="{{ request.path }}" aria-current="page">{{ page_title }}</a>
+        </li>
+    {%- endcase -%}
+  </ol>
+</nav>
+
+<script>
+  
+
+  function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+
+  var collecions = {{ collection_title | json }}
+
+  console.log(collecions);
+
+  var product_tag = {{ product_tags |  json }}
+
+  var collecion_info = getCookie("collection");
+  var previous_page_info = getCookie("previous_page");
+
+  var state = false
+
+  // product_tag.forEach((item, index)=>{
+  //   if(item == ''){
+  //     document.querySelector('.breadcrumbs__link.collecion_title').textContent = `New`
+  //     document.querySelector('.breadcrumbs__link.collecion_title').href = `/collections/new`
+  //     state = true      
+  //   }
+  // })
+
+  if(product_tag.includes('new_badge')){
+      document.querySelectorAll('.breadcrumbs__link.collecion_title').forEach((item, index)=>{
+        item.textContent = `New`
+        item.href = `/collections/new`
+      })
+      state = true  
+  }
+
+  if(state == false){
+    if(performance.navigation.type === performance.navigation.TYPE_RELOAD){
+      document.querySelectorAll('.breadcrumbs__link.collecion_title').forEach((item, index)=>{
+        item.textContent = `${collecion_info.split('*')[0]}`
+        item.href = `${collecion_info.split('*')[1]}`
+      })
+    }
+    else{
+      if(previous_page_info == 'collection' && collecion_info){
+        document.querySelectorAll('.breadcrumbs__link.collecion_title').forEach((item, index)=>{
+          item.textContent = `${collecion_info.split('*')[0]}`
+          item.href = `${collecion_info.split('*')[1]}`
+        })
+      }
+      else{
+        if(collecions.some(item => item.title == "Bags")){
+          document.querySelectorAll('.breadcrumbs__link.collecion_title').forEach((item, index)=>{
+            item.textContent = `Bags`
+            item.href = `/collections/bags`  
+          }) 
+        }
+        else if(collecions.some(item => item.title == "Accessories")){
+          document.querySelectorAll('.breadcrumbs__link.collecion_title').forEach((item, index)=>{
+            item.textContent = `Accessories`
+            item.href = `/collections/accessories` 
+          })   
+        }
+        else if(collecions.some(item => item.title == "Sale")){
+          document.querySelectorAll('.breadcrumbs__link.collecion_title').forEach((item, index)=>{
+            item.textContent = `Sale`
+            item.href = `/collections/sale`  
+          })
+        }
+      }
+    }
+  }
+
+</script>

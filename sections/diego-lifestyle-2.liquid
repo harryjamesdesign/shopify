@@ -1,0 +1,31 @@
+{%- liquid 
+  assign mf = product.metafields.custom
+  assign img= mf.lifestyle_2_image
+  assign img_mob = mf.lifestyle_2_image_mobile
+%}
+
+{% if img != blank %}
+    <a href="{{ section.settings.image_link_url }}"><img loading="lazy" src="{{ img |  image_url: width: 1930 }}" class="small-hide" style="width:100%;"></a>
+{% endif %}
+
+{% if img_mob != blank %}
+    <a href="{{ section.settings.image_link_url }}"><img loading="lazy" src="{{ img_mob |  image_url: width: 748 }}" class="large-up-hide medium-hide" style="width:100%;"></a>
+{% endif %}
+
+{% schema %}
+{
+    "name": "Diego Lifestyle 2",
+    "settings": [
+        {
+            "type": "url",
+            "id":"image_link_url",
+            "label": "Image Link Url"
+        }
+        ],
+        "presets": [
+    {
+      "name": "Diego Lifestyle 2"
+    }
+  ]
+}
+{% endschema %}

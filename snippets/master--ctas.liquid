@@ -1,0 +1,529 @@
+<!-- snippets/master--ctas -->
+
+<style>
+  @media (max-width: 749px) {
+    .hide-mobile {
+      display: none !important;  
+    }
+  }
+</style>
+
+{% liquid 
+
+    assign s                    = section.settings
+    assign sID                  = section.id
+
+    assign sectionCustomCSS     = s.custom_css
+    assign class                = 'section--' | append: sID
+    assign cssClass             = '.' | append: class
+
+    assign blks                 = section.blocks.size
+
+    assign ctaItems             = ''
+    assign secTtl               = s.title
+    assign secTxt               = s.text
+    assign imgIC                = s.icon_image
+    assign imgBG                = s.image
+
+    assign imgBG_CF             = false 
+    if s.metafield_background_image != blank 
+      assign imgBG              = s.metafield_background_image
+      assign imgBG_CF           = true 
+    endif 
+
+    assign btn_url              = s.button_url
+    assign btn_txt              = s.button_text
+    assign btnStyle             = s.btn_style
+
+    assign use_btn              = false
+    if btn_url != blank and btn_txt != blank
+        assign use_btn          = true
+    endif
+
+    assign lnk_url              = s.link_url
+    assign lnk_txt              = s.link_text
+    assign use_lnk              = false
+    if lnk_url != blank and lnk_txt != blank
+        assign use_lnk          = true
+    endif
+    
+    assign align_boxes_left     = s.align_boxes_left
+    assign large_images         = s.large_images
+    assign matchRow             = s.match_row
+
+    assign inlineCTAs           = ''
+    if s.inline_ctas == true 
+        assign inlineCTAs       = 'inline-ctas'
+    endif
+
+    assign largeImages          = ''
+    if large_images == true 
+        assign largeImages      = 'large-images'
+    endif
+
+    assign modalFound           = false
+
+    assign clrTxt               = s.text_color
+    assign clrBG                = s.gradient
+
+    assign useSlider            = s.use_slider
+    assign useSliderMob         = s.use_slider_mobile_only
+    assign useOffset            = s.use_offset
+    assign useArrows            = s.use_arrows
+    assign useDots              = s.use_dots
+    assign autoSlide            = s.auto_slide
+    assign infinite             = s.infinite
+
+    assign perRow               = s.per_row
+    if perRow == 0
+        assign perRow           = section.blocks.size
+    endif         
+
+    case perRow
+        when 1  
+            assign width    = ''
+            assign max      = 1
+        when 2 
+            assign width    = 'medium-up--one-half'
+            assign max      = 2
+        when 3  
+            assign width    = 'medium-up--one-third'
+            assign max      = 3
+        when 5 or 9 or 10 
+            assign width    = 'medium--one-third large-up--one-fifth'
+            assign max      = 5
+        when 6 or 11 or 12 
+            assign width    = 'medium--one-third large-up--one-sixth'
+            assign max      = 6
+        when 7 
+            assign width    = 'medium--one-third large-up--one-seventh'
+            assign max      = 7
+        when 8 
+            assign width    = 'medium--one-third large-up--one-eighth'
+            assign max      = 8
+        else  
+            assign width    = 'medium-up--one-quarter'
+            assign max      = 4
+    endcase 
+
+    
+%}
+
+<!-- {% style %}
+  .btn-container{
+    flex-grow: 1!important;
+    display: flex!important;
+    align-items: end!important;
+  }
+
+  .section--ctas a{
+    max-width:350px!important;
+    padding:0px!important;
+    height:70px!important;
+    width:100%!important;
+  }
+{% endstyle %} -->
+
+{% style %}
+  .inner-container span{
+    font-size: 12px !important;
+    font-family: var(--font--graphik-wide) !important;
+    font-weight: 700 !important;
+    color: var(--color--text) !important;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-style: var(--font-heading-style);
+    line-height: calc(1 + 0.3 / max(1, var(--font-heading-scale)));
+    word-break: break-word;
+  }
+{% endstyle %}
+
+{% if clrTxt != blank or clrBG != blank %}
+    {% capture clrCSS %}
+        {% if clrBG != blank %}
+        == {
+            --color--bg: {{clrBG}};
+            background: var(--color--bg);
+        }
+        {% endif %}
+        {% if clrTxt != blank %}
+        == {
+            --color--text: {{clrTxt}};
+        }
+        == .rte,
+        == .rte *,
+        == h2,
+        == h3,
+        == div,
+        == h4 {
+            color: var(--color--text);
+        }
+        {% endif %}
+    {% endcapture %}
+    {% assign sectionCustomCSS = clrCSS | append: sectionCustomCSS %}
+{% endif %}
+
+
+{% for block in section.blocks %}
+
+  {% liquid 
+    assign b            = block.settings
+
+    assign ttl          = b.title 
+    assign subttl       = b.subtitle 
+    assign txt          = b.text 
+    assign bdg          = b.badge 
+    assign img          = b.image 
+    assign lnk          = b.url
+    assign btnTxt       = b.button_text
+    assign btnStyleBlk  = b.btn_style
+
+    assign img_CF       = false 
+    if b.metafield_image != blank 
+      assign img        = b.metafield_image
+      assign img_CF     = true 
+    endif 
+
+    assign lnkAllowed   = true
+    assign useBtnBlk    = false
+    if lnk != blank and btnTxt != blank
+      assign useBtnBlk  = true
+    endif
+
+    assign useModal     = b.use_modal 
+    assign vidExt       = b.video_url 
+    assign vidHosted    = b.video_hosted 
+    assign hostedThumb  = b.video_hosted_thumbnail
+
+    assign metaVideo        = false 
+    if b.metafield_video != blank 
+      assign extVid         = b.metafield_video
+      assign hstVid         = blank
+      assign metaVideo      = true
+    endif 
+
+    if vidExt != blank or vidHosted != blank
+      assign lnkAllowed = false
+      assign useBtnBlk  = false
+      if useModal == false 
+        assign img      = blank
+      else 
+        assign modalFound = true
+      endif 
+    endif  
+
+    assign imgCls       = 'icon-image inner-icon'
+
+    if large_images == true 
+      assign imgCls   = 'normal-image'
+    endif 
+
+    assign el           = 'div'
+    assign attr         = ''
+    if useBtnBlk == false and lnk != blank and lnkAllowed != false
+      assign el       = 'a'
+      assign attr     = 'href="' | append: lnk | append: '"'
+    endif  
+  %}
+
+  {% capture video %}
+    {% include 'snippet--video', 
+      vidExt: vidExt, 
+      vidHosted: vidHosted, 
+      hostedThumb: hostedThumb,
+      cf: false,
+      vidClass: sectionClass, 
+      autoPlay: false,
+      normalMobile: false,
+      metaVideo: metaVideo,
+      useBG: false 
+    %}
+  {% endcapture %}
+
+  {% capture img %}
+    {% include 'snippet--image', 
+      img: img, 
+      extraClass: imgCls,
+      cf: img_CF,
+      useBG: false 
+    %}
+  {% endcapture %}
+
+  {% capture imageVideo %}
+    {% if img != blank or video != blank %}
+      <div class="image-wrapper">
+
+        {% if useBtnBlk == true %}
+          <a href="{{lnk}}" class="overlay-link">
+            <span class="visually-hidden">{{btnTxt}}</span>
+          </a>
+        {% endif %}
+        
+        {% if useModal == true %}
+          <a class="open-modal" data-open="video_{{ forloop.index }}" href="#">
+            {% include 'icon-play' %}
+            <span class="visually-hidden">Open Video Modal</span>
+          </a>
+        {% endif %}
+
+        {{img}}
+        
+        {% if useModal != true %}
+          {{video}}
+        {% endif %}
+
+        {% if bdg != blank %}
+          <div class="badge">
+            {{bdg}}
+          </div>
+        {% endif %}
+
+      </div>
+    {% endif %}
+  {% endcapture %}
+
+  {% capture modals %}
+    {{modals}}
+    {% if useModal == true %}
+      <div class="basic-modal video-modal" id="video_{{ forloop.index }}">
+        <div data-close="video_{{ forloop.index }}" class="bg_close"></div>
+        <div class="modal-inner">
+          <span data-close="video_{{ forloop.index }}" class="close-modal">
+            <span class="visually-hidden">Close</span>
+            {% include 'icon-close' %}
+          </span>
+          <!-- <div class="video-ratio for-modal"> -->
+            {{video}}
+          <!-- </div> -->
+        </div>
+      </div>
+    {% endif %}
+  {% endcapture %}
+
+  {% if 
+      ttl != blank or 
+      txt != blank or 
+      img != blank or 
+      vidExt != blank or 
+      vidHosted != blank or  
+      useBtnBlk == true
+  %}
+    {% capture ctaItems %}
+      {{ctaItems}}
+      <div class="cell__item {% if block.settings.hide_mobile == true %} hide-mobile {% endif %} {{width}} {% if align_boxes_left == true %}text-left{% endif %}">
+        <{{el}} {{attr}} class="inner-container">
+            
+          {{imageVideo}}
+
+          {% if ttl != blank %}
+            <div>
+              {{ttl}}
+              {% if bdg != blank and img == blank and video == blank %}
+                <div class="badge">
+                  {{bdg}}
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {% if subttl != blank %}
+            <span>{{subttl}}</span>
+          {% endif %}
+
+          {% if txt != blank %}
+            <div class="rte">{{txt}}</div>
+          {% endif %}
+
+          {% if useBtnBlk == true %}
+            <div class="btn-container">
+              <a href="{{lnk}}" class="btn button button--{{btnStyleBlk}}">{{btnTxt}}</a>
+            </div>
+          {% endif %}
+
+        </{{el}}>
+      </div>
+    {% endcapture %}
+  {% endif %}
+{% endfor %}
+
+
+{% if 
+    ctaItems != '' or
+    secTtl != blank or 
+    imgIC != blank or 
+    secTxt != blank or 
+    use_lnk == true  
+%}
+  <div class="section--ctas v-1 {{class}} {{inlineCTAs}} {{largeImages}}" data-section-id="{{ sID }}">
+    <link rel="stylesheet" href="{{ 'nine15-section--ctas.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript>{{ 'nine15-section--ctas.css' | asset_url | stylesheet_tag }}</noscript>
+
+    {% include 'snippet--image', img: imgBG, extraClass: 'main-bg', cf: imgBG_CF, useBG: true %}
+    <div class="page-width">
+
+      {% if secTtl != blank or imgIC != blank or secTxt != blank or use_lnk == true  %}
+        <div class="section--title text-center {% if secTtl != blank and img == blank and secTxt == blank and use_lnk == true %}{% comment %}inline--link{% endcomment %}{% endif %}">
+            
+          {% include 'snippet--image', img: imgIC, extraClass: 'icon-image main-icon', useBG: false %}
+        
+          {% if secTtl != blank %}
+            <h2>{{secTtl}}</h2>
+          {% endif %}
+        
+          {% if secTxt != blank %}
+            <div class="rte">{{secTxt}}</div>
+          {% endif %}
+
+          {% if use_lnk == true %}
+            <a href="{{lnk_url}}" class="btn button button--{{btnStyle}}">{{lnk_txt}}</a>
+          {% endif %}
+
+          <!-- {% if use_btn == true %}
+            <a href="{{btn_url}}" class="btn button button--{{btnStyle}}">{{btn_txt}}</a>
+          {% endif %} -->
+                  
+        </div>
+      {% endif %}
+
+      {% if ctaItems != blank %}
+        <div class="cell vert-top cell_margin_bottom text-center {% if matchRow == true %}match-row{% endif %} {% if useOffset == true %}offset{% endif %}" >
+          {{ctaItems}}
+          {% if useSlider == true and infinite == true %}
+            {{ctaItems}}
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if use_btn == true %}
+        <div class="text-center btn-container">
+          <a href="{{btn_url}}" class="btn button button--{{btnStyle}}">{{btn_txt}}</a>
+        </div>
+      {% endif %}
+
+    </div>
+
+    {{modals}}
+
+    {% include 'custom-css', 
+      css: sectionCustomCSS, 
+      class: cssClass 
+    %}
+
+    {% if useSlider == true or useSliderMob == true or modalFound == true %}
+      <script type="text/javascript">
+        waitFor_jQuery(function () {
+          {% if useSlider == true or useSliderMob == true %}
+          // slider
+          var slds = $('{{cssClass}} .cell'),
+              slidesCount = slds.find('.cell__item').length,
+              settings_slider = {
+                autoplay: {{autoSlide}},
+                dots: {{useDots}},
+                arrows: {{useArrows}},
+                slidesToShow: ( {{max}} >= +slidesCount ? +slidesCount : {{max}} ),
+                rows: 0, 
+                infinite: {{infinite}},
+                responsive: [
+                  {
+                    breakpoint: 990,
+                    settings: {
+                      slidesToShow: ( {{max|at_most:3}} >= +slidesCount ? +slidesCount : {{max|at_most:3}} )
+                    }
+                  },
+                  {
+                    breakpoint: 750,
+                    settings: {
+                      slidesToShow: ( {{max|at_most:2}} >= +slidesCount ? +slidesCount : {{max|at_most:2}} )
+                    }
+                  },
+                  {
+                    breakpoint: 400,
+                    settings: {
+                      slidesToShow: 1
+                    }
+                  }
+                ]
+              },
+              settings_slider_mobile = {
+                autoplay: {{autoSlide}},
+                dots: {{useDots}},
+                arrows: {{useArrows}},
+                slidesToShow: ( {{max|at_most:2}} >= +slidesCount ? +slidesCount : {{max|at_most:2}} ),
+                rows: 0, 
+                infinite: {{infinite}},
+                responsive: [
+                  {
+                    breakpoint: 400,
+                    settings: {
+                      slidesToShow: 1
+                    }
+                  }
+                ]
+              };
+          // slick on mobile
+          function slick_on_mobile(slider, settings){
+            $(window).on('load resize', function() {
+              if ($(window).width() > 750) {
+                if (slider.hasClass('slick-initialized')) {
+                  slider.slick('unslick');
+                }
+                return
+              }
+              if (!slider.hasClass('slick-initialized')) {
+                return slider.slick(settings);
+              }
+            });
+          };
+          if ( slidesCount > 1 ) {
+            {% if useSliderMob == true %}
+              slick_on_mobile( slds, settings_slider_mobile);
+            {% else %}
+              slds.slick(settings_slider);
+            {% endif %}
+          }
+          {% endif %}
+
+          $(document).ready(function () {
+            $('{{cssClass}} .slick-arrow').on('click touch', function () {
+              var thsSldr = $(this).closest('.slick-initialized');
+              if ( $('{{cssClass}} .slick-next.slick-disabled').length > 0 ) {
+                thsSldr.addClass('move-left');
+              } else {
+                thsSldr.removeClass('move-left');
+              }
+            })
+          })
+          {% if modalFound == true %}
+            $(function(){
+              var section = '{{cssClass}}',
+                  open = '.open-modal',
+                  close = '.close-modal, .bg_close',
+                  content = '.video-modal',
+                  cont_active = 'active';
+              $(section+' '+open).click(function(e){
+                e.preventDefault()
+                var tab = $(this),
+                    tab_id = tab.attr('data-open'),
+                    cont = $("#"+tab_id);
+                cont.addClass(cont_active);
+              });
+              $(close).click(function(e){
+                e.preventDefault()
+                var tab = $(this),
+                    tab_id = tab.attr('data-close'),
+                    cont = $("#"+tab_id);
+                cont.removeClass(cont_active);
+
+                $(".modal_video").each(function() {
+                  var src = $(this).attr('src');
+                  $(this).attr('src', src);
+                });
+              });
+            });
+          {% endif %}
+        });
+      </script>
+    {% endif %}
+      
+  </div>
+{% endif %}

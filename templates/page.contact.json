@@ -1,0 +1,765 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "title_style": "visually-hidden",
+        "loop": "",
+        "custom_css": "== .rte {\n  display: none;\n}",
+        "custom_code": "<script defer=\"defer\">\n    !function (c, n, r, t) { if (!c[r]) { var i, d, p = []; d = \"PROD\" !== t && t ? \"STAGING\" === t ? \"https://cdn.gladly.qa/gladly/chat-sdk/widget.js\" : t : \"https://cdn.gladly.com/chat-sdk/widget.js\", c[r] = { init: function () { i = arguments; var e = { then: function (t) { return p.push({ type: \"t\", next: t }), e }, catch: function (t) { return p.push({ type: \"c\", next: t }), e } }; return e } }, c.__onHelpAppHostReady__ = function (t) { if (delete c.__onHelpAppHostReady__, (c[r] = t).loaderCdn = d, i) for (var e = t.init.apply(t, i), n = 0; n < p.length; n++) { var a = p[n]; e = \"t\" === a.type ? e.then(a.next) : e.catch(a.next) } }, function () { try { var t = n.getElementsByTagName(\"script\")[0], e = n.createElement(\"script\"); e.async = !0, e.src = d + \"?q=\" + (new Date).getTime(), t.parentNode.insertBefore(e, t) } catch (t) { } }() } }\n      (window, document, 'Gladly', 'PROD')\n</script>\n\n<script defer=\"defer\">\n  window.gladlyConfig = {\n    appId: 'consuelastyle.com'\n  };\n</script>"
+      }
+    },
+    "form": {
+      "type": "contact-form",
+      "disabled": true,
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "color_scheme": "background-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1662421195f7252e88": {
+      "type": "nine15--slider",
+      "blocks": {
+        "0bd10e3e-b9da-4c68-927d-9ac554d7c547": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/return_exchange_landingpage_SP23.jpg",
+            "no_lazyload": false,
+            "title": "WE'RE HERE TO HELP",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": "== {\n  background: black;\n}\n\n== .image--inner {\n  padding-top: 440px;\n}\n\n== img {\n  object-fit: cover;\n}\n\n== .page-width,\n== .center-content {\n  position: relative;\n  inset: unset;\n  transform: unset;\n  width: 100%;\n  max-width: 100%;\n}\n\n== .page-width {\n  margin-top: -40px;\n}\n\n== .center-content {\n  max-width: 1400px;\n  text-align: center;\n  // padding: var(--base-gutter) 0;\n  padding-bottom: var(--base-gutter);\n}\n\n== h2, \n== .rte,\n== .rte * {\n  color: white;\n}\n\n== h2 {\n  font-family: var(--font--graphik-cond);\n  font-weight: 700;\n  letter-spacing: .02em;\n  text-transform: uppercase;\n  color: transparent;\n  -webkit-text-stroke: 1px #fff;\n  font-size: 85px;\n  // font-size: 16px;\n  line-height: 0.8;\n}\n\n\n/large-up/ {\n  == .page-width {\n    margin-top: -70px;\n  }\n  == h2 {\n    font-size: 150px;\n    -webkit-text-stroke: 2px #fff;\n  }\n}\n\n\n/ex-large-up/ {\n  == h2 {\n    font-size: 220px;\n  }\n  == .page-width {\n    margin-top: -103px;\n  }\n}"
+          }
+        }
+      },
+      "block_order": [
+        "0bd10e3e-b9da-4c68-927d-9ac554d7c547"
+      ],
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "440px",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "2b8178ba-8aa6-45dd-8f28-0a97cd0ea549": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "id-anchor",
+        "custom_html": "<div id=\"contact-us\" style=\"display:block!important;\"></div>",
+        "custom_css": ""
+      }
+    },
+    "166256936411277fb9": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "",
+        "custom_html": "{% capture lnks %}\n  Contact Us == #form1\n  Order Status == #order-status\n  Ordering & Payment == #ordering\n  Shipping Information == #shipping\n  Returns & Exchanges == #returns\n  Buy Now, Pay Later == #buy-now\n{% endcapture %}\n\n{% liquid\n assign lnks = lnks | newline_to_br | split: '<br />' \n assign foundFirst = false\n%}\n\n<div class=\"page-width\">\n  <div class=\"tabs small--hide\">\n    <div class=\"tabs-scroll\">\n      {% for l in lnks %}\n        {% liquid\n          assign splt = '=='\n          assign parts = l | split: splt\n        %}\n        {% if parts[0] != blank and parts[1] != blank %}\n          <a class=\"tab-trig {% if foundFirst == false %}current{% endif %}\" href=\"{{-parts[1]|trim|strip-}}\">\n            {{parts[0]}}\n          </a>\n          {% capture opts %}\n            {{opts}}\n            <option value=\"{{-parts[1]|trim|strip-}}\">\n              {{parts[0]}}\n            </option>\n          {% endcapture %}\n          {% assign foundFirst = true %}\n        {% endif %}\n      {% endfor %}\n    </div>\n  </div>\n  <div class=\"select medium-up--hide\">\n    <select class=\"select__select\" id=\"contactScroll\" onchange=\"scrollToEl(this)\">\n      {{opts}}\n    </select>\n    {% render 'icon-caret' %}\n  </div>\n  <script type=\"text/javascript\"></script>\n</div>\n\n<script type=\"text/javascript\">\n  function scrollToEl(el) {\n    simulateClick(document.querySelector('[href=\"'+el.value+'\"]'))\n  }\n  var simulateClick = function (elem) {\n    // Create our event (with options)\n    var evt = new MouseEvent('click', {\n      bubbles: true,\n      cancelable: true,\n      view: window\n    });\n    // If cancelled, don't dispatch our event\n    var canceled = !elem.dispatchEvent(evt);\n  };\n  document.addEventListener('DOMContentLoaded', function () {\n    var inViewLinks  = document.querySelectorAll('#shopify-section-{{section.id}} .tab-trig');\n    if ( inViewLinks != null ) {\n      inViewLinks.forEach(function (link) {\n        elementInView(link)\n      });\n      function elementInView(link) {\n        var linkTo = link.getAttribute(\"href\").trim().replace('#',''),\n            linkedSection = document.getElementById(linkTo);\n        if ( linkedSection != null ) {\n          window.addEventListener(\"scroll\", function() {\n            var inViewOffset      = window.outerHeight * 0.25,\n                inViewClass       = 'current',\n                isInView          = window.scrollY > (linkedSection.offsetTop - inViewOffset),\n                isFirst           = link => [link.parentNode.children].findIndex(c => c == link),\n                hasClass          = link.classList.contains(inViewClass);\n            if ( isInView && !hasClass) {\n              link.parentElement.querySelectorAll('.'+inViewClass).forEach(sib => sib.classList.remove(inViewClass))\n              link.classList.add(inViewClass);\n            }\n            if (!isInView && hasClass) {\n              // link.classList.remove(inViewClass);\n            }\n          });\n        }\n      }\n    }\n  })\n</script>",
+        "custom_css": "#shopify-section-{{section.id}} {\n  position: sticky;\n  top: 0;\n  background: white;\n  z-index: 10;\n  padding: var(--base-gutter--quarter) 0;\n  border-bottom: 1px solid RGBA(var(--color--shuttle-gray-rgb),0.1);\n}\n\n\n.header-sticky #shopify-section-{{section.id}} {\n  top: calc(var(--header-height--total) - 1px);\n}\n\n== .tabs-scroll {\n  justify-content: center;\n}"
+      }
+    },
+    "16624219762c3afed2": {
+      "type": "nine15--ctas",
+      "blocks": {
+        "2c2c8057-c978-4c52-9d83-00af35d38732": {
+          "type": "icon",
+          "settings": {
+            "hide_mobile": false,
+            "title": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 37\" style=\"width: 24px; height: 37px;\"><path data-name=\"Phone\" d=\"m24 35-6-10-3 1c-3 2-9-12-6-13l3-2L7 1 4 2c-11 6 6 39 16 34l4-1Z\" fill=\"rgba(246,246,246,0)\" stroke=\"#000\"></path></svg>",
+            "subtitle": "Call",
+            "text": "Monday - Friday<br>\n9 AM - 5 PM CST\n<br>\n<a href=\"tel:(800) 350-0151\">(800) 350-0151</a>",
+            "badge": "",
+            "button_text": "",
+            "url": "",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "4838513c-a3ae-424a-a0ff-7148a311192c": {
+          "type": "icon",
+          "settings": {
+            "hide_mobile": false,
+            "title": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 38 35\" style=\"height: 38px; width: 35px;\"><g fill=\"none\" fill-rule=\"evenodd\"><path d=\"M18.83 1C9.41 1 1 7.28 1 15.87a13.1 13.1 0 0 0 3.04 8.36c.08 2.72-1.52 6.62-2.96 9.46 3.87-.7 9.36-2.24 11.86-3.77 13.72 3.34 23.72-5.06 23.72-14.05C36.66 7.23 28.2 1 18.83 1Z\" stroke=\"#000\"></path><path d=\"M17.96 17.7v-1.84h1.74v1.83h-1.74Zm-5.66-1.84h1.73v1.83H12.3v-1.83Zm11.33 1.83v-1.83h1.73v1.83h-1.73Z\" fill=\"#000\" fill-rule=\"nonzero\"></path></g></svg>",
+            "subtitle": "Text",
+            "text": "Monday - Friday<br>\n9 AM - 5 PM CST\n<Br>\n<a href=\"tel:(512) 489-9689\">(512) 489-9689<br></a>Message & data rates may apply.*",
+            "badge": "",
+            "button_text": "",
+            "url": "",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "a428dbeb-4d85-49c7-9eb9-0a87a02ae42f": {
+          "type": "icon",
+          "settings": {
+            "hide_mobile": false,
+            "title": "<svg class=\"\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 37 34\" style=\"width: 37px; height: 34px;\"><path data-name=\"Comment\" d=\"M19 1C9 1 1 7 1 15a13 13 0 0 0 3 9l-3 9 12-4c13 4 23-5 23-14 0-8-8-14-17-14Z\" fill=\"rgba(255,255,255,0)\" stroke=\"#000\"></path></svg>",
+            "subtitle": "Email",
+            "text": "Monday - Friday<br>\n9 AM - 5 PM CST\n<br>\ncustomerservice@consuelastyle.com",
+            "badge": "",
+            "button_text": "",
+            "url": "",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "2c2c8057-c978-4c52-9d83-00af35d38732",
+        "4838513c-a3ae-424a-a0ff-7148a311192c",
+        "a428dbeb-4d85-49c7-9eb9-0a87a02ae42f"
+      ],
+      "settings": {
+        "title": "GET IN TOUCH",
+        "text": "",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "== .page-width {\n  max-width: 1000px;\n}\n\n== h4 {\n  font-weight: 600;\n  font-size: 16px;\n  font-family: var(--font--graphik-wide);\n  text-transform: uppercase;\n}\n\n== a {\n  text-decoration: underline;\n}\n\n== svg {\n  --size: 40px;\n  width: var(--size);\n  height: var(--size);\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "166242141856fae148": {
+      "type": "nine15--custom-html",
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "custom_html": "<div class=\"page-width\">\n  <form id=\"form1\" name=\"form2\" class=\"wufoo topLabel page\" accept-charset=\"UTF-8\" autocomplete=\"off\" enctype=\"multipart/form-data\" method=\"post\" novalidate action=\"https://consuelastyle.wufoo.com/forms/qvx2eh7069fzjc/#public\">\n    <div class=\"cell cell_margin_bottom vert-top\">\n      <div class=\"cell__item text-center\" id=\"foli22\">\n       <!--  <h3 id=\"title22\">\n          COMPANY INFORMATION\n        </h3> -->\n        <span style=\"text-transform: uppercase;\">or email us below</span>\n      </div>\n      <div class=\"cell__item \" >\n        <label class=\"\" id=\"title3\" for=\"Field3\">\n          What can we help you with?\n          <span id=\"req_3\" class=\"req\">*</span>\n        </label>\n        <div class=\"select\">\n          <select id=\"Field3\" name=\"Field3\" class=\"select__select\" tabindex=\"0\" data-wufoo-field=\"dropdown\" required>\n            <option selected=\"selected\" value=\"\">\n              Select an option\n            </option>\n            <option value=\"Exchanges and Returns\">\n              Exchanges and Returns\n            </option>\n            <option value=\"Order Information\">\n              Order Information\n            </option>\n            <option value=\"Product Inquiry\">\n              Product Inquiry\n            </option>\n            <option value=\"Website Issue\">\n              Website Issue\n            </option>\n            <option value=\"General\">\n              General\n            </option>\n          </select>\n          {% render 'icon-caret' %}\n        </div>\n      </div>\n      <div class=\"cell__item medium-up--one-half\" id=\"foli3\">\n        <div class=\"field\">\n          <input id=\"Field4\" name=\"Field4\" class=\"field__input\" type=\"text\" value=\"\" maxLength=\"255\" onkeyup=\"\" required placeholder=\"First Name\" />\n          <label class=\"form__label field__label\" id=\"title3\" for=\"Field4\">\n            First Name\n            <span id=\"req_3\" class=\"req\">*</span>\n          </label>\n        </div>\n      </div>\n      <div class=\"cell__item medium-up--one-half\" id=\"foli5\">\n        <div class=\"field\">\n          <input id=\"Field5\" name=\"Field5\" class=\"field__input\" type=\"text\" value=\"\" maxLength=\"255\" onkeyup=\"\" required placeholder=\"Last Name\" />\n          <label class=\"form__label field__label\" id=\"title5\" for=\"Field5\">\n            Last Name\n            <span id=\"req_5\" class=\"req\">*</span>\n          </label>\n        </div>\n      </div>\n      <div class=\"cell__item medium-up--one-half \" id=\"foli11\">\n        <div class=\"field\">\n          <input id=\"Field6\" name=\"Field6\" class=\"field__input\" type=\"email\" spellcheck=\"false\" value=\"\" maxLength=\"255\" onkeyup=\"\" required placeholder=\"Email Address\" />\n          <label class=\"form__label field__label\" id=\"title11\" for=\"Field6\">\n            Email Address\n            <span id=\"req_11\" class=\"req\">*</span>\n          </label>\n        </div>\n      </div>\n      <div class=\"cell__item medium-up--one-half\" id=\"foli12\">\n        <div class=\"field\">\n          <input id=\"Field7\" name=\"Field7\" class=\"field__input\" type=\"text\" value=\"\" maxlength=\"255\" placeholder=\"Phone Number\" required />\n          <label class=\"form__label field__label\" id=\"title12\" for=\"Field7\">\n            Phone Number\n            <span id=\"req_12\" class=\"req\">*</span>\n          </label>\n        </div>\n      </div>\n\n      <div class=\"cell__item\" id=\"foli23\">\n        <div class=\"field\">\n          <textarea class=\"text-area field__input\" id=\"Field8\" name=\"Field8\" spellcheck=\"true\" rows=\"20\" cols=\"50\" onkeyup=\"\" placeholder=\"Your Message\" required></textarea>\n          <!-- <label class=\"form__label field__label\" id=\"title23\" for=\"Field8\"> -->\n          <label class=\"\" id=\"title23\" for=\"Field8\">\n            Your Message\n          </label>\n        </div>\n      </div>\n\n      <div class=\"cell__item\" id=\"foli24\">\n        <input id=\"Field9\" name=\"Field9\" type=\"file\" class=\"field file\" size=\"12\" data-file-max-size=\"10\" tabindex=\"0\" data-wufoo-field=\"file-upload\" />\n        <label class=\"button button--secondary\" id=\"title116\" for=\"Field9\">\n          Upload Photos Here\n        </label>\n      </div>\n\n     \n      <div class=\"cell__item\">\n        <button id=\"saveForm\" name=\"saveForm\" class=\"btTxt submit btn button button--secondary\" type=\"submit\">\n          Submit\n        </button>\n      </div>\n      <div class=\"hide\">\n        <label for=\"comment\">Do Not Fill This Out</label>\n        <textarea name=\"comment\" id=\"comment\" rows=\"1\" cols=\"1\"></textarea>\n        <input type=\"hidden\" id=\"idstamp\" name=\"idstamp\" value=\"8lVan/lHtZkVAweBHa8UhkJeuxOal09FnAFSCO1NrLE=\">\n        <input type=\"hidden\" id=\"encryptedPassword\" name=\"encryptedPassword\" value=\"\">\n      </div>\n    </div>\n  </form>\n\n  <a href=\"#form1-success\" id=\"form1-success-link\" class=\"visually-hidden\">\n    scroll to thanks\n  </a>\n  <div id=\"form1-success\" class=\"success_message hide\">\n    Thanks for your submission!<br>We'll get back to you soon.\n  </div>\n\n</div>\n<script type=\"text/javascript\">\naddEvent(window, 'load', initForm);\n\nvar highlight_array = new Array();\n\nfunction initForm() {\n  initializeFocus();\n  var activeForm = document.getElementById('form1');\n  var activeFormSuccess = document.getElementById('form1-success');\n  var activeFormSuccessLink = document.getElementById('form1-success-link');\n  ifInstructs();\n  showRangeCounters();\n\n  activeForm.addEventListener(\"submit\", e => {\n    e.preventDefault();\n\n    var elements = activeForm.querySelectorAll('input[required],textarea[required],select[required]');\n    var failed = false;\n    for (var i = 0, element; element = elements[i++];) {\n      element.closest('.cell__item').classList.remove('error');\n      if (element.value === \"\") {\n        // console.log(element);   \n        element.closest('.cell__item').classList.add('error');\n        failed = true;\n      }\n    }\n    if (failed) {\n      // console.log('failed')\n      return false;\n    }\n\n    const fd = new FormData(activeForm);\n    const xhr = new XMLHttpRequest();\n    xhr.addEventListener(\"load\", e => {\n      // console.log(e.target.responseText);\n    });\n    xhr.addEventListener(\"error\", e => {\n      console.log(e);\n    });\n    xhr.open(\"POST\", activeForm.action);\n    xhr.send(fd);\n\n    addEvent(activeForm, 'submit', disableSubmitButton);\n    activeForm.classList.add('hide');\n    activeFormSuccess.classList.remove('hide');\n    activeFormSuccessLink.click();\n\n\n  });\n\n}\n\n\nfunction disableSubmitButton() {\n  document.getElementById('saveForm').disabled = true;\n}\n\n\n// for radio and checkboxes, they have to be cleared manually, so they are added to the\n// global array highlight_array so we dont have to loop through the dom every time.\nfunction initializeFocus() {\n  var fields = getElementsByClassName(document, \"*\", \"field\");\n\n  for (i = 0; i < fields.length; i++) {\n    if (fields[i].type == 'radio' || fields[i].type == 'checkbox') {\n      fields[i].onclick = function() { highlight(this, 4); };\n      fields[i].onfocus = function() { highlight(this, 4); };\n    } else if (fields[i].className.match('addr') || fields[i].className.match('other')) {\n      fields[i].onfocus = function() { highlight(this, 3); };\n    } else {\n      fields[i].onfocus = function() { highlight(this, 2); };\n    }\n  }\n}\n\nfunction highlight(el, depth) {\n  if (depth == 2) { var fieldContainer = el.parentNode.parentNode; }\n  if (depth == 3) { var fieldContainer = el.parentNode.parentNode.parentNode; }\n  if (depth == 4) { var fieldContainer = el.parentNode.parentNode.parentNode.parentNode; }\n\n  addClassName(fieldContainer, 'focused', true);\n  var focusedFields = getElementsByClassName(document, \"*\", \"focused\");\n\n  for (i = 0; i < focusedFields.length; i++) {\n    if (focusedFields[i] != fieldContainer) {\n      removeClassName(focusedFields[i], 'focused');\n    }\n  }\n}\n\nfunction ifInstructs() {\n  var container = document.getElementById('public');\n  if (container) {\n    removeClassName(container, 'noI');\n    var instructs = getElementsByClassName(document, \"*\", \"instruct\");\n    if (instructs == '') {\n      addClassName(container, 'noI', true);\n    }\n    if (container.offsetWidth <= 450) {\n      addClassName(container, 'altInstruct', true);\n    }\n  }\n}\n\nfunction showRangeCounters() {\n  counters = getElementsByClassName(document, \"em\", \"currently\");\n  for (i = 0; i < counters.length; i++) {\n    counters[i].style.display = 'inline';\n  }\n}\n\nfunction validateRange(ColumnId, RangeType) {\n  if (document.getElementById('rangeUsedMsg' + ColumnId)) {\n    var field;\n    if (document.getElementById('Field' + ColumnId)) {\n      field = document.getElementById('Field' + ColumnId);\n    } else if (document.getElementById('Field' + ColumnId + '_other')) {\n      field = document.getElementById('Field' + ColumnId + '_other');\n    }\n    var msg = document.getElementById('rangeUsedMsg' + ColumnId);\n\n    switch (RangeType) {\n      case 'character':\n        msg.innerHTML = field.value.length;\n        break;\n\n      case 'word':\n        var val = field.value;\n        val = val.replace(/\\n/g, \" \");\n        var words = val.split(\" \");\n        var used = 0;\n        for (i = 0; i < words.length; i++) {\n          if (words[i].replace(/\\s+$/, \"\") != \"\") used++;\n        }\n        msg.innerHTML = used;\n        break;\n\n      case 'digit':\n        msg.innerHTML = field.value.length;\n        break;\n    }\n  }\n}\n\nfunction handleRadioOther(id, last) {\n  var label = document.getElementById(id + '_otherlabel');\n  if (label) {\n    if (last) {\n      label.style.display = 'block';\n    } else {\n      label.style.display = 'none';\n    }\n  }\n}\n\n/*--------------------------------------------------------------------------*/\n\n//http://www.robertnyman.com/2005/11/07/the-ultimate-getelementsbyclassname/\nfunction getElementsByClassName(oElm, strTagName, strClassName) {\n  var arrElements = (strTagName == \"*\" && oElm.all) ? oElm.all : oElm.getElementsByTagName(strTagName);\n  var arrReturnElements = new Array();\n  strClassName = strClassName.replace(/\\-/g, \"\\\\-\");\n  var oRegExp = new RegExp(\"(^|\\\\s)\" + strClassName + \"(\\\\s|$)\");\n  var oElement;\n  for (var i = 0; i < arrElements.length; i++) {\n    oElement = arrElements[i];\n    if (oRegExp.test(oElement.className)) {\n      arrReturnElements.push(oElement);\n    }\n  }\n  return (arrReturnElements)\n}\n\n//http://www.bigbold.com/snippets/posts/show/2630\nfunction addClassName(objElement, strClass, blnMayAlreadyExist) {\n  if (objElement.className) {\n    var arrList = objElement.className.split(' ');\n    if (blnMayAlreadyExist) {\n      var strClassUpper = strClass.toUpperCase();\n      for (var i = 0; i < arrList.length; i++) {\n        if (arrList[i].toUpperCase() == strClassUpper) {\n          arrList.splice(i, 1);\n          i--;\n        }\n      }\n    }\n    arrList[arrList.length] = strClass;\n    objElement.className = arrList.join(' ');\n  } else {\n    objElement.className = strClass;\n  }\n}\n\n//http://www.bigbold.com/snippets/posts/show/2630\nfunction removeClassName(objElement, strClass) {\n  if (objElement.className) {\n    var arrList = objElement.className.split(' ');\n    var strClassUpper = strClass.toUpperCase();\n    for (var i = 0; i < arrList.length; i++) {\n      if (arrList[i].toUpperCase() == strClassUpper) {\n        arrList.splice(i, 1);\n        i--;\n      }\n    }\n    objElement.className = arrList.join(' ');\n  }\n}\n\n//http://ejohn.org/projects/flexible-javascript-events/\nfunction addEvent(obj, type, fn) {\n  if (obj.attachEvent) {\n    obj[\"e\" + type + fn] = fn;\n    obj[type + fn] = function() { obj[\"e\" + type + fn](window.event) };\n    obj.attachEvent(\"on\" + type, obj[type + fn]);\n  } else {\n    obj.addEventListener(type, fn, false);\n  }\n}\n</script>",
+        "custom_css": "== {\n  padding: 0 0 var(--base-gutter--double);\n}\n\n== .page-width {\n  max-width: 1000px;\n}\n\n== .cell {\n  --grid-gutter: var(--base-gutter--half);\n  margin-bottom: calc(var(--grid-gutter) * -2);\n}\n\n== .cell__item {\n  margin-bottom: calc(var(--grid-gutter) * 2);\n}\n\n== .cell__item:not(:first-child) h3 {\n  margin-top: var(--base-gutter);\n}\n\n== .cell__item.error::before {\n  content: 'Required!';\n  color: red;\n  font-size: 14px;\n  display: block;\n  margin: 0 0 var(--base-gutter--quarter);\n}\n\n== .cell__item.error input,\n== .cell__item.error textarea,\n== .cell__item.error select {\n  border-color: red;\n  border-width: 2px;\n}\n\n\n== h3 {\n  font-size: 18px;\n  font-family: var(--font--graphik-wide);\n  font-weight: 700;\n  letter-spacing: 0.05em;\n  text-transform: uppercase;\n  text-align: center;\n}\n\n== h3.text-left {\n  text-align: left;\n}\n\n== .field {\n  display: flex;\n  flex-direction: column;\n  border: none;\n  box-shadow: none;\n}\n\n== .select:before,\n== .select:after,\n== .field:before, \n== .field:after {\n  display: none;\n}\n== label {\n  order: -1;\n  left: 0;\n}\n\n== label.form__label {\n  // opacity: 0.4;\n  color: var(--color--gray);\n}\n\n== label:not(.form__label) {\n  margin-bottom: var(--base-gutter--quarter);\n}\n\n== .field__input:focus~.field__label, \n== .field__input:not(:placeholder-shown)~.field__label, \n== .field__input:-webkit-autofill~.field__label {\n  left: 0;\n}\n\n== select,\n== input, \n== textarea {\n  border: 0.1px solid black;\n  box-shadow: none;\n  font-size: 1.5rem;\n}\n== input, \n== select {\n  border-top: 0;\n  border-left: 0;\n  border-right: 0;\n  padding-left: 0;\n}\n\n== fieldset {\n  padding: 0;\n  margin: 0;\n  border: none;\n}\n\n== .subfield:not(:last-child) {\n  margin-bottom: var(--base-gutter--quarter);\n}\n\n== .subfield label::before,\n== .subfield label span,\n== .subfield label {\n  display: inline-block;\n  vertical-align: middle;\n  margin: 0;\n}\n== .subfield label::before {\n  content:'';\n  position: relative;\n  overflow: hidden;\n  width: var(--base-gutter--half);\n  height: var(--base-gutter--half);\n  border: 1px solid black;\n  margin: 0;\n  margin-right: var(--base-gutter--quarter);\n}\n== .subfield input {\n  display: none;\n}\n== .subfield input:checked + label::before {\n  background: black;\n}\n== [type=\"file\"] {\n  display: none;\n}\n\n== section {\n  padding: var(--base-gutter--half);\n  border: 1px solid black;\n}\n\n== .text-area {\n  min-height: 200px;\n}\n\n== .button.submit {\n  margin-top: var(--base-gutter);\n}\n== .button {\n  width: 100%;\n}\n\n== .success_message {\n  padding: var(--base-gutter) var(--base-gutter--half);\n  text-align: center;\n  background: #a7ffa7;\n  border: 2px solid #6cbe6c;\n  color: black;\n  line-height: 1.5;\n}\n\n/medium-up/ {\n  == {\n    padding-bottom: var(--base-gutter--trip);\n  }\n  == .cell__item:not(:first-child) h3 {\n    margin-top: var(--base-gutter--double);\n  }\n  == .button.submit {\n    margin-top: var(--base-gutter--double);\n  }\n  == .button {\n    padding-top: var(--base-gutter);\n    padding-bottom: var(--base-gutter);\n  }\n}"
+      }
+    },
+    "f0289691-69d3-4819-bc8e-88c22822d273": {
+      "type": "nine15--ctas",
+      "blocks": {
+        "ce1fd6d4-6f09-4a55-bae9-0c1bfaff942c": {
+          "type": "icon",
+          "settings": {
+            "hide_mobile": false,
+            "title": "",
+            "subtitle": "*Prefer to Communicate via Email?",
+            "text": "<p> No problem! Send us a note and let us know how we can help.</p>\n\n<p><b><U><a href=\"mailto:customerservice@consuelastyle.com\">customerservice@consuelastyle.com</a></b></U></p>\n\n</body>\n</html>",
+            "badge": "",
+            "button_text": "",
+            "url": "",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "1f8ac3de-11bf-48fd-a097-ff254ffc5100": {
+          "type": "icon",
+          "settings": {
+            "hide_mobile": false,
+            "title": "",
+            "subtitle": "*Prefer to message us instead?",
+            "text": "<p>Text us at <b>(512) 489-9689 </B>if you need help.</P> <p> </p> By texting us, you consent to receive text messages from Consuela at the mobile number you use to text and you are opting-in to receive future messages or a phone call in the number you provided. Message & Data rates may apply. View our Terms and Privacy Policy for more information",
+            "badge": "",
+            "button_text": "",
+            "url": "",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "ce1fd6d4-6f09-4a55-bae9-0c1bfaff942c",
+        "1f8ac3de-11bf-48fd-a097-ff254ffc5100"
+      ],
+      "settings": {
+        "title": "",
+        "text": "",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "f0e22cf7-23db-4673-965b-fddd69941da5": {
+      "type": "nine15--ctas",
+      "blocks": {
+        "a138fd7a-2b06-4845-b646-087a9b6741f3": {
+          "type": "icon",
+          "settings": {
+            "hide_mobile": false,
+            "title": "*HOLIDAY HOURS MAY VARY",
+            "subtitle": "<p>December 25th : CLOSED\n<p>December 26th : CLOSED\n<p>January 1st : CLOSED",
+            "text": "",
+            "badge": "",
+            "button_text": "",
+            "url": "",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "a138fd7a-2b06-4845-b646-087a9b6741f3"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "text": "",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "85bc8ac4-0b14-4cb3-bd09-ed2267d6675e": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "id-anchor",
+        "custom_html": "<div id=\"order-status\" style=\"display:block!important;\"></div>",
+        "custom_css": ""
+      }
+    },
+    "1662422337c3ccb362": {
+      "type": "nine15--ctas",
+      "settings": {
+        "title": "ORDER STATUS",
+        "text": "Once you place an order you will receive a confirmation email containing your order information and a link to check the status of your delivery. You can also log into your Consuela account to check the status.",
+        "link_text": "Check Order Status",
+        "link_url": "https://consuelastyle.com/account/login",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "secondary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "== .page-width {\n  max-width: 940px;\n}\n\n== .section--title {\n  max-width: 100%;\n}\n\n== .btn {\n  width: 100%;\n  padding-left: var(--base-gutter--quarter);\n  padding-right: var(--base-gutter--quarter);\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "0529fcfd-8b30-407b-bee2-81c02bd81c3c": {
+      "type": "nine15--ctas",
+      "disabled": true,
+      "settings": {
+        "title": "BLACK FRIDAY & CYBER MONDAY POLICIES",
+        "text": "",
+        "link_text": "LEARN MORE",
+        "link_url": "shopify://pages/black-friday-cyber-monday",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "secondary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "== .page-width {\n  max-width: 940px;\n}\n\n== .section--title {\n  max-width: 100%;\n}\n\n== .btn {\n  width: 100%;\n  padding-left: var(--base-gutter--quarter);\n  padding-right: var(--base-gutter--quarter);\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "e4043055-af99-42bf-83b5-fb5286c2e9c1": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "id-anchor",
+        "custom_html": "<div id=\"ordering\" style=\"display:block!important;\"></div>",
+        "custom_css": ""
+      }
+    },
+    "1662422484df45b2cf": {
+      "type": "nine15--ctas",
+      "blocks": {
+        "675adcb4-cae6-4570-a47a-2b134409a6dc": {
+          "type": "icon",
+          "settings": {
+            "hide_mobile": false,
+            "title": "<center>CREDIT CARDS</center>",
+            "subtitle": "<center>We accept the following methods of payment:</center>",
+            "text": "<center>Visa<br>\nMasterCard<br>\nAmerican Express<br>\nDiscover</center>",
+            "badge": "",
+            "button_text": "",
+            "url": "",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "0c97207f-6131-44dd-9601-584d8676a428": {
+          "type": "icon",
+          "settings": {
+            "hide_mobile": false,
+            "title": "<center>OTHER PAYMENT METHODS</center>",
+            "subtitle": "<center>We also accept:</center>",
+            "text": "<center>Paypal<br>\nAmazon Pay<br>\nGoogle Pay<br>\nShop Pay<br>\nApple Pay<br>\nAfterpay<br>\nKlarna\n</center>",
+            "badge": "",
+            "button_text": "",
+            "url": "",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "675adcb4-cae6-4570-a47a-2b134409a6dc",
+        "0c97207f-6131-44dd-9601-584d8676a428"
+      ],
+      "settings": {
+        "title": "ORDERING & PAYMENT",
+        "text": "<center>Items may be charged to your card 1 to 2 days prior to shipment.</center>",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": true,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "== .page-width {\n  max-width: 940px;\n}\n\n== .section--title {\n  max-width: 100%;\n}\n\n== .section--title .rte {\n  text-align: left;\n}\n\n== .inner-container h3 {\n  font-family: var(--font--graphik-wide);\n  font-weight: 700;\n  font-size: 12px;\n  // margin: 0 0 2px;\n}\n\n== .inner-container h4 {\n  font-family: var(--font--graphik);\n  font-weight: 400;\n  font-size: 14px;\n  text-transform: initial;\n  letter-spacing: 0;\n  // margin: 0 0 var(--base-gutter--quarter);\n}\n\n== .inner-container .rte {\n  font-family: var(--font--graphik);\n  font-weight: 500;\n  font-size: 16px;\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "e71fc005-69ed-4dd9-8ad0-bf5ef7250603": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "id-anchor",
+        "custom_html": "<div id=\"shipping\" style=\"display:block!important;\"></div>",
+        "custom_css": ""
+      }
+    },
+    "1662423265da626889": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "",
+        "custom_html": "<div class=\"dev-note\">\n\n</div>\n<div class=\"page-width\">\n  <div class=\"section--title\">\n    <h2>SHIPPING INFORMATION</h2>\n  </div>\n  <div class=\"rte\">\n    {{shop.shipping_policy.body}}\n  </div>\n</div>",
+        "custom_css": "== .dev-note {\n  background: white;\n}\n\n== .dev-note h2 {\n  color: red;\n}\n\n== {\n  padding: var(--base-gutter) 0;\n}\n\n== .page-width {\n  max-width: 1000px;\n}\n\n== .section--title {\n  max-width: 100%;\n}\n\n== table {\n  width: 100%;\n}\n\n== td {\n  padding-top: calc(var(--base-gutter--quarter) / 2);\n  padding-bottom: calc(var(--base-gutter--quarter) / 2);\n  border-bottom: 1px solid black;\n}\n== tr:first-child td {\n  border-bottom-width: 3px;\n}\n\n\n/medium-up/ {\n  == {\n    padding: var(--base-gutter--double) 0;\n  }\n  == tr:not(:first-child) td {\n    padding-top: var(--base-gutter--half);\n  }\n}"
+      }
+    },
+    "5671e520-f5f5-4c98-abd0-9ee0ffb9b6c9": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "id-anchor",
+        "custom_html": "<div id=\"returns\" style=\"display:block!important;\"></div>",
+        "custom_css": ""
+      }
+    },
+    "166242411351fe5489": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "",
+        "custom_html": "<div class=\"page-width\">\n  <div class=\"section--title\">\n    <h2>RETURNS & EXCHANGES</h2>\n  </div>\n  <div class=\"rte\">\n    {{shop.refund_policy.body}}\n  </div>\n</div>",
+        "custom_css": "== {\n  padding: var(--base-gutter) 0;\n}\n\n== .page-width {\n  max-width: 1000px;\n}\n\n== .section--title {\n  max-width: 100%;\n}\n\n/medium-up/ {\n  == {\n    padding: var(--base-gutter--double) 0;\n  }\n}"
+      }
+    },
+    "1b5a9002-b938-4f5d-b67b-acb16ddeaba1": {
+      "type": "nine15--ctas",
+      "blocks": {
+        "d905f6a3-5c79-4e6c-965b-12b0d9e5789c": {
+          "type": "icon",
+          "settings": {
+            "hide_mobile": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "badge": "",
+            "button_text": "start return",
+            "url": "https://Consuela.loopreturns.com",
+            "btn_style": "secondary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "d905f6a3-5c79-4e6c-965b-12b0d9e5789c"
+      ],
+      "settings": {
+        "title": "",
+        "text": "",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "== .section--title {\n  max-width: 100%;\n}\n\n== .page-width {\n  max-width: 940px;\n}\n\n== p,\n== ol {\n  font-size: 16px;\n  text-align: left;\n}\n\n== p b {\n  text-transform: uppercase;\n  font-family: var(--font--graphik-wide);\n  font-weight: 700;\n  font-size: 12px;\n}\n\n== p svg {\n  transform: translateY(1px);\n  display: inline-block;\n  height: 12px;\n}\n\n== ol {\n  padding: 0;\n}\n\n== ol li {\n  --padding: var(--base-gutter--double);\n  --size: calc(var(--padding) * .75);\n  counter-increment: i;\n  position: relative;\n  display: inline-flex;\n  align-items: center;\n  margin: 0 0 var(--base-gutter);\n  padding-left: var(--padding);\n  min-height: var(--size);\n}\n\n== ol li::marker {\n  content:'';\n}\n== ol li::after,\n== ol li::before {\n  content: '';\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: var(--size);\n  height: var(--size);\n  text-align: center;\n}\n== ol li::before {\n  content: counter(i);\n  font-family: var(--font--graphik-wide);\n  font-weight: 800;\n  font-size: 16px;\n}\n== ol li::after {\n  border-radius: 150%;\n  border: 2px solid black;\n}\n\n== .btn-container {\n  display: flex;\n  flex-wrap: wrap;\n  margin-left: -15px;\n  margin-bottom: -15px;\n}\n\n== .btn {\n  min-width: 200px;\n  margin-left: 15px;\n  margin-bottom: 15px;\n  padding: var(--base-gutter--half);\n  flex: 1 1 auto;\n  flex-wrap: wrap;\n}\n\n== .btn svg {\n  height: 16px;\n  width: 85px;\n  fill: currentColor;\n}\n== .btn svg.icon-afterpay {\n  transform: translateY(1px);\n}\n== .btn svg.icon-klarna {\n  height: 12px;\n  width: 60px;\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "3d290aec-e849-4d9c-8207-b509fedfae40": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "id-anchor",
+        "custom_html": "<div id=\"buy-now\" style=\"display:block!important;\"></div>",
+        "custom_css": ""
+      }
+    },
+    "1662563199bdc9b317": {
+      "type": "nine15--ctas",
+      "settings": {
+        "title": "BUY NOW, PAY LATER",
+        "text": "<p><b>Installments By {% render 'icon-afterpay' %} <span class=\"visually-hidden\">AfterPay</span> and {% render 'icon-klarna' %} <span class=\"visually-hidden\">Klarna</span></b></p>\n\n<ol>\n  <li>Pick your items and select Afterpay or Klarna as your payment method in checkout.</li>\n  <li>No credit-check, wait period, or long forms required! Your order will ship as soon as it’s processed by Consuela.</li>\n  <li>You’ll receive your order within the same timeframe as any regular order with no interest, no additional fees when you pay on time.</li>\n</ol>\n\n<p><b>VIEW ORDERS & MAKE PAYMENTS ANYTIME</b></p>\n\n<p>After your order is processed by the store, you can log in to your account to view your orders, make payments, and manage your account details.</p>\n\n</div>{% comment %}Using this to close the code-side \".rte\" container. Prevents incorrect button styling.{% endcomment %}\n\n<div class=\"btn-container\">\n  <a href=\"https://portal.afterpay.com/us/login-email\" class=\"btn button button--secondary\">\n    <span>Access your</span>\n    {% render 'icon-afterpay' %}\n    <span class=\"visually-hidden\">AfterPay</span>\n    <span>Account</span>\n  </a>\n  <a href=\"https://app.klarna.com/login\" class=\"btn button button--secondary\">\n    <span>Access your</span>\n    {% render 'icon-klarna' %}\n    <span class=\"visually-hidden\">Klarna</span>\n    <span>Account</span>\n  </a>\n</div>",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "== .section--title {\n  max-width: 100%;\n}\n\n== .page-width {\n  max-width: 940px;\n}\n\n== p,\n== ol {\n  font-size: 16px;\n  text-align: left;\n}\n\n== p b {\n  text-transform: uppercase;\n  font-family: var(--font--graphik-wide);\n  font-weight: 700;\n  font-size: 12px;\n}\n\n== p svg {\n  transform: translateY(1px);\n  display: inline-block;\n  height: 12px;\n}\n\n== ol {\n  padding: 0;\n}\n\n== ol li {\n  --padding: var(--base-gutter--double);\n  --size: calc(var(--padding) * .75);\n  counter-increment: i;\n  position: relative;\n  display: inline-flex;\n  align-items: center;\n  margin: 0 0 var(--base-gutter);\n  padding-left: var(--padding);\n  min-height: var(--size);\n}\n\n== ol li::marker {\n  content:'';\n}\n== ol li::after,\n== ol li::before {\n  content: '';\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: var(--size);\n  height: var(--size);\n  text-align: center;\n}\n== ol li::before {\n  content: counter(i);\n  font-family: var(--font--graphik-wide);\n  font-weight: 800;\n  font-size: 16px;\n}\n== ol li::after {\n  border-radius: 150%;\n  border: 2px solid black;\n}\n\n== .btn-container {\n  display: flex;\n  flex-wrap: wrap;\n  margin-left: -15px;\n  margin-bottom: -15px;\n}\n\n== .btn {\n  min-width: 200px;\n  margin-left: 15px;\n  margin-bottom: 15px;\n  padding: var(--base-gutter--half);\n  flex: 1 1 auto;\n  flex-wrap: wrap;\n}\n\n== .btn svg {\n  height: 16px;\n  width: 85px;\n  fill: currentColor;\n}\n== .btn svg.icon-afterpay {\n  transform: translateY(1px);\n}\n== .btn svg.icon-klarna {\n  height: 12px;\n  width: 60px;\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "1662566773332fdf97": {
+      "type": "nine15--accordion",
+      "blocks": {
+        "57841dbf-8d36-4b14-8871-1945fde76e31": {
+          "type": "header",
+          "settings": {
+            "title": "AFTERPAY FAQ",
+            "desc": ""
+          }
+        },
+        "708a764a-3a9e-40ce-be56-0305bd31144b": {
+          "type": "tab",
+          "settings": {
+            "title": "What is Afterpay?",
+            "desc": "<p>Afterpay is a service that allows us to offer our customers the ability to make purchases now and pay for them in four equal payments made every 2 weeks without any interest.</p>",
+            "page_name": "",
+            "liquid": ""
+          }
+        },
+        "d324381f-0267-49f9-bf19-c28539b538f4": {
+          "type": "tab",
+          "settings": {
+            "title": "How do I use Afterpay?",
+            "desc": "<p>Shop Consuelastyle.com and check out as usual. At checkout, choose Afterpay as your payment method. You will be directed to the Afterpay website to register and provide payment details (Visa or Mastercard). If you’ve used Afterpay before, just log in to your Afterpay account. Then complete your order – <strong>it's that ridiculously easy!</strong></p><p>Please note, all items in your shopping cartmust be eligible for Afterpay, and the cartvalue must be between $35 and $2,000.</p>",
+            "page_name": "",
+            "liquid": ""
+          }
+        },
+        "f878f0a5-f558-4fdd-9ec0-9f7b6e0a64bf": {
+          "type": "tab",
+          "settings": {
+            "title": "How does the Afterpay payment schedule work?",
+            "desc": "<p>All Afterpay customers are required to make their first payment at the time of purchase. The remaining three payments are deducted automatically every 2 weeks in equal installments from your selected payment method. If you would like to make additional unscheduled payments before they are due, you may log in to Afterpay to make your payments early. Afterpay will then adjust the amount owed accordingly.</p><p>You can log in to your Afterpay account anytime to view your payment schedule or make a payment before the next due date.</p>",
+            "page_name": "",
+            "liquid": ""
+          }
+        },
+        "1e608ee4-2b17-4a1e-ba76-a9a83ffb17ad": {
+          "type": "tab",
+          "settings": {
+            "title": "How do I return or exchange an item purchased using Afterpay?",
+            "desc": "<p>Afterpay returns follow our standard return process. Use our <a href=\"https://consuela.loopreturns.com/#/\" target=\"_blank\">online returns portal</a>to print a return label or return your item. Please note, refunds for Afterpay will be refunded from Consuela to Afterpay. We cannot provide an exchange or cash refund. As soon as the refund is processed it will drop into your Afterpay online account. Have more questions about Afterpay returns? Go to <a href=\"https://help.afterpay.com/hc/en-us\" target=\"_blank\">help.afterpay.com</a>.</p>",
+            "page_name": "",
+            "liquid": ""
+          }
+        },
+        "f6b3a46e-2461-49b2-a106-965d918cbdae": {
+          "type": "tab",
+          "settings": {
+            "title": "Where can I find out more about Afterpay?",
+            "desc": "<p>Visit the Afterpay website <a href=\"https://help.afterpay.com/hc/en-us\" target=\"_blank\">here</a>for a comprehensive list of FAQs and check out Afterpay’s Privacy Policy found <a href=\"https://www.afterpay.com/privacy-policy\" target=\"_blank\">here</a>.<br/><br/>If you have a question about your Afterpay account, please contact the Afterpay toll-free customer support line at 855-289-6014 or use the contact form found <a href=\"https://help.afterpay.com/hc/en-us/requests/new\" target=\"_blank\">here</a>.<br/><br/>* If funds are not available or you otherwise do not make your payment when it is due, late fees may apply. See Purchase Payment Agreement for complete terms.</p>",
+            "page_name": "",
+            "liquid": ""
+          }
+        },
+        "6a93f91d-3c0c-4b8d-82ca-091f6d68d232": {
+          "type": "header",
+          "settings": {
+            "title": "KLARNA FAQ",
+            "desc": ""
+          }
+        },
+        "5208e84f-05fc-4b53-9645-aa81c9ce9b3d": {
+          "type": "tab",
+          "settings": {
+            "title": "What is Klarna?",
+            "desc": "<p>With Klarna, you’re able to place an immediate order with Consuela, then split the payment amount into 4 equal payments every two weeks. As long as these automatic withdrawals are made on time, Klarna does not charge interest.</p>",
+            "page_name": "",
+            "liquid": ""
+          }
+        },
+        "c8e54dcc-2d69-4d47-b545-9fa94d14bfeb": {
+          "type": "tab",
+          "settings": {
+            "title": "What do I need?",
+            "desc": "<p>To use Klarna, you’ll need to be 18 years old or older, have a US bank account, and a US residential address. Klarna payments are subject to your financial circumstances. If your application is rejected, you can contact Klarna Customer Service <a href=\"https://www.klarna.com/us/customer-service/\" target=\"_blank\">here</a>. Consuela has no influence on whether or not your Klarna payment is accepted.</p>",
+            "page_name": "",
+            "liquid": ""
+          }
+        },
+        "fdb52ab9-2b8a-4193-bb06-1d49c1e8a90e": {
+          "type": "tab",
+          "settings": {
+            "title": "How do I use Klarna?",
+            "desc": "<p>After adding items to your cart, go to checkout and choose the Klarna payment method. Klarna will walk you through the process, where you can be approved in seconds. Once your account is set up you’ll have an email from Klarna in your inbox!</p>",
+            "page_name": "",
+            "liquid": ""
+          }
+        },
+        "be0fd34a-dcc4-4a7e-ae99-3292d89e58e2": {
+          "type": "tab",
+          "settings": {
+            "title": "Does Klarna impact my credit score?",
+            "desc": "<p>Klarna may run a soft credit check that does not affect a customer’s credit score and is only visible on your credit file by you and Klarna. Neither Klarna nor Consuela run credit checks that could impact your credit rating. This includes at the point of application, if a payment is missed, or if the outstanding balance enters a debt collection stage.</p>",
+            "page_name": "",
+            "liquid": ""
+          }
+        }
+      },
+      "block_order": [
+        "57841dbf-8d36-4b14-8871-1945fde76e31",
+        "708a764a-3a9e-40ce-be56-0305bd31144b",
+        "d324381f-0267-49f9-bf19-c28539b538f4",
+        "f878f0a5-f558-4fdd-9ec0-9f7b6e0a64bf",
+        "1e608ee4-2b17-4a1e-ba76-a9a83ffb17ad",
+        "f6b3a46e-2461-49b2-a106-965d918cbdae",
+        "6a93f91d-3c0c-4b8d-82ca-091f6d68d232",
+        "5208e84f-05fc-4b53-9645-aa81c9ce9b3d",
+        "c8e54dcc-2d69-4d47-b545-9fa94d14bfeb",
+        "fdb52ab9-2b8a-4193-bb06-1d49c1e8a90e",
+        "be0fd34a-dcc4-4a7e-ae99-3292d89e58e2"
+      ],
+      "settings": {
+        "title": "",
+        "text": "",
+        "open_first": false,
+        "side_by_side": false,
+        "custom_css": "== {\n  padding-top: 0;\n}\n\n== .page-width {\n  max-width: 1000px;\n}"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "form",
+    "1662421195f7252e88",
+    "2b8178ba-8aa6-45dd-8f28-0a97cd0ea549",
+    "166256936411277fb9",
+    "16624219762c3afed2",
+    "166242141856fae148",
+    "f0289691-69d3-4819-bc8e-88c22822d273",
+    "f0e22cf7-23db-4673-965b-fddd69941da5",
+    "85bc8ac4-0b14-4cb3-bd09-ed2267d6675e",
+    "1662422337c3ccb362",
+    "0529fcfd-8b30-407b-bee2-81c02bd81c3c",
+    "e4043055-af99-42bf-83b5-fb5286c2e9c1",
+    "1662422484df45b2cf",
+    "e71fc005-69ed-4dd9-8ad0-bf5ef7250603",
+    "1662423265da626889",
+    "5671e520-f5f5-4c98-abd0-9ee0ffb9b6c9",
+    "166242411351fe5489",
+    "1b5a9002-b938-4f5d-b67b-acb16ddeaba1",
+    "3d290aec-e849-4d9c-8207-b509fedfae40",
+    "1662563199bdc9b317",
+    "1662566773332fdf97"
+  ]
+}

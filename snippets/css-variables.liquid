@@ -1,0 +1,518 @@
+<!-- snippets/css-variables -->
+
+{%- liquid
+  assign body_font_bold             = settings.type_body_font | font_modify: 'weight', 'bold'
+  assign body_font_italic           = settings.type_body_font | font_modify: 'style', 'italic'
+  assign body_font_bold_italic      = body_font_bold | font_modify: 'style', 'italic'
+  assign header_font_regular        = settings.type_header_font | font_modify: 'weight', '300'
+  assign header_font_italic         = settings.type_header_font | font_modify: 'style', 'italic'
+  assign header_font_regular_italic = header_font_regular | font_modify: 'style', 'italic'
+%}
+
+<style type="text/css">
+{% capture styles %}
+  
+  {{ settings.type_body_font | font_face: font_display: 'swap' }}
+  {{ body_font_bold | font_face: font_display: 'swap' }}
+  {{ body_font_italic | font_face: font_display: 'swap' }}
+  {{ settings.type_header_font | font_face: font_display: 'swap' }}
+  {{ header_font_regular_italic | font_face: font_display: 'swap' }}
+  {{ header_font_regular | font_face: font_display: 'swap' }}
+  {{ header_font_italic | font_face: font_display: 'swap' }}
+
+  
+  @font-face {
+    font-family: 'StayDreaming';
+    src: url({{'stay-dreaming.woff'|asset_url}}) format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+
+  @font-face {
+    font-family: 'Graphik XXCond Web';
+    src: url({{'GraphikXXCondensed-Bold-Web.woff'|asset_url}}) format('woff');
+    font-weight:  700;
+    font-style:   normal;
+    font-stretch: normal;
+    font-display: swap;
+  }
+
+
+  @font-face {
+    font-family: 'Graphik Web';
+    src: url({{'Graphik-Semibold-Web.woff'|asset_url}}) format('woff');
+    font-weight:  600;
+    font-style:   normal;
+    font-stretch: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Graphik Web';
+    src: url({{'Graphik-Medium-Web.woff'|asset_url}}) format('woff');
+    font-weight:  500;
+    font-style:   normal;
+    font-stretch: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Graphik Web';
+    src: url({{'Graphik-Regular-Web.woff'|asset_url}}) format('woff');
+    font-weight:  400;
+    font-style:   normal;
+    font-stretch: normal;
+    font-display: swap;
+  }
+
+
+  @font-face {
+    font-family: 'Graphik Wide Web';
+    src: url({{'GraphikWide-Bold-Web.woff'|asset_url}}) format('woff');
+    font-weight:  700;
+    font-style:   normal;
+    font-stretch: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Graphik Wide Web';
+    src: url({{'GraphikWide-Semibold-Web.woff'|asset_url}}) format('woff');
+    font-weight:  600;
+    font-style:   normal;
+    font-stretch: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Graphik Wide Web';
+    src: url({{'GraphikWide-Medium-Web.woff'|asset_url}}) format('woff');
+    font-weight:  500;
+    font-style:   normal;
+    font-stretch: normal;
+    font-display: swap;
+  }
+
+  .no-scroll {
+    overflow: hidden;
+    max-height: 100vh;
+  }
+
+  :root {
+    --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+    --font-body-style: {{ settings.type_body_font.style }};
+    --font-body-weight: {{ settings.type_body_font.weight }};
+    --font-body-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};
+
+    --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+    --font-heading-style: {{ settings.type_header_font.style }};
+    --font-heading-weight: {{ settings.type_header_font.weight }};
+
+    --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
+    --font-heading-scale: {{ settings.heading_scale | times: 1.0 | divided_by: settings.body_scale }};
+
+    --color-base-text: {{ settings.colors_text }};
+    --color-base-text: {{ settings.colors_text.red }}, {{ settings.colors_text.green }}, {{ settings.colors_text.blue }};
+    --color-shadow: {{ settings.colors_text.red }}, {{ settings.colors_text.green }}, {{ settings.colors_text.blue }};
+    --color-base-background-1: {{ settings.colors_background_1.red }}, {{ settings.colors_background_1.green }}, {{ settings.colors_background_1.blue }};
+    --color-base-background-2: {{ settings.colors_background_2.red }}, {{ settings.colors_background_2.green }}, {{ settings.colors_background_2.blue }};
+    --color-base-solid-button-labels: {{ settings.colors_solid_button_labels.red }}, {{ settings.colors_solid_button_labels.green }}, {{ settings.colors_solid_button_labels.blue }};
+    --color-base-outline-button-labels: {{ settings.colors_outline_button_labels.red }}, {{ settings.colors_outline_button_labels.green }}, {{ settings.colors_outline_button_labels.blue }};
+    --color-base-accent-1: {{ settings.colors_accent_1.red }}, {{ settings.colors_accent_1.green }}, {{ settings.colors_accent_1.blue }};
+    --color-base-accent-2: {{ settings.colors_accent_2.red }}, {{ settings.colors_accent_2.green }}, {{ settings.colors_accent_2.blue }};
+    --color-sale-badge-text: {{ settings.colors_sale_badge_text.red }}, {{ settings.colors_sale_badge_text.green }}, {{ settings.colors_sale_badge_text.blue }};
+    --color-sale-badge-background: {{ settings.colors_sale_badge.red }}, {{ settings.colors_sale_badge.green }}, {{ settings.colors_sale_badge.blue }};
+    --color-sale-badge-border: var(--color-sale-badge-background);
+    --payment-terms-background-color: {{ settings.colors_background_1 }};
+
+    --gradient-base-background-1: {% if settings.gradient_background_1 != blank %}{{ settings.gradient_background_1 }}{% else %}{{ settings.colors_background_1 }}{% endif %};
+    --gradient-base-background-2: {% if settings.gradient_background_2 != blank %}{{ settings.gradient_background_2 }}{% else %}{{ settings.colors_background_2 }}{% endif %};
+    --gradient-base-accent-1: {% if settings.gradient_accent_1 != blank %}{{ settings.gradient_accent_1 }}{% else %}{{ settings.colors_accent_1 }}{% endif %};
+    --gradient-base-accent-2: {% if settings.gradient_accent_2 != blank %}{{ settings.gradient_accent_2 }}{% else %}{{ settings.colors_accent_2 }}{% endif %};
+
+    --media-padding: {{ settings.media_padding }}px;
+    --media-border-opacity: {{ settings.media_border_opacity | divided_by: 100.0 }};
+    --media-border-width: {{ settings.media_border_thickness }}px;
+    --media-radius: {{ settings.media_radius }}px;
+    --media-shadow-opacity: {{ settings.media_shadow_opacity | divided_by: 100.0 }};
+    --media-shadow-horizontal-offset: {{ settings.media_shadow_horizontal_offset }}px;
+    --media-shadow-vertical-offset: {{ settings.media_shadow_vertical_offset }}px;
+    --media-shadow-blur-radius: {{ settings.media_shadow_blur }}px;
+    --media-shadow-visible: {% if settings.media_shadow_opacity > 0 %}1{% else %}0{% endif %};
+
+    --page-width: {{ settings.page_width }}px;
+    --page-width-margin: {% if settings.page_width == '1600' %}2{% else %}0{% endif %}rem;
+
+    --card-image-padding: {{ settings.card_image_padding | divided_by: 10.0 }}rem;
+    --card-corner-radius: {{ settings.card_corner_radius | divided_by: 10.0 }}rem;
+    --card-text-alignment: {{ settings.card_text_alignment }};
+    --card-border-width: {{ settings.card_border_thickness | divided_by: 10.0 }}rem;
+    --card-border-opacity: {{ settings.card_border_opacity | divided_by: 100.0 }};
+    --card-shadow-opacity: {{ settings.card_shadow_opacity | divided_by: 100.0 }};
+    --card-shadow-visible: {% if settings.card_shadow_opacity > 0 %}1{% else %}0{% endif %};
+    --card-shadow-horizontal-offset: {{ settings.card_shadow_horizontal_offset | divided_by: 10.0 }}rem;
+    --card-shadow-vertical-offset: {{ settings.card_shadow_vertical_offset | divided_by: 10.0 }}rem;
+    --card-shadow-blur-radius: {{ settings.card_shadow_blur | divided_by: 10.0 }}rem;
+
+    --badge-corner-radius: {{ settings.badge_corner_radius | divided_by: 10.0 }}rem;
+
+    --popup-border-width: {{ settings.popup_border_thickness }}px;
+    --popup-border-opacity: {{ settings.popup_border_opacity | divided_by: 100.0 }};
+    --popup-corner-radius: {{ settings.popup_corner_radius }}px;
+    --popup-shadow-opacity: {{ settings.popup_shadow_opacity | divided_by: 100.0 }};
+    --popup-shadow-horizontal-offset: {{ settings.popup_shadow_horizontal_offset }}px;
+    --popup-shadow-vertical-offset: {{ settings.popup_shadow_vertical_offset }}px;
+    --popup-shadow-blur-radius: {{ settings.popup_shadow_blur }}px;
+
+    --drawer-border-width: {{ settings.drawer_border_thickness }}px;
+    --drawer-border-opacity: {{ settings.drawer_border_opacity | divided_by: 100.0 }};
+    --drawer-shadow-opacity: {{ settings.drawer_shadow_opacity | divided_by: 100.0 }};
+    --drawer-shadow-horizontal-offset: {{ settings.drawer_shadow_horizontal_offset }}px;
+    --drawer-shadow-vertical-offset: {{ settings.drawer_shadow_vertical_offset }}px;
+    --drawer-shadow-blur-radius: {{ settings.drawer_shadow_blur }}px;
+
+    --spacing-sections-desktop: {{ settings.spacing_sections }}px;
+    --spacing-sections-mobile: {% if settings.spacing_sections < 24 %}{{ settings.spacing_sections }}{% else %}{{ settings.spacing_sections | times: 0.7 | round | at_least: 20 }}{% endif %}px;
+
+    --grid-desktop-vertical-spacing: {{ settings.spacing_grid_vertical }}px;
+    --grid-desktop-horizontal-spacing: {{ settings.spacing_grid_horizontal }}px;
+    --grid-mobile-vertical-spacing: {{ settings.spacing_grid_vertical | divided_by: 2 }}px;
+    --grid-mobile-horizontal-spacing: {{ settings.spacing_grid_horizontal | divided_by: 2 }}px;
+
+    --text-boxes-border-opacity: {{ settings.text_boxes_border_opacity | divided_by: 100.0 }};
+    --text-boxes-border-width: {{ settings.text_boxes_border_thickness }}px;
+    --text-boxes-radius: {{ settings.text_boxes_radius }}px;
+    --text-boxes-shadow-opacity: {{ settings.text_boxes_shadow_opacity | divided_by: 100.0 }};
+    --text-boxes-shadow-visible: {% if settings.text_boxes_shadow_opacity > 0 %}1{% else %}0{% endif %};
+    --text-boxes-shadow-horizontal-offset: {{ settings.text_boxes_shadow_horizontal_offset }}px;
+    --text-boxes-shadow-vertical-offset: {{ settings.text_boxes_shadow_vertical_offset }}px;
+    --text-boxes-shadow-blur-radius: {{ settings.text_boxes_shadow_blur }}px;
+
+    --buttons-radius: {{ settings.buttons_radius }}px;
+    --buttons-radius-outset: {% if settings.buttons_radius > 0 %}{{ settings.buttons_radius | plus: settings.buttons_border_thickness }}{% else %}0{% endif %}px;
+    --buttons-border-width: {% if settings.buttons_border_opacity > 0 %}{{ settings.buttons_border_thickness }}{% else %}0{% endif %}px;
+    --buttons-border-opacity: {{ settings.buttons_border_opacity | divided_by: 100.0 }};
+    --buttons-shadow-opacity: {{ settings.buttons_shadow_opacity | divided_by: 100.0 }};
+    --buttons-shadow-visible: {% if settings.buttons_shadow_opacity > 0 %}1{% else %}0{% endif %};
+    --buttons-shadow-horizontal-offset: {{ settings.buttons_shadow_horizontal_offset }}px;
+    --buttons-shadow-vertical-offset: {{ settings.buttons_shadow_vertical_offset }}px;
+    --buttons-shadow-blur-radius: {{ settings.buttons_shadow_blur }}px;
+    --buttons-border-offset: {% if settings.buttons_radius > 0 or settings.buttons_shadow_opacity > 0 %}0.3{% else %}0{% endif %}px;
+
+    --inputs-radius: {{ settings.inputs_radius }}px;
+    --inputs-border-width: {{ settings.inputs_border_thickness }}px;
+    --inputs-border-opacity: {{ settings.inputs_border_opacity | divided_by: 100.0 }};
+    --inputs-shadow-opacity: {{ settings.inputs_shadow_opacity | divided_by: 100.0 }};
+    --inputs-shadow-horizontal-offset: {{ settings.inputs_shadow_horizontal_offset }}px;
+    --inputs-margin-offset: {% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_opacity > 0 %}{{ settings.inputs_shadow_vertical_offset | abs }}{% else %}0{% endif %}px;
+    --inputs-shadow-vertical-offset: {{ settings.inputs_shadow_vertical_offset }}px;
+    --inputs-shadow-blur-radius: {{ settings.inputs_shadow_blur }}px;
+    --inputs-radius-outset: {% if settings.inputs_radius > 0 %}{{ settings.inputs_radius | plus: settings.inputs_border_thickness }}{% else %}0{% endif %}px;
+
+    --variant-pills-radius: {{ settings.variant_pills_radius }}px;
+    --variant-pills-border-width: {{ settings.variant_pills_border_thickness }}px;
+    --variant-pills-border-opacity: {{ settings.variant_pills_border_opacity | divided_by: 100.0 }};
+    --variant-pills-shadow-opacity: {{ settings.variant_pills_shadow_opacity | divided_by: 100.0 }};
+    --variant-pills-shadow-horizontal-offset: {{ settings.variant_pills_shadow_horizontal_offset }}px;
+    --variant-pills-shadow-vertical-offset: {{ settings.variant_pills_shadow_vertical_offset }}px;
+    --variant-pills-shadow-blur-radius: {{ settings.variant_pills_shadow_blur }}px;
+  }
+
+
+  :root {
+
+    --header-height--total        : calc( (var(--header-height,0)) + (var(--announce-height,0)) );
+
+    /* Custom Fonts  */
+    --font--stay-dreaming         : 'StayDreaming', cursive;
+    --font--graphik               : 'Graphik Web', sans-serif;
+    --font--graphik-wide          : 'Graphik Wide Web', sans-serif;
+    --font--graphik-cond          : 'Graphik XXCond Web', sans-serif;
+
+    /* Overrides */
+    --font-body-family            : var(--font--graphik);
+    --font-heading-family         : var(--font--graphik);
+
+
+    /* Slick */
+    --slick--ajax_loader          : {{ "ajax-loader.gif" | asset_url }};
+    --slick--font-eot             : {{ 'slick.eot' | asset_url}};
+    --slick--font-eot--iefix      : {{ 'slick.eot?#iefix' | asset_url}};
+    --slick--font-woff            : {{ 'slick.woff' | asset_url}};
+    --slick--font-ttf             : {{ 'slick.ttf' | asset_url}};
+    --slick--font-svg-slick       : {{ 'slick.svg#slick' | asset_url}};
+
+    --slick--chevron-left         : url('{{ "icon-chevron-left.svg" | asset_url }}');
+    --slick--chevron-right        : url('{{ "icon-chevron-right.svg" | asset_url }}');
+
+    --slick--arrow-left           : url('{{ "icon-arrow-left.svg" | asset_url }}');
+    --slick--arrow-right          : url('{{ "icon-arrow-right.svg" | asset_url }}');
+    --slick--arrow-left-filled    : url('{{ "icon-arrow-left-filled.svg" | asset_url }}');
+    --slick--arrow-right-filled   : url('{{ "icon-arrow-right-filled.svg" | asset_url }}');
+
+    --slick--button-left          : var(--slick--arrow-left);
+    --slick--button-right         : var(--slick--arrow-right);
+    --slick--button-left-hover    : var(--slick--arrow-left-filled);
+    --slick--button-right-hover   : var(--slick--arrow-right-filled);
+
+    --slick--chevron              : url('{{ "chevron.svg" | asset_url }}'); 
+
+
+    --stamped--icon-first         : url('{{ "icon-first.svg" | asset_url }}');
+    --stamped--icon-last          : url('{{ "icon-last.svg" | asset_url }}');
+    --stamped--icon-next          : url('{{ "icon-next.svg" | asset_url }}');
+    --stamped--icon-prev          : url('{{ "icon-prev.svg" | asset_url }}');
+
+
+    --icon-close                  : url("{{ 'icon-close.svg' | asset_url }}");
+
+    --border-radius               : var(--card-corner-radius);
+    --border-radius--half         : calc(var(--border-radius) / 2);
+
+
+    {% comment %}
+      
+      Replace color and name for each new var();
+
+        {% include 'snippet--color-var', color: '#0c703e', name: '--color--brand-green' %}
+      
+      This snippet will output: 
+        --color--brand-green:  #0c703e;
+        --color--brand-green-rgb: 12, 112, 62;
+
+      Give them fun names bc it's easier to remember difference between them.
+      https://chir.ag/projects/name-that-color/#00783F
+
+     {% endcomment %}
+
+    /* Brand Colors  */
+    {% include 'snippet--color-var', color: '#888888', name: '--color--gray' %}
+    {% include 'snippet--color-var', color: '#a7a7a7', name: '--color--silver-chalice-grey' %}
+    {% include 'snippet--color-var', color: '#5c5c5c', name: '--color--scorpion-grey' %}
+
+
+    {% include 'snippet--color-var', color: '#d9d9d9', name: '--color--alto-white' %}
+    
+    
+    {% include 'snippet--color-var', color: '#FFEB00', name: '--color--turbo-yellow' %}
+
+
+    /* Gradients */
+    /*--gradient--mint-laser          : radial-gradient(circle at 50% 50%, var(--color--froly-pink) 0%, var(--color--froly-pink) 205%);*/
+    
+
+    
+  
+    
+
+    /* Primary Button  */
+    --color--btn-primary-bg          : {{settings.color_button_background}};
+    --color--btn-primary-bdr         : {{settings.color_button_border}};
+    --color--btn-primary-txt         : {{settings.color_button_text}};
+
+    --color--btn-primary-bg-hover    : {{settings.color_button_background_hover}};
+    --color--btn-primary-bdr-hover   : {{settings.color_button_border_hover}};
+    --color--btn-primary-txt-hover   : {{settings.color_button_text_hover}};
+
+    /*Secondary Button */
+    --color--btn-secondary-bg        : {{settings.color_button_secondary_background}};
+    --color--btn-secondary-bdr       : {{settings.color_button_secondary_border}};
+    --color--btn-secondary-txt       : {{settings.color_button_secondary_text}};
+
+    --color--btn-secondary-bg-hover  : {{settings.color_button_secondary_background_hover}};
+    --color--btn-secondary-bdr-hover : {{settings.color_button_secondary_border_hover}};
+    --color--btn-secondary-txt-hover : {{settings.color_button_secondary_text_hover}};
+
+
+  }
+
+  {% comment %}
+
+  btn override
+
+  --color--btn-primary-bg: var(--color--btn-primary);
+  --color--btn-primary-bdr: var(--color--btn-primary);
+  --color--btn-primary-txt: var(--color--brand-light-blue);
+
+  --color--btn-primary-bg-hover: transparent;
+  --color--btn-primary-bdr-hover: var(--color--btn-primary);
+  --color--btn-primary-txt-hover: var(--color--btn-primary);
+
+  {% endcomment %}
+
+  
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* Fix fonts that render as bold in Firefox */
+  html {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    font-weight: 400;
+  }
+
+  /* Firefox specific rule */
+  @media screen and (min--moz-device-pixel-ratio:0) {
+    body {
+      /*font-weight: lighter !important;*/ /* removed for causing thin regular weights */
+    }
+  }
+
+  html {
+    box-sizing: border-box;
+    font-size: calc(var(--font-body-scale) * 62.5%);
+    height: 100%;
+  }
+
+  body {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-columns: 100%;
+    min-height: 100%;
+    margin: 0;
+    font-size: 1.6rem;
+    /*letter-spacing: 0.06rem;*/
+    /*line-height: calc(1 + 0.8 / var(--font-body-scale));*/
+    line-height: 1.7;
+    font-family: var(--font-body-family);
+    font-style: var(--font-body-style);
+    font-weight: var(--font-body-weight);
+  }
+  
+  .shopify-section:not(.no-overflow) {
+    overflow: hidden;
+  }
+
+  /* These items are hidden so their style files can load. */
+  body:not(.site-loaded) .basic-modal,
+  body:not(.site-loaded) .ajax-cart__drawer,
+  body:not(.site-loaded) svg:not(.icon-logo),
+  body:not(.site-loaded) cart-notification,
+  body:not(.site-loaded) .menu-btn,
+  body:not(.site-loaded) .nine15-nav,
+  body:not(.site-loaded) .nine15-nav *,
+  body:not(.site-loaded) .mega-menu-panes .mega-pane,
+  body:not(.site-loaded) .mobile-nav {
+    display: none;
+  }
+
+  /medium-up/ {
+    body {
+      //font-size: 1.3rem;
+    }
+  }
+
+{% endcapture %}
+</style>
+
+{% include 'snippet--check-if-live' %}
+
+<script type="text/javascript" async>
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+    setTimeout(function (argument) {
+      document.body.classList.add('site-loaded');
+    },100)
+
+    updateHeightVar('#shopify-section-header', '--header-height')
+    updateHeightVar('#shopify-section-announcement-bar', '--announce-height')
+    
+    {% unless isEditor %}
+    // disables duplicate css link files.
+    function removeDuplicateStyles() {
+      var cssNodes    = document.getElementsByTagName("link"),
+          foundNodes  = [],
+          splitFirst  = 'assets/',
+          splitLast   = '.css';
+      for (const element of cssNodes) {
+        var el        = element,
+            elHref    = el.href,
+            lnk       = elHref.split(splitFirst).pop().split(splitLast)[0];
+        if (elHref.includes(splitFirst)) {
+          if (foundNodes.includes(lnk)) {
+            el.setAttribute('disabled', true);
+          } else {
+            foundNodes.push(lnk);
+          }
+        }
+      }
+    }
+    removeDuplicateStyles()
+    {% endunless %}
+
+  })
+
+  function updateHeightVar(el, v) {
+    var prevH = 0;
+    var rerunHeight = 400; // arbitrary setting for now. prevents broken looking pages.
+    var itm = document.querySelector(el);
+
+    initH()
+    setTimeout(function() {
+      initH(true)
+    }, 100);
+    window.addEventListener('resize', initH);
+    window.addEventListener('scroll', initH);
+
+    function initH(force) {
+      var H = itm.clientHeight;
+      if ( H > rerunHeight ) {
+        setTimeout(function() {
+          initH()
+        }, 100);
+      } else if (H != prevH || force == true) {
+        // console.log('run') 
+        // Then we set the value in the --header-height custom property to the root of the document
+        document.documentElement.style.setProperty(v, `${H}px`);
+        prevH = H;
+      }
+    }
+  }
+
+
+
+  function fixOphanedText(node) {
+    const type          = node.nodeType,
+      data              = typeof node.data !== 'undefined' ? node.data.trim() : '',
+      minCharLength     = 15,
+      minWords          = 3,
+      validElements     = ['h1','h2','h3','h4','h5','h6','p','li','span','a','td','strong','b'],
+      invalidElements   = ['NOSCRIPT','SCRIPT','STYLE','SVG'],
+      skipClass         = 'skip-orphan-fix',
+      notAlone          = data.length > minCharLength,
+      skipElement       = !invalidElements.includes(node.nodeName.toUpperCase()),
+      isText            = type == 3,
+      isElement         = type == 1,
+      textFound         = isText && skipElement && notAlone,
+      goToNextChild     = isElement && skipElement;
+    if (textFound) {
+      var par           = node.parentNode,
+          parType       = par.nodeName.toLowerCase(),
+          parHTML       = par.innerHTML,
+          parClasses    = par.classList,
+          nodeLength    = data.split(' ').length;
+      if ( (validElements.includes(parType) || parClasses.contains('rte') ) && nodeLength >= minWords && !parClasses.contains(skipClass) ) {
+        // par.innerHTML = par.innerHTML.replace(/\s([^\s<]+)\s*$/,'&nbsp;$1');
+        par.innerHTML = par.innerHTML.replace(/\s([^\s<]{0,15})\s*$/,'&nbsp;$1'); //{0,15} excludes longer words longer than 15 characters      
+      }
+    }
+    if (goToNextChild) {
+      for (var i = 0; i < node.childNodes.length; i++) {
+        fixOphanedText(node.childNodes[i]);
+      }
+    }
+  }
+  window.addEventListener('DOMContentLoaded', (event) => {
+    fixOphanedText(document.body);
+    // fixOphanedText(document.getElementById('shopify-section-template--14680283643958__16618340269df8f1d8'));
+  });
+
+</script>
+
+
+
+{% include 'custom-css', css: styles, important: false %}

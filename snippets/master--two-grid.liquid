@@ -1,0 +1,594 @@
+<!-- snippets/master--two-grid -->
+
+
+{% liquid 
+
+    assign s                    = section.settings
+
+    assign sID                  = section.id
+
+    assign i                    = block
+    assign lp                   = section.blocks
+
+    assign prevImgs             = '' 
+    assign imageRow             = '' 
+    assign splt                 = '<!--SPLIT-->' 
+
+    assign isRev                = s.reverse
+    assign hideImages           = s.hide_images
+
+    assign sectionCustomCSS     = s.custom_css
+    assign class                = 'section--' | append: sID
+    assign cssClass             = '.' | append: class
+
+    assign cF                   = false
+
+    assign count                = 0 
+    if isRev == true or isRev == 'true'
+        assign count            = 1 
+    endif 
+
+%}
+
+
+<style>  
+{% capture sectionMainCSS %}
+    == .cell_no_gutter {
+        
+        --grid--left: 1 / 1 / 1 / 1;
+        --grid--right: 1 / 2 / 1 / 2;
+
+        --grid--left: left;
+        --grid--right: right;
+        
+        --spacing--padding-mob: var(--base-gutter--half);
+        --spacing--padding-tb: var(--base-gutter);
+        --spacing--padding-lr: var(--base-gutter--double);
+        --spacing--max-width: 1400px; 
+        --spacing--max-width-padding: var(--base-gutter); 
+        
+        --height--image: 80%;
+
+        --width--img-perc: 50%;
+        --width--txt-perc: calc(100% - (var(--width--img-perc)));
+        /* --width--txt-max-width: calc( ( ((var(--spacing--max-width)) / (var(--width--txt-perc)) ) - ((var(--spacing--max-width-padding)) * 2) ) - ((var(--spacing--padding-lr)) * 2) ); */
+        --width--txt-max-width-calc: calc( ((var(--spacing--max-width)) - (var(--width--txt-perc)) ) - ( ( (var(--spacing--max-width-padding)) * 2) - ((var(--spacing--padding-lr)) * 2) ) );
+        --width--txt-max-width: min(var(--width--txt-max-width-calc),700px);
+        /*--width--txt-max-width: var(--width--txt-max-width-calc);*/
+        
+        padding: 0
+    }
+
+    == .icon {
+        width: 20px;
+        height: 20px;
+    }
+    == .social-link {
+      text-decoration: none;
+      display: inline-block;
+      padding: 5px;
+    }
+   
+    == h1, 
+    == h2, 
+    == h3,
+    == h4, 
+    == h5, 
+    == h6 {
+        margin: 0;
+    }
+
+    == h3 {
+        font-family: var(--font--graphik-wide);
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.15rem;
+        order: -3;
+    }
+
+    == h2 {
+        /* text-transform: uppercase; */
+        font-weight: 700;
+        font-size: 64px;
+        font-family: var(--font--graphik-cond);
+        line-height: 0.9;
+        letter-spacing: 0.15rem;
+    }
+
+    == .divider {
+        line-height: 0;
+        display: none;
+    }
+    == .divider * {
+        position: relative;
+        width: 50px;
+        height: 2px;
+        display: inline-block;
+        vertical-align: middle;
+        opacity: 0.35;
+    }
+
+    == h3 + h2::after {
+        display: none;
+    }
+
+    == .rte,
+    == .rte * {
+        /*font-family: var(--font-heading-family);*/
+        /*font-size: 13px;*/
+        /*font-weight: 400;*/
+        /*line-height: 1.7;*/
+    }
+
+    == .text-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    == .text-content > *,
+    == .rte > p {
+        margin-top: 0;
+        margin-bottom: var(--base-gutter--half);
+    }
+
+    == .text-content > *:last-child,
+    == .rte > p:last-child {
+        margin-bottom: 0;
+    }
+
+    == h2:not(:last-child) {
+        /*margin-bottom:  calc(var(--base-gutter--half) - 4px);*/
+    }
+
+    == .cell_no_gutter .text-block {
+        padding: var(--spacing--padding-mob) var(--base-gutter--half);
+        padding: var(--spacing--padding-mob);
+        position: relative;
+    }
+
+    == .background-image {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+    }
+
+    ==.hide-images .image-block {
+        display: none;
+    }
+
+
+    == .no-image {
+        display: block;
+    }
+    == .no-image .image-block {
+        display: none;
+    }
+    == .no-image .cell__item {
+        width: 100%;
+    }
+
+    == .text-content {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /*align-items: baseline;*/
+    }
+
+    == .text-content > :nth-child(2) {
+        /*order: -1;*/
+    }
+
+    == .btn-container {
+        margin-bottom: calc(var(--base-gutter--half) * -1) !important;
+    }
+
+    == .button {
+        /*margin-bottom:  var(--base-gutter--half);*/
+        /*margin-right:  var(--base-gutter--half);*/
+    }
+
+    /medium-up/ {
+        ==.hide-images {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        ==.hide-images .text-block {
+            min-height: clamp(500px, 50vw, 100vh);
+        }
+
+        == .text-content > *,
+        == .rte > p {
+            /*margin-bottom: var(--base-gutter);*/
+        }
+
+        == .text-content > *:last-child,
+        == .rte > p:last-child {
+            margin-bottom: 0;
+        }
+
+        ==.hide-images .cell_no_gutter {
+            width: 50%;
+        }
+
+        ==.hide-images .cell_no_gutter .cell__item {
+            grid-area: inset !important;
+            grid-column: 1/3 !important;
+            width: 100% !important;
+        }
+
+        ==.hide-images .cell_no_gutter:nth-of-type(odd) .cell__item {
+            justify-content: flex-end;
+            justify-content: center;
+        }
+
+        ==.hide-images .cell_no_gutter:nth-of-type(odd):last-child {
+            width: 100%;
+        }
+
+        ==.hide-images .cell_no_gutter:nth-of-type(odd):last-child .cell__item {
+            justify-content: center;
+        }
+
+        ==.hide-images .cell_no_gutter:nth-of-type(even) .cell__item {
+            justify-content: flex-start;
+            justify-content: center;
+        } 
+        
+        == .social-link {
+          padding: 10px;
+        }
+
+        == .icon {
+            width: 35px;
+            height: 35px;
+        }
+        == h2 {
+            font-size: 90px;
+        }
+
+        == .rte * {
+            /*font-size: 17px;*/
+        }
+
+        == .cell_no_gutter:not(.no-image) {
+            grid-auto-columns: var(--width--img-perc) var(--width--txt-perc);
+            grid-template-areas: 'left right';
+            display: grid;
+            align-items: center;
+        }
+        == .cell_no_gutter.reverse:not(.no-image) {
+            grid-auto-columns: var(--width--txt-perc) var(--width--img-perc);
+
+        }
+        == .cell_no_gutter:not(.no-image) .cell__item {
+            width: 100%;
+        }
+
+        == .cell_no_gutter:not(.no-image) .image-block {
+            grid-area: var(--grid--left);
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            padding-top: var(--height--image);
+        }
+
+        == .cell_no_gutter .image-block .video-ratio,
+        == .cell_no_gutter .image-block .video-inline,
+        == .cell_no_gutter .image-block .rimage-outer-wrapper,
+        == .cell_no_gutter .image-block .rimage-wrapper,
+        == .cell_no_gutter .image-block .image-content__image-container,
+        == .cell_no_gutter .image-block .image-content__image-wrapper,
+        == .cell_no_gutter .image-block .article__grid-image-container,
+        == .cell_no_gutter .image-block .article__grid-image-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 0 !important;
+        }
+
+        == .cell_no_gutter .image-block .video-ratio .wrapper,
+        == .cell_no_gutter .image-block .video-inline .wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        == .cell_no_gutter .image-block img {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+        }
+
+        == .cell_no_gutter .text-block {
+            grid-area: var(--grid--right);
+            padding: var(--spacing--padding-tb) var(--spacing--padding-lr);
+            display: flex;
+            height: 100%;
+        }
+
+        == .cell_no_gutter:not(.no-image) .text-block .text-content {
+            max-width: var(--width--txt-max-width);
+            width: 100%;
+            align-self: center;
+            /*text-align: left;*/
+            /*align-items: flex-start;*/
+        }
+
+        == .cell_no_gutter .text-block.full-width {
+            grid-area: 1/span 2/1/span 1;
+            grid-area: left right;
+        }
+
+        == .cell_no_gutter .text-block.full-width .text-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        == .cell_no_gutter.reverse .image-block {
+            grid-area: var(--grid--right);
+        }
+
+        == .cell_no_gutter.reverse .text-block {
+            justify-content: flex-end;
+            justify-content: center;
+            grid-area: var(--grid--left);
+        }
+        == .no-image .text-content {
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    }
+    /large-up/ {
+      == .btn {
+        padding: var(--base-gutter) var(--base-gutter--double);
+      } 
+    }
+{% endcapture %}
+</style>  
+
+
+{% if cF == true or section.blocks.size > 0 and tg_hideDef != 'true' %}
+ 
+    {% for i in lp %}
+
+        {% liquid 
+
+            assign b                = i.settings
+            assign bID              = i.id
+
+            assign mainImg          = blank 
+            assign rawImg           = b.image
+            assign mobImg           = b.image_mob
+            assign bgImg            = b.image_bg
+            assign imgCls           = ''
+            assign mobImgCls        = 'medium-up--hide'
+
+            assign img_CF           = false 
+            if b.metafield_image != blank 
+              assign rawImg         = b.metafield_image
+              assign img_CF         = true 
+            endif 
+
+            assign imgMob_CF        = false 
+            if b.metafield_mobile_image != blank 
+              assign mobImg         = b.metafield_mobile_image
+              assign imgMob_CF      = true 
+            endif 
+
+            if mobImg != blank 
+              assign imgCls         = 'small--hide'
+            endif 
+
+            assign count            = count | plus: 1 
+            assign rev              = count | modulo: 2 | plus: 1 | pluralize: 'reverse', ''
+
+            assign topStars         = b.stars | plus: 0 
+
+            assign ttl              = b.title 
+            assign topTtl           = b.top_title 
+            assign txt              = b.text 
+            assign lnkTxt           = b.lnk_txt 
+            assign lnkUrl           = b.lnk_url 
+            assign txtClr           = b.color_txt 
+            assign bgClr            = b.color_bg 
+            assign btnStyle         = b.btn_style
+
+            assign hasBtn           = false
+            if lnkUrl != blank and lnkTxt != blank
+                assign hasBtn       = true
+            endif
+
+            assign extVid           = b.video_url
+            assign hstVid           = b.video_hosted
+
+            assign metaVideo        = false 
+            if b.metafield_video != blank 
+              assign extVid         = b.metafield_video
+              assign hstVid         = blank
+              assign metaVideo      = true
+            endif 
+
+            assign hasVid           = '' 
+            if extVid != blank or hstVid != blank 
+                assign hasVid       = 'medium-up--hide'
+                assign imgCls       = imgCls | append: ' medium-up--hide'
+                assign mobImgCls    = mobImgCls | append: ' medium-up--hide'
+            endif 
+
+            assign customHTML       = b.custom_html
+            assign blockCustomCSS   = b.custom_css
+
+            assign blkClass         = 'block--' | append: bID
+            assign blkCssClass      = '.' | append: blkClass
+
+            assign imageWidth       = b.image_width
+            assign imageHeight      = b.image_height
+
+        %}
+        {% capture blockCSS %}
+            ==.cell_no_gutter {
+                --height--image: {{imageHeight}}vw;
+                --color--bg: {{bgClr}};
+                --color--txt: {{txtClr}};
+                background-color: var(--color--bg);
+            }
+            == .social-nav *,
+            ==.cell_no_gutter h2,
+            ==.cell_no_gutter h3,
+            ==.cell_no_gutter .rte,
+            ==.cell_no_gutter .rte *,
+            ==.cell_no_gutter .button--arrow-link,
+            ==.cell_no_gutter .button--arrow-link * {
+                color: var(--color--txt);
+            }
+            == .divider * {
+                background-color: var(--color--txt);
+            }
+            {% if imageWidth != '50' %}
+            ==.cell_no_gutter {
+                --width--img-perc: {{imageWidth}}%;
+            }
+            {% endif %}
+
+            {% if btnStyle contains 'custom' %}
+            ==.cell_no_gutter .btn {
+                --color--btn-primary-bg        : {{b.color_button}} ;
+                --color--btn-primary-bdr       : {{b.color_button_border}} ;
+                --color--btn-primary-txt       : {{b.color_button_text}} ;
+                --color--btn-primary-bg-hover  : {{b.color_button_hover}} ;
+                --color--btn-primary-bdr-hover : {{b.color_button_border_hover}} ;
+                --color--btn-primary-txt-hover : {{b.color_button_text_hover}} ;
+            }
+            {% endif %}
+        {% endcapture %}
+
+        {% if rawImg != '' or mobImg != '' or hasVid != '' %}
+            {% capture mainImg %}
+                <div class="cell__item medium-up--one-half image-block">
+                    {% include 'snippet--image', 
+                        img:  rawImg, 
+                        cf: img_CF,
+                        extraClass: imgCls,
+                        useBG: false 
+                    %}
+                    {% include 'snippet--image', 
+                        img:  mobImg, 
+                        cf: imgMob_CF,
+                        extraClass: mobImgCls,
+                        useBG: false 
+                    %}
+                    {% include 'snippet--video', 
+                        vidExt: extVid, 
+                        vidHosted: hstVid, 
+                        metaVideo: metaVideo,
+                        vidID: blkClass, 
+                        bg_style: false,
+                        autoPlay: false
+                    %}
+                </div>
+            {% endcapture %}
+        {% endif %}
+
+        {% unless topTtl == blank and ttl == blank and txt == blank and hasBtn == false and customHTML == blank %}
+            {% capture imageRow %}
+                {{imageRow}}
+                <div class="cell_no_gutter {{rev}} {{blkClass}} {% if rawImg == blank and hasVid == '' %}no-image{% endif %}" {{block.shopify_attributes}}>
+                    {{mainImg}}
+                    <div class="cell__item {% if mainImg != blank %}medium-up--one-half{% else %}full-width{% endif %} text-block text-{{forloop.index}}">
+                        {% include 'snippet--image', 
+                            img:  bgImg, 
+                            cf: img_CF,
+                            extraClass: 'background-image',
+                            useBG: true 
+                        %}
+                        <div class="text-content">
+                            {{customHTML}}
+                            {% if topTtl != blank or ttl != blank %}
+                                <div class="divider"><div></div></div>
+                            {% endif %}
+                            {% if topStars > 0 %}
+                                <div class="stars">
+                                    {% for i in (1..topStars) %}
+                                        {% include 'icon-star' %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {% if ttl != blank %}
+                                <h2>{{ttl}}</h2>
+                            {% endif %}
+                            {% if topTtl != blank %}
+                                <h3>{{topTtl}}</h3>
+                            {% endif %}
+                            {% if txt != blank %}
+                                <div class="rte">{{txt}}</div>
+                            {% endif %}
+                            {% if b.show_social == true %}
+                                {% include 'snippet--social-icons', shareItem: b.share_item %}
+                            {% endif %}
+                            {% if hasBtn == true %}
+                                <a class="btn button button--{{btnStyle}}" href="{{lnkUrl}}">
+                                    <span>{{lnkTxt}}</span>
+                                    {% comment %}{% include 'icon-arrow-right' %}{% endcomment %}
+                                </a>
+                            {% endif %}
+                        </div>
+                        
+                    </div>
+                    {% include 'custom-css', 
+                        css: blockCSS, 
+                        class: blkCssClass,
+                        important: false
+                    %}
+                    {% include 'custom-css', 
+                        css: blockCustomCSS, 
+                        class: blkCssClass 
+                    %}
+                </div>
+                {{splt}}
+            {% endcapture %}
+        {% endunless %}
+        {% liquid 
+            assign mainImg  = blank
+            assign ttl      = blank
+            assign txt      = blank
+            assign topTtl   = blank
+            assign txtClr   = blank
+            assign bgClr    = blank
+            assign lnkTxt   = blank
+            assign lnkUrl   = blank 
+        %}
+    {% endfor %}
+    {% if imageRow != '' %}
+        <div class="nine15--two-grid {{class}} {% if hideImages == true %}hide-images{% endif %}" >
+            {% include 'custom-css', 
+                css: sectionMainCSS, 
+                class: cssClass,
+                important: false
+            %}
+            {% include 'custom-css', 
+                css: sectionCustomCSS, 
+                class: cssClass 
+            %}
+            {{imageRow|split:splt|uniq}}
+        </div>
+    {% endif %}
+{% endif %}
+
+
+

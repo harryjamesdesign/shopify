@@ -1,0 +1,670 @@
+<!-- include/master--page-heros -->
+{%- comment -%} 
+
+    - Id/attr settings  
+    - Fallbacks / Defaults 
+    - Set Padding to match site width 
+
+{%- endcomment -%} 
+{% liquid
+
+    assign shopifyAttrs     = block.shopify_attributes
+
+    assign block_id_num     = block.id 
+
+    assign blkCls           = 'hero_' | append: block_id_num 
+    assign class            = '.' | append: blkCls
+
+    assign sectionCustomCSS = b.custom_css | raw
+
+    assign sitePaddingDef   = '55'
+    assign sitePaddingType  = 'px'
+    assign sitePadding      = sitePaddingDef | append: sitePaddingType
+
+    assign hght_fallback    = '500px'
+
+    assign defBodyColor     = settings.bg_col | color_lighten: 0 | default: '#ffffff'
+    assign defTextColor     = settings.font_col_base | default: '#333333'
+
+    assign dskTop           = '0px'
+    assign mobTop           = '0px'
+
+    assign tempName         = template.name
+
+    assign showHero         = true
+    assign tagSpltr         = '<span>|</span>'
+
+    assign useOverlay       = b.use_overlay
+
+%}
+{%- comment -%} 
+    
+    ====================
+    Image Asset Settings 
+    ====================
+
+    - Check for defaults first
+    - Fallback for blogs and collections incase they don't have a featured image.
+    - Featured images
+    - Check if Override is allowed
+    - Check for Mobile Image
+    - Assign default mobile if Mobile Image blank
+
+{% endcomment %}
+{% liquid
+
+    assign useDskCF         = false
+    assign useMobCF         = false
+
+    assign allow_default    = b.allow_default
+    if blog.articles.first.image != blank
+        assign dskImg       = blog.articles.first.image
+    endif
+    if collection.products.first != blank
+        assign IGNORE_dskImg = collection.products.first.featured_image
+    endif
+    if collection.image != blank
+        assign dskImg       = collection.image
+    endif
+    if blog.featured_image != blank
+        assign dskImg       = blog.featured_image
+    endif
+    if article.image != blank
+        assign dskImg       = article.image
+    endif
+    
+    assign overRide         = false
+    if allow_default == true and dskImg != blank
+        assign overRide     = true
+    endif
+    if b.image != blank and overRide == false
+        assign dskImg       = b.image
+    endif
+    if b.image_mob != blank
+        assign mobImg       = b.image_mob
+    endif
+    if mobImg == blank
+        assign mobImg       = dskImg
+    endif
+
+    assign liquid_image     = b.liquid_image_override
+    assign liquid_image_mob = b.liquid_image_mob_override
+    if liquid_image != blank
+        assign dskImg       = liquid_image
+        assign mobImg       = liquid_image
+        assign useDskCF     = true
+        assign useMobCF     = true
+    endif 
+    if liquid_image_mob != blank
+        assign mobImg       = liquid_image_mob
+        assign useMobCF     = true
+    endif 
+%}
+
+{%- comment -%} 
+
+    ====================
+    Image Style Settings
+    ====================
+    
+    - Desktop Settings 
+    - Mobile Settings
+
+{%- endcomment -%}
+{% liquid 
+
+    assign dskImgBgSize     = b.bg_size
+    if dskImgBgSize == 'custom'
+        assign dskImgBgSize = b.custom_size
+    endif
+    
+    assign mobImgBgSize     = b.bg_size_mob
+    if mobImgBgSize == 'custom'
+        assign mobImgBgSize = b.custom_size_mob
+    endif
+
+    assign dskHght          = b.section_height | default: hght_fallback
+    if dskHght contains '%'
+        assign dskImgHght   = 'padding-top:' | append: dskHght | append: ';height: 0;min-height: 0;'
+    else
+        assign dskImgHght   = 'min-height:' | append: dskHght | append: ';'
+    endif
+
+    assign mobHght          = b.section_height_mobile | default: dskHght
+    if mobHght contains '%'
+        assign mobImgHght   = 'padding-top:' | append: mobHght | append: ';height: 0;min-height: 0;'
+    else
+        assign mobImgHght   = 'min-height:' | append: mobHght | append: ';'
+    endif
+
+    assign dskImgPos        = b.align_bg
+    assign dskImgCSS        = 'background-repeat: no-repeat;background-position:' | append: dskImgPos | append: ';background-size:' | append: dskImgBgSize | append: ';'
+    
+    assign mobImgPos        = b.align_bg_mob
+    assign mobImgCSS        = 'background-repeat: no-repeat;background-position:' | append: mobImgPos | append: ';background-size:' | append: mobImgBgSize | append: ';'
+
+%}
+{%- comment -%}
+    
+    =====================
+    Text Content Settings
+    =====================
+
+    - Check for defaults from types
+    - Page
+    - Collection
+    - Blog feed
+    - Article
+    - Override Title and Text
+    - Button info/show
+
+{%- endcomment -%}
+{% liquid
+
+    if tempName contains 'page'
+        assign mainTtl  = page_title
+        assign mainTxt  = page.content
+    elsif tempName contains 'collection'
+        assign tag      = ''
+        if current_tags
+            for tag in current_tags
+                assign t = tag | capitalize
+                assign unl = ''
+                unless forloop.last 
+                    assign unl = tagSpltr
+                endunless
+                assign mainTtl = mainTtl | append: '<span>' | append: t | append: '</span>' | append: unl
+            endfor
+        else
+            assign mainTtl = collection.title
+        endif
+        assign mainTxt  = collection.description
+    elsif tempName contains 'blog'
+        assign tag      = ''
+        if current_tags
+            for tag in current_tags
+                assign t = tag | capitalize
+                assign unl = ''
+                unless forloop.last 
+                    assign unl = tagSpltr
+                endunless
+                assign mainTtl = mainTtl | append: '<span>' | append: t | append: '</span>' | append: unl
+            endfor
+        else
+            assign mainTtl = blog.title
+        endif
+        assign mainTxt  = blog.description
+    elsif tempName contains 'article'
+        assign tag      = ''
+        if current_tags
+            for tag in current_tags
+                assign t = tag | capitalize
+                assign unl = ''
+                unless forloop.last 
+                    assign unl = tagSpltr
+                endunless
+                assign mainTtl = mainTtl | append: '<span>' | append: t | append: '</span>' | append: unl
+            endfor
+        else
+            assign mainTtl = article.title
+        endif
+        assign mainTxt  = article.description
+    endif
+
+    if b.override_title != blank
+        assign mainTtl  = b.override_title
+    endif
+    if b.override_text != blank
+        assign mainTxt  = b.override_text
+    endif
+
+    if b.hide_title  == true
+        assign mainTtl  = blank
+    endif
+    if b.hide_content == true
+        assign mainTxt  = blank
+    endif
+
+    assign btnUrl       = b.btn_url
+    assign btnTxt       = b.btn_txt
+    assign btnStyle     = b.btn_style
+    assign useBtn       = false
+    if btnUrl != blank and btnTxt != blank
+        assign useBtn   = true
+    endif
+
+    assign customHTML   = b.custom_html
+
+%}
+{%- comment -%}
+    
+    ================================
+    Text Position/Alignment Settings
+    ================================
+    
+    - Check if text should be below image
+    - Vertical / Horizontal Alignment
+    - Content Max Width
+    - Text Alignment
+    - Content Positioning CSS
+
+{%- endcomment -%}
+{% liquid
+
+    assign dskTxtBelow  = b.separate_text_desktop
+    assign mobTxtBelow  = b.separate_text_mobile
+
+    assign horAnchor    = b.align_hor
+    assign vertPerc     = b.vert_align
+    assign horPerc      = b.hor_align
+    assign maxWidth     = b.width
+    assign txtAlign     = b.align_text
+
+    if horAnchor == 'center'
+        assign txtContentPosition = 'left:' | append: horPerc | append: '%;transform:translate(-' | append: horPerc | append: '%,-' | append: vertPerc | append: '%);top:' | append: vertPerc | append: '%;'
+    elsif horAnchor == 'left'
+        assign txtContentPosition = 'left:calc(' | append: horPerc | append: '% + ' | append: sitePadding | append: ');transform:translate(-' | append: horPerc | append: '%,-' | append: vertPerc | append: '%);top:' | append: vertPerc | append: '%;'
+    elsif horAnchor == 'right'
+        assign txtContentPosition = 'left:initial;right:calc(' | append: horPerc | append: '% + ' | append: sitePadding | append: ');transform:translate(' | append: horPerc | append: '%,-' | append: vertPerc | append: '%);top:' | append: vertPerc | append: '%;'
+    endif
+
+%}
+{%- comment -%}
+    
+    ==============
+    Color Settings 
+    ==============
+    
+    - Background Color
+
+{%- endcomment -%}
+{% liquid
+
+    assign op       = b.opacity | times: 0.01
+    assign contentBg = b.set_to_overlay_container
+
+    assign mltply   = 1
+    if contentBg == true and horPerc == 0
+        assign mltply = 2
+    endif
+    assign sitePaddingContentBg = sitePaddingDef | times: mltply | append: sitePaddingType
+
+    assign txtColor = b.txt_color
+    assign mobTxtColor = defTextColor
+
+    assign bgColor  = b.bg_color | color_modify: 'alpha', op
+
+%}
+{%- comment -%} 
+
+
+    ==============================================================
+
+    IF NO IMAGES/TEXT FOUND THEN HIDE ON PAGE/TEMPLATE!
+
+    We don't want to let any broken images through on accident. ;)
+
+    ==============================================================
+
+
+ {%- endcomment -%}
+{%- if dskImg == blank and mainTtl == blank -%}{%- assign showHero = false -%}<!-- Stopped because no image found -->{%- endif -%}
+{% comment %}
+    
+    =================
+
+    Start of Hero CSS 
+    
+    Keep Indentation as is for clean output.
+
+    =================
+
+{% endcomment %}
+{%- comment -%}
+    Text On Desktop is separate
+{%- endcomment -%}
+{%- if dskTxtBelow == true -%}
+{%- capture dskCSS %}
+    /* Desktop Text Below */
+    == .bg_image,
+    == .center-content,
+    == .page-width {
+        position: relative;
+        top: initial;
+        left: initial;
+        right:  initial;
+        transform: none;
+        overflow:hidden;
+    }
+    == .center-content {
+        text-align: {{txtAlign}};
+        max-width: {{maxWidth}};
+        margin: var(--base-gutter) auto;
+    }
+    ==::before {
+        display: none;
+    } 
+    == h2,
+    == .rte,
+    == .rte *:not(.btn) {
+        color: var(--page-hero--text-color);
+    }
+    == .bg_image,
+    == .video-ratio .wrapper {
+        {{dskImgHght}}
+    }
+    == .bg_image {
+        {{dskImgCSS}}
+    }
+{% endcapture -%}
+{%- endif -%}
+{%- comment -%}
+    Text On Desktop is NOT separate
+{%- endcomment -%}
+{%- if dskTxtBelow == false -%}
+{%- capture dskCSS %}
+    /* Desktop Text Overlayed */
+    == .video-ratio .wrapper,
+    == {
+        {{dskImgHght}}
+    }
+    == h2,
+    == .rte,
+    == .rte *:not(.btn) {
+        color: {{txtColor}};
+        text-align: {{txtAlign}};
+    }
+    == .center-content {
+        position: absolute;
+        text-align: {{txtAlign}};
+        z-index: 2;
+        max-width: {{maxWidth}};
+        {{txtContentPosition}}
+    }
+    == .page-width {
+        position: absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        height: 100%;
+        width: 100%;
+        z-index: 1;
+    }
+
+    
+    == .bg_image {
+        padding:0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        {{dskImgCSS}}
+    }
+{% endcapture -%}
+{%- endif -%}
+{%- comment -%}
+    Text on Mobile is separate
+{%- endcomment -%}
+{%- if mobTxtBelow == true -%}
+{%- capture mobCSS %}
+        /* Mobile Text Below */
+        {% if dskTxtBelow != true %}
+        == {
+            padding-top: initial;
+            height: initial;
+            min-height: initial;
+        }
+        {% endif %}
+        == .bg_image,
+        == .center-content,
+        == .page-width {
+            position: relative;
+            top: initial;
+            left: initial;
+            right:  initial;
+            transform: none;
+            overflow:hidden;
+        }
+        == .bg_image,
+        == .video-ratio .wrapper {
+            {{mobImgHght}}
+        }
+        == .center-content {
+            text-align: {{txtAlign}};
+            width: 95%;
+            max-width: 500px;
+            margin: 60px auto;
+        }
+        ==::before,
+        == .center-content::before {
+            display: none;
+        } 
+        == h2,
+        == .rte,
+        == .rte *:not(.btn) {
+            color: {{mobTxtColor}};
+        }
+{% endcapture -%}
+{%- endif -%}
+{%- comment -%}
+    Text On Mobile is NOT separate
+{%- endcomment -%}
+{%- if mobTxtBelow == false -%}
+{%- capture mobCSS %}
+  /* Mobile Text Overlayed */
+  == {
+      {{mobImgHght}}
+  }
+  == .center-content {
+      right:  initial;
+      transform: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 95%;
+      max-width: 500px;
+      text-align: {{txtAlign}};
+      transform: translate(-50%,-50%);
+  }  
+{% endcapture -%}              
+{%- endif -%}
+{% capture allCSS %}
+    /* {{tempName}} hide title */
+    {%- if tempName contains 'page' %}
+    .template-page .page-title,
+    .template-page header .title-bar,
+    .template-page h1 {
+        display: none;
+    }
+    == {
+        margin-bottom: 60px;
+    }
+    /small/ {
+        == {
+            margin-bottom: 30px;
+        }
+    }
+    {% endif -%}
+    {%- if tempName contains 'blog' %}
+    .template-blog h1 {
+        display: none;
+    }
+    {% endif -%}
+    {%- if tempName contains 'collection' %}
+    .collection-hero {
+        margin-top: 0;
+    }
+    .collection-hero__title,
+    .section-header__item,
+    .collection-image-wrapper,
+    .template-collection h1,
+    .template-collection .collection-hero__image {
+        display: none;
+    }
+    .collection-description {
+        display: none;
+    }
+    {% endif -%}
+    {%- if tempName contains 'product' %}
+    .template-product .page-title,
+    .template-product header .title-bar,
+    .template-product h1 {
+        display: none;
+    }
+    {%- endif -%}
+    /* Desktop Defaults */
+    == {
+        position: relative;
+        margin-top: {{dskTop}};
+        z-index: 1;
+        --page-hero--overlay: {{bgColor}};
+        --page-hero--text-color: {{txtColor}};
+    }
+    =={%- if contentBg == true -%}{{' '}}.center-content{%- endif -%}::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        {%- if contentBg == true -%}
+        width: calc(100% + {{sitePaddingContentBg}});
+        height: calc(100% + {{sitePaddingContentBg}});
+        {%- else -%}
+        width: 100%;
+        height: 100%;
+        {%- endif -%}
+        z-index: {%- if contentBg == true -%}-{%- endif -%}1;
+        background-color: var(--page-hero--overlay);
+    }
+    == h2 {
+        font-size: 35px;
+        text-transform: initial;
+        font-weight: bold;
+        //letter-spacing: 0;
+        margin: 0;
+    }
+    == .rte {
+        font-family: var(--font-heading-family);
+    }
+    == .center-content > * {
+        margin-bottom: 0;
+    }
+    == .center-content > *:not(:last-child) {
+        margin-bottom: var(--base-gutter--quarter);
+    }
+    == .video-ratio {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        z-index: 0;
+    }
+    == .video-ratio:before {
+        content: '';
+        position: absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        z-index: -1;
+    }
+    == video, 
+    == iframe {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+    }
+    /* Desktop Style */
+    {{dskCSS}}
+    /small/ {
+        /* Mobile Defaults */
+        == {
+            margin-top: {{mobTop}};
+        }
+        == .bg_image {
+           {{mobImgCSS}}
+        }
+        == h2,
+        == .rte,
+        == .rte *:not(.btn) {
+            text-align: {{txtAlign}};
+        }
+        == h2 {
+            font-size: 32px;
+        }
+        /* Mobile Style */
+        {{mobCSS}}
+    }
+{% endcapture %}
+{%- comment -%}
+    
+
+    ====================================
+    If Hero image exists then Show Hero! 
+    ====================================
+
+
+{%- endcomment -%}
+{%- if showHero == true -%}
+    <div class="hero-container {{blkCls}}" {{shopifyAttrs}}>
+        {% assign xtra = '' %}
+        {% if mobImg != blank %}
+            {% assign xtra = 'small--hide' %}
+            {% include 'snippet--image', 
+                img: mobImg, 
+                useBG: true,
+                cf: useMobCF,
+                noLazy: true,
+                imgSize: '749x'
+                extraClass: 'medium-up--hide'
+            %}
+        {% endif %}
+        {% include 'snippet--image', 
+            img: dskImg, 
+            useBG: true,
+            cf: useDskCF,
+            extraClass: xtra
+        %}
+        {% include 'snippet--video', 
+            vidExt: b.video_url, 
+            vidHosted: b.video_hosted, 
+            vidClass: sectionClass, 
+            bg_style: true 
+        %}
+        <div class="page-width">
+            {%- if mainTtl != blank or mainTxt != blank or useBtn == true or customHTML != blank -%}
+                <div class="center-content">
+                    {{customHTML}}
+                    {%- if mainTtl != blank -%}<h2 class="h1">{{ mainTtl }}</h2>{%- endif -%}
+                    {%- if mainTxt != blank -%}<div class="rte">{{mainTxt}}</div>{%- endif -%}
+                    {%- if useBtn == true -%}<a class="btn button btn--{{btnStyle}}" href="{{ btnUrl }}">{{ btnTxt }}</a>{%- endif -%}
+                </div>
+            {%- endif -%}
+        </div>
+        {% include 'custom-css', 
+            css: allCSS, 
+            class: class,
+            important: false
+        %}
+        {% include 'custom-css', 
+            css: sectionCustomCSS, 
+            class: class 
+        %}
+        {% if useOverlay == true %}
+          {% if dskImg != blank or b.video_url != blank or b.video_hosted != blank %}
+            <script type="text/javascript" async>
+              document.body.classList.add('overlay-header');
+            </script>
+          {% endif %}
+        {% endif %}
+    </div>
+{%- endif -%}
+

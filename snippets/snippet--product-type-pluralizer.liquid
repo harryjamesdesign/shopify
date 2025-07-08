@@ -1,0 +1,16 @@
+{%- liquid
+  assign types        = settings.product_type_pluralizer | newline_to_br | split: '<br />'
+  assign output       = type
+  assign outputHndl   = output | handleize
+  for type in types 
+    assign splt       = type | split: '='
+    assign cur        = splt[0]
+    assign new        = splt[1]
+    assign curHndl    = cur | handleize
+    if curHndl == outputHndl 
+      assign output   = new 
+      break
+    endif 
+  endfor  
+-%}
+{{-output-}}

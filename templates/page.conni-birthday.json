@@ -1,0 +1,147 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "title_style": "visually-hidden",
+        "loop": "",
+        "custom_css": "== .rte {\n  display: none;\n}",
+        "custom_code": ""
+      }
+    },
+    "1664809580fc92b5ab": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "",
+        "custom_html": "{%- liquid \n  assign mf = product.metafields.custom\n  assign vid = 'https://cdn.shopify.com/videos/c/o/v/5ebf634dff19401ba7f7bca57d207368.mp4' \n%}\n{% render 'snippet--video', \n  vidHosted: vid, \n  hostedThumb: img,\n  autoPlay: false\n%}",
+        "custom_css": ""
+      }
+    },
+    "1664808428cffb1fb2": {
+      "type": "nine15--ctas",
+      "custom_css": [],
+      "settings": {
+        "title": "CONNI'S BDAY SURPRISE GIFT",
+        "text": "<b>Thank you all for joining us in our celebration!</b><Br><br>\n\n<p> Both our Sally Uptown and Wesley Uptown have completely sold out online. Make sure to sign up for our email list to stay updated on future celebrations and product releases!</p>",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "== .rte {\n  max-width: 670px;\n  margin-left: auto;\n  margin-right: auto;\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "16643838372e604815": {
+      "type": "nine15--featured-products",
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "collection": "happy-birthday-conni",
+        "title": "To YOUR CART",
+        "text": "<h2>ADD BOTH</h2>",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#ffffff",
+        "gradient": "#000",
+        "limit": 10,
+        "per_row": 5,
+        "use_slider": true,
+        "use_slider_mobile_only": false,
+        "use_dots_desktop": true,
+        "use_dots_mobile": true,
+        "use_arrows": false,
+        "auto_slide": false,
+        "infinite": true,
+        "image_ratio": "portrait",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "enable_quick_add": true,
+        "custom_css": "== {\n  padding: 1;\n  --border: 1px solid rgba(var(--color--alto-white-rgb),0.5);\n}\n\n== .page-width {\n  max-width: 100%;\n  padding: 0;\n} \n\n== .cell {\n  --grid_margin: 0px;\n}\n\n== .cell__item {\n  border-bottom: var(--border);\n  border-right: var(--border);\n}"
+      }
+    },
+    "8bda3197-5711-4407-bf7a-4788ee81a10a": {
+      "type": "nine15--two-grid",
+      "blocks": {
+        "54c8bc53-cd32-4f8f-9927-1247150df4d7": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/PDP_DesktopF22_CO_Uptown_Sally.jpg",
+            "image_mob": "shopify://shop_images/PDP_MobileF22_CO_Uptown_Sally.jpg",
+            "title": "Buy One Sally Uptown Get a Wesley Free!",
+            "top_title": "CONNI's Bday Suprise",
+            "text": "U know u want to!",
+            "lnk_txt": "",
+            "lnk_url": "",
+            "show_social": false,
+            "share_item": false,
+            "color_txt": "#ffffff",
+            "color_bg": "#000000",
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "image_width": 50,
+            "image_height": 40,
+            "video_url": "",
+            "video_hosted": "",
+            "custom_html": "",
+            "custom_css": "",
+            "metafield_image": "",
+            "metafield_mobile_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "54c8bc53-cd32-4f8f-9927-1247150df4d7"
+      ],
+      "disabled": true,
+      "settings": {
+        "reverse": false,
+        "hide_images": false,
+        "custom_css": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1664809580fc92b5ab",
+    "1664808428cffb1fb2",
+    "16643838372e604815",
+    "8bda3197-5711-4407-bf7a-4788ee81a10a"
+  ]
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }} ___CHECKOUT">
+
+  <head>
+    <script>(function () { function asyncLoad() { var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = 'https://s3.eu-west-1.amazonaws.com/production-klarna-il-shopify-osm/06813f2bbb40bf097c85cc33982be5da59692f3f/consuelastyle.myshopify.com-1679674166114.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x); }; if (window.attachEvent) { window.attachEvent('onload', asyncLoad); } else { window.addEventListener('load', asyncLoad, false); } })(); </script>
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+
+    {%- if settings.favicon_svg != blank -%}
+      <link rel="icon" type="image/svg" href="{{ settings.favicon_svg }}">
+    {%- endif -%}
+    <!-- Google Tag Manager -->
+    <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-MWDL4HR');
+    </script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>{{ page_title }}</title>
+    {{ content_for_header }}
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+      #input--helper{
+        font-size: 0.8em;
+        color: #f00;
+        margin-left: 5px;
+      }
+    </style>
+    {{ 'checkout.css' | asset_url | stylesheet_tag }}
+  {% include 'friendbuy' %}
+
+
+  </head>
+
+  <body>
+    <div class="banner" data-header>
+      <div class="wrap">
+        {{ content_for_logo }}
+      </div>
+    </div>
+    {{ order_summary_toggle }}
+    <div class="content" data-content>
+      <div class="wrap">
+        <div class="main" role="main">
+          <div class="main__header">
+            {{ content_for_logo }}
+            {{ breadcrumb }}
+          </div>
+          <div class="content">
+            <div class="wrap">
+              <div class="main">
+                {{ alternative_payment_methods }}
+                <div class="main__content">
+                  {{ content_for_layout }}
+                  <div class="main__footer" role="contentinfo">
+                    {{ content_for_footer }}
+                  </div>
+                </div>
+              </div>
+              <div class="sidebar">
+                <div class="sidebar__content">
+                  {{ content_for_order_summary }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ tracking_code }}
+
+    <script type="text/javascript">
+      var replaceURL = '/cart';
+      var replaceURL = '/';
+
+
+      $(document).ready(function() {
+        $('.banner .logo').attr("href", "https://consuelastyle.com");
+        $('.banner .logo,.main__header .logo').click(function() {
+          window.location.href = "https://consuelastyle.com";
+        });
+      });
+
+      var returnCart = document.querySelector('.breadcrumb__link[href*="cart"]');
+      var returnBtn = document.querySelector('.step__footer__previous-link[href*="com/cart"]');
+      var returnBtnTxt = document.querySelector('.step__footer__previous-link[href*="com/cart"] .step__footer__previous-link-content');
+
+      returnCart.setAttribute('href', replaceURL);
+
+      console.log(returnCart)
+      if (!!returnBtn) {
+        returnBtnTxt.innerHTML = 'Return to Shopping Bag';
+        returnBtn.setAttribute('href', replaceURL);
+      }
+
+
+      <!-- testing PO Box validation here -->
+      function checkPO() {
+        var z = this.value;
+
+        var borderStyle = "2px solid red";
+        var pattern = new RegExp('[PO.]+\\s?B(ox)?.+\\d+', 'i');
+        console.log('nn', z.match(pattern), z.match(noPO))
+        var noPO = "We do not offer P.O. Box delivery at this time.";
+        if (z.match(pattern) || z.match(noPO)) {
+          this.value = "";
+
+          var helperSpan = this.parentNode.querySelector("#input--helper") ? this.parentNode.querySelector("#input--helper") : document.createElement('span');
+          helperSpan.id = "input--helper";
+          helperSpan.innerHTML = noPO;
+          this.parentNode.appendChild(helperSpan);
+
+          this.style.borderLeft = borderStyle;
+          this.style.borderRight = borderStyle;
+          this.style.borderTop = borderStyle;
+          this.style.borderBottom = borderStyle;
+        } else {
+          this.style.borderLeft = '1px solid #d9d9d9';
+          this.style.borderRight = '1px solid #d9d9d9';
+          this.style.borderTop = '1px solid #d9d9d9';
+          this.style.borderBottom = '1px solid #d9d9d9';
+          var helperSpan = this.parentNode.querySelector("#input--helper");
+          if (helperSpan) {
+            this.parentElement.removeChild(helperSpan);
+          }
+        }
+      }
+
+      var items = document.getElementsByClassName('field__input');
+      //console.log("items", items.length)
+      for (var i = 0; i < items.length; i++) {
+        items[i].addEventListener('focusout', checkPO, true);
+        //console.log('field', i)
+      }
+      $(document).ready(function() {
+        setTimeout(function() {
+
+          var address = '{{checkout.shipping_address.address1 }}';
+
+          if (address.indexOf('PO Box') >= 0 || address.indexOf('POBox') >= 0 || address.indexOf('P.O Box') >= 0 || address.indexOf('P.O. Box') >= 0) {
+            console.log('{{checkout.shipping_address.address1 }}');
+            $('.notice__text').html('We do not offer P.O. Box delivery at this time.');
+          }
+          var current_step = $('.step').attr('data-step');
+          console.log(current_step);
+          if (current_step == 'contact_information') {
+            $('body').addClass('checkout-step--contact_information');
+          } else {
+            $('body').removeClass('checkout-step--contact_information');
+
+          }
+          
+        }, 3000);
+        
+      });
+      $(document).ready(function() {
+        $(document).on('click', '.order-summary__section.order-summary__section--discount h3', function (e) {
+          e.preventDefault();
+          $('.order-summary__section.order-summary__section--discount').toggleClass('hide')
+        });
+        $([document.documentElement, document.body]).animate({
+            scrollTop: 0
+        }, 0);
+      });
+    </script>
+    <script>
+      document.querySelector('button.order-summary-toggle').click();
+    </script>
+  </body>
+
+</html>

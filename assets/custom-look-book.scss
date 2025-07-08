@@ -1,0 +1,48 @@
+.lookbooks-slider  {
+  .lookbook-container  {
+    .products {
+      .vert-top {
+        @media screen and (max-width: 749px) {
+          display: flex;
+          flex-wrap: wrap;
+        }
+        .cell__item {
+          @media screen and (max-width: 1200px) {
+            display: none;
+            &.active {
+              display: block;
+            }
+          }
+          .lookbook-product {
+            max-width: 350px;
+            margin: auto;
+          }
+          .card-wrapper {
+            .wishlist-btn {
+              width: fit-content;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.section--lookbook {
+  .lookbook-container {
+    .right-container {
+      .lookbook-dot {
+        &.active {
+          @media screen and (max-width: 1200px) {
+            .icons {
+              .icon {
+                transform:translate(-50%, -50%) rotate(45deg) translateZ(0);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

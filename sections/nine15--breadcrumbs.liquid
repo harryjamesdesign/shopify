@@ -1,0 +1,71 @@
+<!-- sections/nine15--ctas -->
+
+{% liquid 
+
+  assign s                    = section.settings
+  assign sID                  = section.id
+
+  assign sectionCustomCSS     = s.custom_css
+  assign class                = 'section--' | append: sID
+  assign cssClass             = '.' | append: class
+
+%}
+
+<div class="{{class}}">
+  <div class="page-width">
+    {% include 'master--breadcrumbs' %}
+  </div>
+  {% include 'custom-css', 
+    css: sectionCustomCSS, 
+    class: cssClass 
+  %}
+</div>
+
+{% schema %}
+{
+  "name": "Breadcrumbs - NINE15",
+  "class": "index-section index-section--flush",
+  "settings": [
+    {
+      "type":"header",
+      "content": "Custom CSS Rules"
+    },
+    {
+      "type":"paragraph",
+      "content": "Explanation of Custom CSS rules below input."
+    },
+    {
+      "type": "liquid",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    },
+    {
+      "type":"paragraph",
+      "content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+    },
+    {
+      "type":"paragraph",
+      "content": "Ex: '== h2 { font-size: 20px; }'"
+    },
+    {
+      "type":"paragraph",
+      "content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+    },
+    {
+      "type":"paragraph",
+      "content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+    },
+    {
+      "type":"paragraph",
+      "content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breadcrumbs - NINE15",
+      "category": "2 - NINE15"
+    }
+  ]
+}
+{% endschema %}
+

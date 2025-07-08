@@ -1,0 +1,94 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "1661891883e804d292": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "hidden page title",
+        "custom_html": "<h1 class=\"visually-hidden\">{{article.title}}</h1>",
+        "custom_css": "/medium-up/ {\n  #stick-nav-announcement:not(.shopify-section-header-sticky) sticky-header {\n    //--color--text: white;\n    //--color--background: black;\n  }\n}"
+      }
+    },
+    "16618919555694a6ff": {
+      "type": "nine15--two-grid",
+      "blocks": {
+        "6addc6ef-ec2f-47e4-a3bf-2883366ee415": {
+          "type": "block",
+          "settings": {
+            "title": "{% liquid\n  assign mf = article.metafields.custom\n  assign var = mf.title_override | default: article.title\n%}\n{{var}}",
+            "top_title": "{% liquid\n  assign mf = article.metafields.custom\n  assign var = mf.location\n%}\n{{var}}",
+            "text": "",
+            "lnk_txt": "",
+            "lnk_url": "",
+            "show_social": true,
+            "share_item": true,
+            "color_txt": "#ffffff",
+            "color_bg": "#000000",
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "image_width": 50,
+            "image_height": 40,
+            "video_url": "",
+            "video_hosted": "",
+            "custom_html": "",
+            "custom_css": "#shopify-section-{{section.id}} {\n  overflow: visible;\n}\n== {\n  max-width: 1200px;\n  margin: 0 auto;\n  position: relative;\n  overflow: visible;\n  padding: 0 var(--base-gutter--half);\n}\n==::before {\n  content:'';\n  background: black;\n  width: 100vw;\n  height: 100%;\n  position: absolute;\n  left: 50%;\n  top: 0;\n  transform: translateX(-50%);\n}\n== h2 {\n  font-size: 64px;\n  font-weight: 700;\n  font-family: var(--font--graphik-cond);\n  order: -5;\n}\n== h3 {\n  font-size: 12px;\n}\n== .social-link {\n  padding: var(--base-gutter--quarter);\n}\n== svg {\n  width: var(--base-gutter--half);\n  height: var(--base-gutter--half);\n}\n\n\n/medium-up/ {\n  \n  == .image-block {\n    padding-top: 50%;\n    overflow: visible;\n  }\n  ==.cell_no_gutter .image-block .image--outer {\n    padding-top: 100%;\n  }\n  == .text-block {\n    position: relative;\n    padding-right: 0;\n  }\n  == .text-content {\n    text-align: left;\n    align-self: flex-start;\n    align-items: flex-start;\n    justify-content: flex-start;\n    position: unset;\n  }\n  == h2 {\n    font-size: 85px;\n  }\n  == h3 {\n    margin-bottom: var(--base-gutter--double);\n  }\n  == .social-nav {\n    position: absolute;\n    bottom: calc(var(--spacing--padding-tb) / 2);\n    left: var(--spacing--padding-lr);\n  }\n}\n\n\n/large-up/ {\n  == h2 {\n    font-size: 120px;\n  }\n}",
+            "metafield_image": "{{article.image|img_url:'700x'}}",
+            "metafield_mobile_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "6addc6ef-ec2f-47e4-a3bf-2883366ee415"
+      ],
+      "settings": {
+        "reverse": false,
+        "hide_images": false,
+        "custom_css": ""
+      }
+    },
+    "main": {
+      "type": "main-article",
+      "blocks": {
+        "content": {
+          "type": "content",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "content"
+      ],
+      "disabled": true,
+      "settings": {
+        "custom_css": ""
+      }
+    },
+    "1661892902fe466c8c": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "",
+        "custom_html": "{%- liquid\n  assign mf         = article.metafields.custom\n  assign loc        = mf.location\n  assign qte        = mf.quote\n-%}\n\n<div class=\"page-width\">\n  <div class=\"cell cell_margin_bottom vert-top text-center\">\n    <div class=\"cell__item medium-up--one-half text-left quote-container\">\n      {% if qte != blank %}\n        {% render 'icon-quote' %}\n        <div class=\"rte\">{{qte}}</div>\n      {% endif %}\n    </div> \n    <div class=\"cell__item medium-up--one-half text-left\">\n      {{article.content}}\n    </div>\n  </div>\n</div>",
+        "custom_css": "== {\n  padding: var(--base-gutter) 0;\n}\n\n== .page-width {\n  max-width: 1200px;\n  padding: 0 var(--base-gutter);\n}\n\n\n== .quote-container {\n  font-family: var(--font--graphik-cond);\n  font-weight: 700;\n  font-size: 48px;\n  text-align: center;\n  position: relative;\n  line-height: 1.1;\n}\n\n== svg {\n  position: absolute;\n  top: 0%;\n  left: var(--grid-gutter);\n  transform: translate(-40%,-40%);\n  width: var(--base-gutter--double);\n  height: var(--base-gutter--double);\n  color: var(--color--turbo-yellow);\n  z-index: -1;\n}\n\n\n\n/medium-up/ {\n  == {\n    padding: var(--base-gutter--half) 0;\n  }\n  == .cell {\n    --grid-gutter: var(--base-gutter--double);\n  }\n  == .quote-container {\n     margin-top: 25%;\n  }\n}\n\n/large-up/ {\n  == {\n    padding: var(--base-gutter) 0;\n  }\n  == .cell {\n    --grid-gutter: var(--base-gutter--trip);\n  }\n  == .quote-container {\n    font-size: 72px;\ntext-transform: uppercase;\n  }\n}"
+      }
+    }
+  },
+  "order": [
+    "1661891883e804d292",
+    "16618919555694a6ff",
+    "main",
+    "1661892902fe466c8c"
+  ]
+}

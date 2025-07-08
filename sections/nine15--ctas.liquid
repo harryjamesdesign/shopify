@@ -1,0 +1,341 @@
+<!-- sections/nine15--ctas -->
+
+{% include 'master--ctas' %}
+
+{% schema %}
+{
+    "name": "CTAs - NINE15",
+    "class": "index-section index-section--flush",
+    "settings": [
+        {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Background Image"
+        },
+        {
+            "type":"liquid",
+            "id":"title",
+            "label":"Title"
+        },
+        {
+            "type":"liquid",
+            "id":"text",
+            "label":"Text"
+        },
+        {
+            "type":"header",
+            "content": "Section title link"
+        },
+        {
+            "type":"text",
+            "id":"link_text",
+            "label":"Link Text"
+        },
+        {
+            "type":"url",
+            "id":"link_url",
+            "label":"Link Url"
+        },
+        {
+            "type":"header",
+            "content": "Bottom button"
+        },
+        {
+            "type":"text",
+            "id":"button_text",
+            "label":"Button Text"
+        },
+        {
+            "type":"url",
+            "id":"button_url",
+            "label":"Button Url"
+        },
+        {
+            "type": "select",
+            "id": "btn_style",
+            "label": "Button Type",
+            "info": "Button will only show if Button Text and Link are used, and videos are not used.",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "Primary"
+                },
+                {
+                    "value": "secondary",
+                    "label": "Secondary"
+                },
+                {
+                    "value": "arrow-link",
+                    "label": "Arrow Link"
+                }
+            ],
+            "default": "primary"
+        },
+        {
+            "type":"header",
+            "content": "Color Rules"
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "#000000"
+        },
+        {
+            "type": "color_background",
+            "id": "gradient",
+            "label": "Gradient Background"
+        },
+        {
+            "type":"header",
+            "content": "CTA Item Rules"
+        },
+        {
+            "type":      "range",
+            "id":        "per_row",
+            "min":       0,
+            "max":       8,
+            "step":      1,
+            "label":     "Items per row",
+            "default":   0,
+            "info":      "Leave at zero to auto-set."
+        },
+        {
+            "type":"checkbox",
+            "id":"align_boxes_left",
+            "label":"Align CTAs left."
+        },
+        {
+            "type":"checkbox",
+            "id":"large_images",
+            "label":"Large CTA images"
+        },
+        {
+            "type":"checkbox",
+            "id":"inline_ctas",
+            "label":"Inline Ctas",
+            "info": "Disables Large Images"
+        },
+        {
+            "type":"checkbox",
+            "id":"match_row",
+            "label":"Match Row Height",
+            "info": "Makes items the same height and aligns buttons. Will not work with Slider."
+        },
+        {
+            "type":"header",
+            "content": "Slider Rules"
+        },
+        {
+            "type":"paragraph",
+            "content": "'Items per row' controls slider as well."
+        },
+        {
+            "type":"checkbox",
+            "id":"use_slider",
+            "label":"Use Slider",
+            "info": "Applies to Mobile as well."
+        },
+        {
+            "type":"checkbox",
+            "id":"use_slider_mobile_only",
+            "label":"Use Slider on Mobile Only",
+            "info":"If checked, then slider will not play on Desktop."
+        },
+        {
+            "type":"checkbox",
+            "id":"use_offset",
+            "label":"Use Offset Slider"
+        },
+        {
+            "type":"checkbox",
+            "id":"use_arrows",
+            "label":"Use Arrows"
+        },
+        {
+            "type":"checkbox",
+            "id":"use_dots",
+            "label":"Use Dots"
+        },
+        {
+            "type":"checkbox",
+            "id":"auto_slide",
+            "label":"Auto Slide"
+        },
+        {
+            "type":"checkbox",
+            "id":"infinite",
+            "label":"Infinite slider",
+            "default": true
+        },
+        {
+            "type":"header",
+            "content": "Custom CSS Rules"
+        },
+        {
+            "type":"paragraph",
+            "content": "Explanation of Custom CSS rules below input."
+        },
+        {
+            "type": "liquid",
+            "id": "custom_css",
+            "label": "Custom CSS"
+        },
+        {
+            "type":"paragraph",
+            "content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+        },
+        {
+            "type":"paragraph",
+            "content": "Ex: '== h2 { font-size: 20px; }'"
+        },
+        {
+            "type":"paragraph",
+            "content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+        },
+        {
+            "type":"paragraph",
+            "content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+        },
+        {
+            "type":"paragraph",
+            "content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+        },
+        {
+            "type":"header",
+            "content": "Developer Only"
+        },
+        {
+            "type": "liquid",
+            "id": "metafield_background_image",
+            "label": "Metafield Background Image"
+        },
+        {
+          "type": "liquid",
+          "id": "metafield_video",
+          "label": "Metafield Video"
+        }
+    ],
+    "blocks": [
+        {
+            "type":"icon",
+            "name":"Icon",
+            "settings":[
+                {
+                    "type": "checkbox",
+                    "id": "hide_mobile",
+                    "label": "Hide Mobile",
+                    "default": false
+                },
+                {
+                    "type":"image_picker",
+                    "id":"image",
+                    "label":"Image"
+                },
+                {
+                    "type":"liquid",
+                    "id":"title",
+                    "label":"Title"
+                },
+                {
+                    "type":"liquid",
+                    "id":"subtitle",
+                    "label":"Subtitle"
+                },
+                {
+                    "type":"liquid",
+                    "id":"text",
+                    "label":"Text"
+                },
+                {
+                    "type":"liquid",
+                    "id":"badge",
+                    "label":"Badge Text"
+                },
+                {
+                    "type":"text",
+                    "id":"button_text",
+                    "label":"Button Text",
+                    "info": "Will be ignored if video added"
+                },
+                {
+                    "type":"url",
+                    "id":"url",
+                    "label":"Link",
+                    "info": "Will be ignored if video added"
+                },
+                {
+                    "type": "select",
+                    "id": "btn_style",
+                    "label": "Button Type",
+                    "info": "Button will only show if Button Text and Link are used, and videos are not used.",
+                    "options": [
+                        {
+                            "value": "primary",
+                            "label": "Primary"
+                        },
+                        {
+                            "value": "secondary",
+                            "label": "Secondary"
+                        },
+                        {
+                            "value": "arrow-link",
+                            "label": "Arrow Link"
+                        }
+                    ],
+                    "default": "primary"
+                },
+                {
+                    "type": "header",
+                    "content": "Video Settings"
+                },
+                {
+                    "type":"checkbox",
+                    "id":"use_modal",
+                    "label":"Use Modal"
+                },
+                {
+                    "type": "video_url",
+                    "id": "video_url",
+                    "label": "Video url",
+                    "accept": [
+                        "youtube",
+                        "vimeo"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "id": "video_hosted",
+                    "label": "Video url if hosted"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "video_hosted_thumbnail",
+                    "label": "Video thumbnail (only if hosted)"
+                },
+                {
+                    "type":"header",
+                    "content": "Developer Only"
+                },
+                {
+                    "type": "liquid",
+                    "id": "metafield_image",
+                    "label": "Metafield Image"
+                },
+                {
+                  "type": "liquid",
+                  "id": "metafield_video",
+                  "label": "Metafield Video"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "CTAs - NINE15",
+            "category": "1 - NINE15"
+        }
+    ]
+}
+{% endschema %}
+

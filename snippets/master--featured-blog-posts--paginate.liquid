@@ -1,0 +1,493 @@
+<!-- snippets/master--featured-blog-posts--paginate -->
+{{'custom-filter-bar.scss.css' | asset_url | stylesheet_tag }}
+{% liquid 
+
+    assign s                    = section.settings
+
+    assign totalRows            = s.total_rows | plus: 0 
+    assign perRow               = s.per_row | plus: 0
+
+    assign lp                   = section.blocks
+    assign blks                 = lp.size
+    assign total                = 200
+
+
+    if blks == 0 
+        assign total            = totalRows | times: perRow
+    endif 
+    
+%}
+
+{%- style -%}
+  .filter-bar-container .filter-bar-content .filter details ul{
+      max-height: 400px;
+      overflow: auto;
+    }
+  
+  @media screen and (min-width: 1024px){
+    .search-location-container, .search-year-container{ 
+      position: absolute!important;
+      z-index: 30!important;
+      left: 0px!important;
+      width: 100%!important;
+      padding-left: 20px!important;
+      padding-right: 20px!important;
+      background: black!important;
+    }
+
+    .filter-bar-container .filter-bar-content .filter{
+      width: 25%!important;
+      position: relative!important;    
+    }
+
+    .filter-bar-container .filter-bar-content{
+      position:relative!iportant;
+    }
+  }
+{%- endstyle -%}
+
+{% for blog_item in blog.articles %}
+  {% assign location = blog_item.metafields.custom.location | split: ', ' | last %}
+  {% assign locations = locations | append: ',' | append: location %}
+{% endfor %}
+{% assign locations = locations | remove_first: ',' %}
+{% assign locations_array = locations | split: ',' %}
+{% assign locations_array = locations_array | uniq | sort %}
+
+{% for location in locations_array %}
+  {% assign trimmed_location = location | strip | escape %}
+  {% unless unique_locations_string contains trimmed_location %}
+    {% assign unique_locations_string = unique_locations_string | append: trimmed_location | append: "," %}
+  {% endunless %}
+{% endfor %}
+
+{% assign unique_locations_array = unique_locations_string | split: "," %}
+
+
+
+{% if section.settings.blog_filter %}
+    <div class="filter-bar-container">
+      <div class="filter-bar-header">
+        <svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_1449_1210)">
+          <path d="M15.572 7.2002V13.5212Z" fill="white"/>
+          <path d="M15.572 7.2002V13.5212" stroke="white"/>
+          <path d="M6.25598 6.40723L6.25598 0.000226498Z" fill="white"/>
+          <path d="M6.25598 6.40723L6.25598 0.000226498" stroke="white"/>
+          <path d="M0 10.3442H21.827" stroke="white"/>
+          <path d="M21.828 3.26416L0.00100327 3.26416" stroke="white"/>
+          </g>
+          <defs>
+          <clipPath id="clip0_1449_1210">
+          <rect width="21.827" height="13.521" fill="white"/>
+          </clipPath>
+          </defs>
+        </svg>          
+        <span class="name" >Show Filter</span>
+        <a class="clear" href="#"  style="display: none;">CLEAR ALL</a>
+        <span class="arrow"></span>
+      </div>
+      <div class="filter-bar-content">
+        <div class="filter">
+          <div class="input_field">
+            <label for="search-name" >NAME:</label>
+            <input id="search-name" type="text" class="search-name">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.1868 12.9535C19.1868 16.5474 16.2734 19.4608 12.6795 19.4608C9.0857 19.4608 6.1723 16.5474 6.1723 12.9535C6.1723 9.35968 9.0857 6.44629 12.6795 6.44629C16.2734 6.44629 19.1868 9.35968 19.1868 12.9535Z" stroke="white"/>
+              <path d="M22.3284 22.0534L17.3298 17.6772" stroke="white" stroke-linecap="square"/>
+            </svg> 
+          </div>    
+        </div>
+        <div class="filter dropdown_field">
+          <div class="search-location-container">
+            <details>
+              <summary>
+                <label for="search-location" >Location:</label>
+                <input id="search-location" type="text" class="search-location">
+                <div class="arrow"></div>
+              </summary>
+              <ul class="search-location-box">
+                {% for location in unique_locations_array %}
+                  {% if location != blank %}
+                  <li data-title="{{location | downcase }}" >
+                    <input id="search-location--{{forloop.index}}" type="checkbox" name="search-location" value="{{location | downcase }}">
+                    <label for="search-location--{{forloop.index}}">{{ location | upcase }}</label>
+                  </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </details>
+          </div>
+        </div>
+        <div class="filter dropdown_field">
+          <div class="search-year-container">
+            <details>
+              <summary> <span>YEAR:</span> <div class="arrow"></div></summary>
+              <ul class="search-location-box">
+                <li>
+                  <input id="search-year--0" type="checkbox" name="search-year" value="2023">
+                  <label for="search-year--0">2023</label>
+                </li>
+                <li>
+                  <input id="search-year--1" type="checkbox" name="search-year" value="2022">
+                  <label for="search-year--1">2022</label>
+                </li>
+                <li>
+                  <input id="search-year--2" type="checkbox" name="search-year" value="2021">
+                  <label for="search-year--2">2021</label>
+                </li>
+                <li>
+                  <input id="search-year--3" type="checkbox" name="search-year" value="2020">
+                  <label for="search-year--3">2020</label>
+                </li>
+                <li>
+                  <input id="search-year--4" type="checkbox" name="search-year" value="2019">
+                  <label for="search-year--4">2019</label>
+                </li>
+                <li>
+                  <input id="search-year--5" type="checkbox" name="search-year" value="2018">
+                  <label for="search-year--5">2018</label>
+                </li>
+              </ul>
+            </details>
+          </div>
+        </div>
+        <div class="filter">
+          <a class="clear" href="#" style="display: none;">CLEAR ALL</a>
+        </div>
+      </div>
+    </div>
+  <script>
+    var ks = {{unique_locations_array | json}};
+    console.log("sfdjskdf",ks);
+  </script>
+{% endif %}
+
+  
+
+{% paginate blog.articles by total %}
+
+  {% include 'master--featured-blog-posts' %}
+
+  
+
+  <script type="text/javascript">
+    
+    waitFor_jQuery(function () {
+      function ScrollExecute() {
+        scrollNode = $('#more').last();
+        if (scrollNode.length > 0) {
+          var triggerPoint = scrollNode[0].offsetTop - ($(window).height() * 1.1);
+          // console.log(triggerPoint - $(document).scrollTop())
+          // console.log('1: ' + triggerPoint)
+          // console.log('2: ' + $(document).scrollTop())
+          if (  triggerPoint < $(document).scrollTop() ) {
+            scrollURL = $('#more p a').last().attr("href");
+            // console.log(scrollURL)
+            $.ajax({
+              type: 'GET',
+              url: scrollURL,
+              beforeSend: function() {
+                scrollNode.clone().empty().insertAfter(scrollNode).removeAttr('id').addClass('old-loader text-center').append('<img src=\"{{ "ajax-loader.gif" | asset_url }}\" />');
+                scrollNode.remove();
+              },
+              success: function(data) {
+                // remove loading feedback
+                $('.old-loader').remove();
+                var filteredData = $(data).find("#blog-grid .cell__item");
+                filteredData.appendTo($("#blog-grid"));
+              },
+              dataType: "html"
+            });
+          }
+        }
+      }
+
+      for (let i = 2; i < 12; i++) {
+        $.ajax({
+          type: 'GET',
+          url: '/blogs/its-not-about-the-bag?page='+i,
+          beforeSend: function() {
+            // scrollNode.clone().empty().insertAfter(scrollNode).removeAttr('id').addClass('old-loader text-center').append('<img src=\"{{ "ajax-loader.gif" | asset_url }}\" />');
+            // scrollNode.remove();
+          },
+          success: function(data) {
+            // remove loading feedback
+            $('.old-loader').remove();
+            var filteredData = $(data).find("#blog-grid .article-column");
+            filteredData.appendTo($("#blog-grid"));
+          },
+          dataType: "html"
+        });     
+      }
+
+      // $(window).scroll(function() {
+      //   ScrollExecute()
+      // });
+
+      $('.search-name').keyup(function (e) {
+        e.preventDefault();
+        var q = $(this).val().toLowerCase();
+        var yearArray = GetYearArray();
+        var locationArray = GetLocationArray();
+        
+        filterColumns(q, yearArray, locationArray)
+      })
+
+      $('.search-location-container .search-location-box input').change(function (e) {
+        e.preventDefault();
+        var q = $('.search-name').val().toLowerCase();
+        var yearArray = GetYearArray();
+        var locationArray = GetLocationArray();
+        
+        filterColumns(q, yearArray, locationArray)
+      });
+
+      $('.filter-bar-container .filter-bar-header span').click(function (e) {
+        e.preventDefault();
+        $('.filter-bar-container').toggleClass('active');
+        if ($('.filter-bar-container').hasClass('active')) {
+          $('.filter-bar-container .filter-bar-header span.name').html('Hide Filter');
+        } else {
+          $('.filter-bar-container .filter-bar-header span.name').html('Show Filter');
+        }
+      });
+
+      $('.search-year-container input').change(function (e) {
+        e.preventDefault();
+        var q = $('.search-name').val().toLowerCase();
+        
+        var yearArray = GetYearArray();
+        var locationArray = GetLocationArray();
+        
+        filterColumns(q, yearArray, locationArray)
+      });
+
+      var details = document.querySelector(".search-location-container details")
+      details.addEventListener("toggle", function() {
+        if (document.querySelector('.search-location-container details').open == true) {
+          document.querySelector(".search-location-container .search-location").focus();
+        }
+      })
+
+      $('.search-name, .search-year-container summary').click(function () {
+        document.querySelector('.search-location-container details').open = false;
+      });
+
+      $('.search-location').keyup(function (e) {
+        e.preventDefault();
+        var q = $('.search-location').val().toLowerCase();
+        filtervalues(q)
+      });
+
+      $('.filter-bar-container .clear').on('click', function (e) {
+        e.preventDefault();
+        resetColumns();
+        restvalues();
+      })
+      
+
+      function filtervalues(q) {
+        if (q.length > 0) {
+          document.querySelector('.search-location-container details').open = true;
+          $('.search-location-container .search-location-box li').each(function () {
+            $(this).hide();
+            var columnTitle = $(this).attr('data-title');
+            if (columnTitle.indexOf(q) > -1) {
+              $(this).show();
+            }
+          })
+        } else {
+          restvalues();
+        }
+      }
+
+      function restvalues() {
+        $(".search-location-container .search-location").val("")
+        $('.search-location-container .search-location-box li').each(function () {
+          $(this).show();
+        })
+      }
+
+      function resetColumns() {
+        $('.clear').hide();
+        $('.filter input[type="checkbox"]').each(function () {
+          $(this).prop("checked", false);
+        });
+        $('.filter input[type="text"]').each(function () {
+          $(this).val("");
+        })
+        $('#blog-grid .article-column').each(function (e) {
+          $(this).show();
+        });
+        $('.search-year-container summary').text('Year:');
+      }
+
+      function filterColumns(q, years, locations) {
+        $('.clear').show();
+        $('#blog-grid .article-column').each(function (e) {
+          var columnTitle = $(this).attr('data-title');
+          var columnLocation = $(this).attr('data-location');
+          var ColumnYear = $(this).attr('data-year');
+          $(this).hide();
+          if (q.length > 0) {
+            if (columnTitle.indexOf(q) > -1) {
+              if (years.length > 0) {
+                var years_str = '';
+                for (let i = 0; i < years.length; i++) {
+                  const year = years[i];
+                  
+                  if (i > 0) {
+                    years_str = years_str + ' , '
+                  }
+                  years_str = years_str + year;
+                  if (ColumnYear.indexOf(year) > -1) {
+                    if (locations.length > 0) {
+                      var location_str = '';
+                      for (let i = 0; i < locations.length; i++) {
+                        const location = locations[i];
+                        if (i > 0) {
+                          location_str = location_str + ' , '
+                        }
+                        location_str = location_str + location;
+                        if (columnLocation.indexOf(location) > -1) {
+                          $(this).show();
+                        }
+                      }
+                      $('.search-location-container summary span').text(location_str);
+                    } else {
+                      $('.search-location-container summary span').text('Location');
+                      $(this).show();
+                    }
+                  }
+                }
+                $('.search-year-container summary span').text(years_str);
+              } else {
+                $('.search-year-container summary span').text('Year');
+                if (locations.length > 0) {
+                  var location_str = '';
+                  for (let i = 0; i < locations.length; i++) {
+                    const location = locations[i];
+                    if (i > 0) {
+                      location_str = location_str + ' , '
+                    }
+                    location_str = location_str + location;
+                    
+                    if (columnLocation.indexOf(location) > -1) {
+                     
+                      $(this).show();
+                    }
+                  }
+                  $('.search-location-container summary span').text(location_str);
+                } else {
+                  $('.search-location-container summary span').text('Location');
+                  $(this).show();
+                }
+              } 
+            }
+          } else {
+            if (years.length > 0) {
+              var years_str = '';
+              for (let i = 0; i < years.length; i++) {
+                const year = years[i];
+                if (i > 0) {
+                  years_str = years_str + ' , '
+                }
+                years_str = years_str + year;
+                if (ColumnYear.indexOf(year) > -1) {
+                  if (locations.length > 0) {
+                    var location_str = '';
+                    for (let i = 0; i < locations.length; i++) {
+                      const location = locations[i];
+                      if (i > 0) {
+                        location_str = location_str + ' , '
+                      }
+                      location_str = location_str + location;
+                     
+                      if (columnLocation.indexOf(location) > -1) {
+                        $(this).show();
+                      }
+                    }
+                    $('.search-location-container summary span').text(location_str);
+                  } else {
+                    $('.search-location-container summary span').text('Location');
+                    $(this).show();
+                  }
+                }
+              }
+              $('.search-year-container summary span').text(years_str);
+            } else {
+              $('.search-year-container summary span').text('year');
+              if (locations.length > 0) {
+                var location_str = '';
+                for (let i = 0; i < locations.length; i++) {
+                  const location = locations[i];
+                  if (i > 0) {
+                    location_str = location_str + ' , '
+                  }
+                  location_str = location_str + location;
+                  if (columnLocation.indexOf(location) > -1) {
+                    $(this).show();
+                  }
+                }
+                $('.search-location-container summary span').text(location_str);
+              } else {
+                $('.search-location-container summary span').text('Location');
+                $(this).show();
+              }
+            }
+          }
+          
+        });
+        //ScrollExecute()
+      }
+
+      function GetLocationArray() {
+        var checked = document.querySelectorAll('.search-location-container input[type=checkbox]:checked'),
+        // converts the collection to an Array:
+        values = Array.prototype.slice.call(checked, 0)
+
+        // map iterates over the Array returned by
+        // Array.prototype.slice():
+        .map(function(checkbox) {
+        // checkbox is the Array Element itself:
+
+          // returning the value of the checked checkbox:
+          return checkbox.value;
+        });
+
+        // if the collection has a length other than 0:
+        if (checked.length) {
+          return values
+        } else {
+          return []
+        }
+      }
+
+      function GetYearArray() {
+        var checked = document.querySelectorAll('.search-year-container input[type=checkbox]:checked'),
+        // converts the collection to an Array:
+        values = Array.prototype.slice.call(checked, 0)
+
+        // map iterates over the Array returned by
+        // Array.prototype.slice():
+        .map(function(checkbox) {
+        // checkbox is the Array Element itself:
+
+          // returning the value of the checked checkbox:
+          return checkbox.value;
+        });
+
+        // if the collection has a length other than 0:
+        if (checked.length) {
+          return values
+        } else {
+          return []
+        }
+      }
+    })
+  </script>
+
+{% endpaginate %}
+
+ 

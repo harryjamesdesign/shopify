@@ -1,0 +1,72 @@
+<!-- snippets/master--account-header -->
+
+<div class="extended-header">
+  <div class="page-width">
+
+    <div class="inner-container small--text-center">
+      
+      {% assign ttl     = shop.name %}
+
+      {% if template.directory == 'customers' %}
+
+        {% capture ttl %}<span>Hey There,</span> <span class="customer-name">{{customer.first_name}}</span>{% endcapture %}
+        {% capture extraInfo %}
+            
+        {% endcapture %}
+      {% endif  %}
+
+      {% if template == 'customers/login' %}
+        {% comment %}{% assign ttl  = 'customer.login_page.sign_in' | t %}{% endcomment %}
+        {% capture ttl %}
+          <span>{{ 'customer.login_page.sign_in' | t }}</span>
+          <span class="hide">{{ 'customer.login_page.forgot_password' | t }}</span>
+        {% endcapture %}
+        {% capture extraInfo %}
+          <p>
+            DON’T HAVE AN ACCOUNT?
+          </p>  
+          <a href="{{routes.account_register_url}}">
+            {{ 'customer.login_page.create_account' | t }} ▶
+          </a>
+        {% endcapture %}
+      {% elsif template == 'customers/register' %}
+        {% assign ttl   = 'customer.register.title' | t %}
+        {% capture extraInfo %}
+          <p>
+            ALREADY HAVE AN ACCOUNT?
+          </p>  
+          <a href="{{ routes.account_login_url }}">
+            {{ 'customer.login_page.sign_in' | t }} ▶
+          </a>  
+        {% endcapture %}
+      {% else %}
+        {% capture extraInfo %}
+          <p class="notification hide">
+            Your address has been deletion has been updated.
+          </p>  
+        {% endcapture %}
+      {% endif  %}
+
+      {% if template == 'customers/reset_password' %}
+
+        {% capture ttl %}Reset Your Password{% endcapture %}
+        {% capture extraInfo %}
+            
+        {% endcapture %}
+      {% endif  %}
+
+      
+
+      <h2 class="big-title">
+        {{ttl}}
+      </h2>
+
+      {% if extraInfo != blank %}
+        <div class="extra-info">
+          {{extraInfo}}
+        </div>
+      {% endif %}
+      
+    </div>
+  </div>
+</div>

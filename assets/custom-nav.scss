@@ -1,0 +1,15 @@
+.nine15-nav {
+  .site-nav {
+    li {
+      &.bot-nav-item {
+        & > .menu-toggle {
+          &::after {
+            width: 10px;
+            height: 10px;
+            top: 40%;
+          }
+        }
+      }
+    }
+  }
+} 

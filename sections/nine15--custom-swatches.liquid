@@ -1,0 +1,82 @@
+<!-- sections/nine15--custom-swatches -->
+
+{% comment %} 
+
+  Add to the color swatch Label 
+  
+  class="color-swatch--{{ value | handle }} product--{{product.handle}}"
+
+{% endcomment %}
+
+{% style %}
+  {% for block in section.blocks %}
+    {% assign b = block.settings %}
+    {% assign img = b.image %}
+    {% assign clr = b.color %}
+    {% assign tg = b.tag %}
+    {% assign prd = b.product %}
+    /* {{tg}}{% if vName != blank %} / {{vName}}{% endif %}{% if prd != blank %} / {{prd}}{% endif %} */
+    .color-swatch--{{tg|handle}}{% if prd != blank %}.product--{{prd}}{% endif %} {
+      {% if clr != blank %}
+        background-color: {{clr}} !important;
+      {% endif %}
+      {% if img != blank %}
+        background-image: url({{img|img_url:'large'}}) !important;
+        background-size: cover !important;
+      {% endif %}
+    }
+  {% endfor %}
+{% endstyle %}
+
+
+{% schema %}
+	{
+		"name": "Custom Product Swatches",
+		"settings": [
+
+		],
+		"blocks": [
+			{
+        "type": "swatch",
+        "name": "Swatch",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title (optional)",
+            "info": "Only adding a title to this block for easy browsing blocks."
+          },
+          {
+            "type": "header",
+            "content": "Swatch"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Swatch Image",
+            "info": "Take precedence over Color if used."
+          },
+          {
+            "type": "color",
+            "id": "color",
+            "label": "Swatch Color"
+          },
+          {
+            "type": "header",
+            "content": "Assignments"
+          },
+          {
+            "type": "text",
+            "id": "tag",
+            "label": "Variant Name"
+          },
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product (optional)"
+          }
+        ]
+      }
+		]
+	}
+{% endschema %}

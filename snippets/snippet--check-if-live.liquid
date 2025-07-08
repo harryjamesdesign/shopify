@@ -1,0 +1,11 @@
+<!-- snippets/snippet--check-if-live -->
+{% liquid
+  assign isLive = true 
+  assign isEditor = false 
+  if content_for_header contains "previewBarInjector.init();" 
+    assign isLive = false 
+  elsif content_for_header contains "Shopify.designMode" 
+    assign isEditor = true 
+    assign isLive = false 
+  endif 
+%}

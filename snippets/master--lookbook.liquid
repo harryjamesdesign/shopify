@@ -1,0 +1,311 @@
+<!-- snippets/master--lookbook -->
+
+{% liquid 
+
+    assign s                    = section.settings
+    assign sID                  = section.id
+
+    assign sectionCustomCSS     = s.custom_css
+    assign class                = 'section--' | append: sID
+    assign cssClass             = '.' | append: class
+
+    assign blks                 = section.blocks.size
+    assign lookBooks            = ''
+
+    assign secTtl               = s.title
+    assign secTxt               = s.text
+    assign btnStyle             = s.btn_style
+
+
+    assign clrTxt               = s.text_color
+    assign clrBG                = s.gradient
+
+    assign useSlider            = s.use_slider
+    assign useArrows            = s.use_arrows
+    assign useDots              = s.use_dots_desktop
+    assign useDotsMob           = s.use_dots_mobile
+    assign autoSlide            = s.auto_slide
+    assign useFade              = s.use_fade
+    assign infinite             = s.infinite
+    
+%}
+
+{% if clrTxt != blank or clrBG != blank %}
+  {% capture clrCSS %}
+    {% if clrBG != blank %}
+    == {
+      --color--bg: {{clrBG}};
+      background: var(--color--bg);
+    }
+    {% endif %}
+    {% if clrTxt != blank %}
+    == {
+      --color--text: {{clrTxt}};
+    }
+    == .rte,
+    == .rte *,
+    == h2,
+    == h3 {
+      color: var(--color--text);
+    }
+    {% endif %}
+  {% endcapture %}
+  {% assign sectionCustomCSS = clrCSS | append: sectionCustomCSS %}
+{% endif %}
+
+
+{% for block in section.blocks %}
+
+  {% liquid 
+    assign b            = block.settings
+    assign dots         = ''
+    assign mainImg      = b.image
+    assign ttl          = b.title
+    assign txt          = b.text
+    assign btn_url      = b.url
+    assign btn_txt      = b.button_text
+    assign useBtn       = false
+    if btn_url != blank and btn_txt != blank
+      assign useBtn     = true
+    endif
+  %}
+
+  {% if b.product_1 != blank %}
+    {% capture lookBooks %}
+      {{lookBooks}}
+
+      {% capture ttls %}
+        {% if secTtl != blank or secTxt != blank %}
+          <div class="section--title text-center">            
+            {% if secTtl != blank %}
+              <h2>{{secTtl}}</h2>
+            {% endif %}
+            {% if secTxt != blank %}
+              <div class="rte">{{secTxt}}</div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if ttl != blank %}
+          <h3 class="small--hide">{{ttl}}</h3>
+        {% endif %}
+
+        {% if txt != blank %}
+          <div class="rte small--hide">{{txt}}</div>
+        {% endif %}
+      {% endcapture %}
+
+      <div class="lookbook-container lookbok-{{forloop.index}}">
+        
+        <div class="cell cell_margin_bottom half_gutter vert-mid match-row">
+          
+          <div class="cell__item ex-large-up--two-fifths">
+            <div class="left-container">
+              
+              {{ttls}}
+
+              <div class="products ex-large-up--hide">
+                <div class="cell cell_margin_bottom vert-top">
+                  {% for i in (1..3) %}
+                    {% liquid
+                      assign ind          = forloop.index
+                      assign prd          = 'product_' | append: ind
+                      assign pTtl         = 'title_' | append: ind 
+                      assign pImg         = 'image_' | append: ind 
+                      assign pPrc         = 'price_' | append: ind 
+                      assign prod         = b[prd]
+                      assign product      = all_products[prod]
+                      assign vert         = 'vert_align_' | append: ind 
+                      assign vertical     = b[vert]
+                      assign hor          = 'hor_align_' | append: ind 
+                      assign horizontal   = b[hor]
+                      assign alignmen    = 'left: ' | append: horizontal | append: '%; transform: translate(-' | append: horizontal | append: '%,-' | append: vertical | append: '%); top: ' | append: vertical | append: '%;'
+                    %}
+                    {% if product.title != blank %}
+                      {% capture prod %}
+                        <div class="lookbook-product" data-num="{{ind}}">
+                          {% include 'card-product',                                 
+                            overrideTitle: b[pTtl],
+                            overrideImage: b[pImg],
+                            overridePrice: b[pPrc],
+                            show_vendor: false,
+                            card_product: product,
+                            show_secondary_image: true,
+                            show_vendor: false,
+                            show_rating: true,
+                            show_quick_add: true,
+                            section_id: section.id
+                          %}
+                        </div>
+                      {% endcapture %}
+
+                      <div class="cell__item narrow--one-whole one-whole" id="{{block.id}}{{forloop.index}}">
+                        {{prod}}
+                      </div>         
+
+                      {% capture dots %}
+                        {{dots}}
+                        <div class="lookbook-dot dot-{{ind}} large-down--hide" style="--hor: {{horizontal}}%;--vert: {{vertical}}%;" data-dot="{{ind}}">
+                          <div class="large-down--hide">
+                            {{prod}}
+                          </div>
+                          <div class="visually-hidden">
+                            {{ b[pTtl] | default: product.title }}
+                          </div>
+                          <div class="icons">
+                            {% include 'icon-plus' %}
+                          </div>
+                        </div>
+                        <a href="{{block.id}}{{forloop.index}}" class="lookbook-dot dot-{{ind}} ex-large-up--hide" style="--hor: {{horizontal}}%;--vert: {{vertical}}%;" data-dot="{{ind}}">
+                          <div class="visually-hidden">
+                            {{ b[pTtl] | default: product.title }}
+                          </div>
+                          <div class="icons">
+                            {% include 'icon-plus' %}
+                          </div>
+                        </a>
+                      {% endcapture %}
+                      {% capture dotsCSS %}
+                        == .dot-{{ind}} {
+                          {{alignment}}
+                        }
+                      {% endcapture %}
+                      {% assign sectionCustomCSS = dotsCSS | append: sectionCustomCSS %}
+                    {% endif %}
+                  {% endfor %}
+                </div>                
+              </div>
+              
+              {% if useBtn == true %}
+                <a href="{{btn_url}}" class="btn button button--{{btnStyleBlk}}">{{btn_txt}}</a>
+              {% endif %}
+
+              <!-- <div class="dots-spacer large-dow--hide">&nbsp;</div> -->
+            </div>
+          </div>
+
+          <div class="cell__item ex-large-up--three-fifths">
+            
+            <div class="right-container">
+              {% if useBtn == true %}
+                <a href="{{btn_url}}" class="overlay-link">
+                  <span class="visually-hidden">{{btn_txt}}</span>
+                </a>
+              {% endif %}
+              {% include 'snippet--image', 
+                img: mainImg, 
+                useBG: false 
+              %}
+              {{dots}}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    {% endcapture %}
+  {% endif %}
+{% endfor %}
+
+
+{% if lookBooks != '' %}
+  <div class="section--lookbook {{class}} " data-section-id="{{ sID }}">
+
+    {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
+    {{ 'component-card.css' | asset_url | stylesheet_tag }}
+    {{ 'component-price.css' | asset_url | stylesheet_tag }}
+    {{ 'nine15-section--lookbook.css' | asset_url | stylesheet_tag }}
+    {{ 'custom-look-book.scss.css' | asset_url | stylesheet_tag }}
+    <div class="page-width ">
+
+      <div class="lookbooks-slider {% if useSlider == true %}use-slider{% endif %}" >
+        {{lookBooks}}
+        {% if useSlider == true and infinite == true %}
+          {{lookBooks}}
+        {% endif %}
+      </div>
+
+    </div>
+
+    <script>
+      waitFor_jQuery(function () {
+          $('.lookbook-dot').on('click', function (e) {
+            e.preventDefault()
+            if ($(this).hasClass('active')) {
+              $('.lookbook-dot').removeClass('active');
+            } else {
+              $('.lookbook-dot').removeClass('active');
+              $(this).addClass('active')
+            }
+           
+           
+            var id = '#' + $(this).attr('href');
+            
+            if ($(id).hasClass('active')) {
+              $('html, body').animate({
+                scrollTop:  $(this).offset().top - clearThis - 100
+              }, 1000, function () {
+                $('.lookbook-container .products .cell__item').each(function () {
+                  $(this).removeClass('active')
+                })
+              });
+             
+              
+            } else {
+              $('.lookbook-container .products .cell__item').each(function () {
+                $(this).removeClass('active')
+              })
+              $(id).addClass('active');
+              $('html, body').animate({
+                scrollTop:  $(id).offset().top - clearThis - 100
+              }, 1000);
+            }
+          })
+        });
+    </script>
+
+    {% include 'custom-css', 
+      css: sectionCustomCSS, 
+      class: cssClass 
+    %}
+
+    {% if useSlider == true %}
+      <script type="text/javascript">
+        waitFor_jQuery(function () {
+          $('{{cssClass}} .lookbooks-slider').slick({
+            slidesToShow: 1,
+            autoplay: {{autoSlide}},
+            arrows: {{useArrows}},
+            dots: {{useDots}},
+            slidesToScroll: 1,
+            infinite: {{infinite}},
+            speed: 500,
+            fade: {{useFade}},
+            rows: 0,
+            responsive: [
+              {
+                breakpoint: 990,
+                settings: {
+                  dots: {{useDots}}
+                }
+              },
+              {
+                breakpoint: 750,
+                settings: {
+                  dots: {{useDotsMob}}
+                }
+              },
+              {
+                breakpoint: 400,
+                settings: {
+                  dots: {{useDotsMob}}
+                }
+              }
+            ]
+          });
+        });
+      </script>
+    {% endif %}
+      
+  </div>
+{% endif %}

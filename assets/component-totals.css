@@ -1,0 +1,2 @@
+.u-sr-only,.visually-hidden{position:absolute !important;overflow:hidden;width:1px;height:1px;margin:-1px;padding:0;border:0;clip:rect(0 0 0 0);word-wrap:normal !important}.totals{display:flex;justify-content:center;align-items:flex-end}.totals>*{font-size:1.6rem;margin:0}.totals>h2{font-size:calc(var(--font-heading-scale) * 1.6rem)}.totals *{line-height:1}.totals>*+*{margin-left:2rem}.totals__subtotal-value{font-size:1.8rem}.cart__ctas+.totals{margin-top:2rem}@media only screen and (max-width: 749px){.totals{justify-content:flex-end}}
+

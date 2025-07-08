@@ -1,0 +1,18 @@
+{{'custom-wishlist.scss.css' | asset_url | stylesheet_tag }}
+<div data-section-type="wishlist">
+  <div class="header">
+    <h1 class="uppercase">HEY THERE, {{customer.first_name | default: 'customer' }}</h1>
+  </div>
+  
+  {{ page.content }}
+</div>
+
+
+{% schema %}
+{
+  "name": "Wishlist",
+  "settings": [
+    
+  ]
+}
+{% endschema %}

@@ -1,0 +1,60 @@
+<!-- snippet/snippet--social-icons -->
+{% liquid
+  assign temp           = template.name
+  assign allowShare     = false 
+  if temp contains 'product' or temp contains 'article'
+    if shareItem == true 
+      assign allowShare = true 
+    endif 
+  endif 
+  if temp == 'product'
+    assign item = product
+  endif 
+  if temp == 'article'
+    assign item = article
+  endif 
+%}
+
+{% style %}
+  .social-link{
+    height: 40px;
+    min-height: 24px;
+    margin: 24px;
+    font-size: 24px;
+  }
+{% endstyle %}
+
+<div class="social-nav">
+  {% if allowShare != true %}
+    {%- assign social_accounts = 'Facebook, Instagram, Pinterest, Twitter, YouTube, LinkedIn, Snapchat, Tumblr, Vimeo, Tiktok, Untapped, ' | split: ', ' -%}
+    {% for social in social_accounts %}
+      {%- assign social_handle = social | handleize -%}
+      {% capture social_link %}social_{{ social_handle }}_link{% endcapture %}
+      {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
+      {% if settings[social_link] != blank %}
+        <a href="{{ settings[social_link] }}" title="Link to {{social}}" class="social-link" target="_blank">
+          {%- include social_icon -%}
+          <span class="visually-hidden">{{ social }}</span>
+        </a>
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    <span class="share-header">
+      <span>Share</span>
+    </span>
+    <a target="_blank" href="//www.facebook.com/sharer.php?u={{ shop.url | append: item.url }}" class="social-link">
+      {% include 'icon-facebook' %}
+      <span class="visually-hidden">Share on Facebook</span>
+    </a>
+    <a target="_blank" href="//twitter.com/share?text={{ share_title | url_param_escape }}&amp;url={{ shop.url | append: item.url }}" class="social-link">
+      {% include 'icon-twitter' %}
+      <span class="visually-hidden">Share on Twitter</span>
+    </a>
+    <a target="_blank" href="mailto:?body={{ item.title | url_param_escape }}%20S:%20https://consuelastyle.com/{{item.url}}" class="social-link">
+      {% include 'icon-mail' %}
+      <span class="visually-hidden">Share in Email</span>
+    </a>
+  {% endif %}
+</div>
+
+

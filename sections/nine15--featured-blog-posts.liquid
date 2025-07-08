@@ -1,0 +1,245 @@
+<!-- sections/nine15--featured-blog-posts -->
+
+{% if template.name == 'blog' and section.blocks.size == 0 %}
+  {% include 'master--featured-blog-posts--paginate' %}
+{% else %}
+  {% include 'master--featured-blog-posts' %}
+{% endif %}
+
+{% schema %}
+{
+    "name": "Featured Blog",
+    "class": "index-section",
+    "settings": [
+        {
+            "type":"blog",
+            "id":"blog",
+            "label":"Blog",
+            "info": "If you add blocks then this is ignored."
+        },
+        {
+            "type":"text",
+            "id":"title",
+            "label":"Title",
+            "info": "Will show blog title if left blank."
+        },
+        {
+            "type":"richtext",
+            "id":"text",
+            "label":"Text"
+        },
+        {
+            "type":"header",
+            "content": "Section title link"
+        },
+        {
+            "type":"paragraph",
+            "content": "Only applies when blocks are used."
+        },
+        {
+            "type":"text",
+            "id":"link_text",
+            "label":"Link Text"
+        },
+        {
+            "type":"url",
+            "id":"link_url",
+            "label":"Link Url"
+        },
+        {
+            "type":"header",
+            "content": "Bottom button"
+        },
+        {
+            "type":"text",
+            "id":"button_text",
+            "label":"Button Text"
+        },
+        {
+            "type":"url",
+            "id":"button_url",
+            "label":"Button Url"
+        },
+        {
+            "type": "select",
+            "id": "btn_style",
+            "label": "Button Type",
+            "info": "Button will only show if Button Text and Link are used, and videos are not used.",
+            "options": [
+                {
+                    "value": "primary",
+                    "label": "Primary"
+                },
+                {
+                    "value": "secondary",
+                    "label": "Secondary"
+                }
+            ],
+            "default": "primary"
+        },
+        {
+            "type":"header",
+            "content": "Color Rules"
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "#000000"
+        },
+        {
+            "type": "color_background",
+            "id": "gradient",
+            "label": "Gradient Background"
+        },
+        {
+            "type":"header",
+            "content": "Display Setting"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_image",
+            "default": true,
+            "label": "Show Image"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_excerpt",
+            "default": true,
+            "label": "Show Excerpt"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_date",
+            "default": true,
+            "label": "Show Date"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_author",
+            "default": false,
+            "label": "Show Author"
+        },
+        {
+            "type":"header",
+            "content": "Row Setting"
+        },
+        {
+            "type":      "range",
+            "id":        "total_rows",
+            "min":       1,
+            "max":       10,
+            "step":      1,
+            "label":     "Total rows on Desktop",
+            "default":   1
+        },
+        {
+            "type":      "range",
+            "id":        "per_row",
+            "min":       0,
+            "max":       5,
+            "step":      1,
+            "label":     "Products per row",
+            "default":   3
+        },
+        {
+            "type":"paragraph",
+            "content": "'Items per row' controls slider as well."
+        },
+        {
+            "type":"checkbox",
+            "id":"use_slider",
+            "label":"Use Slider",
+            "info": "Applies to Mobile as well."
+        },
+        {
+            "type":"checkbox",
+            "id":"use_slider_mobile_only",
+            "label":"Use Slider on Mobile Only",
+            "info":"If checked, then slider will not play on Desktop."
+        },
+        {
+            "type":"checkbox",
+            "id":"use_arrows",
+            "label":"Use Arrows"
+        },
+        {
+            "type":"checkbox",
+            "id":"use_dots",
+            "label":"Use Dots"
+        },
+        {
+            "type":"checkbox",
+            "id":"auto_slide",
+            "label":"Auto Slide"
+        },
+        {
+            "type": "header",
+            "content": "Filter bar"
+        },
+        {
+            "type": "checkbox",
+            "id": "blog_filter",
+            "label": "Show blog filter" 
+        },
+        {
+            "type":"header",
+            "content": "Custom CSS Rules"
+        },
+        {
+            "type":"paragraph",
+            "content": "Explanation of Custom CSS rules below input."
+        },
+        {
+            "type": "liquid",
+            "id": "custom_css",
+            "label": "Custom CSS"
+        },
+        {
+            "type":"paragraph",
+            "content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+        },
+        {
+            "type":"paragraph",
+            "content": "Ex: '== h2 { font-size: 20px; }'"
+        },
+        {
+            "type":"paragraph",
+            "content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+        },
+        {
+            "type":"paragraph",
+            "content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+        },
+        {
+            "type":"paragraph",
+            "content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+        }
+    ],
+    "blocks": [
+        {
+            "type":"article",
+            "name":"Article",
+            "settings":[
+                {
+                    "type":"article",
+                    "id":"article",
+                    "label":"Product"
+                },
+                {
+                    "type": "liquid",
+                    "id": "metafield",
+                    "label": "Dev Only. Metafield Article Reference."
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "Featured Blog",
+            "category": "1 - NINE15"
+        }
+    ]
+}
+{% endschema %}
+

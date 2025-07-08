@@ -1,0 +1,51 @@
+
+@import "../assets/mixin--media-queries.scss";
+
+
+.section--featured-blog {
+  position: relative;
+  padding: var(--base-gutter--double) 0;
+  z-index: 1;
+
+  // background: var(--color--section-bg);
+  
+  .page-width {
+    padding: 0 var(--base-gutter);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+      // text-align: unset;
+  }
+
+
+  .cell.slick-initialized {
+    margin: 0 -15px;
+    .cell__item {
+        padding: 0 15px;
+    }
+  }
+
+  .card {
+    text-align: center;
+  }
+
+  .old-loader {
+    padding: var(--base-gutter) 0;
+  }
+
+
+  @include mq($small) {
+    padding: var(--base-gutter) 0 ;
+
+    .old-loader {
+      padding: var(--base-gutter--double) 0;
+    }
+
+    .cell.slick-initialized {
+        
+    }
+  }
+
+
+}
+
