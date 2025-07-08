@@ -1,0 +1,36 @@
+custom-slider-component {
+  display: block;
+  position: relative;
+  padding: var(--base-gutter--double) 0;
+  @media screen and (max-width: 768px) {
+    padding: 0;
+  }
+  .custom-slide {
+    position: relative;
+    padding: 0 30px;
+    @media screen and (max-width: 768px) {
+      padding: 0 0px;
+    }
+    .slick-list {
+      padding-left: 33.3%!important;
+      padding-right: 33.3%!important;
+      @media screen and (max-width: 768px) {
+        padding: 0 18%!important;
+      }
+    }
+  } 
+  .slider-buttons {
+    .slider-button  {
+      &.slider-button--next {
+        @media screen and (max-width: 768px) {
+          order: 2;
+        }
+      }
+    }
+    .slick-dots {
+      position: initial;
+      margin-top: -11px;
+      width: fit-content;
+    }
+  }
+} 

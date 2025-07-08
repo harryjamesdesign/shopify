@@ -1,0 +1,1733 @@
+<!-- snippets/master--mega-menu -->
+
+{% comment %}
+    
+    All can reference a single section.settings item for unity.
+    Will not show anything unless setup like below.
+
+    How to build nav setups: 
+    - Created Together:
+        - Main Nav / Dropdowns for Main Nav
+            - {% include 'master--mega-menu', using_main_menu: true %}
+
+    - Created Separately Separated:
+        - Mega Menu for Main Nav
+            - {% include 'master--mega-menu', using_mega_menu: true %}
+
+        - Side-panel Mobile Menu
+            - {% include 'master--mega-menu', using_mob_menu: true %}
+
+{% endcomment %}
+
+{% assign itm       = '' %}
+{% assign lnkIcnUrl = '' %}
+{% assign imgSpltr = ' ~ ' %}
+{% assign actPane = false %}
+{% assign nulled = 'null' %}
+{% assign hdrRow = 'header:' %}
+{% assign hglghtRow = 'highlight:' %}
+{% assign blnkRow = 'blank space' %}
+{% assign imgCol = 'image block' %}
+{% capture clearItem %}style="opacity:0;pointer-events:none;"{% endcapture %}
+{% capture dropDownArrow %}
+    <span class="menu-toggle large-up--hide">
+        <!-- <span class="spacer"></span> -->
+      {% include 'icon-caret' %}
+    </span>
+    {% include 'icon-caret' %}
+{% endcapture %}
+{% if using_main_menu == true or using_mega_menu == true or using_mob_menu == true %}
+    {% for otrLnk in linklists[menu].links %}
+        {% assign otrLnkTtl     = otrLnk.title %}
+        {% assign otrLnkUrl     = otrLnk.url %}
+        {% assign otrLnkHndl    = otrLnkTtl | handleize %}
+        {% assign lnkClass      = 'main-link' %}
+        {% comment %} Check through Blocks for Mega Menu Matches {% endcomment %}
+        {% assign mega_menu = false %}
+        {% assign dropDown = '' %}
+        {% assign actPane = false %}
+        {% assign hasTitle = false %}
+        {% for block in section.blocks %}
+            {% assign b         = block.settings %} 
+            {% assign lnkHndl   = b.title | handleize %}
+            {% assign makeMega  = b.make_mega %}
+            {% assign lnkIcon   = b.icon %}
+            {% comment %} If Block Title matches Link Title and makeMega is true {% endcomment %}
+            {% if lnkHndl == otrLnkHndl %}
+
+            {% endif %}
+            {% if lnkHndl == otrLnkHndl and makeMega == true %}
+                {% assign blkType = block.type %}
+                {% if using_mob_menu != true %}
+                    {% assign mega_menu = true %}
+                {% endif %}
+
+                {% assign actPane = b.active %}
+                
+                {% capture megaBlckAttr %}{{ block.shopify_attributes }}{% endcapture %}
+                {% assign paneClass = 'pane--' | append: block.id %}
+                {% assign paneClassCSS = '.' | append: paneClass %}
+                {% assign sectionTitle = b.section_title %}
+                {% assign sectionLinkText = b.section_link_text %}
+                {% assign sectionLinkUrl = b.section_link_url %}
+                {% assign paneCustomCSS = b.custom_css %}
+                {% assign imgSrc = '' %}
+                {% assign imgAlt = '' %}
+                {% assign imgTtl = '' %}
+                {% assign imgCap = '' %}
+                {% assign imgBotTxt = '' %}
+                {% assign imgLnk = '' %}
+                {% assign imgTtlTop = '' %}
+                {% assign imgSmlCap = '' %}
+                {% assign imgStk = '' %}
+                {% assign imgBig = '' %}
+                {% assign colWdth = '' %}
+                {% assign  grpTtl = '' %}
+
+
+                {% unless block.type contains 'mega-menu-images-only' %}
+                    {% assign imgNum = 8 %}
+                {% else %}
+                    {% assign imgNum = 14 %}
+                {% endunless %}
+                {% for i in (1..imgNum) %}
+                    {% assign imgVar = forloop.index %}
+
+                    {% comment %}For all image block types {% endcomment %}
+                    {% capture snglGrpTtl %}{% capture imgItm %}image_{{imgVar}}_group_title{% endcapture %}{{b[imgItm]|default:nulled}}{% endcapture %}
+                    {% capture grpTtl %}{{grpTtl}}{{b[imgItm]|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% if snglGrpTtl != nulled %}
+                        {% assign hasTitle = true %}
+                    {% endif%}
+                    {% capture imgSrc %}{% capture imgItm %}image_{{imgVar}}{% endcapture %}{{imgSrc}}{{b[imgItm]|img_url:'500x'|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% capture imgAlt %}{% capture imgItm %}image_{{imgVar}}{% endcapture %}{{imgAlt}}{{b[imgItm].alt|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% capture imgTtl %}{% capture imgItm %}image_{{imgVar}}_text{% endcapture %}{{imgTtl}}{{b[imgItm]|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% capture imgCap %}{% capture imgItm %}image_{{imgVar}}_caption{% endcapture %}{{imgCap}}{{b[imgItm]|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% capture imgBotTxt %}{% capture imgItm %}image_{{imgVar}}_bottom_text{% endcapture %}{{imgBotTxt}}{{b[imgItm]|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% capture imgLnk %}{% capture imgItm %}image_{{imgVar}}_url{% endcapture %}{{imgLnk}}{{b[imgItm]|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% capture imgTtlTop %}{% capture imgItm %}image_{{imgVar}}_title_top{% endcapture %}{{imgTtlTop}}{{b[imgItm]}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    
+                    {% comment %} For mixed link and images block {% endcomment %}
+                    {% capture colWdth %}{% capture imgItm %}width_{{imgVar}}{% endcapture %}{{colWdth}}{{b[imgItm]|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% capture imgStk %}{% capture imgItm %}image_{{imgVar}}_stacked{% endcapture %}{{imgStk}}{{b[imgItm]}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% comment %}<!-- {{imgItm}} -->{% endcomment %}
+                    {% comment %}<!-- {{b[imgItm]}} -->{% endcomment %}
+                    {% comment %} For image only block {% endcomment %}
+                    {% capture imgBig %}{% capture imgItm %}image_{{imgVar}}_big{% endcapture %}{{imgBig}}{{b[imgItm]}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+
+                {% endfor %}
+                {% comment %}<!-- {{imgStk}} -->{% endcomment %}
+            {% endif %}
+            {% comment %} If Block Title matches Link Title and Icon is not blank  {% endcomment %}
+            {% if lnkHndl == otrLnkHndl and lnkIcon != blank %}
+                {% assign lnkIcnUrl = lnkIcon | img_url: 'large' %}
+            {% endif %}
+        {% endfor %}
+        {% comment %} If link has children  {% endcomment %}
+        {% if otrLnk.levels > 0 %} 
+            {% comment %} Create Mega Menu Pane {% endcomment %}
+            {% if mega_menu == true %}
+                {% comment %} Capture DropDown Arrow for Main Nav Item. {% endcomment %}
+                {% capture dropDown %}
+                    {{dropDownArrow}}
+                {% endcapture %}
+                {% comment %} Set Link Class {% endcomment %}
+                {% assign lnkClass = 'main-link--with-mega' %}
+                {% if using_mega_menu == true %}
+                    {% comment %} Set Grid Replace {% endcomment %}
+                    {% assign clsRplc = '|WIDTH|' %}
+                    {% comment %} Capture Mega Menu Panel  {% endcomment %}
+                    {% capture megaPanel %}
+                        {{ megaPanel }} {% comment %} add previous panels if they exist {% endcomment %}
+                        {% assign sngleCol      = '' %}
+                        {% assign multiCol      = '' %}
+                        {% assign colWdthNum    = '' %}
+                        {% assign tabTrig       = '' %}
+                        {% assign tabCont       = '' %}
+                        {% assign tabImgs       = '' %}
+
+                        {% assign minusFromTotal = 0 %}
+                        {% assign imgLnkCnt     = 1 %}
+                        {% assign midForLoop    = 0 %}
+                        {% assign stackedImages = '' %}
+                        {% assign colWdthSplt   = colWdth | split: imgSpltr %}
+                        {% assign ImgSrcSplt    = imgSrc | split: imgSpltr %}
+                        {% assign ImgAltSplt    = imgAlt | split: imgSpltr %}
+                        {% assign GroupTtlSplt  = grpTtl | split: imgSpltr %}
+                        {% assign ImgStkSplt    = imgStk | split: imgSpltr %}
+                        {% assign ImgTtlSplt    = imgTtl | split: imgSpltr %}
+                        {% assign ImgCapSplt    = imgCap | split: imgSpltr %}
+                        {% assign ImgBotTxtSplt = imgBotTxt | split: imgSpltr %}
+                        {% assign ImgSmlCapSplt = imgSmlCap | split: imgSpltr %}
+                        {% assign ImgTtlTopSplt = imgTtlTop | split: imgSpltr %}
+                        {% assign ImgLnkSplt    = imgLnk | split: imgSpltr %}
+                        {% assign ImgBigSplt    = imgBig | split: imgSpltr %}
+                        <div class="mega-pane {{blkType}} {% if actPane == true and actPane != false %}force-active{% endif %} {{paneClass}}" data-megamenu="{{otrLnkHndl}}" {{megaBlckAttr}}>
+                            <div class="page-width">
+                                
+                                {% if sectionTitle != blank %}
+                                  <div class="section--title">
+                                    <h2>{{sectionTitle}}</h2>
+                                    {% if sectionLinkUrl != blank and sectionLinkText != blank %}
+                                      <a href="{{sectionLinkUrl}}">
+                                        {{sectionLinkText}}
+                                      </a>
+                                    {% endif %}
+                                  </div>
+                                {% endif %}
+
+                                <div class="cell cell_margin_bottom vert-top text-center">
+                                    {% unless blkType == 'mega-menu-images-only' %}
+                                        {% for midLnk in otrLnk.links limit: 8 %}
+                                            {% assign dropItems     = '' %}
+                                            {% assign midClsChcker  = midLnk.title | downcase %}
+                                            {% assign midLnkTtl     = midLnk.title | replace: hdrRow,'' | replace: hglghtRow,'' %}
+                                            {% assign midLnkUrl     = midLnk.url %}
+                                            {% assign midLnkHndl    = midLnk.title | handleize %}
+                                            {% assign midForLoop    = midForLoop | plus: 1 %}
+                                            {% assign num           = imgLnkCnt | minus: 1 %}
+                                            {% comment %} Capture each list group {% endcomment %}
+                                            {% assign thsImgSrc     = ImgSrcSplt[num] %}
+                                            {% assign hasImg = false %}
+                                            {% unless thsImgSrc contains 'no-image' %}
+                                                {% assign hasImg = true %}
+                                            {% endunless %}
+                                            {% comment %}<!------ {{midForLoop}} / {{num}} / {{hasImg}} / {{midClsChcker}} / stacked: {{ImgStkSplt[num]}} ------->{% endcomment %}
+                                            {% if midClsChcker contains imgCol and hasImg == true %}
+                                                {% comment %}<!-- Type 1 -->{% endcomment %}
+                                                {% assign thsImgAlt     = ImgAltSplt[num] %}
+                                                {% assign thsGroupTtl   = GroupTtlSplt[num] %}
+                                                {% assign thsImgTtl     = ImgTtlSplt[num] %}
+                                                {% assign thsImgCap     = ImgCapSplt[num] %}
+                                                {% assign thsImgBotTxt  = ImgBotTxtSplt[num] %}
+                                                {% assign thsImgTtlTop  = ImgTtlTopSplt[num] %}
+                                                {% assign thsImgStk     = ImgStkSplt[num] %}
+                                                {% assign thsImgLnk     = ImgLnkSplt[num] %}
+
+                                                {% unless thsImgSrc contains 'no-image' %}
+                                                    
+                                                    {% comment %} Check for Vimeo Links and add to array. {% endcomment %}
+                                                    {% assign modalClass = '' %}
+                                                    {% if thsImgLnk contains 'vimeo' %}
+                                                        {% assign modalClass = 'btn-modal' %}
+                                                        {% capture videoElements %}{{ videoElements }}{{ thsImgTtl | handleize }},{% endcapture %}
+                                                        {% assign urlArray = thsImgLnk | split: '/' %}
+                                                        {% assign videoId = urlArray | last %}
+                                                        {% capture videoIds %}{{ videoIds }}{{ videoId }},{% endcapture %}
+                                                        {% assign thsImgLnk = thsImgTtl | handleize | prepend: '#' %}
+                                                    {% endif %}
+
+
+                                                    {% capture imgBlk %}
+                                                        {% capture Ttl %}
+                                                            <span class="top-text row-title">{{thsImgTtl}}</span>
+                                                        {% endcapture %}
+                                                        {% if thsGroupTtl != nulled or hasTitle == true %}
+                                                            {% capture grpTtlCapture %}
+                                                                <span class="group-title" {% if hasTitle == true and thsGroupTtl == nulled %}{{clearItem}}{% endif %}>{{thsGroupTtl}}</span>
+                                                            {% endcapture %}
+                                                            {% if thsGroupTtl == nulled and hasTitle == true and prevGrpTtlCapture != blank %}
+                                                                {% capture prevCapClsRplc %}class="group-title"{% endcapture %}
+                                                                {% capture clearInsert %}{{prevCapClsRplc}} {{clearItem}}{% endcapture %}
+                                                                {{prevGrpTtlCapture|replace:prevCapClsRplc,clearInsert}}
+                                                            {% else %}
+                                                                {{grpTtlCapture}}
+                                                                {% assign prevGrpTtlCapture = grpTtlCapture %}
+                                                            {% endif %}
+                                                        {% endif %}
+                                                        <a href="{{thsImgLnk}}" class="image-block {{modalClass}}">
+                                                            {% if thsImgTtl != nulled and thsImgTtlTop contains 'true' %}
+                                                                {{Ttl}}
+                                                            {% endif %}
+                                                            {% comment %}
+                                                            <img src="{{thsImgSrc}}" alt="{{thsImgAlt}}" />
+                                                            {% endcomment %}
+                                                            <div style="background-image: url({{thsImgSrc}});" title="{{thsImgAlt}}" class="bg_image"></div>
+                                                            {% if thsImgTtl != nulled and thsImgTtlTop contains 'false' %}
+                                                                {{Ttl}}
+                                                            {% endif %}
+                                                            {% if thsImgCap != nulled %}
+                                                                <span class="middle-text">{{thsImgCap}}</span>
+                                                            {% endif %}
+                                                            {% if thsImgBotTxt != nulled %}
+                                                                <span class="bottom-text">{{thsImgBotTxt}}</span>
+                                                            {% endif %}
+                                                        </a>
+                                                    {% endcapture %}
+                                                    {% if thsImgStk contains 'true' or thsImgStk contains true %}
+                                                        {% assign midForLoop = midForLoop | minus: 1 %}
+                                                        {% assign minusFromTotal = minusFromTotal | plus: 1 %}
+                                                        {% capture stackedImages %}
+                                                            {{stackedImages}}
+                                                            {{imgBlk}}
+                                                        {% endcapture %}
+                                                    {% else %}
+                                                        {% capture sngleList %}
+                                                            {% if stackedImages != '' %}
+                                                                {{stackedImages}}
+                                                                {% assign stackedImages = '' %}
+                                                            {% endif %}
+                                                            {{imgBlk}}
+                                                        {% endcapture %}
+                                                    {% endif %}
+                                                    {% assign imgLnkCnt = imgLnkCnt | plus: 1 %}
+                                                {% endunless %}
+                                            {% else %}
+                                                {% comment %}<!-- Type 2 -->{% endcomment %}
+                                                {% capture hdrCls %}row-title {% if midClsChcker contains hglghtRow %}highlight-item {% endif %}{% endcapture %}
+                                                {% capture rowCls %}{% if midClsChcker contains hdrRow %}row-title {% endif %}{% if midClsChcker contains hglghtRow %}highlight-item {% endif %}{% endcapture %}
+                                                
+                                                {% for innrLnk in midLnk.links %}  
+                                                    {% assign innrClsChckr  = innrLnk.title | downcase %}
+                                                    {% assign innrLnkTtl    = innrLnk.title | replace: hdrRow,'' | replace: hglghtRow,'' %}
+                                                    {% assign innrLnkUrl    = innrLnk.url %}
+                                                    {% assign innrLnkHndl   = innrLnk.title | handleize %}
+                                                    {% capture rowCls %}{% if innrClsChckr contains hdrRow %}row-title {% endif %}{% endcapture %}
+                                                    {% if innrClsChckr contains imgCol %}
+                                                        {% assign thsImgSrc     = ImgSrcSplt[imgLnkCnt] %}
+                                                        {% assign thsImgAlt     = ImgAltSplt[imgLnkCnt] %}
+                                                        {% assign thsGroupTtl   = GroupTtlSplt[num] %}
+                                                        {% assign thsImgTtl     = ImgTtlSplt[imgLnkCnt] %}
+                                                        {% assign thsImgCap     = ImgCapSplt[imgLnkCnt] %}
+                                                        {% assign thsImgBotTxt  = ImgBotTxtSplt[imgLnkCnt] %}
+                                                        {% assign thsImgTtlTop  = ImgTtlTopSplt[imgLnkCnt] %}
+                                                        {% assign thsImgStk     = ImgStkSplt[imgLnkCnt] %}
+                                                        {% assign thsImgLnk     = ImgLnkSplt[imgLnkCnt] %}
+                                                        {% assign hasImg = false %}
+                                                        {% unless thsImgSrc contains 'no-image' %}
+                                                            {% assign hasImg = true %}
+                                                        {% endunless %}
+                                                        {% unless thsImgSrc contains 'no-image' %}
+                                                            {% comment %}<!-- {{innrLnk.title}} -->{% endcomment %}
+
+                                                            {% comment %} Check for Vimeo Links and add to array. {% endcomment %}
+                                                            {% assign modalClass = '' %}
+                                                            {% if thsImgLnk contains 'vimeo' %}
+                                                                {% comment %}{% assign modalClass = 'btn-modal' %}{% endcomment %}
+                                                                {% capture videoElements %}{{ videoElements }}{{ thsImgTtl | handleize }},{% endcapture %}
+                                                                {% assign urlArray = thsImgLnk | split: '/' %}
+                                                                {% assign videoId = urlArray | last %}
+                                                                {% capture videoIds %}{{ videoIds }}{{ videoId }},{% endcapture %}
+                                                                {% assign thsImgLnk = thsImgTtl | handleize | prepend: '#' %}
+                                                            {% endif %}
+
+                                                            {% capture imgBlk %}
+                                                                {% capture Ttl %}
+                                                                    <span class="top-text">{{thsImgTtl}}</span>
+                                                                {% endcapture %}
+
+                                                                {% if thsGroupTtl != nulled or hasTitle == true %}
+                                                                    {% comment %}<span class="group-title" {% if hasTitle == true and thsGroupTtl == nulled %}{{clearItem}}{% endif %}>{{thsGroupTtl}}</span>{% endcomment %}
+                                                                    {% capture grpTtlCapture %}
+                                                                        <span class="group-title" {% if hasTitle == true and thsGroupTtl == nulled %}{{clearItem}}{% endif %}>{{thsGroupTtl}}</span>
+                                                                    {% endcapture %}
+                                                                    {% if thsGroupTtl == nulled and hasTitle == true and prevGrpTtlCapture != blank %}
+                                                                        {% capture prevCapClsRplc %}class="group-title"{% endcapture %}
+                                                                        {% capture clearInsert %}{{prevCapClsRplc}} {{clearItem}}{% endcapture %}
+                                                                        {{prevGrpTtlCapture|replace:prevCapClsRplc,clearInsert}}
+                                                                    {% else %}
+                                                                        {{grpTtlCapture}}
+                                                                        {% assign prevGrpTtlCapture = grpTtlCapture %}
+                                                                    {% endif %}
+
+                                                                {% endif %}
+                                                                <a href="{{thsImgLnk}}" class="image-block  {% if midForLoop == 1 %}mega--active{% endif %}" data-links="{{midLnkHndl}}">
+                                                                    {% if thsImgTtl != nulled and thsImgTtlTop contains 'true' %}
+                                                                        {{Ttl}}
+                                                                    {% endif %}
+                                                                    <div style="background-image: url({{thsImgSrc}});" title="{{thsImgAlt}}" class="bg_image"></div>
+                                                                    {% if thsImgTtl != nulled and thsImgTtlTop contains 'false' %}
+                                                                        {{Ttl}}
+                                                                    {% endif %}
+                                                                    {% if thsImgCap != nulled %}
+                                                                        <span class="middle-text">{{thsImgCap}}</span>
+                                                                    {% endif %}
+                                                                    {% if thsImgBotTxt != nulled %}
+                                                                        <span class="bottom-text">{{thsImgBotTxt}}</span>
+                                                                    {% endif %}
+                                                                </a>
+                                                            {% endcapture %}
+                                                            {% if thsImgStk contains 'true' or thsImgStk contains true %}
+                                                                {% assign midForLoop = midForLoop | minus: 1 %}
+                                                                {% assign minusFromTotal = minusFromTotal | plus: 1 %}
+                                                                {% capture stackedImages %}
+                                                                    {{stackedImages}}
+                                                                    {{imgBlk}}
+                                                                {% endcapture %}
+                                                            {% elsif blkType == 'mega-menu-tabs' %}
+                                                                {% capture tabImgs %}
+                                                                    {{tabImgs}}
+                                                                    {% if stackedImages != '' %}
+                                                                        {{stackedImages}}
+                                                                        {% assign stackedImages = '' %}
+                                                                    {% endif %}
+                                                                    {{imgBlk}}
+                                                                {% endcapture %}
+                                                                {% assign imgLnkCnt = imgLnkCnt | plus: 1 %}
+                                                            {% else %}
+                                                                {% capture sngleList %}
+                                                                    {% if stackedImages != '' %}
+                                                                        {{stackedImages}}
+                                                                        {% assign stackedImages = '' %}
+                                                                    {% endif %}
+                                                                    {{imgBlk}}
+                                                                {% endcapture %}
+                                                                {% assign imgLnkCnt = imgLnkCnt | plus: 1 %}
+                                                            {% endif %}
+                                                        {% endunless %}
+                                                    {% else %}
+                                                        {% comment %} Check for Vimeo Links and add to array. {% endcomment %}
+                                                        {% assign modalClass = '' %}
+                                                        {% if thsImgLnk contains 'vimeo' %}
+                                                            {% assign modalClass = 'btn-modal' %}
+                                                            {% capture videoElements %}{{ videoElements }}{{ thsImgTtl | handleize }},{% endcapture %}
+                                                            {% assign urlArray = thsImgLnk | split: '/' %}
+                                                            {% assign videoId = urlArray | last %}
+                                                            {% capture videoIds %}{{ videoIds }}{{ videoId }},{% endcapture %}
+                                                            {% assign thsImgLnk = thsImgTtl | handleize | prepend: '#' %}
+                                                        {% endif %}
+                                                        {% capture dropItems %}
+                                                            {{dropItems}}
+                                                            <li class="{{rowCls}}" {% if innrClsChckr contains blnkRow %}{{clearItem}}{% endif %}>
+                                                                <a class="{{modalClass}}" href="{{innrLnkUrl}}">
+                                                                    {{innrLnkTtl}}
+                                                                </a>
+                                                            </li>
+                                                        {% endcapture %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                                {% if dropItems != '' %}
+                                                    {% capture dropItems %}
+                                                        <ul class="mega-menu-list">
+                                                            {{dropItems}}               
+                                                        </ul>
+                                                    {% endcapture %}
+                                                {% endif %}
+
+                                                {% if blkType == 'mega-menu-tabs' %}
+                                                    {% capture tabTrig %}
+                                                        {{tabTrig}}
+                                                        <div data-tab="{{midLnkHndl}}" class="tab-item {% if midForLoop == 1 %}current{% endif %} {{hdrCls}}">
+                                                            <span>{{midLnkTtl}}</span>
+                                                        </div>
+                                                    {% endcapture %}
+                                                    {% capture tabCont %}
+                                                        {{tabCont}}
+                                                        <div class="tab-content {% if midForLoop == 1 %}mega--active{% endif %}" data-links="{{midLnkHndl}}">
+                                                            {{dropItems}}
+                                                        </div>
+                                                    {% endcapture %}
+                                                {% else %}
+                                                    {% capture sngleList %}
+                                                        <a href="{{midLnkUrl}}" class="{{hdrCls}}" {% if midClsChcker contains blnkRow %}{{clearItem}}{% endif %}>{{ midLnkTtl }}</a>
+                                                        {{dropItems}}
+                                                    {% endcapture %}
+                                                {% endif %}
+                                            {% endif %}
+                                            {% comment %} Column classes builder {% endcomment %}
+                                            {% assign baseClass     = 'cell__item text-left' %}
+                                            {% comment %}{% assign colWdthNum    = midForLoop %}{% endcomment %}
+                                            {% assign colWdthNum    = midForLoop | minus: 1 | at_most: imgNum %}
+                                            {% assign thsColWdth    = colWdthSplt[colWdthNum] %}
+                                            {% assign thsWdth       = clsRplc %}
+                                            {% if thsColWdth != 'auto' %}
+                                                {% case thsColWdth %}
+                                                    {% when '8%' %}{%- assign thsWdth = 'medium--one-third large-up--one-twelfth' -%}
+                                                    {% when '10%' %}{%- assign thsWdth = 'medium--one-third large-up--one-tenth' -%}
+                                                    {% when '16%' %}{%- assign thsWdth = 'medium--one-third large-up--two-twelfths' -%}
+                                                    {% when '20%' %}{%- assign thsWdth = 'medium--one-third large-up--two-tenths' -%}
+                                                    {% when '25%' %}{%- assign thsWdth = 'medium--one-third large-up--three-twelfths' -%}
+                                                    {% when '30%' %}{%- assign thsWdth = 'medium--one-third large-up--three-tenths' -%}
+                                                    {% when '33%' %}{%- assign thsWdth = 'medium--one-third large-up--four-twelfths' -%}
+                                                    {% when '40%' %}{%- assign thsWdth = 'medium--one-third large-up--four-tenths' -%}
+                                                    {% when '41%' %}{%- assign thsWdth = 'medium--one-third large-up--five-twelfths' -%}
+                                                    {% when '50%' %}{%- assign thsWdth = 'medium--one-third large-up--one-half' -%}
+                                                    {% when '58%' %}{%- assign thsWdth = 'medium--one-third large-up--seven-twelfths' -%}
+                                                    {% when '60%' %}{%- assign thsWdth = 'medium--one-third large-up--six-tenths' -%}
+                                                    {% when '66%' %}{%- assign thsWdth = 'medium--one-third large-up--eight-twelfths' -%}
+                                                    {% when '70%' %}{%- assign thsWdth = 'medium--one-third large-up--seven-tenths' -%}
+                                                    {% when '75%' %}{%- assign thsWdth = 'medium--one-third large-up--nine-twelfths' -%}
+                                                    {% when '80%' %}{%- assign thsWdth = 'medium--one-third large-up--eight-tenths' -%}
+                                                    {% when '83%' %}{%- assign thsWdth = 'medium--one-third large-up--ten-twelfths' -%}
+                                                    {% when '90%' %}{%- assign thsWdth = 'medium--one-third large-up--nine-tenths' -%}
+                                                    {% when '91%' %}{%- assign thsWdth = 'medium--one-third large-up--eleven-twelfths' -%}
+                                                    {% else %}{%- assign thsWdth = 'one-whole testtttting' -%}
+                                                {% endcase %}
+                                            {% endif %}
+
+                                            
+                                            {% comment %} On last loop build column cell {% endcomment %}
+                                            {% assign last = otrLnk.links.size | minus: minusFromTotal %}  
+                                            {% comment %} Final Check to make sure blank and duplicate content is not being added {% endcomment %}
+                                            {% assign allow = false %}
+                                            {% unless midClsChcker contains imgCol and hasImg == false %}
+                                                {% comment %}<!-- hasImg {{midForLoop}}: {{hasImg}} -->{% endcomment %}
+                                                {% unless thsImgStk contains 'true' or thsImgStk contains true %}
+                                                    {% comment %}<!-- thsImgStk {{midForLoop}}: {{thsImgStk}} -->{% endcomment %}
+                                                    {% assign allow = true %}
+                                                {% endunless %}
+                                            {% endunless %}
+                                            {% if forloop.last %}
+                                                {% assign allow = true %}
+                                            {% endif %}
+
+                                            {% comment %}
+                                            <!-- 
+                                                Title:          {{midLnkTtl}} / {{thsImgTtl}}
+                                                Checker:        {{midClsChcker}} {% if midClsChcker contains imgCol %}true{% else %}false{% endif %}
+                                                Has Image:      {{hasImg}}
+                                                Allow:          {{allow}} 
+                                                Stack:          {{thsImgStk}}
+                                                Mid for Loop:   {{midForLoop}}
+                                                Img Link Count: {{imgLnkCnt}}
+                                                Last:           {{last}}
+                                            -->
+                                            {% endcomment %}
+                                            {% comment %} If imgNum or less add as single column {% endcomment %}
+                                            {% if midForLoop <= imgNum and allow != false %}
+                                                {% comment %}<!-- Capture Single Column {{midForLoop}} / {{midClsChcker}} -->{% endcomment %}
+                                                {% capture sngleCol %}
+                                                    {{sngleCol}} {% comment %} add previous single columns if they exist {% endcomment %}
+                                                    <div class="{{baseClass}} {{thsWdth}} ">
+                                                        {{sngleList}}
+                                                    </div>
+                                                {% endcapture %}
+                                            {% endif %}
+                                            {% comment %} When more than imgNum, group 5-8 in one multi column {% endcomment %}
+                                            {% if midForLoop > imgNum and allow != false %}
+                                                {% comment %}<!-- Capture Multi-Column {{midForLoop}} / {{midClsChcker}} -->{% endcomment %}
+                                                {% capture multiCol %}
+                                                    {{multiCol}} {% comment %} add previous multi columns if they exist {% endcomment %}
+                                                    <div class="list-group">
+                                                        {{sngleList}}
+                                                    </div>
+                                                {% endcapture %}
+                                            {% endif %}
+
+                                                                       
+                                            {% comment %} Create Grid based on Final midForLoop {% endcomment %}
+                                            {% case midForLoop %}
+                                                {% when 1 %}{%- capture width -%}{% endcapture %}
+                                                {% when 2 %}{%- capture width -%}medium-up--one-half{% endcapture %}
+                                                {% when 3 %}{%- capture width -%}medium-up--one-third{% endcapture %}
+                                                {% when 4 %}{%- capture width -%}medium--one-third large-up--one-quarter{% endcapture %}
+                                                {% when 6 %}{%- capture width -%}medium--one-third large-up--one-sixth{% endcapture %}
+                                                {% else %}{%- capture width -%}medium--one-third large-up--one-fifth{% endcapture %}
+                                            {% endcase %}
+                                            {% if last == midForLoop %}
+                                                {% if blkType == 'mega-menu-tabs' %}
+                                                    {% capture fullPane %}
+                                                        <div class="cell__item medium-up--one-quarter ex-large-up--one-fifth">
+                                                            {{tabTrig}}
+                                                        </div>
+                                                        <div class="cell__item medium-up--three-quarters ex-large-up--four-fifths">
+                                                            {% if tabImgs != '' %}
+                                                                <div class="cell cell_margin_bottom vert-top">
+                                                                    <div class="cell__item medium--two-thirds large-up--three-quarters">
+                                                            {% endif %}
+                                                                        {{tabCont}}
+                                                            {% if tabImgs != '' %}
+                                                                    </div>
+                                                                    <div class="cell__item medium--one-third large-up--one-quarter">
+                                                                        {{tabImgs}}
+                                                                    </div>
+                                                                </div>
+                                                            {% endif %}
+                                                        </div>
+                                                    {% endcapture %}
+                                                {% else %}
+                                                    {% capture fullPane %}
+                                                        {{sngleCol}}
+                                                        {% if midForLoop > 4 and multiCol != '' %}
+                                                            <div class="{{baseClass}} {{thsWdth}}">
+                                                                {{multiCol}}
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endcapture %}
+                                                {% endif %}
+                                                {{fullPane|replace:clsRplc,width}}
+                                            {% endif %}
+                                            {% comment %}{% assign blkType = '' %}{% endcomment %}
+
+                                            {% assign colWdth = '' %}
+                                            {% assign thsImgSrc = '' %}
+                                            {% assign prevImgStk = thsImgStk %}
+                                            {% assign thsImgStk = '' %}
+                                        {% endfor %}
+
+                                    {% else %}
+                                        {% comment %} Only Images Pane {% endcomment %}
+                                        {% assign smlImgCnt = 0 %}
+                                        {% assign smlImgs = '' %}
+                                        {% assign bigImg = '' %}
+                                        {% for i in (1..imgNum) %}
+                                            {% assign imgLnkCnt     = i | minus: 1 %}
+                                            {% assign thsImgSrc     = ImgSrcSplt[imgLnkCnt] %}
+                                            {% assign thsImgAlt     = ImgAltSplt[imgLnkCnt] %}
+                                            {% assign thsImgTtl     = ImgTtlSplt[imgLnkCnt] %}
+                                            {% assign thsImgCap     = ImgCapSplt[imgLnkCnt] %}
+                                            {% assign thsImgBotTxt  = ImgBotTxtSplt[imgLnkCnt] %}
+                                            {% assign thsImgSmlCap  = ImgSmlCapSplt[imgLnkCnt] %}
+                                            {% assign thsImgTtlTop  = ImgTtlTopSplt[imgLnkCnt] %}
+                                            {% assign thsImgStk     = ImgStkSplt[imgLnkCnt] %}
+                                            {% assign thsImgLnk     = ImgLnkSplt[imgLnkCnt] %}
+                                            {% assign thsImgBig     = ImgBigSplt[imgLnkCnt] %}
+                                            {% assign thsWdth       = clsRplc %}
+                                            {% unless thsImgSrc contains 'no-image' %}
+                                                {% capture imgBlk %}
+                                                    {% capture Ttl %}
+                                                        <span class="title">{{thsImgTtl}}</span>
+                                                    {% endcapture %}
+                                                    {% if thsGroupTtl != nulled or hasTitle == true %}
+                                                        {% capture grpTtlCapture %}
+                                                            <span class="group-title" {% if hasTitle == true and thsGroupTtl == nulled %}{{clearItem}}{% endif %}>{{thsGroupTtl}}</span>
+                                                        {% endcapture %}
+                                                        {% if thsGroupTtl == nulled and hasTitle == true and prevGrpTtlCapture != blank %}
+                                                            {% capture prevCapClsRplc %}class="group-title"{% endcapture %}
+                                                            {% capture clearInsert %}{{prevCapClsRplc}} {{clearItem}}{% endcapture %}
+                                                            {{prevGrpTtlCapture|replace:prevCapClsRplc,clearInsert}}
+                                                        {% else %}
+                                                            {{grpTtlCapture}}
+                                                            {% assign prevGrpTtlCapture = grpTtlCapture %}
+                                                        {% endif %}
+                                                    {% endif %}
+
+
+                                                    <a href="{{thsImgLnk}}" class="image-block">
+                                                        {% if thsImgTtl != nulled and thsImgTtlTop contains 'true' %}
+                                                            {{Ttl}}
+                                                        {% endif %}
+                                                        {% comment %}<img src="{{thsImgSrc}}" alt="{{thsImgAlt}}" />{% endcomment %}
+                                                        <div style="background-image: url({{thsImgSrc}});" title="{{thsImgAlt}}" class="bg_image"></div>
+                                                        {% if thsImgCap != nulled %}
+                                                            <span class="caption">{{thsImgCap}}</span>
+                                                        {% endif %}
+                                                        {% if thsImgTtl != nulled and thsImgTtlTop contains 'false' %}
+                                                            {{Ttl}}
+                                                        {% endif %}
+                                                        {% if thsImgBotTxt != nulled %}
+                                                            <span class="bottom-text">{{thsImgBotTxt}}</span>
+                                                        {% endif %}
+                                                    </a>
+                                                {% endcapture %}
+                                                {% unless thsImgBig == 'true' %}
+                                                    {% assign smlImgCnt = smlImgCnt | plus: 1 %}
+                                                    {% capture smlImgs %}
+                                                        {{smlImgs}}
+                                                        <div class="cell__item {{thsWdth}}">
+                                                            {{imgBlk}}
+                                                        </div>
+                                                    {% endcapture %}
+                                                {% endunless %}
+                                                {% unless thsImgBig != 'true' %}
+                                                    {% capture bigImg %}
+                                                        {{imgBlk}}
+                                                    {% endcapture %}
+                                                {% endunless %}
+                                            {% endunless %}
+                                        {% endfor %}
+                                        {% case smlImgCnt %}
+                                            {% when 2 %}{% assign width = 'medium-up--one-half' %}
+                                            {% when 3 or 6 %}{% assign width = 'medium-up--one-third' %}
+                                            {% when 4 or 7 or 8 %}{% assign width = 'medium-up--one-quarter' %}
+                                            {% when 5 or 9 or 10 %}{% assign width = 'medium--one-third large-up--one-fifth' %}
+                                            {% else %}{% assign width = 'medium--one-third large-up--one-sixth' %}
+                                        {% endcase %}
+                                        {% if smlImgs != '' %}
+                                            {% if bigImg != '' %}
+                                                <div class="cell__item medium--two-thirds large-up--three-fifths">
+                                            {% endif %}
+                                                    <div class="cell cell_margin_bottom vert-top image-row">
+                                                        {{smlImgs|replace:clsRplc,width}}
+                                                    </div>
+                                            {% if bigImg != '' %}
+                                                </div>
+                                                <div class="cell__item medium--one-third large-up--two-fifths big-image">
+                                                    {{bigImg}}
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+
+                                    {% endunless %}
+                                </div>
+
+                                {% include 'custom-css', css: paneCustomCSS, class: paneClassCSS %}
+
+                            </div>
+                        </div>
+                    {% endcapture %}
+                {% endif %}
+            {% comment %} Create Dropdown Pane {% endcomment %}
+            {% else %}
+                {% comment %} Set Link Class {% endcomment %}
+                {% assign lnkClass = 'main-link--with-dropdown' %}
+                {% comment %} Capture Dropdown {% endcomment %}
+                {% capture dropDown %}
+                    {% if otrLnk.links.size > 0 %}
+                        {% comment %} Arrow for Mobile nav {% endcomment %}
+                        {% if using_mob_menu == true %}
+                            {{dropDownArrow}}
+                        {% endif %}
+                        <ul class="dropdown-list text-left block-type-{{blkType}}" data-dropdown="{{otrLnkHndl}}">
+                            {% comment %} 
+                                For some reason i have to capture these then place 
+                                capture at bottom of <ul> or it breaks the entire thing. 
+                                No clue why.
+                            {% endcomment %}
+                            {% capture lnks %}
+                                {% if using_mob_menu == true %}
+                                    <li class="nav-title">
+                                        {{dropDownArrow|replace:'menu-toggle','menu-toggle reverse'|replace:'icon-chevron-down','icon-chevron-down reverse'}}
+                                        <span>{{otrLnkTtl}}</span>
+                                    </li>
+                                {% endif %}
+                                {% assign midChkCnt     = 0 %}
+                                {% assign ImgTtlSplt    = imgTtl | split: imgSpltr %}
+                                {% assign ImgLnkSplt    = imgLnk | split: imgSpltr %}
+                                {% unless blkType contains 'mega-menu-images-only' %}
+                                    {% for midLnk in otrLnk.links %}
+                                        {% assign midClsChcker  = midLnk.title | downcase %}
+                                        {% assign midLnkTtl     = midLnk.title | replace: hdrRow,'' | replace: hglghtRow,'' %}
+                                        {% assign midLnkUrl     = midLnk.url %}
+                                        {% assign midLnkHndl    = midLnk.title | handleize %}
+                                        {% capture rowCls %}{% if midClsChcker contains hdrRow %}row-title {% endif %}{% if midClsChcker contains hglghtRow %}highlight-item {% endif %}{% endcapture %}
+                                        {% assign showItem = true %}
+                                        {% if midClsChcker contains imgCol and using_mob_menu == true %}
+                                            {% assign showItem = false %}
+                                        {% endif %}
+                                        {% unless show_item == false or midClsChcker contains imgCol or midClsChcker contains blnkRow or midClsChcker contains hdrRow %}
+                                            {% assign midChkCnt = midChkCnt | plus: 1 %}
+                                            {% comment %}<!-- {{midClsChcker}} contains {{imgCol}} -->{% endcomment %}
+                                            <li class="dropdown-link {% if midLnk.links.size > 0 %}has-third-tier-dropdown{% endif %} {{rowCls}}" data-inner-nav-item="{{midLnkHndl}}">
+                                                <a href="{{midLnkUrl}}">{{ midLnkTtl }}</a>
+                                                {% if using_mob_menu == true and midLnk.links.size > 0 %}
+                                                    {{dropDownArrow}}
+                                                {% endif %}
+                                                {% if midLnk.links.size > 0 %}
+                                                    <ul class="inner-dropdown-list" data-inner-dropdown="{{midLnkHndl}}">
+                                                        {% comment %} Arrow for Mobile nav {% endcomment %}
+                                                        {% if using_mob_menu == true %}
+                                                            <li class="nav-title">
+                                                                {{dropDownArrow|replace:'menu-toggle','menu-toggle reverse'|replace:'icon-chevron-down','icon-chevron-down reverse'}}
+                                                                <span>{{midLnkTtl}}</span>
+                                                            </li>
+                                                        {% endif %}
+                                                        {% for innrLnk in midLnk.links %} 
+                                                            {% assign innrClsChckr  = innrLnk.title | downcase %}
+                                                            {% assign innrLnkTtl    = innrLnk.title | replace: hdrRow,'' | replace: hglghtRow,'' %}
+                                                            {% assign innrLnkUrl    = innrLnk.url %}
+                                                            {% assign innrLnkHndl   = innrLnk.title | handleize %}
+                                                            {% capture rowCls %}{% if innrClsChckr contains hdrRow %}row-title {% endif %}{% endcapture %}
+                                                            {% assign showItem = true %}
+                                                            {% if innrClsChcker contains imgCol and using_mob_menu == true and using_mob_as_side_menu == false %}
+                                                                {% assign showItem = false %}
+                                                            {% endif %}
+                                                            {% if showItem == true %}
+                                                                {% unless innrClsChckr contains blnkRow %}
+                                                                    {% if innrClsChcker contains imgCol %}
+                                                                      <li class="inner-dropdown-link {{rowCls}}" {% if innrLnkHndl contains blnkRow %}{{clearItem}}{% endif %}>
+                                                                          <a href="{{thsImgLnk}}" class="image-block {{modalClass}}">
+                                                                              {% if thsImgTtl != nulled and thsImgTtlTop contains 'true' %}
+                                                                                  {{Ttl}}
+                                                                              {% endif %}
+                                                                              <div style="background-image: url({{thsImgSrc}});" title="{{thsImgAlt}}" class="bg_image"></div>
+                                                                              {% if thsImgTtl != nulled and thsImgTtlTop contains 'false' %}
+                                                                                  {{Ttl}}
+                                                                              {% endif %}
+                                                                              {% if thsImgCap != nulled %}
+                                                                                  <span class="middle-text">{{thsImgCap}}</span>
+                                                                              {% endif %}
+                                                                              {% if thsImgBotTxt != nulled %}
+                                                                                  <span class="bottom-text">{{thsImgBotTxt}}</span>
+                                                                              {% endif %}
+                                                                          </a>
+                                                                      </li>
+                                                                    {% else %}
+                                                                      <li class="inner-dropdown-link {{rowCls}}" {% if innrLnkHndl contains blnkRow %}{{clearItem}}{% endif %}>
+                                                                          
+                                                                          <a href="{{innrLnkUrl}}">
+                                                                              {{innrLnkTtl}}
+                                                                          </a>
+
+                                                                      </li>
+                                                                    {% endif %}
+                                                                {% endunless %}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% endif %}
+                                            </li>
+                                        {% endunless %}
+                                    {% endfor %}
+                                    
+                                {% else %}
+                                    {% assign imgLnksGrp = '' %}
+                                    {% for i in (1..imgNum) %}
+                                        {% assign imgLnkCnt     = i | minus: 1 %}
+                                        {% assign thsImgTtl     = ImgTtlSplt[imgLnkCnt] %}
+                                        {% assign thsImgLnk     = ImgLnkSplt[imgLnkCnt] %}
+                                        {% if thsImgTtl != nulled and thsImgLnk != nulled %}
+                                            {% capture imgLnksGrp %}
+                                                {{imgLnksGrp}}
+                                                <li class="dropdown-link">
+                                                    <a href="{{thsImgLnk}}">{{thsImgTtl}}</a>
+                                                </li>
+                                            {% endcapture %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {{imgLnksGrp}}
+                                {% endunless %}
+                            {% endcapture %}
+                            {{lnks}} {% comment %} place lnks capture  {% endcomment %}
+                        </ul>
+                    {% endif %}
+                {% endcapture %}
+                {% if midChkCnt < 1 and using_mob_menu == true %}
+                    {% comment %}<!-- {{otrLnk.links.size}} {{midChkCnt}} -->{% endcomment %}
+                    {% assign lnkClass = 'main-link' %}
+                    {% assign dropDown = '' %}
+                    {% assign lnks = '' %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+        {% comment %} Capture Top Level Link Item {% endcomment %}
+        {% capture itm %}
+            {{itm}}
+            {% comment %} add previous itms if they exist {% endcomment %}
+            <li class="nav-item {{lnkClass}}" data-nav-item="{{otrLnkHndl}}">
+                <a href="{{otrLnkUrl}}">
+                    {% if lnkIcnUrl != '' and using_mob_menu != true %}
+                        <!-- <img src="{{lnkIcnUrl}}" alt="{{lnkIcon.alt}}" height="{{lnkIcon.height}}" width="{{lnkIcon.width}}" /> -->
+
+                        {% include 'snippet--image', 
+                            img: lnkIcon, 
+                            alt: lnkIcon.alt,
+                            useBG: false,
+                            cf: false
+                        %}
+                    {% endif %}
+                    <span>{{ otrLnkTtl }}</span>
+                </a>
+
+                {{dropDown}} {% comment %} place dropDown capture {% endcomment %}
+            </li>
+        {% endcapture %}
+        {% assign blkType = '' %}
+        {% assign lnkIcnUrl = '' %}
+    {% endfor %}
+    {% assign rightitm = '' %}
+    {% for otrLnk in linklists[right_menu].links %}
+        {% assign otrLnkTtl     = otrLnk.title %}
+        {% assign otrLnkUrl     = otrLnk.url %}
+        {% assign otrLnkHndl    = otrLnkTtl | handleize %}
+        {% assign lnkClass      = 'bot-nav-item' %}
+        {% comment %} Check through Blocks for Mega Menu Matches {% endcomment %}
+        {% assign mega_menu = false %}
+        {% assign dropDown = '' %}
+        {% assign actPane = false %}
+        {% assign hasTitle = false %}
+        {% for block in section.blocks %}
+            {% assign b         = block.settings %} 
+            {% assign lnkHndl   = b.title | handleize %}
+            {% assign makeMega  = b.make_mega %}
+            {% assign lnkIcon   = b.icon %}
+            {% comment %} If Block Title matches Link Title and makeMega is true {% endcomment %}
+            {% if lnkHndl == otrLnkHndl %}
+
+            {% endif %}
+            {% if lnkHndl == otrLnkHndl and makeMega == true %}
+                {% assign blkType = block.type %}
+                {% if using_mob_menu != true %}
+                    {% assign mega_menu = true %}
+                {% endif %}
+
+                {% assign actPane = b.active %}
+                
+                {% capture megaBlckAttr %}{{ block.shopify_attributes }}{% endcapture %}
+                {% assign paneClass = 'pane--' | append: block.id %}
+                {% assign paneClassCSS = '.' | append: paneClass %}
+                {% assign sectionTitle = b.section_title %}
+                {% assign sectionLinkText = b.section_link_text %}
+                {% assign sectionLinkUrl = b.section_link_url %}
+                {% assign paneCustomCSS = b.custom_css %}
+                {% assign imgSrc = '' %}
+                {% assign imgAlt = '' %}
+                {% assign imgTtl = '' %}
+                {% assign imgCap = '' %}
+                {% assign imgBotTxt = '' %}
+                {% assign imgLnk = '' %}
+                {% assign imgTtlTop = '' %}
+                {% assign imgSmlCap = '' %}
+                {% assign imgStk = '' %}
+                {% assign imgBig = '' %}
+                {% assign colWdth = '' %}
+                {% assign  grpTtl = '' %}
+
+
+                {% unless block.type contains 'mega-menu-images-only' %}
+                    {% assign imgNum = 8 %}
+                {% else %}
+                    {% assign imgNum = 14 %}
+                {% endunless %}
+                {% for i in (1..imgNum) %}
+                    {% assign imgVar = forloop.index %}
+
+                    {% comment %}For all image block types {% endcomment %}
+                    {% capture snglGrpTtl %}{% capture imgItm %}image_{{imgVar}}_group_title{% endcapture %}{{b[imgItm]|default:nulled}}{% endcapture %}
+                    {% capture grpTtl %}{{grpTtl}}{{b[imgItm]|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% if snglGrpTtl != nulled %}
+                        {% assign hasTitle = true %}
+                    {% endif%}
+                    {% capture imgSrc %}{% capture imgItm %}image_{{imgVar}}{% endcapture %}{{imgSrc}}{{b[imgItm]|img_url:'500x'|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% capture imgAlt %}{% capture imgItm %}image_{{imgVar}}{% endcapture %}{{imgAlt}}{{b[imgItm].alt|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% capture imgTtl %}{% capture imgItm %}image_{{imgVar}}_text{% endcapture %}{{imgTtl}}{{b[imgItm]|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% capture imgCap %}{% capture imgItm %}image_{{imgVar}}_caption{% endcapture %}{{imgCap}}{{b[imgItm]|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% capture imgBotTxt %}{% capture imgItm %}image_{{imgVar}}_bottom_text{% endcapture %}{{imgBotTxt}}{{b[imgItm]|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% capture imgLnk %}{% capture imgItm %}image_{{imgVar}}_url{% endcapture %}{{imgLnk}}{{b[imgItm]|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% capture imgTtlTop %}{% capture imgItm %}image_{{imgVar}}_title_top{% endcapture %}{{imgTtlTop}}{{b[imgItm]}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    
+                    {% comment %} For mixed link and images block {% endcomment %}
+                    {% capture colWdth %}{% capture imgItm %}width_{{imgVar}}{% endcapture %}{{colWdth}}{{b[imgItm]|default:nulled}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% capture imgStk %}{% capture imgItm %}image_{{imgVar}}_stacked{% endcapture %}{{imgStk}}{{b[imgItm]}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+                    {% comment %}<!-- {{imgItm}} -->{% endcomment %}
+                    {% comment %}<!-- {{b[imgItm]}} -->{% endcomment %}
+                    {% comment %} For image only block {% endcomment %}
+                    {% capture imgBig %}{% capture imgItm %}image_{{imgVar}}_big{% endcapture %}{{imgBig}}{{b[imgItm]}}{% unless i == imgNum %}{{imgSpltr}}{% endunless %}{% endcapture %}
+
+                {% endfor %}
+                {% comment %}<!-- {{imgStk}} -->{% endcomment %}
+            {% endif %}
+            {% comment %} If Block Title matches Link Title and Icon is not blank  {% endcomment %}
+            {% if lnkHndl == otrLnkHndl and lnkIcon != blank %}
+                {% assign lnkIcnUrl = lnkIcon | img_url: 'large' %}
+            {% endif %}
+        {% endfor %}
+        {% comment %} If link has children  {% endcomment %}
+        {% if otrLnk.levels > 0 %} 
+            {% comment %} Create Mega Menu Pane {% endcomment %}
+            {% if mega_menu == true %}
+                {% comment %} Capture DropDown Arrow for Main Nav Item. {% endcomment %}
+                {% capture dropDown %}
+                    {{dropDownArrow}}
+                {% endcapture %}
+                {% comment %} Set Link Class {% endcomment %}
+                {% assign lnkClass = 'main-link--with-mega' %}
+                {% if using_mega_menu == true %}
+                    {% comment %} Set Grid Replace {% endcomment %}
+                    {% assign clsRplc = '|WIDTH|' %}
+                    {% comment %} Capture Mega Menu Panel  {% endcomment %}
+                    {% capture megaPanel %}
+                        {{ megaPanel }} {% comment %} add previous panels if they exist {% endcomment %}
+                        {% assign sngleCol      = '' %}
+                        {% assign multiCol      = '' %}
+                        {% assign colWdthNum    = '' %}
+                        {% assign tabTrig       = '' %}
+                        {% assign tabCont       = '' %}
+                        {% assign tabImgs       = '' %}
+
+                        {% assign minusFromTotal = 0 %}
+                        {% assign imgLnkCnt     = 1 %}
+                        {% assign midForLoop    = 0 %}
+                        {% assign stackedImages = '' %}
+                        {% assign colWdthSplt   = colWdth | split: imgSpltr %}
+                        {% assign ImgSrcSplt    = imgSrc | split: imgSpltr %}
+                        {% assign ImgAltSplt    = imgAlt | split: imgSpltr %}
+                        {% assign GroupTtlSplt  = grpTtl | split: imgSpltr %}
+                        {% assign ImgStkSplt    = imgStk | split: imgSpltr %}
+                        {% assign ImgTtlSplt    = imgTtl | split: imgSpltr %}
+                        {% assign ImgCapSplt    = imgCap | split: imgSpltr %}
+                        {% assign ImgBotTxtSplt = imgBotTxt | split: imgSpltr %}
+                        {% assign ImgSmlCapSplt = imgSmlCap | split: imgSpltr %}
+                        {% assign ImgTtlTopSplt = imgTtlTop | split: imgSpltr %}
+                        {% assign ImgLnkSplt    = imgLnk | split: imgSpltr %}
+                        {% assign ImgBigSplt    = imgBig | split: imgSpltr %}
+                        <div class="mega-pane {{blkType}} {% if actPane == true and actPane != false %}force-active{% endif %} {{paneClass}}" data-megamenu="{{otrLnkHndl}}" {{megaBlckAttr}}>
+                            <div class="page-width">
+                                
+                                {% if sectionTitle != blank %}
+                                  <div class="section--title">
+                                    <h2>{{sectionTitle}}</h2>
+                                    {% if sectionLinkUrl != blank and sectionLinkText != blank %}
+                                      <a href="{{sectionLinkUrl}}">
+                                        {{sectionLinkText}}
+                                      </a>
+                                    {% endif %}
+                                  </div>
+                                {% endif %}
+
+                                <div class="cell cell_margin_bottom vert-top text-center">
+                                    {% unless blkType == 'mega-menu-images-only' %}
+                                        {% for midLnk in otrLnk.links limit: 8 %}
+                                            {% assign dropItems     = '' %}
+                                            {% assign midClsChcker  = midLnk.title | downcase %}
+                                            {% assign midLnkTtl     = midLnk.title | replace: hdrRow,'' | replace: hglghtRow,'' %}
+                                            {% assign midLnkUrl     = midLnk.url %}
+                                            {% assign midLnkHndl    = midLnk.title | handleize %}
+                                            {% assign midForLoop    = midForLoop | plus: 1 %}
+                                            {% assign num           = imgLnkCnt | minus: 1 %}
+                                            {% comment %} Capture each list group {% endcomment %}
+                                            {% assign thsImgSrc     = ImgSrcSplt[num] %}
+                                            {% assign hasImg = false %}
+                                            {% unless thsImgSrc contains 'no-image' %}
+                                                {% assign hasImg = true %}
+                                            {% endunless %}
+                                            {% comment %}<!------ {{midForLoop}} / {{num}} / {{hasImg}} / {{midClsChcker}} / stacked: {{ImgStkSplt[num]}} ------->{% endcomment %}
+                                            {% if midClsChcker contains imgCol and hasImg == true %}
+                                                {% comment %}<!-- Type 1 -->{% endcomment %}
+                                                {% assign thsImgAlt     = ImgAltSplt[num] %}
+                                                {% assign thsGroupTtl   = GroupTtlSplt[num] %}
+                                                {% assign thsImgTtl     = ImgTtlSplt[num] %}
+                                                {% assign thsImgCap     = ImgCapSplt[num] %}
+                                                {% assign thsImgBotTxt  = ImgBotTxtSplt[num] %}
+                                                {% assign thsImgTtlTop  = ImgTtlTopSplt[num] %}
+                                                {% assign thsImgStk     = ImgStkSplt[num] %}
+                                                {% assign thsImgLnk     = ImgLnkSplt[num] %}
+
+                                                {% unless thsImgSrc contains 'no-image' %}
+                                                    
+                                                    {% comment %} Check for Vimeo Links and add to array. {% endcomment %}
+                                                    {% assign modalClass = '' %}
+                                                    {% if thsImgLnk contains 'vimeo' %}
+                                                        {% assign modalClass = 'btn-modal' %}
+                                                        {% capture videoElements %}{{ videoElements }}{{ thsImgTtl | handleize }},{% endcapture %}
+                                                        {% assign urlArray = thsImgLnk | split: '/' %}
+                                                        {% assign videoId = urlArray | last %}
+                                                        {% capture videoIds %}{{ videoIds }}{{ videoId }},{% endcapture %}
+                                                        {% assign thsImgLnk = thsImgTtl | handleize | prepend: '#' %}
+                                                    {% endif %}
+
+
+                                                    {% capture imgBlk %}
+                                                        {% capture Ttl %}
+                                                            <span class="top-text row-title">{{thsImgTtl}}</span>
+                                                        {% endcapture %}
+                                                        {% if thsGroupTtl != nulled or hasTitle == true %}
+                                                            {% capture grpTtlCapture %}
+                                                                <span class="group-title" {% if hasTitle == true and thsGroupTtl == nulled %}{{clearItem}}{% endif %}>{{thsGroupTtl}}</span>
+                                                            {% endcapture %}
+                                                            {% if thsGroupTtl == nulled and hasTitle == true and prevGrpTtlCapture != blank %}
+                                                                {% capture prevCapClsRplc %}class="group-title"{% endcapture %}
+                                                                {% capture clearInsert %}{{prevCapClsRplc}} {{clearItem}}{% endcapture %}
+                                                                {{prevGrpTtlCapture|replace:prevCapClsRplc,clearInsert}}
+                                                            {% else %}
+                                                                {{grpTtlCapture}}
+                                                                {% assign prevGrpTtlCapture = grpTtlCapture %}
+                                                            {% endif %}
+                                                        {% endif %}
+                                                        <a href="{{thsImgLnk}}" class="image-block {{modalClass}}">
+                                                            {% if thsImgTtl != nulled and thsImgTtlTop contains 'true' %}
+                                                                {{Ttl}}
+                                                            {% endif %}
+                                                            {% comment %}
+                                                            <img src="{{thsImgSrc}}" alt="{{thsImgAlt}}" />
+                                                            {% endcomment %}
+                                                            <div style="background-image: url({{thsImgSrc}});" title="{{thsImgAlt}}" class="bg_image"></div>
+                                                            {% if thsImgTtl != nulled and thsImgTtlTop contains 'false' %}
+                                                                {{Ttl}}
+                                                            {% endif %}
+                                                            {% if thsImgCap != nulled %}
+                                                                <span class="middle-text">{{thsImgCap}}</span>
+                                                            {% endif %}
+                                                            {% if thsImgBotTxt != nulled %}
+                                                                <span class="bottom-text">{{thsImgBotTxt}}</span>
+                                                            {% endif %}
+                                                        </a>
+                                                    {% endcapture %}
+                                                    {% if thsImgStk contains 'true' or thsImgStk contains true %}
+                                                        {% assign midForLoop = midForLoop | minus: 1 %}
+                                                        {% assign minusFromTotal = minusFromTotal | plus: 1 %}
+                                                        {% capture stackedImages %}
+                                                            {{stackedImages}}
+                                                            {{imgBlk}}
+                                                        {% endcapture %}
+                                                    {% else %}
+                                                        {% capture sngleList %}
+                                                            {% if stackedImages != '' %}
+                                                                {{stackedImages}}
+                                                                {% assign stackedImages = '' %}
+                                                            {% endif %}
+                                                            {{imgBlk}}
+                                                        {% endcapture %}
+                                                    {% endif %}
+                                                    {% assign imgLnkCnt = imgLnkCnt | plus: 1 %}
+                                                {% endunless %}
+                                            {% else %}
+                                                {% comment %}<!-- Type 2 -->{% endcomment %}
+                                                {% capture hdrCls %}row-title {% if midClsChcker contains hglghtRow %}highlight-item {% endif %}{% endcapture %}
+                                                {% capture rowCls %}{% if midClsChcker contains hdrRow %}row-title {% endif %}{% if midClsChcker contains hglghtRow %}highlight-item {% endif %}{% endcapture %}
+                                                
+                                                {% for innrLnk in midLnk.links %}  
+                                                    {% assign innrClsChckr  = innrLnk.title | downcase %}
+                                                    {% assign innrLnkTtl    = innrLnk.title | replace: hdrRow,'' | replace: hglghtRow,'' %}
+                                                    {% assign innrLnkUrl    = innrLnk.url %}
+                                                    {% assign innrLnkHndl   = innrLnk.title | handleize %}
+                                                    {% capture rowCls %}{% if innrClsChckr contains hdrRow %}row-title {% endif %}{% endcapture %}
+                                                    {% if innrClsChckr contains imgCol %}
+                                                        {% assign thsImgSrc     = ImgSrcSplt[imgLnkCnt] %}
+                                                        {% assign thsImgAlt     = ImgAltSplt[imgLnkCnt] %}
+                                                        {% assign thsGroupTtl   = GroupTtlSplt[num] %}
+                                                        {% assign thsImgTtl     = ImgTtlSplt[imgLnkCnt] %}
+                                                        {% assign thsImgCap     = ImgCapSplt[imgLnkCnt] %}
+                                                        {% assign thsImgBotTxt  = ImgBotTxtSplt[imgLnkCnt] %}
+                                                        {% assign thsImgTtlTop  = ImgTtlTopSplt[imgLnkCnt] %}
+                                                        {% assign thsImgStk     = ImgStkSplt[imgLnkCnt] %}
+                                                        {% assign thsImgLnk     = ImgLnkSplt[imgLnkCnt] %}
+                                                        {% assign hasImg = false %}
+                                                        {% unless thsImgSrc contains 'no-image' %}
+                                                            {% assign hasImg = true %}
+                                                        {% endunless %}
+                                                        {% unless thsImgSrc contains 'no-image' %}
+                                                            {% comment %}<!-- {{innrLnk.title}} -->{% endcomment %}
+
+                                                            {% comment %} Check for Vimeo Links and add to array. {% endcomment %}
+                                                            {% assign modalClass = '' %}
+                                                            {% if thsImgLnk contains 'vimeo' %}
+                                                                {% comment %}{% assign modalClass = 'btn-modal' %}{% endcomment %}
+                                                                {% capture videoElements %}{{ videoElements }}{{ thsImgTtl | handleize }},{% endcapture %}
+                                                                {% assign urlArray = thsImgLnk | split: '/' %}
+                                                                {% assign videoId = urlArray | last %}
+                                                                {% capture videoIds %}{{ videoIds }}{{ videoId }},{% endcapture %}
+                                                                {% assign thsImgLnk = thsImgTtl | handleize | prepend: '#' %}
+                                                            {% endif %}
+
+                                                            {% capture imgBlk %}
+                                                                {% capture Ttl %}
+                                                                    <span class="top-text">{{thsImgTtl}}</span>
+                                                                {% endcapture %}
+
+                                                                {% if thsGroupTtl != nulled or hasTitle == true %}
+                                                                    {% comment %}<span class="group-title" {% if hasTitle == true and thsGroupTtl == nulled %}{{clearItem}}{% endif %}>{{thsGroupTtl}}</span>{% endcomment %}
+                                                                    {% capture grpTtlCapture %}
+                                                                        <span class="group-title" {% if hasTitle == true and thsGroupTtl == nulled %}{{clearItem}}{% endif %}>{{thsGroupTtl}}</span>
+                                                                    {% endcapture %}
+                                                                    {% if thsGroupTtl == nulled and hasTitle == true and prevGrpTtlCapture != blank %}
+                                                                        {% capture prevCapClsRplc %}class="group-title"{% endcapture %}
+                                                                        {% capture clearInsert %}{{prevCapClsRplc}} {{clearItem}}{% endcapture %}
+                                                                        {{prevGrpTtlCapture|replace:prevCapClsRplc,clearInsert}}
+                                                                    {% else %}
+                                                                        {{grpTtlCapture}}
+                                                                        {% assign prevGrpTtlCapture = grpTtlCapture %}
+                                                                    {% endif %}
+
+                                                                {% endif %}
+                                                                <a href="{{thsImgLnk}}" class="image-block  {% if midForLoop == 1 %}mega--active{% endif %}" data-links="{{midLnkHndl}}">
+                                                                    {% if thsImgTtl != nulled and thsImgTtlTop contains 'true' %}
+                                                                        {{Ttl}}
+                                                                    {% endif %}
+                                                                    <div style="background-image: url({{thsImgSrc}});" title="{{thsImgAlt}}" class="bg_image"></div>
+                                                                    {% if thsImgTtl != nulled and thsImgTtlTop contains 'false' %}
+                                                                        {{Ttl}}
+                                                                    {% endif %}
+                                                                    {% if thsImgCap != nulled %}
+                                                                        <span class="middle-text">{{thsImgCap}}</span>
+                                                                    {% endif %}
+                                                                    {% if thsImgBotTxt != nulled %}
+                                                                        <span class="bottom-text">{{thsImgBotTxt}}</span>
+                                                                    {% endif %}
+                                                                </a>
+                                                            {% endcapture %}
+                                                            {% if thsImgStk contains 'true' or thsImgStk contains true %}
+                                                                {% assign midForLoop = midForLoop | minus: 1 %}
+                                                                {% assign minusFromTotal = minusFromTotal | plus: 1 %}
+                                                                {% capture stackedImages %}
+                                                                    {{stackedImages}}
+                                                                    {{imgBlk}}
+                                                                {% endcapture %}
+                                                            {% elsif blkType == 'mega-menu-tabs' %}
+                                                                {% capture tabImgs %}
+                                                                    {{tabImgs}}
+                                                                    {% if stackedImages != '' %}
+                                                                        {{stackedImages}}
+                                                                        {% assign stackedImages = '' %}
+                                                                    {% endif %}
+                                                                    {{imgBlk}}
+                                                                {% endcapture %}
+                                                                {% assign imgLnkCnt = imgLnkCnt | plus: 1 %}
+                                                            {% else %}
+                                                                {% capture sngleList %}
+                                                                    {% if stackedImages != '' %}
+                                                                        {{stackedImages}}
+                                                                        {% assign stackedImages = '' %}
+                                                                    {% endif %}
+                                                                    {{imgBlk}}
+                                                                {% endcapture %}
+                                                                {% assign imgLnkCnt = imgLnkCnt | plus: 1 %}
+                                                            {% endif %}
+                                                        {% endunless %}
+                                                    {% else %}
+                                                        {% comment %} Check for Vimeo Links and add to array. {% endcomment %}
+                                                        {% assign modalClass = '' %}
+                                                        {% if thsImgLnk contains 'vimeo' %}
+                                                            {% assign modalClass = 'btn-modal' %}
+                                                            {% capture videoElements %}{{ videoElements }}{{ thsImgTtl | handleize }},{% endcapture %}
+                                                            {% assign urlArray = thsImgLnk | split: '/' %}
+                                                            {% assign videoId = urlArray | last %}
+                                                            {% capture videoIds %}{{ videoIds }}{{ videoId }},{% endcapture %}
+                                                            {% assign thsImgLnk = thsImgTtl | handleize | prepend: '#' %}
+                                                        {% endif %}
+                                                        {% capture dropItems %}
+                                                            {{dropItems}}
+                                                            <li class="{{rowCls}}" {% if innrClsChckr contains blnkRow %}{{clearItem}}{% endif %}>
+                                                                <a class="{{modalClass}}" href="{{innrLnkUrl}}">
+                                                                    {{innrLnkTtl}}
+                                                                </a>
+                                                            </li>
+                                                        {% endcapture %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                                {% if dropItems != '' %}
+                                                    {% capture dropItems %}
+                                                        <ul class="mega-menu-list">
+                                                            {{dropItems}}               
+                                                        </ul>
+                                                    {% endcapture %}
+                                                {% endif %}
+
+                                                {% if blkType == 'mega-menu-tabs' %}
+                                                    {% capture tabTrig %}
+                                                        {{tabTrig}}
+                                                        <div data-tab="{{midLnkHndl}}" class="tab-item {% if midForLoop == 1 %}current{% endif %} {{hdrCls}}">
+                                                            <span>{{midLnkTtl}}</span>
+                                                        </div>
+                                                    {% endcapture %}
+                                                    {% capture tabCont %}
+                                                        {{tabCont}}
+                                                        <div class="tab-content {% if midForLoop == 1 %}mega--active{% endif %}" data-links="{{midLnkHndl}}">
+                                                            {{dropItems}}
+                                                        </div>
+                                                    {% endcapture %}
+                                                {% else %}
+                                                    {% capture sngleList %}
+                                                        <a href="{{midLnkUrl}}" class="{{hdrCls}}" {% if midClsChcker contains blnkRow %}{{clearItem}}{% endif %}>{{ midLnkTtl }}</a>
+                                                        {{dropItems}}
+                                                    {% endcapture %}
+                                                {% endif %}
+                                            {% endif %}
+                                            {% comment %} Column classes builder {% endcomment %}
+                                            {% assign baseClass     = 'cell__item text-left' %}
+                                            {% comment %}{% assign colWdthNum    = midForLoop %}{% endcomment %}
+                                            {% assign colWdthNum    = midForLoop | minus: 1 | at_most: imgNum %}
+                                            {% assign thsColWdth    = colWdthSplt[colWdthNum] %}
+                                            {% assign thsWdth       = clsRplc %}
+                                            {% if thsColWdth != 'auto' %}
+                                                {% case thsColWdth %}
+                                                    {% when '8%' %}{%- assign thsWdth = 'medium--one-third large-up--one-twelfth' -%}
+                                                    {% when '10%' %}{%- assign thsWdth = 'medium--one-third large-up--one-tenth' -%}
+                                                    {% when '16%' %}{%- assign thsWdth = 'medium--one-third large-up--two-twelfths' -%}
+                                                    {% when '20%' %}{%- assign thsWdth = 'medium--one-third large-up--two-tenths' -%}
+                                                    {% when '25%' %}{%- assign thsWdth = 'medium--one-third large-up--three-twelfths' -%}
+                                                    {% when '30%' %}{%- assign thsWdth = 'medium--one-third large-up--three-tenths' -%}
+                                                    {% when '33%' %}{%- assign thsWdth = 'medium--one-third large-up--four-twelfths' -%}
+                                                    {% when '40%' %}{%- assign thsWdth = 'medium--one-third large-up--four-tenths' -%}
+                                                    {% when '41%' %}{%- assign thsWdth = 'medium--one-third large-up--five-twelfths' -%}
+                                                    {% when '50%' %}{%- assign thsWdth = 'medium--one-third large-up--one-half' -%}
+                                                    {% when '58%' %}{%- assign thsWdth = 'medium--one-third large-up--seven-twelfths' -%}
+                                                    {% when '60%' %}{%- assign thsWdth = 'medium--one-third large-up--six-tenths' -%}
+                                                    {% when '66%' %}{%- assign thsWdth = 'medium--one-third large-up--eight-twelfths' -%}
+                                                    {% when '70%' %}{%- assign thsWdth = 'medium--one-third large-up--seven-tenths' -%}
+                                                    {% when '75%' %}{%- assign thsWdth = 'medium--one-third large-up--nine-twelfths' -%}
+                                                    {% when '80%' %}{%- assign thsWdth = 'medium--one-third large-up--eight-tenths' -%}
+                                                    {% when '83%' %}{%- assign thsWdth = 'medium--one-third large-up--ten-twelfths' -%}
+                                                    {% when '90%' %}{%- assign thsWdth = 'medium--one-third large-up--nine-tenths' -%}
+                                                    {% when '91%' %}{%- assign thsWdth = 'medium--one-third large-up--eleven-twelfths' -%}
+                                                    {% else %}{%- assign thsWdth = 'one-whole testtttting' -%}
+                                                {% endcase %}
+                                            {% endif %}
+
+                                            
+                                            {% comment %} On last loop build column cell {% endcomment %}
+                                            {% assign last = otrLnk.links.size | minus: minusFromTotal %}  
+                                            {% comment %} Final Check to make sure blank and duplicate content is not being added {% endcomment %}
+                                            {% assign allow = false %}
+                                            {% unless midClsChcker contains imgCol and hasImg == false %}
+                                                {% comment %}<!-- hasImg {{midForLoop}}: {{hasImg}} -->{% endcomment %}
+                                                {% unless thsImgStk contains 'true' or thsImgStk contains true %}
+                                                    {% comment %}<!-- thsImgStk {{midForLoop}}: {{thsImgStk}} -->{% endcomment %}
+                                                    {% assign allow = true %}
+                                                {% endunless %}
+                                            {% endunless %}
+                                            {% if forloop.last %}
+                                                {% assign allow = true %}
+                                            {% endif %}
+
+                                            {% comment %}
+                                            <!-- 
+                                                Title:          {{midLnkTtl}} / {{thsImgTtl}}
+                                                Checker:        {{midClsChcker}} {% if midClsChcker contains imgCol %}true{% else %}false{% endif %}
+                                                Has Image:      {{hasImg}}
+                                                Allow:          {{allow}} 
+                                                Stack:          {{thsImgStk}}
+                                                Mid for Loop:   {{midForLoop}}
+                                                Img Link Count: {{imgLnkCnt}}
+                                                Last:           {{last}}
+                                            -->
+                                            {% endcomment %}
+                                            {% comment %} If imgNum or less add as single column {% endcomment %}
+                                            {% if midForLoop <= imgNum and allow != false %}
+                                                {% comment %}<!-- Capture Single Column {{midForLoop}} / {{midClsChcker}} -->{% endcomment %}
+                                                {% capture sngleCol %}
+                                                    {{sngleCol}} {% comment %} add previous single columns if they exist {% endcomment %}
+                                                    <div class="{{baseClass}} {{thsWdth}} ">
+                                                        {{sngleList}}
+                                                    </div>
+                                                {% endcapture %}
+                                            {% endif %}
+                                            {% comment %} When more than imgNum, group 5-8 in one multi column {% endcomment %}
+                                            {% if midForLoop > imgNum and allow != false %}
+                                                {% comment %}<!-- Capture Multi-Column {{midForLoop}} / {{midClsChcker}} -->{% endcomment %}
+                                                {% capture multiCol %}
+                                                    {{multiCol}} {% comment %} add previous multi columns if they exist {% endcomment %}
+                                                    <div class="list-group">
+                                                        {{sngleList}}
+                                                    </div>
+                                                {% endcapture %}
+                                            {% endif %}
+
+                                                                       
+                                            {% comment %} Create Grid based on Final midForLoop {% endcomment %}
+                                            {% case midForLoop %}
+                                                {% when 1 %}{%- capture width -%}{% endcapture %}
+                                                {% when 2 %}{%- capture width -%}medium-up--one-half{% endcapture %}
+                                                {% when 3 %}{%- capture width -%}medium-up--one-third{% endcapture %}
+                                                {% when 4 %}{%- capture width -%}medium--one-third large-up--one-quarter{% endcapture %}
+                                                {% when 6 %}{%- capture width -%}medium--one-third large-up--one-sixth{% endcapture %}
+                                                {% else %}{%- capture width -%}medium--one-third large-up--one-fifth{% endcapture %}
+                                            {% endcase %}
+                                            {% if last == midForLoop %}
+                                                {% if blkType == 'mega-menu-tabs' %}
+                                                    {% capture fullPane %}
+                                                        <div class="cell__item medium-up--one-quarter ex-large-up--one-fifth">
+                                                            {{tabTrig}}
+                                                        </div>
+                                                        <div class="cell__item medium-up--three-quarters ex-large-up--four-fifths">
+                                                            {% if tabImgs != '' %}
+                                                                <div class="cell cell_margin_bottom vert-top">
+                                                                    <div class="cell__item medium--two-thirds large-up--three-quarters">
+                                                            {% endif %}
+                                                                        {{tabCont}}
+                                                            {% if tabImgs != '' %}
+                                                                    </div>
+                                                                    <div class="cell__item medium--one-third large-up--one-quarter">
+                                                                        {{tabImgs}}
+                                                                    </div>
+                                                                </div>
+                                                            {% endif %}
+                                                        </div>
+                                                    {% endcapture %}
+                                                {% else %}
+                                                    {% capture fullPane %}
+                                                        {{sngleCol}}
+                                                        {% if midForLoop > 4 and multiCol != '' %}
+                                                            <div class="{{baseClass}} {{thsWdth}}">
+                                                                {{multiCol}}
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endcapture %}
+                                                {% endif %}
+                                                {{fullPane|replace:clsRplc,width}}
+                                            {% endif %}
+                                            {% comment %}{% assign blkType = '' %}{% endcomment %}
+
+                                            {% assign colWdth = '' %}
+                                            {% assign thsImgSrc = '' %}
+                                            {% assign prevImgStk = thsImgStk %}
+                                            {% assign thsImgStk = '' %}
+                                        {% endfor %}
+
+                                    {% else %}
+                                        {% comment %} Only Images Pane {% endcomment %}
+                                        {% assign smlImgCnt = 0 %}
+                                        {% assign smlImgs = '' %}
+                                        {% assign bigImg = '' %}
+                                        {% for i in (1..imgNum) %}
+                                            {% assign imgLnkCnt     = i | minus: 1 %}
+                                            {% assign thsImgSrc     = ImgSrcSplt[imgLnkCnt] %}
+                                            {% assign thsImgAlt     = ImgAltSplt[imgLnkCnt] %}
+                                            {% assign thsImgTtl     = ImgTtlSplt[imgLnkCnt] %}
+                                            {% assign thsImgCap     = ImgCapSplt[imgLnkCnt] %}
+                                            {% assign thsImgBotTxt  = ImgBotTxtSplt[imgLnkCnt] %}
+                                            {% assign thsImgSmlCap  = ImgSmlCapSplt[imgLnkCnt] %}
+                                            {% assign thsImgTtlTop  = ImgTtlTopSplt[imgLnkCnt] %}
+                                            {% assign thsImgStk     = ImgStkSplt[imgLnkCnt] %}
+                                            {% assign thsImgLnk     = ImgLnkSplt[imgLnkCnt] %}
+                                            {% assign thsImgBig     = ImgBigSplt[imgLnkCnt] %}
+                                            {% assign thsWdth       = clsRplc %}
+                                            {% unless thsImgSrc contains 'no-image' %}
+                                                {% capture imgBlk %}
+                                                    {% capture Ttl %}
+                                                        <span class="title">{{thsImgTtl}}</span>
+                                                    {% endcapture %}
+                                                    {% if thsGroupTtl != nulled or hasTitle == true %}
+                                                        {% capture grpTtlCapture %}
+                                                            <span class="group-title" {% if hasTitle == true and thsGroupTtl == nulled %}{{clearItem}}{% endif %}>{{thsGroupTtl}}</span>
+                                                        {% endcapture %}
+                                                        {% if thsGroupTtl == nulled and hasTitle == true and prevGrpTtlCapture != blank %}
+                                                            {% capture prevCapClsRplc %}class="group-title"{% endcapture %}
+                                                            {% capture clearInsert %}{{prevCapClsRplc}} {{clearItem}}{% endcapture %}
+                                                            {{prevGrpTtlCapture|replace:prevCapClsRplc,clearInsert}}
+                                                        {% else %}
+                                                            {{grpTtlCapture}}
+                                                            {% assign prevGrpTtlCapture = grpTtlCapture %}
+                                                        {% endif %}
+                                                    {% endif %}
+
+
+                                                    <a href="{{thsImgLnk}}" class="image-block">
+                                                        {% if thsImgTtl != nulled and thsImgTtlTop contains 'true' %}
+                                                            {{Ttl}}
+                                                        {% endif %}
+                                                        {% comment %}<img src="{{thsImgSrc}}" alt="{{thsImgAlt}}" />{% endcomment %}
+                                                        <div style="background-image: url({{thsImgSrc}});" title="{{thsImgAlt}}" class="bg_image"></div>
+                                                        {% if thsImgCap != nulled %}
+                                                            <span class="caption">{{thsImgCap}}</span>
+                                                        {% endif %}
+                                                        {% if thsImgTtl != nulled and thsImgTtlTop contains 'false' %}
+                                                            {{Ttl}}
+                                                        {% endif %}
+                                                        {% if thsImgBotTxt != nulled %}
+                                                            <span class="bottom-text">{{thsImgBotTxt}}</span>
+                                                        {% endif %}
+                                                    </a>
+                                                {% endcapture %}
+                                                {% unless thsImgBig == 'true' %}
+                                                    {% assign smlImgCnt = smlImgCnt | plus: 1 %}
+                                                    {% capture smlImgs %}
+                                                        {{smlImgs}}
+                                                        <div class="cell__item {{thsWdth}}">
+                                                            {{imgBlk}}
+                                                        </div>
+                                                    {% endcapture %}
+                                                {% endunless %}
+                                                {% unless thsImgBig != 'true' %}
+                                                    {% capture bigImg %}
+                                                        {{imgBlk}}
+                                                    {% endcapture %}
+                                                {% endunless %}
+                                            {% endunless %}
+                                        {% endfor %}
+                                        {% case smlImgCnt %}
+                                            {% when 2 %}{% assign width = 'medium-up--one-half' %}
+                                            {% when 3 or 6 %}{% assign width = 'medium-up--one-third' %}
+                                            {% when 4 or 7 or 8 %}{% assign width = 'medium-up--one-quarter' %}
+                                            {% when 5 or 9 or 10 %}{% assign width = 'medium--one-third large-up--one-fifth' %}
+                                            {% else %}{% assign width = 'medium--one-third large-up--one-sixth' %}
+                                        {% endcase %}
+                                        {% if smlImgs != '' %}
+                                            {% if bigImg != '' %}
+                                                <div class="cell__item medium--two-thirds large-up--three-fifths">
+                                            {% endif %}
+                                                    <div class="cell cell_margin_bottom vert-top image-row">
+                                                        {{smlImgs|replace:clsRplc,width}}
+                                                    </div>
+                                            {% if bigImg != '' %}
+                                                </div>
+                                                <div class="cell__item medium--one-third large-up--two-fifths big-image">
+                                                    {{bigImg}}
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+
+                                    {% endunless %}
+                                </div>
+
+                                {% include 'custom-css', css: paneCustomCSS, class: paneClassCSS %}
+
+                            </div>
+                        </div>
+                    {% endcapture %}
+                {% endif %}
+            {% comment %} Create Dropdown Pane {% endcomment %}
+            {% else %}
+                {% comment %} Set Link Class {% endcomment %}
+                {% assign lnkClass = 'main-link--with-dropdown bot-nav-item' %}
+                {% comment %} Capture Dropdown {% endcomment %}
+                {% capture dropDown %}
+                    {% if otrLnk.links.size > 0 %}
+                        {% comment %} Arrow for Mobile nav {% endcomment %}
+                        {% if using_mob_menu == true %}
+                            {{dropDownArrow}}
+                        {% endif %}
+                        <ul class="dropdown-list text-left block-type-{{blkType}}" data-dropdown="{{otrLnkHndl}}">
+                            {% comment %} 
+                                For some reason i have to capture these then place 
+                                capture at bottom of <ul> or it breaks the entire thing. 
+                                No clue why.
+                            {% endcomment %}
+                            {% capture lnks %}
+                                {% if using_mob_menu == true %}
+                                    <li class="nav-title">
+                                        {{dropDownArrow|replace:'menu-toggle','menu-toggle reverse'|replace:'icon-chevron-down','icon-chevron-down reverse'}}
+                                        <span>{{otrLnkTtl}}</span>
+                                    </li>
+                                {% endif %}
+                                {% assign midChkCnt     = 0 %}
+                                {% assign ImgTtlSplt    = imgTtl | split: imgSpltr %}
+                                {% assign ImgLnkSplt    = imgLnk | split: imgSpltr %}
+                                {% unless blkType contains 'mega-menu-images-only' %}
+                                    {% for midLnk in otrLnk.links %}
+                                        {% assign midClsChcker  = midLnk.title | downcase %}
+                                        {% assign midLnkTtl     = midLnk.title | replace: hdrRow,'' | replace: hglghtRow,'' %}
+                                        {% assign midLnkUrl     = midLnk.url %}
+                                        {% assign midLnkHndl    = midLnk.title | handleize %}
+                                        {% capture rowCls %}{% if midClsChcker contains hdrRow %}row-title {% endif %}{% if midClsChcker contains hglghtRow %}highlight-item {% endif %}{% endcapture %}
+                                        {% assign showItem = true %}
+                                        {% if midClsChcker contains imgCol and using_mob_menu == true %}
+                                            {% assign showItem = false %}
+                                        {% endif %}
+                                        {% unless show_item == false or midClsChcker contains imgCol or midClsChcker contains blnkRow or midClsChcker contains hdrRow %}
+                                            {% assign midChkCnt = midChkCnt | plus: 1 %}
+                                            {% comment %}<!-- {{midClsChcker}} contains {{imgCol}} -->{% endcomment %}
+                                            <li class="dropdown-link {% if midLnk.links.size > 0 %}has-third-tier-dropdown{% endif %} {{rowCls}}" data-inner-nav-item="{{midLnkHndl}}">
+                                                <a href="{{midLnkUrl}}">{{ midLnkTtl }}</a>
+                                                {% if using_mob_menu == true and midLnk.links.size > 0 %}
+                                                    {{dropDownArrow}}
+                                                {% endif %}
+                                                {% if midLnk.links.size > 0 %}
+                                                    <ul class="inner-dropdown-list" data-inner-dropdown="{{midLnkHndl}}">
+                                                        {% comment %} Arrow for Mobile nav {% endcomment %}
+                                                        {% if using_mob_menu == true %}
+                                                            <li class="nav-title">
+                                                                {{dropDownArrow|replace:'menu-toggle','menu-toggle reverse'|replace:'icon-chevron-down','icon-chevron-down reverse'}}
+                                                                <span>{{midLnkTtl}}</span>
+                                                            </li>
+                                                        {% endif %}
+                                                        {% for innrLnk in midLnk.links %} 
+                                                            {% assign innrClsChckr  = innrLnk.title | downcase %}
+                                                            {% assign innrLnkTtl    = innrLnk.title | replace: hdrRow,'' | replace: hglghtRow,'' %}
+                                                            {% assign innrLnkUrl    = innrLnk.url %}
+                                                            {% assign innrLnkHndl   = innrLnk.title | handleize %}
+                                                            {% capture rowCls %}{% if innrClsChckr contains hdrRow %}row-title {% endif %}{% endcapture %}
+                                                            {% assign showItem = true %}
+                                                            {% if innrClsChcker contains imgCol and using_mob_menu == true and using_mob_as_side_menu == false %}
+                                                                {% assign showItem = false %}
+                                                            {% endif %}
+                                                            {% if showItem == true %}
+                                                                {% unless innrClsChckr contains blnkRow %}
+                                                                    {% if innrClsChcker contains imgCol %}
+                                                                      <li class="inner-dropdown-link {{rowCls}}" {% if innrLnkHndl contains blnkRow %}{{clearItem}}{% endif %}>
+                                                                          <a href="{{thsImgLnk}}" class="image-block {{modalClass}}">
+                                                                              {% if thsImgTtl != nulled and thsImgTtlTop contains 'true' %}
+                                                                                  {{Ttl}}
+                                                                              {% endif %}
+                                                                              <div style="background-image: url({{thsImgSrc}});" title="{{thsImgAlt}}" class="bg_image"></div>
+                                                                              {% if thsImgTtl != nulled and thsImgTtlTop contains 'false' %}
+                                                                                  {{Ttl}}
+                                                                              {% endif %}
+                                                                              {% if thsImgCap != nulled %}
+                                                                                  <span class="middle-text">{{thsImgCap}}</span>
+                                                                              {% endif %}
+                                                                              {% if thsImgBotTxt != nulled %}
+                                                                                  <span class="bottom-text">{{thsImgBotTxt}}</span>
+                                                                              {% endif %}
+                                                                          </a>
+                                                                      </li>
+                                                                    {% else %}
+                                                                      <li class="inner-dropdown-link {{rowCls}}" {% if innrLnkHndl contains blnkRow %}{{clearItem}}{% endif %}>
+                                                                          
+                                                                          <a href="{{innrLnkUrl}}">
+                                                                              {{innrLnkTtl}}
+                                                                          </a>
+
+                                                                      </li>
+                                                                    {% endif %}
+                                                                {% endunless %}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% endif %}
+                                            </li>
+                                        {% endunless %}
+                                    {% endfor %}
+                                    
+                                {% else %}
+                                    {% assign imgLnksGrp = '' %}
+                                    {% for i in (1..imgNum) %}
+                                        {% assign imgLnkCnt     = i | minus: 1 %}
+                                        {% assign thsImgTtl     = ImgTtlSplt[imgLnkCnt] %}
+                                        {% assign thsImgLnk     = ImgLnkSplt[imgLnkCnt] %}
+                                        {% if thsImgTtl != nulled and thsImgLnk != nulled %}
+                                            {% capture imgLnksGrp %}
+                                                {{imgLnksGrp}}
+                                                <li class="dropdown-link">
+                                                    <a href="{{thsImgLnk}}">{{thsImgTtl}}</a>
+                                                </li>
+                                            {% endcapture %}
+                                        {% endif %}
+                                    {% endfor %}
+                                    {{imgLnksGrp}}
+                                {% endunless %}
+                            {% endcapture %}
+                            {{lnks}} {% comment %} place lnks capture  {% endcomment %}
+                        </ul>
+                    {% endif %}
+                {% endcapture %}
+                {% if midChkCnt < 1 and using_mob_menu == true %}
+                    {% comment %}<!-- {{otrLnk.links.size}} {{midChkCnt}} -->{% endcomment %}
+                    {% assign lnkClass = 'main-link' %}
+                    {% assign dropDown = '' %}
+                    {% assign lnks = '' %}
+                {% endif %}
+            {% endif %}
+        {% endif %}
+        {% comment %} Capture Top Level Link Item {% endcomment %}
+        {% capture rightitm %}
+            {{rightitm}}
+            {% comment %} add previous itms if they exist {% endcomment %}
+            <li class="nav-item {{lnkClass}}" data-nav-item="{{otrLnkHndl}}">
+                <a href="{{otrLnkUrl}}">
+                    {% if lnkIcnUrl != '' and using_mob_menu != true %}
+                        <!-- <img src="{{lnkIcnUrl}}" alt="{{lnkIcon.alt}}" height="{{lnkIcon.height}}" width="{{lnkIcon.width}}" /> -->
+
+                        {% include 'snippet--image', 
+                            img: lnkIcon, 
+                            alt: lnkIcon.alt,
+                            useBG: false,
+                            cf: false
+                        %}
+                    {% endif %}
+                    <span>{{ otrLnkTtl }}</span>
+                </a>
+
+                {{dropDown}} {% comment %} place dropDown capture {% endcomment %}
+            </li>
+        {% endcapture %}
+        {% assign blkType = '' %}
+        {% assign lnkIcnUrl = '' %}
+    {% endfor %}
+    {% comment %} Output Main Nav Menu {% endcomment %}
+    {% if using_main_menu == true and itm != '' %}
+        <nav class="nine15-nav nav-bar cleaned-nav header__inline-menu {{class}}" role="navigation" id="CleanedNav">
+            <ul class="desktop-nav">
+                {{itm}}
+            </ul>
+        </nav>
+    {% endif %} 
+    {% comment %} Output Mega Menu Panels {% endcomment %}
+    {% if using_mega_menu == true and megaPanel != '' %}
+        <div class="nine15-nav mega-menu-panes {{class}}">
+            {{megaPanel}}
+        </div>
+    {% endif %}
+
+    {% comment %} Output Mobile Nav Menu {% endcomment %}
+    {% if using_mob_menu == true and itm != '' %}
+        <div class="nine15-nav mobile-nav-background-close {{mobile_style}} {{class}}"></div>
+        <nav class="nine15-nav mobile-nav {{mobile_style}} {{class}}" role="navigation" id="MobNav">
+            <a href="#" class="close-nav ignore">
+                <span></span>
+                <span class="visually-hidden">Menu</span>
+            </a>
+
+            <div class="move-aside">
+                {% comment %}<h3>Menu</h3>{% endcomment %}
+
+                    <div class="nav-item main-link--account large-up--hide" >
+                        {% if customer %}
+                            <a href="{{ routes.account_url }}" class="">
+                                {% render 'icon-account' %}
+                                <span>Account</span>
+                            </a>
+                        {% else %}
+                            <a href="{{ routes.account_login_url }}" class="">
+                                {% render 'icon-account' %}
+                                <span>Sign In</span>
+                            </a>
+                        {% endif %}
+
+                         <!-- Swym Header for mobile -->
+                        <a href="#swym-wishlist" class="swym-wishlist" aria-label="Go to wishlist" title="Go to your wishlist page">
+                            <i aria-hidden="true" focusable="false" role="presentation" class="icon icon-swym-wishlist"></i>
+                            <span class="hidden" >wishlist</span>
+                        </a>
+                        <!-- Swym Header for mobile -->
+      
+                    </div>
+                {% if shop.customer_accounts_enabled %}
+                {% endif %}
+
+                <ul class="site-nav">
+                    {% comment %} If site has a top menu. {% endcomment %}
+                    {% if top_menu != blank %}
+                        {% for otrLnk in linklists[top_menu].links %}
+                            {% assign otrLnkTtl     = otrLnk.title %}
+                            {% assign otrLnkUrl     = otrLnk.url %}
+                            {% assign otrLnkHndl    = otrLnkTtl | handleize %}
+                             <li class="nav-item top-nav-item" data-nav-item="{{otrLnkHndl}}">
+                                <a href="{{otrLnkUrl}}">
+                                    <span>{{ otrLnkTtl }}</span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                   
+                    {% comment %} Main menu {% endcomment %}
+                    {{itm}}
+                    {% comment %} Right menu {% endcomment %}
+                    {{rightitm}}
+                    {% comment %} If site has a top menu. {% endcomment %}
+                    {% if bot_menu != blank %}
+                        {% for otrLnk in linklists[bot_menu].links %}
+                            {% assign otrLnkTtl     = otrLnk.title %}
+                            {% assign otrLnkUrl     = otrLnk.url %}
+                            {% assign otrLnkHndl    = otrLnkTtl | handleize %}
+                             <li class="nav-item bot-nav-item" data-nav-item="{{otrLnkHndl}}">
+                                <a href="{{otrLnkUrl}}">
+                                    <span>{{ otrLnkTtl }}</span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+
+
+                    
+
+                    <li class="nav-item social-list">
+                       {% include 'snippet--social-icons' %} 
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    {% endif %} 
+{% endif %}
+
+
+{% comment %}
+IF THERE ARE VIDEOS, MAKE ELEMENTS FOR THE MODAL WINDOW
+{% endcomment %}
+{% assign elementsArray = videoElements | split: ',' | uniq %}
+{% assign idsArray = videoIds | split: ',' | uniq %}
+{% for element in elementsArray %}
+<!--     <div id="{{ element }}" class="modal" data-modal-type="iframe">
+        <div class="responsive-video responsive-video--16x9">
+            <iframe class="lazyload" data-src="https://player.vimeo.com/video/{{ idsArray[forloop.index0] }}?title=0&byline=0&portrait=0&color=006F3D" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+        <button class="btn-close">&times;</button>
+    </div> -->
+
+
+    <div class="basic-modal" data-modal="{{ element }}" id="{{ element }}">
+        <div data-close="{{element}}" class="bg_close modal-action"></div>
+        <div class="modal-inner">
+            <div class="inner-container">
+                
+                <span data-close="{{element}}" class="close-modal modal-action">
+                    <span class="visually-hidden">Close</span>
+                    {% include 'icon-close' %}
+                </span>
+                <div class="video-ratio for-modal">
+                    <iframe class="lazyload" data-src="https://player.vimeo.com/video/{{ idsArray[forloop.index0] }}?title=0&byline=0&portrait=0&color=006F3D" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+
+
+{% comment %} Resets {% endcomment %}
+{% assign using_main_menu = false %} 
+{% assign using_mega_menu = false %}
+{% assign using_mob_menu = false %}
+{% assign top_menu = '' %}
+

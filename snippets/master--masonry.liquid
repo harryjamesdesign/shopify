@@ -1,0 +1,279 @@
+<!-- include/master--masonry -->
+
+{% liquid
+
+	assign s            = section.settings
+  assign sID          = section.id
+
+  assign customCSS    = s.custom_css
+  
+  assign sectionClass = 'section--' | append: sID
+  assign cssClass     = '.' | append: sectionClass
+
+  assign masonBlocks  = ''
+
+%}
+
+{% for block in section.blocks %}
+
+  {% liquid
+
+    assign b              = block.settings
+
+    assign ttl            = b.title
+    assign txt            = b.text
+    assign btn_url        = b.btn_url
+    assign btn_txt        = b.btn_txt
+    
+    assign use_btn        = false
+    if btn_url != blank and btn_txt != blank
+      assign use_btn      = true
+    endif
+
+    assign attr           = ''
+    assign el             = 'div'
+    if btn_url != blank and btn_txt == blank
+      assign el           = 'a'
+      assign attr         = 'href="' | append: btn_url | append: '"'
+    endif
+
+    assign ttlClr         = b.txt_color_1
+    assign ttlClrMob      = ttlClr | color_contrast: '#ffffff'
+
+    assign ttlSze         = b.font_size_1
+    assign txtSze         = b.font_size_2
+
+    assign imgMain        = b.image
+    assign imgMainAlt     = b.image.alt
+    assign imgMob         = ''
+    assign imgMobAlt      = ''
+    if b.image_mob != blank
+      assign imgMob       = b.image_mob
+      assign imgMobAlt    = b.image_mob.alt
+    endif
+    
+    assign deskClass      = ''
+      if imgMob != '' 
+        assign deskClass  = 'small--hide'
+      endif
+
+
+    case b.width
+        when '8%'
+          assign width    = 'medium-down--one-whole one-twelfth'
+        when '16%'
+          assign width    = 'medium-down--one-whole two-twelfths'
+        when '25%'
+          assign width    = 'medium-down--one-whole three-twelfths'
+        when '33%'
+          assign width    = 'medium-down--one-whole four-twelfths'
+        when '41%'
+          assign width    = 'medium-down--one-whole five-twelfths'
+        when '50%'
+          assign width    = 'medium-down--one-whole six-twelfths'
+        when '58%'
+          assign width    = 'medium-down--one-whole seven-twelfths'
+        when '66%'
+          assign width    = 'medium-down--one-whole eight-twelfths'
+        when '75%'
+          assign width    = 'medium-down--one-whole nine-twelfths'
+        when '83%'
+          assign width    = 'medium-down--one-whole ten-twelfths'
+        when '91%'
+          assign width    = 'medium-down--one-whole eleven-twelfths'
+        else
+          assign width    = 'one-whole'
+    endcase
+
+  %}
+
+  {% capture blockClass %}block-{{ block.id }}{% endcapture %}
+  {% capture cssBlock %}{{cssClass}} .cell .{{blockClass}}{% endcapture %}
+
+
+  {% comment %} CSS Settings {% endcomment %}
+  {% capture blockCSS %}
+    {{blockCSS}}
+    {{cssBlock}} .inner-content {
+      background: {{b.bg_color}};
+    }
+    {{cssBlock}} h2 {
+      {% if b.bold_title %}
+      font-weight: bold;
+      {% endif %}
+    }
+
+    {{cssBlock}} .text-content *:not(.btn) {
+      color: {{b.txt_color}};
+    }
+    {{cssBlock}} .text-content {
+      background: {{b.txt_bg_color}};
+      {% if b.txt_bg_color == 'rgba(0,0,0,0)' %}
+        background: {{b.txt_bg_color}};
+      {% else %}
+        background: {{b.txt_bg_color|color_modify:'alpha',0.75}};
+      {% endif %}
+      transition: all .3s ease-out;
+    }
+    {{cssBlock}}:focus .text-content,
+    {{cssBlock}}:focus-within .text-content,
+    {{cssBlock}}:hover .text-content {
+      background: {{b.txt_bg_color}};
+    }
+    @media screen and (min-width: 767px) {
+      {{cssBlock}} h2 {
+        font-size: {{ttlSze}}px;
+      }
+      {{cssBlock}} .rte,
+      {{cssBlock}} .rte p {
+        font-size: {{txtSze}}px;
+      }
+    }
+    {% if b.height_mob != 0 %}
+      /medium-down/ {
+        {{cssBlock}} {
+          grid-row-end: span {{b.height_mob}};
+        }
+      }
+    {% endif %}
+    {% if b.height != 0 %}
+      /medium-up/ {
+        {{cssBlock}} {
+          grid-row-end: span {{b.height}};
+        }
+      }
+    {% endif %}
+  {% endcapture %}
+
+  {% if imgMain != blank or ttl != blank or txt != blank %}
+    {% capture masonBlocks %}
+      {{masonBlocks}}
+      <div class="cell__item item-{{forloop.index}} {{width}} {{blockClass}} {% if b.stack == true %}stack{% endif %}">
+        <{{el}} {{attr}} class="inner-content align-hor-{{b.align}} align-vert-{{b.align_vert}} {% if b.full_width == true %}full-width{% endif %}">
+
+          {% include 'snippet--image', 
+            img: imgMain, 
+            useBG: false,
+            extraClass: deskClass
+          %}
+
+          {% include 'snippet--image', 
+            img: imgMob, 
+            useBG: false
+          %}
+
+          {% if ttl != blank or txt != blank or use_btn == true %}
+            <div class="text-content">
+              {% if ttl != blank %}
+                <h2>{{ttl}}</h2>
+              {% endif %}
+              {% if txt != blank %}
+                <div class="rte">{{txt}}</div>
+              {% endif %}
+              {% if use_btn == true %}
+                <a href="{{btn_url}}" class="btn btn--tertiary">{{btn_txt}}</a>
+              {% endif %}
+            </div>
+          {% endif %}
+
+        </{{el}}>
+      </div>
+    {% endcapture %}
+  {% endif %}
+{% endfor %}
+
+{% style %}
+  .four-twelfths {
+    grid-column: span 4!important;
+  }
+
+  .eight-twelfths {
+    grid-column: span 8!important;
+  }
+{% endstyle %}
+
+<style>
+  .cell__item .text-content h2 {
+    text-align: left!important;
+  }
+
+  .cell__item .text-content .rte, 
+  .cell__item .text-content .rte p{
+    text-align: left!important;
+  }
+
+  .cell__item .text-content .rte p {
+    text-transform: uppercase;
+  }
+
+  .cell__item .inner-content {
+    justify-content: flex-start!important;
+  } 
+
+  @media (max-width: 1059px) {
+    .cell__item.item-2 .inner-content {
+      height: auto!important;
+    }
+
+    .masonry--nine15 .text-content {
+      padding: 24px!important;
+    }
+  }
+
+  @media (max-width: 989px) {
+    .cell__item.item-6 {
+      order: 10;
+    } 
+
+    .cell__item.item-7 {
+      order: 9;
+    } 
+
+    .cell__item.item-2,
+    .cell__item.item-4,
+    .cell__item.item-5,
+    .cell__item.item-6,
+    .cell__item.item-7 {
+      grid-column: span 12 !important;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .cell__item .text-content .rte p,
+    .cell__item .text-content .rte a {
+      font-size: 15px!important;
+    }
+  }
+
+  
+</style>
+
+{% if masonBlocks != '' %}
+  <section class="masonry--nine15 {{sectionClass}} ">
+    
+    {{ 'nine15-section--masonry.css' | asset_url | stylesheet_tag }}
+
+  	<div class="page-width">
+  		<div class="masonry-container">
+  			<div class="cell vert-top ">
+  				{{masonBlocks}}
+  			</div>
+  		</div>
+  	</div>
+
+  	{% include 'custom-css', 
+  		css: blockCSS, 
+  		class: cssClass 
+  	%}
+
+  	{% include 'custom-css', 
+  		css: customCSS, 
+  		class: cssClass 
+  	%}
+
+  </section>
+{% endif %}
+
+<style>
+ 
+</style>

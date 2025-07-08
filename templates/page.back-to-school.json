@@ -1,0 +1,561 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "title_style": "visually-hidden",
+        "loop": "",
+        "custom_css": "== .rte {\n  display: none;\n}",
+        "custom_code": ""
+      }
+    },
+    "16619579663887e4ba": {
+      "type": "nine15--slider",
+      "blocks": {
+        "c492d930-40b2-4033-91bb-148adab53fe4": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/BTS_2024_desktop_FP_01.gif",
+            "image_mob": "shopify://shop_images/BTS_2024_mobile_FP_01.jpg",
+            "no_lazyload": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "shopify://collections/back-to-school",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 10,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "c492d930-40b2-4033-91bb-148adab53fe4"
+      ],
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "1664808428cffb1fb2": {
+      "type": "nine15--ctas",
+      "blocks": {
+        "icon_wc7hrf": {
+          "type": "icon",
+          "settings": {
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "badge": "",
+            "button_text": "SHOP BACK TO SCHOOL",
+            "url": "shopify://collections/back-to-school",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "icon_wc7hrf"
+      ],
+      "settings": {
+        "title": "BACK TO SCHOOL",
+        "text": "<p>As summer fades and the excitement of a new school year begins, the hustle and bustle of back-to-school season kicks into high gear. It's a time of fresh starts, new routines, and endless opportunities. Whether you’re a student gearing up for a year of learning, a teacher preparing lesson plans, or a parent balancing the myriad of school activities, we're here to help you transition smoothly into the new season.</p>",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "shopify://collections/back-to-school",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "== .rte {\n  max-width: 670px;\n  margin-left: auto;\n  margin-right: auto;\n}\n== .button {\n  margin-left: auto;\n  margin-right: auto;\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "1661958428489237a1": {
+      "type": "nine15--slider",
+      "blocks": {
+        "d23a5129-39e1-46ff-aaba-2bf6992e9db2": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/BTS_2024_desktop_FP_02.jpg",
+            "image_mob": "shopify://shop_images/BTS_2024_mobile_FP_02.jpg",
+            "no_lazyload": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "shopify://collections/totes",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 10,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "d23a5129-39e1-46ff-aaba-2bf6992e9db2"
+      ],
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "1664809775bd815637": {
+      "type": "nine15--ctas",
+      "settings": {
+        "title": "TOTES REALNESS",
+        "text": "<p>From the classroom to the coffee shop, the library to the office, our totes are designed to carry everything you need with style and ease. With ample space for books, laptops, and personal items, plus a variety of designs to choose from, our totes are functional and a statement of your unique style.\n</p>",
+        "link_text": "Shop Tote Bags",
+        "link_url": "shopify://collections/totes",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "== .rte {\n  max-width: 670px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n== .btn {\n  margin-left: auto;\n  margin-right: auto;\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "1664809584fa95207b": {
+      "type": "nine15--ctas",
+      "blocks": {
+        "d5fbfb89-742c-4e64-aab8-47561b36616f": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/BTS_2024_desktop_FP_3.jpg",
+            "title": "<B>BACKPACK, BACKPACK</B>",
+            "subtitle": "",
+            "text": "Our backpacks are engineered to meet the demands of a busy academic and professional life. With two front exterior pockets and a hidden pocket on the back, perfect for slim notebooks or tablets, staying organized is as simple as ABC. Inside, you’ll find ample room to hold up to a 16-inch laptop and other essentials. Whether heading to class or embarking on a weekend adventure, our backpacks ensure you’re always ready for whatever comes your way.",
+            "badge": "",
+            "button_text": "SHOP BACKPACKS",
+            "url": "shopify://collections/the-backpack-collection",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "46b52ebd-185d-42cf-8e6c-b9e50a9876b6": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/BTS_2024_desktop_FP_4.gif",
+            "title": "<B>GRAB N GO</B>",
+            "subtitle": "",
+            "text": "Created for real-life people and the beautiful messiness of everyday life, ConsuelaCloth offers unmatched versatility and durability. Known for its easy-to-clean, wipeable surface, this material is designed to withstand the demands of daily use. Spilled coffee? No problem—just a quick wipe, and your bag looks as good as new. Its flexibility and resilience mean it can handle whatever you throw at it, making it an ideal choice for school, work, and play.",
+            "badge": "",
+            "button_text": "SHOP GRAB N GOS",
+            "url": "shopify://collections/grab-n-go",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "d5fbfb89-742c-4e64-aab8-47561b36616f",
+        "46b52ebd-185d-42cf-8e6c-b9e50a9876b6"
+      ],
+      "custom_css": [],
+      "settings": {
+        "title": "",
+        "text": "",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": true,
+        "large_images": true,
+        "inline_ctas": false,
+        "match_row": true,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "==.section--ctas.large-images .image--inner {\n  padding-top: 85%;\n}\n}\n== .button {\n  margin-left: auto;\n  margin-right: auto;\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "nine15_ctas_XiNTP7": {
+      "type": "nine15--ctas",
+      "blocks": {
+        "icon_WNp46W": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/BTS_2024_desktop_FP_5.jpg",
+            "title": "<B>GOT IT COVERED</B>",
+            "subtitle": "",
+            "text": "Notebook covers are a perfect blend of style and sustainability, designed to be used over and over again. With an array of patterns and designs, you can choose a notebook cover that truly reflects your personality. Each cover comes with a composition notebook; once it's filled with your thoughts and ideas, simply replace it with a new one.",
+            "badge": "",
+            "button_text": "SHOP NOTEBOOKS",
+            "url": "shopify://collections/notebooks",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "icon_T6Gexr": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/BTS_2024_desktop_FP_6.jpg",
+            "title": "<B>TAKE NOTE</B>",
+            "subtitle": "",
+            "text": "Our paper mâché pens and markers are handmade by artisans in Mexico, bringing a touch of tradition and artistry to your school or work supplies. The layered technique, rich with cultural heritage, infuses each piece with vibrant energy through color, texture, whimsical figures, and playful characters.",
+            "badge": "",
+            "button_text": "SHOP PENS & MARKERS",
+            "url": "shopify://collections/pens-markers",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "icon_WNp46W",
+        "icon_T6Gexr"
+      ],
+      "settings": {
+        "title": "",
+        "text": "",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": true,
+        "large_images": true,
+        "inline_ctas": false,
+        "match_row": true,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "==.section--ctas.large-images .image--inner {\n  padding-top: 85%;\n}\n}\n== .button {\n  margin-left: auto;\n  margin-right: auto;\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "1661958380b0065339": {
+      "type": "nine15--slider",
+      "blocks": {
+        "4d274902-e254-4d25-8465-c90dc8c6ad05": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/BTS_2024_desktop_FP_07.jpg",
+            "image_mob": "shopify://shop_images/BTS_2024_mobile_FP_07.jpg",
+            "no_lazyload": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 10,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "4d274902-e254-4d25-8465-c90dc8c6ad05"
+      ],
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "nine15_ctas_hhkrmA": {
+      "type": "nine15--ctas",
+      "settings": {
+        "title": "ALL HANDS ON DECK",
+        "text": "Foundation Communities, a nonprofit established in 1990, provides affordable housing and free support services to families, veterans, seniors, and individuals with disabilities. With 27 communities in Austin and North Texas and 16 learning centers, they help residents achieve educational success, financial stability, and healthier lifestyles. Recently, our team supported children at the Daffodil apartments' learning center by packing backpacks with school supplies and snack packs with healthy snacks.",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "16643838372e604815": {
+      "type": "nine15--featured-products",
+      "settings": {
+        "collection": "back-to-school",
+        "title": "BACK TO SCHOOL",
+        "text": "<p>MORE TO LOVE</p>",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#ffffff",
+        "gradient": "#000",
+        "limit": 10,
+        "per_row": 4,
+        "use_slider": true,
+        "use_slider_mobile_only": false,
+        "use_dots_desktop": true,
+        "use_dots_mobile": true,
+        "use_arrows": false,
+        "auto_slide": false,
+        "infinite": true,
+        "image_ratio": "portrait",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": true,
+        "enable_quick_add": true,
+        "custom_css": "== .page-width {\n  max-width: 100%;\n  padding: 0 var(--base-gutter--quarter);\n}"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "16619579663887e4ba",
+    "1664808428cffb1fb2",
+    "1661958428489237a1",
+    "1664809775bd815637",
+    "1664809584fa95207b",
+    "nine15_ctas_XiNTP7",
+    "1661958380b0065339",
+    "nine15_ctas_hhkrmA",
+    "16643838372e604815"
+  ]
+}

@@ -1,0 +1,61 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 30,
+        "padding_bottom": 30,
+        "title_style": "styled",
+        "loop": "",
+        "custom_css": "== .section--title h1 {\n  padding-top: var(--base-gutter);\n}\n\n== .page-width {\n  max-width: 1400px;\n}\n\n/medium-up/ {\n  == .section--title h1 {\n    padding-top: var(--base-gutter--double);\n  }\n}\n\n/large-up/ {\n  == .section--title h1 {\n    padding-top: var(--base-gutter--trip);\n  }\n}",
+        "custom_code": "<script type=\"text/javascript\" async=\"\" src=\"https://static.fbot.me/shopify/friendbuy-shopify.js?merchantId=9b2305b2-679b-463d-9736-a487112b7ffb&amp;shop=consuelastyle.myshopify.com\"></script>\n\n  <script type=\"application/javascript\">\n  window[\"friendbuyAPI\"] = friendbuyAPI = window[\"friendbuyAPI\"] || [];\n  friendbuyAPI.merchantId = \"9b2305b2-679b-463d-9736-a487112b7ffb\";\n  friendbuyAPI.shopify = {\n    page: \"{{ page_title }}\",\n    {% if customer and customer.id and customer.email %}\n    {% assign fbtMessage = \"now\" | date: \"%s\" | append: \":\" | append: customer.email | append: \":\" | append : customer.id %}\n    {% assign fbSignature = fbtMessage | hmac_sha256: \"575b453e-d6cc-49a8-90b4-9ce1bc3b4820\" %}\n    authMessage: \"{{ fbtMessage }}\",\n    authSignature: \"{{ fbSignature }}\",\n    customer: {\n      id: \"{{ customer.id }}\",\n      email: \"{{ customer.email }}\",\n      firstName: \"{{ customer.first_name }}\",\n      lastName: \"{{ customer.last_name }}\",\n    },\n    {% endif %}\n  }\n  </script>"
+      }
+    },
+    "1c1b2f9b-27a9-404f-80c6-e63c2f0c5729": {
+      "type": "nine15--ctas",
+      "custom_css": [
+        ".section--title {max-width: unset !important;}"
+      ],
+      "settings": {
+        "title": "",
+        "text": "<div id=\"friendbuylandingpage\"></div>",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1c1b2f9b-27a9-404f-80c6-e63c2f0c5729"
+  ]
+}

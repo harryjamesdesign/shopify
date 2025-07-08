@@ -1,0 +1,319 @@
+{% if vidExt != blank or vidHosted != blank or metaVideo != blank  %}
+  {% comment %}
+
+    {% include 'snippet--video', 
+      vidExt: s.video_url, 
+      vidHosted: s.video_hosted, 
+      hostedThumb: s.video_hosted_thumbnail,
+      cf: false,
+      vidClass: sectionClass, 
+      autoPlay: false,
+      normalMobile: false,
+      useBG: false 
+    %}
+
+
+    {
+      "type": "header",
+      "content": "Video Settings"
+    },
+    {
+      "type": "video_url",
+      "id": "video_url",
+      "label": "Video url",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ]
+    },
+    {
+      "type": "text",
+      "id": "video_hosted",
+      "label": "Video url if hosted"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_hosted_thumbnail",
+      "label": "Video thumbnail (only if hosted)"
+    },
+
+  {% endcomment %}
+  <!-- snippets/snippet--video -->
+
+  {% style %}
+  .video-inline {
+    line-height: 0;
+  }
+  .video-inline video {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+  }
+  {% endstyle %}
+  {% liquid
+
+    assign vID              = vidExt.id
+    assign vidType          = vidExt.type
+    assign showMobile       = false 
+    assign hideMobile       = ''
+    assign hideAutoplay     = '' 
+    assign thmbPoster       = '' 
+
+    if vidExt contains 'youtu.be' 
+      assign vidType      = 'youtube'
+      assign vID          = vidExt | split: 'be/' | last 
+    elsif vidExt contains 'youtube.com' 
+      assign vID          = vidExt | split: '?v=' | last 
+    elsif vidExt contains 'vimeo.com' 
+      assign vidType      = 'vimeo'
+      assign vID          = vidExt | split: '.com/' | last 
+    elsif vidHosted != blank
+      assign vidType      = 'video'
+      if vidHosted contains 'jwplayer'
+        assign vidType    = 'jwplayer'
+      endif 
+    endif 
+
+    if hostedThumb != blank 
+      assign thmbPoster       = hostedThumb
+      if cF != true 
+        assign thmbPoster     = hostedThumb | img_url: 'master'
+      endif 
+    endif 
+
+    if autoPlay != false and normalMobile == true
+      assign showMobile     = true 
+      assign hideAutoplay   = 'small--hide' 
+    endif 
+
+    if autoPlay != false and normalMobile != true
+      assign hideMobile     = 'small--hide'
+    endif 
+
+  %}
+  {% capture videoEl %}
+    {% comment %} if Youtube {% endcomment %}
+    {% if vidType == "youtube" %}
+      <iframe
+        class="iframe-video {{hideAutoplay}}"
+        src="https://www.youtube.com/embed/{{ vID }}?{% unless autoPlay == false %}&autoplay=1&mute=1&loop=1{% endunless %}&controls=0&vq=hd720&playlist={{ vID }}"
+        width="800"
+        id="video-{{vID}}-{{label}}"
+        height="480"
+        {% unless autoPlay == false %}
+        allow="autoplay"
+        {% endunless %}
+        {% if useBG == true and videoRatio != blank%}
+        data-video-ratio="{{videoRatio}}"
+        {% endif %}
+        frameborder="0"
+        allowfullscreen></iframe>
+      {% comment %} Show a version of video on mobile that allows user to press play. {% endcomment %}
+      {% if showMobile == true %}
+        <iframe
+        class="iframe-video medium-up--hide"
+        src="https://www.youtube.com/embed/{{ vID }}?&controls=0&vq=hd720&playlist={{ vID }}"
+        width="800"
+        id="video-{{vID}}-{{label}}"
+        height="480"
+        frameborder="0"
+        {% if useBG == true and videoRatio != blank%}
+        data-video-ratio="{{videoRatio}}"
+        {% endif %}
+        allowfullscreen></iframe>
+      {% endif %}
+    {% endif %}
+    {% comment %} if Vimeo {% endcomment %}
+    {% if vidType == "vimeo" %}
+      <iframe
+        class="lazyload iframe-video {{hideAutoplay}}"
+        id="video-{{vID}}-{{label}}"
+        src="//player.vimeo.com/video/{{ vID }}?background=1{% unless autoPlay == false %}&autoplay=1&loop=1&muted=1&autopause=0{% endunless %}&byline=0&title=0"
+        width="800"
+        height="480"
+        frameborder="0"
+        webkitallowfullscreen
+        mozallowfullscreen
+        {% if useBG == true and videoRatio != blank%}
+        data-video-ratio="{{videoRatio}}"
+        {% endif %}
+        allowfullscreen></iframe>
+      {% comment %} Show a version of video on mobile that allows user to press play. {% endcomment %}
+      {% if showMobile == true %}
+        <iframe
+          class="iframe-video medium-up--hide"
+          id="video{{section.id}}{{block.id}}-{{label}}"
+          src="//player.vimeo.com/video/{{ vID }}?background=1&byline=0&title=0"
+          width="800"
+          height="480"
+          frameborder="0"
+          webkitallowfullscreen
+          mozallowfullscreen
+          {% if useBG == true and videoRatio != blank%}
+          data-video-ratio="{{videoRatio}}"
+          {% endif %}
+          allowfullscreen></iframe>
+      {% endif %}
+    {% endif %}
+    {% comment %} if Self-Hosted {% endcomment %}
+    {% if vidType == 'video' %}
+      <!-- 16:9 Example Player -->
+      <script type="text/javascript" src="https://cdn.jwplayer.com/libraries/olMCskoE.js" defer></script>
+      <!-- 640x360 example player -->
+
+      <div id="video--{{section.id}}{{block.id}}{{forloop.index}}-{{label}}">
+      </div>
+      <script type="text/javascript">
+        (function() {
+          var divID = 'video--{{section.id}}{{block.id}}{{forloop.index}}-{{label}}';
+          var video = '{{vidHosted}}';
+          var image = '{{hostedThumb}}';
+          
+          function jwSet(divID, video, image) {
+            var playerInstance = jwplayer(divID);
+            playerInstance.setup({
+              {% if autoPlay != null %}
+              autostart: {{autoPlay}},
+              mute: {{autoPlay}},
+              controls: {% if autoPlay %}false{% else %}true{% endif %},
+              {% if autoPlay %}autostart: "viewable",{% endif %}
+              {% endif %}
+              repeat: true,
+              preload: "auto",
+              liveTimeout: 0,
+              width: '100%',
+              playlist: [{
+                file: video,
+                image: image
+              }]
+            });
+            
+            playerInstance.on('ready', function(event) {
+              setInterval(function() {
+                var duration = jwplayer(divID).getDuration();
+                var position = jwplayer(divID).getPosition();
+                if (duration > 0) {
+                  if (duration - position < 1) {
+                    jwplayer(divID).seek(0);
+                  }
+                }
+              }, 100);
+              
+              var videoElement = document.querySelector('#' + divID + ' video');
+              if (videoElement) {
+                videoElement.style.width = '100%';
+                videoElement.style.height = '100%';
+              }
+            });
+          }
+          
+          // Wait for JW Player to be loaded
+          if (typeof jwplayer === 'undefined') {
+            var checkJWPlayer = setInterval(function() {
+              if (typeof jwplayer !== 'undefined') {
+                clearInterval(checkJWPlayer);
+                jwSet(divID, video, image);
+              }
+            }, 100);
+          } else {
+            jwSet(divID, video, image);
+          }
+        })();
+      </script>
+    {% endif %}
+    {% comment %} if JW Player {% endcomment %}
+    {% if vidType == 'jwplayer' %}
+      <!-- 16:9 Example Player -->
+      <script type="text/javascript" src="https://cdn.jwplayer.com/libraries/olMCskoE.js" defer></script>
+      <!-- 640x360 example player -->
+
+      <div id="video--{{section.id}}{{block.id}}{{forloop.index}}-{{label}}">
+      </div>
+      <script type="text/javascript">
+        (function() {
+          var divID = 'video--{{section.id}}{{block.id}}{{forloop.index}}-{{label}}';
+          var video = '{{vidHosted}}';
+          var image = '{{hostedThumb}}';
+          
+          function jwSet(divID, video, image) {
+            var playerInstance = jwplayer(divID);
+            playerInstance.setup({
+              {% if autoPlay != null %}
+              autostart: {{autoPlay}},
+              mute: {{autoPlay}},
+              controls: {% if autoPlay %}false{% else %}true{% endif %},
+              {% if autoPlay %}autostart: "viewable",{% endif %}
+              {% endif %}
+              repeat: true,
+              preload: "auto",
+              liveTimeout: 0,
+              width: '100%',
+              playlist: [{
+                file: video,
+                image: image
+              }]
+            });
+            
+            playerInstance.on('ready', function(event) {
+              setInterval(function() {
+                var duration = jwplayer(divID).getDuration();
+                var position = jwplayer(divID).getPosition();
+                if (duration > 0) {
+                  if (duration - position < 1) {
+                    jwplayer(divID).seek(0);
+                  }
+                }
+              }, 100);
+              
+              var videoElement = document.querySelector('#' + divID + ' video');
+              if (videoElement) {
+                videoElement.style.width = '100%';
+                videoElement.style.height = '100%';
+              }
+            });
+          }
+          
+          // Wait for JW Player to be loaded
+          if (typeof jwplayer === 'undefined') {
+            var checkJWPlayer = setInterval(function() {
+              if (typeof jwplayer !== 'undefined') {
+                clearInterval(checkJWPlayer);
+                jwSet(divID, video, image);
+              }
+            }, 100);
+          } else {
+            jwSet(divID, video, image);
+          }
+        })();
+      </script>
+    {% endif %}
+  {% endcapture %}
+  {% if useBG == true %}
+    <div class="video-ratio {{hideMobile}} {{vidClass}}">
+      {{videoEl}}
+    </div>
+  {% else %}
+    <div class="video-inline {{hideMobile}} {{vidClass}}">
+      <div class="video-inline-overlap"></div>
+      <div class="wrapper">
+        {{videoEl}}
+      </div>
+    </div>
+  {% endif %}
+{% endif %}
+
+<style>
+  .video-inline {
+    position: relative;
+  }
+  
+  .video-inline-overlap {
+    display: block !important;
+    z-index: 2;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+  }
+</style>

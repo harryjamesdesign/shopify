@@ -1,0 +1,229 @@
+@import "../assets/mixin--media-queries.scss";
+
+
+@include mq($small) {
+  .collection .grid__item:only-child {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@include mq($medium-down) {
+  .collection .slider.slider--tablet {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.collection .loading-overlay {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  padding: 0 1.5rem;
+  opacity: 0.7;
+}
+
+@include mq($medium-up) {
+  .collection .loading-overlay {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+.collection.loading .loading-overlay {
+  display: block;
+}
+
+.collection--empty .title-wrapper {
+  margin-top: 10rem;
+  margin-bottom: 15rem;
+}
+
+@include mq($medium-down) {
+  .collection .slider--tablet.product-grid {
+    scroll-padding-left: 1.5rem;
+  }
+}
+
+.collection__description > * {
+  margin: 0;
+}
+
+.collection__title.title-wrapper {
+  margin-bottom: 2.5rem;
+}
+
+.collection__title .title:not(:only-child) {
+  margin-bottom: 1rem;
+}
+
+@include mq($large-up) {
+  .collection__title--desktop-slider .title {
+    margin-bottom: 2.5rem;
+  }
+
+  .collection__title.title-wrapper--self-padded-tablet-down {
+    padding: 0 5rem;
+  }
+
+  .collection slider-component:not(.page-width-desktop) {
+    padding: 0;
+  }
+
+  .collection--full-width slider-component:not(.slider-component-desktop) {
+    padding: 0 1.5rem;
+    max-width: none;
+  }
+}
+
+.collection__view-all a:not(.link) {
+  margin-top: 1rem;
+}
+
+.cell__item.old-loader,
+.cell__item#more {
+  grid-column-end: span 60 !important;
+}
+
+.cell__item.old-loader {
+  padding: var(--base-gutter) 0;
+}
+
+
+
+
+.cta-item {
+  min-height: 350px;
+  .image-container {
+    // padding-top: 130%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background: var(--color--bridal-white);
+
+
+
+    &::before {
+      content:'';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      --height: 200px;
+      --width: 133px;
+      border-left: var(--width) solid transparent;
+      border-top: var(--height) solid var(--color--pearl-yellow);
+      z-index: 0;
+    }
+
+    
+    
+    .bg_image {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: {
+        position: center !important;
+        repeat: no-repeat !important;
+        size: cover !important;
+      };
+    }
+    .text-content {
+      padding: var(--base-gutter--half) 0;
+      width: calc(100% - var(--base-gutter));
+      text-align: left;
+
+      > * {
+        position: relative;
+        z-index: 2;
+      }
+      h2,
+      h3, 
+      h4, 
+      .rte {
+        // color: white;
+        margin: 0;
+        width: 100%;
+      }
+
+      h4, 
+      .rte {
+        line-height: 1.7;
+      }
+
+      > *:not(:last-child) {
+        margin-bottom: var(--base-gutter--quarter);
+      }
+
+      .image-content__image-container {
+        max-width: 100px;
+        margin: 0 auto 15px;
+      }
+
+      h3 {
+        font: {
+          size: 35px;
+          weight: 500;
+          family: var(--font--gotham-cond);
+        }
+      }
+      h4 {
+        font: {
+          size: 14px;
+          weight: 600;
+          family: var(--font--gotham);
+        }
+      }
+      .rte {
+        font-size: 14px;
+      }
+    }
+
+    @include mq($small) {
+      &:before {
+        // --height: 160px;
+        // --width: 120px;
+
+        right: -10%;
+      }
+    }
+
+  }
+
+  @include mq($medium-up) {
+    .image-container {
+      min-height: 350px;
+
+      .text-content {
+        // padding: 0;
+        padding:  var(--base-gutter--half) 0;
+        // position: absolute;
+        // top: 50%;
+        // left: 50%;
+        // transform: translate(-50%,-50%);
+        width: calc(100% - var(--base-gutter--double));
+        max-width: 230px;
+
+        > *:not(:last-child) {
+          margin-bottom: var(--base-gutter--half);
+        }
+
+        h3 {
+          font-size: 50px;
+        }
+        h4 {
+
+        }
+      }
+    }
+  }
+}

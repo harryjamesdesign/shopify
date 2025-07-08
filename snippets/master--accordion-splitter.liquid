@@ -1,0 +1,180 @@
+<!-- snippets/master--accordion-splitter -->
+{% liquid
+
+    assign s                    = section.settings
+    assign sID                  = section.id
+
+    assign sectionCustomCSS     = s.custom_css
+    assign class                = 'section--' | append: sID
+    assign cssClass             = '.' | append: class
+
+	assign desc                 = content
+	assign ttl 	                = title
+
+	assign splt1                = '</h5>'
+	assign splt1St              = splt1 | replace: '/',''
+
+	assign splt                 = '</h6>'
+	assign spltSt               = splt | replace: '/',''
+
+	assign dscs                 = desc | strip | split: spltSt
+
+    assign grp 	                = desc | strip | split: splt1St
+
+	assign open                 = true
+
+	assign sel                  = 'selected'
+	assign opn                  = 'open'
+
+%}
+
+<div class=" nine15--accordion-section {{class}}">
+    <div class="page-width">        
+        <div class="section--title text-center page--title {{s.title_style}}">
+            <h1 class="" >{{ ttl }}</h1>
+        </div>
+
+        <link rel="stylesheet" href="{{ 'nine15-section--accordion.css' | asset_url }}" media="print" onload="this.media='all'">
+        <noscript>{{ 'nine15-section--accordion.css' | asset_url | stylesheet_tag }}</noscript>
+
+        <div class="cell">
+            <div class="cell__item {% unless desc contains splt1St %}medium-up--five-sixths medium-up--push-one-twelfth{% endunless %}">
+
+                {% if dscs.size > 1 %}
+                    {% if desc contains splt1St %}
+                        <div class="cell cell_margin_bottom vert-top">
+                            <div class="cell__item  medium--three-eighths large-up--one-quarter large-up--sticky">
+                                {% for g in grp offset: 1 %}
+                                    {% liquid
+                                    	assign grpTtl          = g | split: splt1 | first
+    	                                assign grpHndl         = grpTtl | handleize
+    	                                assign hdrCount        = hdrCount | plus: 1
+                                    %}
+                                    {% comment %} Capture Sidebar Links (desktop) {% endcomment %}
+                                    {% capture sideLink %}
+                                        {{sideLink}}
+                                        <a href="#{{grpHndl}}" class="sidebar-link {% if hdrCount == 1 %}active{% endif %} ">{{grpTtl}}</a>
+                                    {% endcapture %}
+                                    {% comment %} Capture Option Links (mobile) {% endcomment %}
+                                    {% capture optLink %}
+                                        {{optLink}}
+                                        <option value="#{{grpHndl}}">{{grpTtl|upcase}}</option>
+                                    {% endcapture %}
+                                {% endfor %}
+                                <label for="tabs-select" class="visually-hidden">Categories</label>
+                                <div class="select medium-up--hide ">
+                                    <select id="tabs-select" class="tabs as-select select__select" >
+                                        <option>CATEGORIES</option>
+                                        {{optLink}}
+                                    </select>
+
+                                    {% include 'icon-caret' %}
+                                </div>
+
+                                <div class="sidebar-links small--hide">
+                                    {{sideLink}}
+                                </div>
+                                <script type="text/javascript">
+                                    // $(document).ready(function () {
+                                        // setFixed('.sidebar-links')
+                                    // })      
+                                </script>
+                            </div>
+                            <div class="cell__item medium--five-eighths large-up--three-quarters">
+                                <div class="acc-container">
+                                    {% for g in grp offset: 1 %}
+                                        <div class="acc-item">
+                                            {% liquid
+                                            	assign grpTtl 	= g | split: splt1 | first
+    	                                        assign grpHndl 	= grpTtl | handleize
+    	                                        assign grpDsc 	= g | replace: splt1, ''
+    	                                        assign dscs   	= grpDsc | strip | split: spltSt
+                                            %}
+                                            <div class="acc-header " {% include 'animation', delay: ItemDelay %} id="{{grpHndl}}">
+                                                <h2>{{grpTtl}}</h2>
+                                            </div>
+                                            {% for d in dscs offset: 1 %}
+                                                {% liquid
+    	                                            assign ttl 			= d | split: splt | first
+    	                                            assign dsc 			= d | remove: ttl | replace: splt, ''
+    	                                            if forloop.first == true and open == true
+                                                        assign open     = false
+    	                                                assign setSel 	= sel
+    	                                                assign setOpn 	= opn
+    	                                            else
+    	                                                assign setSel 	= ''
+    	                                                assign setOpn 	= ''
+    	                                            endif
+                                                %}
+                                                <div class="acc-btn ">
+                                                    <h3 class="h6 {{setSel}}">
+                                                        {{ ttl }}
+                                                    </h3>
+                                                    <div class="img {{setSel}}">
+                                                        {% include 'icon-accordion-buttons' %}
+                                                    </div>
+                                                </div>
+                                                <div class="acc-content {{setOpn}} ">
+                                                    <div class="acc-content-inner">
+                                                        <div class="content_inner">
+                                                            <div class="product-description rte">
+                                                                {{ dsc }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="acc-container">
+                            {% for d in dscs offset: 1 %}
+                                {% liquid
+                                    assign ttl 			= d | split: splt | first
+                                    assign dsc 			= d | remove: ttl | replace: splt, ''
+                                    if forloop.first == true and open == true
+                                        assign open     = false
+                                        assign setSel 	= sel
+                                        assign setOpn 	= opn
+                                    else
+                                        assign setSel 	= ''
+                                        assign setOpn 	= ''
+                                    endif
+                                %}
+                                <div class="acc-btn " >
+                                    <h3 class="h6 {{setSel}}">
+                                        {{ ttl }}
+                                    </h3>
+                                    <div class="img {{setSel}}">
+                                        {% include 'icon-accordion-buttons' %}
+                                    </div>
+                                </div>
+                                <div class="acc-content {{setOpn}} " >
+                                    <div class="acc-content-inner">
+                                        <div class="content_inner">
+                                            <div class="product-description rte">
+                                                {{ dsc }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% elsif desc != blank %}
+                    <div class="rte">
+                        {{ desc }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'custom-css', 
+  css: sectionCustomCSS, 
+  class: cssClass 
+%}

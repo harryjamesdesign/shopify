@@ -1,0 +1,525 @@
+<!-- sections/nine15--testimonials -->
+
+
+{% liquid
+
+  assign s            		= section.settings
+  assign sID          		= section.id
+
+  assign items                = ''
+
+  assign customCSS    		= s.custom_css
+  
+  assign sectionClass 		= 'section--' | append: sID
+  assign cssClass     		= '.' | append: sectionClass
+
+  assign clrTxt           = s.text_color
+  assign clrBG            = s.gradient
+
+  assign modals 				  = ''
+
+  assign secTtl 				  = s.title
+  assign btnTxt 				  = s.btn_text
+  assign btnUrl 				  = s.btn_url
+	assign bgImg 				    = s.image
+
+  assign useSlider        = s.use_slider
+  assign useArrows        = s.use_arrows
+  assign useDots          = s.use_dots
+  assign autoSlide        = s.auto_slide
+
+	assign totalRows         = s.total_rows | plus: 0 
+  assign perRow            = s.per_row | plus: 0
+
+	if perRow == 0 and blks > 0
+    assign perRow           = blks
+  endif 
+
+	case perRow
+    when 1  
+      assign width        = ''
+      assign max          = 1
+    when 2 
+      assign width        = 'medium-up--one-half'
+      assign max          = 2
+    when 3  
+      assign width        = 'medium-up--one-third'
+      assign max          = 3
+    when 5 or 9 or 10 
+      assign width        = 'medium--one-third large-up--one-fifth'
+      assign max          = 5
+    when 6 or 11 or 12 
+      assign width        = 'medium--one-third large-up--one-sixth'
+      assign max          = 6
+    else  
+      assign width        = 'medium-up--one-quarter'
+      assign max          = 4
+  endcase 
+
+%}
+
+{% if clrTxt != blank or clrBG != blank %}
+  {% capture clrCSS %}
+    {% if clrBG != blank %}
+    == {
+      --color--bg: {{clrBG}};
+      background: var(--color--bg);
+    }
+    {% endif %}
+    {% if clrTxt != blank %}
+    == {
+      --color--text: {{clrTxt}};
+    }
+    == .rte,
+    == .rte *,
+    == h2,
+    == h3 {
+      color: var(--color--text);
+    }
+    {% endif %}
+  {% endcapture %}
+  {% assign customCSS = clrCSS | append: customCSS %}
+{% endif %}
+
+{% for block in section.blocks %}
+					
+	{% liquid
+
+		assign b 			  = block.settings
+		assign nme 			= b.title
+		assign qte 			= b.quote
+    assign img      = b.image
+    assign prd      = all_products[b.product]
+		assign prdTtl   = b.product_title | default: prd.title
+    assign prdImg   = b.product_image | default: prd.featured_image
+
+    assign img_CF       = false 
+    if b.metafield_image != blank 
+      assign img        = b.metafield_image
+      assign img_CF     = true 
+    endif 
+
+		assign topStars     = b.stars | times: 1
+
+    capture stars 
+      echo b.stars
+    endcapture
+    assign topStars     = stars | plus: 0
+
+		assign vidExt       = b.video_url
+		assign useCF 		= false 
+		if b.video_metafields != blank 
+			assign vidExt   = b.video_metafields
+			assign useCF 	= true 
+		endif 
+
+    assign vidHosted    = b.video_hosted 
+    assign hostedThumb  = b.video_hosted_thumbnail
+
+    assign modalID 	 	= 'video_' | append: block.id 
+    assign useVid       = false
+    if vidExt != blank or vidHosted != blank
+      assign useVid   = true
+      assign useBtnBlk  = false
+    endif 
+
+    if vidExt contains 'youtu.be'
+      assign v_id         = vidExt | split: 'be/' | last
+      assign t_type       = 'youtube'
+    elsif vidExt contains 'youtube.com'
+      assign v_id         = vidExt | split: '?v=' | last
+      assign t_type       = 'youtube'
+    elsif vidExt contains 'vimeo.com'
+      assign v_id         = vidExt | split: '.com/' | last
+      assign t_type       = 'vimeo'
+    endif
+
+	%}
+
+	{% if qte != blank %}
+		{% capture items %}
+      {{items}}
+			{% if useVid == true %}
+        {% capture modals %}
+          {{modals}}
+          <div class="basic-modal video-modal" data-modal="{{modalID}}">
+            <div data-close="{{modalID}}" class="bg_close modal-action"></div>
+            <div class="modal-inner">
+              <span data-close="{{modalID}}" class="close-modal modal-action">
+                <span class="visually-hidden">Close</span>
+                {% include 'icon' with 'close', class: '' %}
+              </span>
+              {% include 'snippet--video', 
+                vidExt: vidExt, 
+                vidHosted: vidHosted, 
+                hostedThumb: hostedThumb,
+                vID: v_id,
+  		          vidType: t_type,
+                cf: useCF,
+                autoPlay: false,
+                normalMobile: false,
+                useBG: false 
+              %}
+            </div>
+          </div>
+        {% endcapture %}
+      {% endif %}
+
+			<div class="cell__item {{width}}">
+				<div class="testimonial-container">
+					
+					{% if useVid == true %}
+						<a href="#" class="modal-action open-modal" data-open="{{modalID}}">
+	            {% include 'icon' with 'play', class: '' %}
+					{% endif %}
+    					{% include 'snippet--image', img: img, extraClass: 'main-image', cf:img_CF, useBG: false %}
+              {% if img == blank and useVid == true %}
+              	<div class="bg_image "></div>
+              {% endif %}
+	        {% if useVid == true %}
+          	</a>
+          {% endif %}
+
+          {% if topStars > 0 %}
+            <div class="stars">
+              {% for i in (1..topStars) %}
+                {% include 'icon-star' %}
+              {% endfor %}
+            </div>
+          {% endif %}
+          {% if qte != blank %}
+          	<div class="quote-container">
+          		<div class="rte">
+          			“{{qte}}”
+          		</div>
+          	</div>
+          {% endif %}
+          {% if nme != blank %}
+        		<div class="name">
+        			{{nme}}
+        		</div>
+          {% endif %}
+
+          {% if prdTtl != blank %}
+            <div class="testimonial-product">
+              <a href="{{prdLnk}}">
+                {% include 'snippet--image', img: prdImg, extraClass: 'product-image', useBG: true %}
+                <span>{{prdTtl}}</span>
+              </a>
+            </div>
+          {% endif %}
+				</div>
+			</div>
+
+		{% endcapture %}
+	{% endif %}
+
+{% endfor %}
+
+{% if items != '' %}
+	<div class="section--nine15--testimonials {{sectionClass}}">
+
+    <link rel="stylesheet" href="{{ 'nine15-section--testimonials.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript>{{ 'nine15-section--testimonials.css' | asset_url | stylesheet_tag }}</noscript>
+			
+		{% include 'snippet--image', img: bgImg, useBG: true, extraClass: 'section-bg' %}
+
+		<div class="page-width with-padding">
+			
+			{% if secTtl != blank or secTxt != blank %}
+        <div class="section--title text-center">
+           
+          {% if secTtl != blank %}
+            <h2>{{secTtl}}</h2>
+          {% endif %}
+        
+          {% if secTxt != blank %}
+            <div class="rte">{{secTxt}}</div>
+          {% endif %}
+                  
+        </div>
+      {% endif %}
+
+			{% if items != '' %}
+				<div class="cell vert-top cell_margin_bottom double_gutter text-center">
+          {{items}}
+          {% if useSlider == true %}
+					 {{items}}
+          {% endif %}
+				</div>
+			{% endif %}
+
+			{% if btnTxt != blank or btnUrl != blank %}
+				<div class="text-center">
+					<a href="{{btnUrl}}" class="btn Button Button--primary">{{btnTxt}}</a>
+				</div>
+			{% endif %}
+
+			{{modals}}
+
+		</div>
+	    
+	  {% include 'custom-css', css: customCSS, class: cssClass %}
+	    
+    {% if useSlider == true %}
+	    <script type="text/javascript">
+		    waitFor_jQuery(function () {
+          var slidesCount = $('{{cssClass}} .cell .cell__item').length;
+	        $('{{cssClass}} .cell').slick({
+	          slidesToShow: ( {{max}} >= +slidesCount ? +slidesCount : {{max}} ),
+            autoplay: {{autoSlide}},
+            arrows: {{useArrows}},
+            dots: {{useDots}},
+            slidesToScroll: 1,
+            infinite: true,
+            speed: 500,
+            fade: true,
+            rows: 0,
+            responsive: [
+              {
+                breakpoint: 990,
+                settings: {
+                  slidesToShow: ( {{max|at_most:3}} >= +slidesCount ? +slidesCount : {{max|at_most:3}} )
+                }
+              },
+              {
+                breakpoint: 750,
+                settings: {
+                  slidesToShow: ( {{max|at_most:2}} >= +slidesCount ? +slidesCount : {{max|at_most:2}} )
+                }
+              },
+              {
+                breakpoint: 400,
+                settings: {
+                  slidesToShow: 1
+                }
+              }
+            ]
+	        });
+		    });
+			</script>
+		{% endif %}
+
+	</div>
+
+{% endif %}
+
+
+{% comment %}
+  {
+            "type": "header",
+            "content": "Product Settings"
+          },
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          },
+          {
+            "type": "image_picker",
+            "id": "product_image",
+            "label": "Product Image (optional)"
+          },
+          {
+            "type": "liquid",
+            "id": "product_title",
+            "label": "Product Title (optional)"
+          },
+
+{% endcomment %}
+
+{% schema %}
+	{
+		"name": "Testimonial",
+		"class": "index-section",
+		"settings": [
+			{
+				"type": "liquid",
+				"id": "title",
+				"label": "Title"
+			},
+			{
+				"type": "liquid",
+				"id": "btn_text",
+				"label": "Button Text"
+			},
+			{
+				"type": "url",
+				"id": "btn_url",
+				"label": "Button Url"
+			},
+			{
+				"type": "image_picker",
+				"id": "image",
+				"label": "Background Image"
+			},
+      {
+        "type":"header",
+        "content": "Color Rules"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color_background",
+        "id": "gradient",
+        "label": "Gradient Background"
+      },
+			{
+				"type":"header",
+				"content": "Display Settings"
+			},
+      {
+        "type":      "range",
+        "id":        "per_row",
+        "min":       0,
+        "max":       5,
+        "step":      1,
+        "label":     "Items per row",
+        "default":   3
+      },
+			{
+        "type":"checkbox",
+        "id":"use_slider",
+        "label":"Use Slider",
+        "default": true
+      },
+      {
+        "type":"checkbox",
+        "id":"use_arrows",
+        "label":"Use Arrows"
+      },
+      {
+        "type":"checkbox",
+        "id":"use_dots",
+        "label":"Use Dots"
+      },
+      {
+        "type":"checkbox",
+        "id":"auto_slide",
+        "label":"Auto Slide"
+      },
+			{
+				"type":"header",
+				"content": "Custom CSS Rules"
+			},
+			{
+				"type":"paragraph",
+				"content": "Explanation of Custom CSS rules below input."
+			},
+			{
+				"type": "liquid",
+				"id": "custom_css",
+				"label": "Custom CSS"
+			},
+			{
+				"type":"paragraph",
+				"content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+			},
+			{
+				"type":"paragraph",
+				"content": "Ex: '== h2 { font-size: 20px; }'"
+			},
+			{
+				"type":"paragraph",
+				"content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+			},
+			{
+				"type":"paragraph",
+				"content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+			},
+			{
+		    "type":"paragraph",
+		    "content": "Add '-' like '/-MEDIA_QUERY/'' to stack queries."
+		  },
+			{
+				"type":"paragraph",
+				"content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+			}
+		],
+		"blocks": [
+			{
+				"type": "block",
+				"name": "Testimonial",
+				"settings": [
+					{
+						"type": "liquid",
+						"id": "quote",
+						"label": "Quote",
+						"default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  exercitation ullamco laboris nisi ut commodo consequat."
+					},
+					{
+						"type": "liquid",
+						"id": "stars",
+						"label": "Stars",
+						"info": "Type a number 1 - 5 to show stars",
+						"default": "5"
+					},
+					{
+						"type": "liquid",
+						"id": "title",
+						"label": "Name",
+						"default": "Name Here"
+					},
+					{
+						"type": "image_picker",
+						"id": "image",
+						"label": "Image"
+					},
+          
+          {
+            "type": "header",
+            "content": "Video Settings"
+          },
+          {
+            "type": "video_url",
+            "id": "video_url",
+            "label": "Video url",
+            "accept": [
+              "youtube",
+              "vimeo"
+            ]
+          },
+          {
+            "type": "text",
+            "id": "video_hosted",
+            "label": "Video url if hosted"
+          },
+          {
+            "type": "image_picker",
+            "id": "video_hosted_thumbnail",
+            "label": "Video thumbnail (only if hosted)"
+          },
+          {
+            "type": "text",
+            "id": "video_metafields",
+            "label": "Video input for metafields"
+          },
+          {
+              "type":"header",
+              "content": "Developer Only"
+          },
+          {
+              "type": "liquid",
+              "id": "metafield_image",
+              "label": "Metafield Image"
+          },
+          {
+              "type": "liquid",
+              "id": "metafield_product",
+              "label": "Metafield Product"
+          }
+				]
+			}
+		],
+		"presets": [
+			{
+				"name": "Testimonial - NINE15",
+				"category": "1 - NINE15"
+			}
+		]
+	}
+{% endschema %}

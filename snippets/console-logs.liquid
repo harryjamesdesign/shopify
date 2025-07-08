@@ -1,0 +1,27 @@
+{% capture cust %}{% if customer %}{{customer.name}}{% else %}Logged Out{% endif %}{% endcapture %}
+<script>
+  var line =    	'- - - - - - - - - - - - - ',
+    ul =        	'-----------------',
+    trpl =          '\n\n\n',
+    dbl =           '\n\n',
+    sgl =           '\n',
+    headerTitle =   'Theme Information',
+    loggedIn = 		'Customer:      {{ cust }}',
+    themeName =     'Theme Name:    {{ theme.name }}',
+    pageTitle =     'Page Title:    {{ page_title | escape }}',
+    themeID =       'Theme ID:      {{ theme.id }}',
+    templateName =  'Template:      {{ template }}';
+  console.log(
+    line + 
+    trpl + 
+    headerTitle + sgl + ul + dbl + 
+    themeName + dbl + 
+    pageTitle + dbl +
+    templateName + dbl + 
+    themeID + dbl + 
+    loggedIn + 
+    trpl + 
+    line + 
+    dbl
+  );
+</script>

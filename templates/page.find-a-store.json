@@ -1,0 +1,663 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "title_style": "visually-hidden",
+        "loop": "",
+        "custom_css": "== .rte {\n  display: none;\n}",
+        "custom_code": ""
+      }
+    },
+    "1662046028979e9d76": {
+      "type": "nine15--slider",
+      "blocks": {
+        "385aecc9-c56d-418e-b192-b9c9a26aac6e": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/F24_OurStoresHeader.jpg",
+            "no_lazyload": false,
+            "title": "OUR STORES",
+            "subtitle": "",
+            "text": "In the mood for a party? Come for a visit. We have locations in Katy, Austin, and Smithville, Texas. Whether you're new to the brand or a long-time Viva Babe, you are all VIPs to us! We can't wait to spend some time with you. Disco balls, pink champagne, and dance parties await. Hope to see you soon! Find other retailers that carry Consuela below.",
+            "btn_txt": "Find a Retailer",
+            "btn_url": "",
+            "btn_anchor_url": "#store-map",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary Button--custom",
+            "color_button_text": "#ffffff",
+            "color_button": "",
+            "color_button_border": "#ffffff",
+            "color_button_text_hover": "#000000",
+            "color_button_hover": "#ffffff",
+            "color_button_border_hover": "#ffffff",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": "== {\n  background: black;\n}\n\n== .image--inner {\n  padding-top: 440px;\n}\n\n== img {\n  object-fit: cover;\n}\n\n== .page-width,\n== .center-content {\n  position: relative;\n  inset: unset;\n  transform: unset;\n  width: 100%;\n  max-width: 100%;\n}\n\n== .page-width {\n  margin-top: -40px;\n}\n\n== .center-content {\n  max-width: 750px;\n  text-align: center;\n  // padding: var(--base-gutter) 0;\n  padding-bottom: var(--base-gutter);\n}\n\n== h2, \n== .rte,\n== .rte * {\n  color: white;\n}\n\n== h2 {\n  font-family: var(--font--graphik-cond);\n  font-weight: 700;\n  letter-spacing: .02em;\n  text-transform: uppercase;\n  color: transparent;\n  -webkit-text-stroke: 1px #fff;\n  font-size: 85px;\n  // font-size: 16px;\n  line-height: 0.8;\n}\n\n== .rte,\n== .rte * {\n  font-weight: 600;\n  font-family: var(--font--graphik-wide);\n}\n\n== .button {\n  padding: var(--base-gutter--half) var(--base-gutter--double);\n}\n\n\n/large-up/ {\n  == .page-width {\n    margin-top: -70px;\n  }\n  == h2 {\n    font-size: 150px;\n    -webkit-text-stroke: 2px #fff;\n  }\n}\n\n\n/ex-large-up/ {\n  == h2 {\n    font-size: 220px;\n  }\n  == .page-width {\n    margin-top: -90px;\n  }\n}"
+          }
+        },
+        "slider_D3JL8M": {
+          "type": "slider",
+          "settings": {
+            "no_lazyload": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "385aecc9-c56d-418e-b192-b9c9a26aac6e",
+        "slider_D3JL8M"
+      ],
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "e72d3720-2335-40e6-87cb-58d296a4e602": {
+      "type": "nine15--ctas",
+      "blocks": {
+        "94b376a2-3a5f-447f-a490-2e3770d90482": {
+          "type": "icon",
+          "settings": {
+            "title": "<b>AUSTIN</b>",
+            "subtitle": "",
+            "text": "<P>Thanksgiving Eve, 11/27: 10AM - 2PM</P>\n<P>Thanksgiving, 11/28: CLOSED</P>",
+            "badge": "",
+            "button_text": "",
+            "url": "",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "e5c2a3bf-b11f-4a32-a054-7d49eb7f750b": {
+          "type": "icon",
+          "settings": {
+            "title": "<b>SMITHVILLE</b>",
+            "subtitle": "",
+            "text": "<P>Thanksgiving Eve, 11/27: 10AM - 2PM</P>\n<P>Thanksgiving, 11/28: CLOSED</P>",
+            "badge": "",
+            "button_text": "",
+            "url": "",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "94b376a2-3a5f-447f-a490-2e3770d90482",
+        "e5c2a3bf-b11f-4a32-a054-7d49eb7f750b"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Thanksgiving Holiday Hours",
+        "text": "",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#ffffff",
+        "gradient": "#000",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "d7424011-2ee0-433a-8c28-bcfb5150dc5a": {
+      "type": "nine15--slider",
+      "blocks": {
+        "e1a39963-0f08-46ed-8056-9a90fe3fd815": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/StoreHolidayHours.jpg",
+            "image_mob": "shopify://shop_images/StoreHolidayHoursMobile.jpg",
+            "no_lazyload": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "e1a39963-0f08-46ed-8056-9a90fe3fd815"
+      ],
+      "disabled": true,
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "1662047391edd466ee": {
+      "type": "nine15--masonry",
+      "blocks": {
+        "764fcdbf-4872-4323-a55f-de74f35af5c0": {
+          "type": "pane",
+          "settings": {
+            "image": "shopify://shop_images/Katy-Store-Left.jpg",
+            "bg_color": "#ffffff",
+            "txt_bg_color": "#ffffff",
+            "txt_color": "#353b40",
+            "width": "50%",
+            "full_width": false,
+            "align": "center",
+            "align_vert": "center",
+            "stack": false,
+            "height": 0,
+            "height_mob": 0,
+            "title": "",
+            "bold_title": false,
+            "font_size_1": 18,
+            "text": "",
+            "font_size_2": 15,
+            "btn_txt": "Shop Now",
+            "btn_url": ""
+          }
+        },
+        "af94c378-d1d0-4013-96a5-98eb26c48e04": {
+          "type": "pane",
+          "settings": {
+            "bg_color": "#000000",
+            "txt_bg_color": "rgba(0,0,0,0)",
+            "txt_color": "#ffffff",
+            "width": "33%",
+            "full_width": false,
+            "align": "center",
+            "align_vert": "center",
+            "stack": false,
+            "height": 0,
+            "height_mob": 0,
+            "title": "Katy",
+            "bold_title": false,
+            "font_size_1": 18,
+            "text": "<p>23501 Cinco Ranch Blvd Suite B150 Katy, Texas 77494\n<br>(281) 721-5132</p>\n\n\n\n<div>\n  <div class=\"cell cell_margin_bottom vert-top\">\n    <div class=\"cell__item one-half\">\n      <a href=\"https://g.co/kgs/DYJPXnx\">\n        {% render 'icon-location' %}\n        <span>Directions</span>\n      </a>\n    </div>\n    <div class=\"cell__item one-half\">\n      <a href=\"tel:281-721-5132\">\n        {% render 'icon-phone' %}\n        <span>Call</span>\n      </a>\n    </div>\n  </div>\n</div>\n\n<table>\n  <tr>    \n<td><b>Mon - Sat</b></td>\n    <td>10:00am - 8:00pm</td>\n  </tr>\n  <tr>\n    <td><b>Sun</b></td>\n    <td>12:00pm - 6:00pm</td>\n  </tr>\n</table>",
+            "font_size_2": 15,
+            "btn_txt": "Shop Now",
+            "btn_url": ""
+          }
+        },
+        "d97a2c63-4c53-4d4b-a826-00f3d3207d8c": {
+          "type": "pane",
+          "settings": {
+            "image": "shopify://shop_images/KATY_RIGHT.jpg",
+            "bg_color": "#ffffff",
+            "txt_bg_color": "#ffffff",
+            "txt_color": "#353b40",
+            "width": "50%",
+            "full_width": false,
+            "align": "center",
+            "align_vert": "center",
+            "stack": false,
+            "height": 0,
+            "height_mob": 0,
+            "title": "",
+            "bold_title": false,
+            "font_size_1": 18,
+            "text": "",
+            "font_size_2": 15,
+            "btn_txt": "Shop Now",
+            "btn_url": ""
+          }
+        },
+        "a11600d4-cdc7-4c6e-9d78-47dc3337df94": {
+          "type": "pane",
+          "settings": {
+            "bg_color": "#000000",
+            "txt_bg_color": "rgba(0,0,0,0)",
+            "txt_color": "#ffffff",
+            "width": "33%",
+            "full_width": false,
+            "align": "center",
+            "align_vert": "center",
+            "stack": false,
+            "height": 0,
+            "height_mob": 0,
+            "title": "Austin",
+            "bold_title": false,
+            "font_size_1": 18,
+            "text": "<p>3500 GUADALUPE ST. SUITE B, AUSTIN, TX 78705\n<br>(512) 201-8024</p>\n\n\n\n<div>\n  <div class=\"cell cell_margin_bottom vert-top\">\n    <div class=\"cell__item one-half\">\n      <a href=\"https://www.google.com/maps?saddr=My+Location&daddr=3500%20Guadalupe%20St.%20Suite%20B%2C%20Austin%2C%20TX%2078705%0A%28512%29%20201-8024\">\n        {% render 'icon-location' %}\n        <span>Directions</span>\n      </a>\n    </div>\n    <div class=\"cell__item one-half\">\n      <a href=\"tel:512-201-8024\">\n        {% render 'icon-phone' %}\n        <span>Call</span>\n      </a>\n    </div>\n  </div>\n</div>\n\n<table>\n  <tr>    \n<td><b>Mon - Sat</b></td>\n    <td>11:00am - 7:00pm</td>\n  </tr>\n  <tr>\n    <td><b>Sun</b></td>\n    <td>11:00am - 6:00pm</td>\n  </tr>\n</table>",
+            "font_size_2": 15,
+            "btn_txt": "Shop Now",
+            "btn_url": ""
+          }
+        },
+        "ddf6f420-4db1-4890-9388-6fc5959efb1c": {
+          "type": "pane",
+          "settings": {
+            "image": "shopify://shop_images/S25_OurStores_Austin.jpg",
+            "bg_color": "#ffffff",
+            "txt_bg_color": "#ffffff",
+            "txt_color": "#353b40",
+            "width": "66%",
+            "full_width": false,
+            "align": "center",
+            "align_vert": "center",
+            "stack": false,
+            "height": 0,
+            "height_mob": 0,
+            "title": "",
+            "bold_title": false,
+            "font_size_1": 18,
+            "text": "",
+            "font_size_2": 15,
+            "btn_txt": "Shop Now",
+            "btn_url": ""
+          }
+        },
+        "pane_h7479e": {
+          "type": "pane",
+          "settings": {
+            "bg_color": "#000000",
+            "txt_bg_color": "#000000",
+            "txt_color": "#ffffff",
+            "width": "33%",
+            "full_width": false,
+            "align": "center",
+            "align_vert": "center",
+            "stack": false,
+            "height": 0,
+            "height_mob": 0,
+            "title": "Smithville",
+            "bold_title": false,
+            "font_size_1": 18,
+            "text": "<p>110 NW 2ND STREET, SMITHVILLE, TX 78957<br>\n(512) 237-1411</p>\n\n<div>\n  <div class=\"cell cell_margin_bottom vert-top\">\n    <div class=\"cell__item one-half\">\n      <a href=\"https://www.google.com/maps?saddr=My+Location&daddr=110%20NW%202nd%20Street%2C%20Smithville%2C%20TX%2078957%0A%28512%29%20237-1411\"> \n\n\n        {% render 'icon-location' %}\n        <span>Directions</span>\n      </a>\n    </div>\n    <div class=\"cell__item one-half\">\n      <a href=\"tel:512-237-1411\">\n        {% render 'icon-phone' %}\n        <span>Call</span>\n      </a>\n    </div>\n  </div>\n</div>\n\n<table>\n \n<tr>\n    <td><b>Mon - Tues</b></td>\n    <td>CLOSED</td>\n  </tr>\n \n<tr>\n    <td><b>Wed - Sat</b></td>\n    <td>10:00am - 6:00pm</td>\n  </tr>\n  <tr>\n    <td><b>Sun</b></td>\n    <td>11:00am - 4:00pm</td>\n  </tr>\n<td><b></b></td>\n</table>",
+            "font_size_2": 15,
+            "btn_txt": "Shop Now",
+            "btn_url": ""
+          }
+        },
+        "pane_LkpaVF": {
+          "type": "pane",
+          "settings": {
+            "image": "shopify://shop_images/S25_OurStores_SV.jpg",
+            "bg_color": "#ffffff",
+            "txt_bg_color": "#ffffff",
+            "txt_color": "#353b40",
+            "width": "66%",
+            "full_width": false,
+            "align": "center",
+            "align_vert": "center",
+            "stack": false,
+            "height": 0,
+            "height_mob": 0,
+            "title": "",
+            "bold_title": false,
+            "font_size_1": 18,
+            "text": "",
+            "font_size_2": 15,
+            "btn_txt": "Shop Now",
+            "btn_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "764fcdbf-4872-4323-a55f-de74f35af5c0",
+        "af94c378-d1d0-4013-96a5-98eb26c48e04",
+        "d97a2c63-4c53-4d4b-a826-00f3d3207d8c",
+        "a11600d4-cdc7-4c6e-9d78-47dc3337df94",
+        "ddf6f420-4db1-4890-9388-6fc5959efb1c",
+        "pane_h7479e",
+        "pane_LkpaVF"
+      ],
+      "settings": {
+        "custom_css": "== .rte > * {\n  margin: 0;\n}\n\n== .rte > *:not(:last-child) {\n  margin-bottom: var(--base-gutter);\n}\n\n== table,\n== tr, \n== td {\n  border: none;\n  text-align: left;\n}\n\n== table {\n  /width: 100%;\n  /max-width: 400px;\n  /margin: 0 auto;\n}\n\n== td {\n  width: 50%;\n  padding: 0 var(--base-gutter--quarter);\n}\n\n== td b {\n  font-weight: 500;\n}\n\n== .cell .cell__item h2 {\n  font-family: var(--font--graphik-cond);\n  font-weight: 700;\n  font-size: 64px;\n}\n\n\n== .rte p, \n== .rte a {\n  font-family: var(--font--graphik-wide);\n  font-weight: 600;\n  font-size: 14px;\n}\n\n== .rte a,\n== .rte a * {\n  text-decoration: none;\n}\n\n== .rte svg, \n== .rte span {\n  display: inline-block;\n  vertical-align: middle;\n}\n\n== .rte svg {\n  margin-right: var(--base-gutter--quarter);\n}\n\n== .rte svg.icon-phone,\n== .rte svg.icon-phone * {\n  fill: currentColor;\n  stroke: none;\n} \n\n== h2 {\n  text-transform: uppercase;\n}\n\n/small/ {\n  == {\n    --gutter: var(--base-gutter--quarter);\n  }\n  == .cell {\n    display: flex;\n    flex-wrap: wrap;\n  }\n  == .item-1,\n  == .item-3 {\n    order: 1;\n    width: 50%;\n  }\n  == .item-2 {\n    order: 2;\n  }\n  == .item-4 {\n    order: 4;\n  }\n  == .item-5 {\n    order: 3;\n  }\n}\n\n\n/medium-up/ {\n\n  == .cell__item {\n    grid-row-end: unset;\n    grid-column-end: unset;\n    position: relative;\n    z-index: 1;\n  }\n\n\n  == .item-1,\n  == .item-3 {\n    grid-row: span 2;\n    grid-column: span 6;\n    order: -1;\n  }\n\n  == .item-2 {\n    grid-row: span 2;\n    grid-column: span 13;\n    z-index: 10;\n    position: relative;\n  }\n\n  == .item-4,\n  == .item-5,\n  == .item-6,\n  == .item-7 {\n    grid-row: span 2;\n  }\n\n  == .item-4 {\n    order: 1;\n  }\n\n}\n\n/large-up/ {\n\n  == .item-2 {\n    grid-row: 2 / 4;\n    grid-column: 4 / 10;\n    z-index: 10;\n    position: relative;\n    max-width: 600px;\n    margin: 0 auto;\n  }\n\n  == .item-1,\n  == .item-3 {\n    grid-row: 1 / 5;\n    grid-column: 1 / 7;\n  }\n\n  == .item-3 {\n    grid-column: 7 / 13;\n  }\n\n  == .item-4 {\n    order: unset;\n  }\n\n  == .item-4 h2,\n  == .item-4 .rte * {\n    text-align: left;\n  }\n\n  == .cell .cell__item h2 {\n    font-size: 90px;\n  }\n\n}\n\n/ex-large-up/ {\n\n  == .item-4,\n  == .item-5,\n  == .item-6,\n  == .item-7  {\n    grid-row: span 3;\n  }\n\n}"
+      }
+    },
+    "nine15_slider_mrjabx": {
+      "type": "nine15--slider",
+      "blocks": {
+        "slider_bBtzXy": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/Katy_ComingSoon_Desktop_528d42d5-1bcd-4a8b-b6c3-5abcfb492947.jpg",
+            "image_mob": "shopify://shop_images/Katy_ComingSoon_Mobile_43357677-0a61-4b3a-894b-01b4fd742333.jpg",
+            "no_lazyload": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "slider_bBtzXy"
+      ],
+      "disabled": true,
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "a223620f-9948-42d6-b5d0-8a4ed35a2f53": {
+      "type": "nine15--ctas",
+      "blocks": {
+        "78e1e370-7e3e-4654-b044-62a4b9fb4e3e": {
+          "type": "icon",
+          "disabled": true,
+          "settings": {
+            "title": "AUSTIN",
+            "subtitle": "<P>December 9th - 23rd</P>",
+            "text": "<P>Saturday 11AM - 8PM</P>\n<P>Sunday 11AM - 6PM</P>",
+            "badge": "",
+            "button_text": "",
+            "url": "",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "efea19ac-e65a-4211-a2ea-5b13fb4929f6": {
+          "type": "icon",
+          "settings": {
+            "title": "SMITHVILLE",
+            "subtitle": "<P>December 9th - 26th</P>",
+            "text": "<P>Saturday 10AM - 7PM</P>\n<P>Sunday 11AM - 6PM</P>\n<P>Monday 10AM - 6PM</P>\n<P>Tuesday 10AM - 6PM\n</P>",
+            "badge": "",
+            "button_text": "",
+            "url": "",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "78e1e370-7e3e-4654-b044-62a4b9fb4e3e",
+        "efea19ac-e65a-4211-a2ea-5b13fb4929f6"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Holiday Extended Hours",
+        "text": "",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#ffffff",
+        "gradient": "#000",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "1662085104b0fc57db": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "store locator",
+        "custom_html": "<div id=\"store-map\" class=\"page-width\">\n  <div class=\"section--title\">\n    <h2>Find a Retailer</h2>\n  </div>\n  <div class=\"locator\">\n    <div id=\"ProloFinder\"></div>\n    <script src=\"https://embed.prolofinder.com/js/prolo.js?collection=91123812\"></script>\n  </div>\n</div>",
+        "custom_css": "== {\n  padding: var(--base-gutter) 0;\n}\n\n\n\n/medium-up/ {\n  == {\n    padding: var(--base-gutter--double) 0;\n  }\n}"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1662046028979e9d76",
+    "e72d3720-2335-40e6-87cb-58d296a4e602",
+    "d7424011-2ee0-433a-8c28-bcfb5150dc5a",
+    "1662047391edd466ee",
+    "nine15_slider_mrjabx",
+    "a223620f-9948-42d6-b5d0-8a4ed35a2f53",
+    "1662085104b0fc57db"
+  ]
+}

@@ -1,0 +1,160 @@
+<!-- AGI:Local Business Schema on Store Locator Page: START: Added 5/16/2024 -->
+{% if page.id == 21928673339 %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+ "address": {
+          "@type": "PostalAddress",
+          "streetAddress": {{ shop.address.address1 | json}},
+          "addressLocality": {{ shop.address.city | json}},
+          "addressCountry": {{ shop.address.country_code | json}},
+          "addressRegion": {{ shop.address.province_code | json}},
+          "postalCode":{{ shop.address.zip | json}}
+        },
+  "description": {{ shop.description | json }},
+  "name": {{ shop.name | json }},
+  "telephone": {{ shop.phone | json }}
+};
+</script>
+{% endif %}
+<!-- AGI:Local Business Schema on Store Locator Page: END: Added 5/16/2024 -->
+
+<!-- AGI:Article Schema: START: Added 5/16/2024 -->
+{% if template contains 'article' %}
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "articleBody": {{ article.content | strip_html | json }},
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ shop.url | append: article.url | json }}
+    },
+    "headline": {{ article.title | json }},
+    {% if article.excerpt != blank %}
+      "description": {{ article.excerpt | strip_html | json }},
+    {% endif %}
+    {% if article.image %}
+      {% assign image_size = article.image.width | append: 'x' %}
+      "image": [
+        {{ article | img_url: image_size | prepend: "https:" | json }}
+      ],
+    {% endif %}
+    "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "dateCreated": {{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "author": {
+      "@type": "Person",
+      "name": {{ article.author | json }}
+    },
+    "publisher": {
+      "@type": "Organization",
+      {% if settings.share_image %}
+        {% assign image_size = settings.share_image.width | append: 'x' %}
+        "logo": {
+          "@type": "ImageObject",
+          "height": {{ settings.share_image.height | json }},
+          "url": {{ settings.share_image | img_url: image_size | prepend: "https:" | json }},
+          "width": {{ settings.share_image.width | json }}
+        },
+      {% endif %}
+      "name": {{ shop.name | json }}
+    }
+  }
+  </script>
+{% endif %}
+<!-- AGI:Article Schema: END: Added 5/16/2024 -->
+
+<!-- AGI:Breadcrumbs Schema: START: Added 5/20/2024 -->
+{% capture breadcrumbs %}
+  [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@id": "{{ shop.url }}",
+        "name": "Home"
+      }
+    }
+    {% if template == 'collection' %}
+      ,
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@id": "{{ collection.url }}",
+          "name": "{{ collection.title }}"
+        }
+      }
+    {% elsif template == 'product' %}
+      ,
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@id": "{{ product.collections.first.url }}",
+          "name": "{{ product.collections.first.title }}"
+        }
+      }
+      ,
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "{{ product.url }}",
+          "name": "{{ product.title }}"
+        }
+      }
+    {% elsif template == 'page' %}
+      ,
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@id": "{{ page.url }}",
+          "name": "{{ page.title }}"
+        }
+      }
+    {% elsif template == 'blog' or template == 'blog.inatb' %}
+      ,
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@id": "{{ blog.url }}",
+          "name": "{{ blog.title }}"
+        }
+      }
+    {% elsif template == 'article' %}
+      ,
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@id": "{{ article.blog.url }}",
+          "name": "{{ article.blog.title }}"
+        }
+      }
+      ,
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "{{ article.url }}",
+          "name": "{{ article.title }}"
+        }
+      }
+    {% endif %}
+  ]
+{% endcapture %}
+
+{% if template == 'product' or template == 'collection' or template == 'blog' or template == 'article' or template == 'page' or template == 'blog.inatb'%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": {{ breadcrumbs | strip_newlines }}
+}
+</script>
+{% endif %}
+<!-- AGI:Breadcrumbs Schema: END: Added 5/20/2024 -->

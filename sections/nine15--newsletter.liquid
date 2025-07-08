@@ -1,0 +1,141 @@
+<!-- sections/nine15--newsletter -->
+
+<link rel="stylesheet" href="{{ 'newsletter-section.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'newsletter-section.css' | asset_url | stylesheet_tag }}</noscript>
+
+{% liquid 
+
+  assign s                    = section.settings
+
+  assign sID                  = section.id
+
+  assign sectionCustomCSS     = s.custom_css
+  assign class                = 'section--' | append: sID
+  assign cssClass             = '.' | append: class
+
+  assign btnTxt               = 'newsletter.label' | t
+
+  if s.btn_text != blank
+    assign btnTxt             = s.btn_text
+  endif
+
+%}
+
+<div class="nine15--newsletter-section {{class}} ">
+    <div class="page-width page-width--full-width">
+        <div class="grid vert-mid grid_margin_bottom">
+            <div class="grid__item medium-up--three-fifths ex-large-up--one-half {% comment %}small--text-center{% endcomment %}">
+                {% unless s.heading == blank %}
+                    <h2 class="">{{ s.heading }}</h2>
+                {% endunless %}
+                {% unless s.subheading == blank %}
+                    <div class="rte">{{ s.subheading }}</div>
+                {% endunless %}
+            </div>
+            <div class="grid__item medium-up--two-fifths ex-large-up--one-half text-center medium-up--text-right">
+                <div class="klaviyo-form-Xiq6BZ"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .klaviyo-form-Xiq6BZ .klaviyo-form {
+            margin-right: 0!important;
+        }
+        .klaviyo-form-Xiq6BZ .klaviyo-form input {
+            margin: 0!important;
+        }
+        .klaviyo-form-Xiq6BZ .klaviyo-form button { 
+            width: 100%!important;
+        }
+    
+        @media screen and (max-width: 749px) {
+            .klaviyo-form-Xiq6BZ .klaviyo-form [data-testid="form-row"] {
+                flex-direction: column!important;
+            }
+            .klaviyo-form-Xiq6BZ .klaviyo-form [data-testid="form-component"] {
+                flex: initial!important;
+                padding: 0!important;
+                margin-top: 20px;
+            }
+        }
+        body:not(.template--index) .section--nine15--newsletter--footer .klaviyo-form button {
+            border-color: white!important;
+            color: white!important;
+        }
+        body:not(.template--index) .section--nine15--newsletter--footer .klaviyo-form * {
+            color: white!important;
+        }
+    </style>
+
+    {% include 'custom-css', 
+        css: sectionCustomCSS, 
+        class: cssClass 
+    %}
+</div>
+
+
+
+{% schema %}
+{
+    "name": "Newsletter",
+    "class": "index-section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Title"
+        },
+        {
+            "type": "richtext",
+            "id": "subheading",
+            "label": "Subheading"
+        },
+        {
+            "type": "text",
+            "id": "btn_text",
+            "label": "Button Text"
+        },
+        {
+            "type":"header",
+            "content": "Custom CSS Rules"
+        },
+        {
+            "type":"paragraph",
+            "content": "Explanation of Custom CSS rules below input."
+        },
+        {
+            "type": "html",
+            "id": "custom_css",
+            "label": "Custom CSS"
+        },
+        {
+            "type":"paragraph",
+            "content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+        },
+        {
+            "type":"paragraph",
+            "content": "Ex: '== h2 { font-size: 20px; }'"
+        },
+        {
+            "type":"paragraph",
+            "content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+        },
+        {
+            "type":"paragraph",
+            "content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+        },
+        {
+            "type":"paragraph",
+            "content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Newsletter",
+            "category": "2 - NINE15"
+        }
+    ]
+}
+{% endschema %}

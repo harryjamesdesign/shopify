@@ -1,0 +1,676 @@
+{% style %}
+
+
+  /*
+   .rebuy-widget.is-hidden{
+   display:block!important;
+   }
+*/
+
+  .master-rebuy-widget-contents .rebuy-widget .rebuy-product-block .rebuy-product-media img,
+  .master-rebuy-widget-contents .rebuy-recommended-products .rebuy-product-block .rebuy-product-media img {
+    padding-bottom: 45px !important;
+  }
+
+  .master-rebuy-widget .rebuy-widget .rebuy-product-block .rebuy-product-info .rebuy-product-title {
+    max-width: calc(100% - 70px) !important;
+  }
+
+  @media (max-width: 450px) {
+    .master-rebuy-widget .rebuy-widget .rebuy-product-block .rebuy-product-info .rebuy-product-title {
+      max-width: calc(100% - 50px) !important;
+    }
+  }
+
+  .rebuy-product-price {
+    margin: 0 !important;
+  }
+
+  .master-rebuy-widget .rebuy-widget .flickity-button.next,
+  .master-rebuy-widget .rebuy-widget .flickity-button.previous {
+    background: {% if section.settings.widget_theme_type == true %} none {% else %} #FFFFFF {% endif %} !important;
+    border: none !important;
+    color: {% if section.settings.widget_theme_type == true %} #FFF {% else %} #000000 {% endif %} !important;
+  }
+
+  .rebuy-widget .flickity-button.next:focus,
+  .rebuy-widget .flickity-button.previous:focus {
+    outline: none !important;
+    border: {% if section.settings.widget_theme_type == true %} none {% else %} #000000 {% endif %} !important;
+    box-shadow: none !important;
+  }
+
+  .rebuy-product-grid:focus {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .master-rebuy-widget {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 60px 10px;
+    background: {% if section.settings.widget_theme_type == true %} #000000 {% else %} #FFFFFF {% endif %};
+    align-items: center;
+    max-height: 650px !important;
+    overflow: hidden !important;
+  }
+
+  .master-rebuy-widget .rebuy-product-options {
+    display: none !important;
+  }
+
+  .master-rebuy-widget .rebuy-product-options {
+    position: absolute !important;
+    bottom: 43px;
+    width: 130px !important;
+  }
+
+  .master-rebuy-widget-content-main {
+    margin-bottom: 150px !important;
+  }
+
+
+  .master-rebuy-widget .rebuy-widget {
+    padding-top: 0 !important;
+  }
+
+  .rebuy-product-actions a {
+    /* text-transform:initial!important; */
+    font-family: var(--font--graphik-wide);
+    font-size: 13px;
+  }
+
+  .master-rebuy-widget .primary-title {
+    display: none !important;
+  }
+
+  .master-rebuy-widget-names {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .master-rebuy-widget-contents {
+    max-width: 1440px;
+    width: 100%;
+  }
+
+  .widget-button-active {
+    color: {% if section.settings.widget_theme_type == true %} #000 {% else %} #FFFFFF {% endif %} !important;
+    background: {% if section.settings.widget_theme_type == true %} #FFF {% else %} #000000 {% endif %} !important;
+  }
+
+  .widget-content-active {
+    max-height: 0 !important;
+    overflow: hidden !important;
+    margin-bottom: 0 !important;
+    /* display:none!important; */
+  }
+
+  .master-rebuy-widget-name-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 222px;
+    width: 50%;
+    height: 35.318px;
+    flex-shrink: 0;
+    color: {% if section.settings.widget_theme_type == true %} #FFF {% else %} #000000 {% endif %};
+    text-align: center;
+    font-family: var(--font--graphik-wide);
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+    border: 1px solid {% if section.settings.widget_theme_type == true %} #FFF {% else %} #000000 {% endif %};
+    background: {% if section.settings.widget_theme_type == true %} #000 {% else %} #FFFFFF {% endif %};
+  }
+
+  .master-rebuy-widget .rebuy-product-block {
+    /* background: white!important; */
+    /* position: relative!important; */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: end !important;
+    padding: 0 5px !important;
+    /* padding-bottom: 30px !important; */
+  }
+
+  .master-rebuy-widget .rebuy-widget .rebuy-product-grid.small-columns-2 .rebuy-product-block {
+    padding-right: 5px !important;
+  }
+
+  .master-rebuy-widget .rebuy-product-media {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    background: white !important;
+  }
+
+  .master-rebuy-widget .rebuy-product-info {
+    position: absolute !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    padding: 0 30px 10px !important;
+    display: {% if section.settings.show_title == true %} flex {% else %} none {% endif %} !important;
+    justify-content: space-between !important;
+    max-width: 100% !important;
+  }
+
+  button:focus {
+    outline: none !important;
+  }
+
+  .master-rebuy-widget .rebuy-widget .rebuy-product-grid.large-carousel .rebuy-product-block {
+    min-height: auto !important;
+  }
+
+  .master-rebuy-widget .rebuy-product-title.clickable {
+    margin: 0 !important;
+  }
+
+  .master-rebuy-widget .rebuy-product-price {
+    position: relative;
+  }
+
+  .master-rebuy-widget .rebuy-product-actions {
+    position: absolute !important;
+    width: 100% !important;
+    padding: 0 30px !important;
+    bottom: 90px !important;
+  }
+
+  .master-rebuy-widget .rebuy-button {
+    background: white !important;
+    color: black !important;
+    display: none !important;
+    border: none !important;
+    text-decoration: none !important;
+  }
+
+  .master-rebuy-widget .rebuy-button:hover {
+    background: black !important;
+    color: white !important;
+  }
+
+  @media (min-width: 900px) {
+    .master-rebuy-widget .rebuy-product-block:hover .rebuy-button {
+      display: block !important
+    }
+  }
+
+  button:focus {
+    outline: none !important;
+    border: none !important;
+  }
+
+  .rebuy-widget.widget-type-dynamic-bundle .rebuy-bundle__image-item.clickable {
+    max-height: 100% !important;
+    height: 143px !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .rebuy-widget.widget-type-dynamic-bundle .rebuy-bundle__image-item img {
+    max-height: 100% !important;
+    height: 100% !important;
+    width: auto !important;
+  }
+
+  .rebuy-widget .flickity-button.next:focus,
+  .rebuy-widget .flickity-button.previous:focus {
+    outline: none !important;
+    border: none !important;
+  }
+
+  button:focus {
+    outline: none !important;
+    border: none !important;
+  }
+
+  .master-rebuy-widget .rebuy-money.compare-at {
+    display: none !important;
+  }
+
+  .master-rebuy-widget-contents {
+    margin-top: 40px !important;
+  }
+
+  .master-rebuy-widget-contents {
+    outline: none !important;
+    border: none !important;
+  }
+
+  .master-rebuy-widget-contents:focus {
+    outline: none !important;
+    border: none !important;
+  }
+
+  .master-rebuy-widget .rebuy-widget .rebuy-product-block .rebuy-product-info {
+    align-items: flex-end !important;
+  }
+
+  .rebuy-widget .rebuy-product-block .rebuy-product-info .rebuy-product-title {
+    font-size: 13px !important;
+  }
+
+  @media (max-width : 1500px ) {
+    .master-rebuy-widget .rebuy-widget .flickity-button.previous {
+      left: -38px !important;
+    }
+
+    .master-rebuy-widget .rebuy-widget .flickity-button.next {
+      right: -38px !important;
+    }
+  }
+
+  @media (max-width : 1440px ) {
+    .master-rebuy-widget {
+      gap: 20px !important;
+    }
+
+    .master-rebuy-widget-contents {
+      padding: 0 30px !important;
+    }
+  }
+
+  @media (max-width : 1250px ) {
+    .master-rebuy-widget .rebuy-product-info {
+      padding: 0 10px 2px !important;
+    }
+
+    .master-rebuy-widget {
+      gap: 0 !important;
+      max-height: 550px !important;
+      overflow: hidden !important;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .master-rebuy-widget {
+      max-height: 480px !important;
+    }
+  }
+
+  @media (max-width : 990px ) {
+    .master-rebuy-widget {
+      max-height: 460px !important;
+      overflow: hidden !important;
+    }
+  }
+
+  @media (max-width: 960px) {
+    .master-rebuy-widget .rebuy-button {
+      padding: 10px 5px !important;
+    }
+
+    .master-rebuy-widget .rebuy-product-actions {
+      width: 100% !important;
+      padding: 0 10px !important;
+    }
+  }
+
+  @media (max-width : 768px ) {
+    .master-rebuy-widget .rebuy-product-title.clickable {
+      font-size: 11px !important;
+    }
+
+    .master-rebuy-widget .rebuy-money span:nth-of-type(2) {
+      font-size: 11px !important;
+    }
+
+    #rebuy-widget-154364 {
+      margin-top: 10px;
+    }
+
+    .master-rebuy-widget {
+      max-height: 400px !important;
+    }
+  }
+
+  @media (max-width : 767px) {
+    .master-rebuy-widget {
+      max-height: 580px !important;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .master-rebuy-widget {
+      max-height: 550px !important;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .master-rebuy-widget .master-rebuy-widget-names {
+      padding: 0 30px !important;
+    }
+
+    .master-rebuy-widget {
+      max-height: 500px !important;
+    }
+
+    .master-rebuy-widget .rebuy-button {
+      font-size: 13px !important;
+    }
+  }
+
+  @media (max-width : 480px ) {
+    .master-rebuy-widget .rebuy-product-title.clickable {
+      font-size: 16px !important;
+    }
+
+    .master-rebuy-widget .rebuy-money span:nth-of-type(2) {
+      font-size: 11px !important;
+    }
+
+    .master-rebuy-widget .master-rebuy-widget-names {
+      padding: 0 34px !important;
+    }
+
+    .master-rebuy-widget .master-rebuy-widget-name-item {
+      font-size: 11px !important;
+    }
+
+    .master-rebuy-widget {
+      gap: 25px;
+    }
+  }
+
+  @media (max-width: 425px) {
+    .master-rebuy-widget-contents {
+      padding: 0 10px !important;
+    }
+
+    .master-rebuy-widget .master-rebuy-widget-names {
+      padding: 0 14px !important;
+    }
+
+    .master-rebuy-widget .rebuy-widget .flickity-button.next {
+      right: -25px !important;
+    }
+
+    .master-rebuy-widget .rebuy-widget .flickity-button.previous {
+      left: -25px !important;
+    }
+
+    .master-rebuy-widget {
+      max-height: 430px !important;
+    }
+
+    .master-rebuy-widget-contents {
+      margin-top: 15px !important;
+    };
+
+
+    /*
+   .rebuy-widget .rebuy-product-grid.small-carousel {
+   margin-top: 15px !important;
+   }
+*/
+  }
+
+  @media (max-width: 375px) {
+    .master-rebuy-widget {
+      max-height: 400px !important;
+    }
+  }
+
+  {% if section.settings.show_ATC == false %}
+    .rebuy-product-actions {
+      display: none !important;
+    }
+  {% endif %}
+
+  
+{% endstyle %}
+
+<div class="master-rebuy-widget">
+  <div class="master-rebuy-widget-names">
+    {% for block in section.blocks %}
+      {% if block.settings.show_title == true %}
+        <button class="master-rebuy-widget-name-item {% if forloop.index == 1 %} widget-button-active {% endif %}">{{ block.settings.rebuy_name }}</button>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="master-rebuy-widget-contents">
+    {% for block in section.blocks %}
+      <div class="master-rebuy-widget-content-main master-rebuy-widget-content-item">
+        <div data-rebuy-id="{{ block.settings.id }}" data-rebuy-shopify-product-ids="{{ product.id }}"></div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  var buttons = document.querySelectorAll('.master-rebuy-widget-name-item');
+  var divs = document.querySelectorAll('.master-rebuy-widget-content-main');
+
+  buttons.forEach((button, index)=>{
+    button.addEventListener('click', function(){
+      divs.forEach((div, indiv)=>{
+        div.classList.add('widget-content-active')
+      })
+      buttons.forEach((bu, inbu)=>{
+        bu.classList.remove("widget-button-active")
+      })
+      buttons[index].classList.add("widget-button-active");
+      divs[index].classList.remove('widget-content-active')
+    })
+  })
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var targetNode = document.querySelector('.master-rebuy-widget-contents')
+            var config = { childList: true, subtree: true };
+    
+            var callback = function(mutationsList, observer) {
+              for (var mutation of mutationsList) {
+                  if (mutation.type === 'childList') {
+                    var divs = document.querySelectorAll('#rebuy-widget-154344 .rebuy-product-block');
+
+                    if(divs.length > 0){
+                      divs.forEach((item, index)=>{
+                        if(item.querySelector('.rebuy-product-options')){
+                          var url = item.querySelector('.rebuy-product-media a').href
+                          var product_id = url.split('?')[0].split('/')[4]
+                          
+                          function getProductImage(productId){
+                              fetch(`/products/${productId}.js`)
+                              .then(response => response.json())
+                              .then(product => {
+                                const images = product.images;
+                                console.log("imgessssssss",images[0])
+                                item.querySelector('.rebuy-product-media a img').src = images[0];
+                                console.log('sdjfskfjslkfjlskf', product.metafields)
+                              })
+                              .catch(error => {
+                                console.error('Error fetching product images:', error);
+                              });
+                          }
+
+                          getProductImage(product_id)
+                        }
+                      })
+
+                      divs.forEach((item, index)=>{
+                        var href = item.querySelector('.rebuy-product-media a').href;
+                        item.querySelector('.rebuy-product-actions').innerHTML = '<a class="rebuy-button" href="'+ href +'">View Details</a>'
+                      })
+                      
+                      observer.disconnect();
+                      break;
+                    }
+                      
+                }
+              }
+            }
+
+            var observer = new MutationObserver(callback);
+            observer.observe(targetNode, config);
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var targetNode = document.querySelector('.master-rebuy-widget-contents')
+            var config = { childList: true, subtree: true };
+    
+            var callback = function(mutationsList, observer) {
+              for (var mutation of mutationsList) {
+                  if (mutation.type === 'childList') {
+                    var divs = document.querySelectorAll('#rebuy-widget-154364 .rebuy-product-block');
+
+                    if(divs.length > 0){
+                      divs.forEach((item, index)=>{
+                        if(item.querySelector('.rebuy-product-options')){
+                          var url = item.querySelector('.rebuy-product-media a').href
+                          var product_id = url.split('?')[0].split('/')[4]
+                          
+                          function getProductImage(productId){
+                              fetch(`/products/${productId}.js`)
+                              .then(response => response.json())
+                              .then(product => {
+                                const images = product.images;
+                                item.querySelector('.rebuy-product-media a img').src = images[0]
+                              })
+                              .catch(error => {
+                                console.error('Error fetching product images:', error);
+                              });
+                          }
+
+                          getProductImage(product_id)
+                        }
+                      })
+
+                      divs.forEach((item, index)=>{
+                        var href = item.querySelector('.rebuy-product-media a').href;
+                        item.querySelector('.rebuy-product-actions').innerHTML = '<a class="rebuy-button" href="'+ href +'">View Details</a>'
+                      })
+                      
+                      observer.disconnect();
+                      break;
+                    }
+                      
+                }
+              }
+            }
+
+            var observer = new MutationObserver(callback);
+            observer.observe(targetNode, config);
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var targetNode = document.querySelector('.master-rebuy-widget-contents')
+            var config = { childList: true, subtree: true };
+    
+            var callback = function(mutationsList, observer) {
+              for (var mutation of mutationsList) {
+                  if (mutation.type === 'childList') {
+                    var divs = document.querySelectorAll('#rebuy-widget-171479 .rebuy-product-block');
+
+                    if(divs.length > 0){
+
+                      divs.forEach((item, index)=>{
+                        var href = item.querySelector('.rebuy-product-media a').href;
+                        item.querySelector('.rebuy-product-actions').innerHTML = '<a class="rebuy-button" href="'+ href +'">View Details</a>'
+                      })
+                      
+                      observer.disconnect();
+                      break;
+
+                    }
+                      
+                }
+              }
+            }
+
+            var observer = new MutationObserver(callback);
+            observer.observe(targetNode, config);
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var targetNode = document.querySelector('.master-rebuy-widget-contents')
+            var config = { childList: true, subtree: true };
+    
+            var callback = function(mutationsList, observer) {
+              for (var mutation of mutationsList) {
+                  if (mutation.type === 'childList') {
+                    var divs = document.querySelectorAll('#rebuy-widget-171484 .rebuy-product-block');
+
+                    if(divs.length > 0){
+
+                      divs.forEach((item, index)=>{
+                        var href = item.querySelector('.rebuy-product-media a').href;
+                        item.querySelector('.rebuy-product-actions').innerHTML = '<a class="rebuy-button" href="'+ href +'">View Details</a>'
+                      })
+                      
+                      observer.disconnect();
+                      break;
+                      
+                    }
+                      
+                }
+              }
+            }
+
+            var observer = new MutationObserver(callback);
+            observer.observe(targetNode, config);
+        });
+</script>
+
+{% schema %}
+  {
+    "name": "Rebuy Widget Add",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "widget_theme_type",
+        "label": "Widget Theme (Black : recommend)",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_title",
+        "label": "Show info",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_ATC",
+        "label": "Show ATC",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Rebuy id",
+        "settings": [
+          {
+            "type": "text",
+            "id": "rebuy_name",
+            "label": "Rebuy Name"
+          },
+          {
+            "type": "checkbox",
+            "id": "show_title",
+            "label": "Show Title",
+            "default": true
+          },
+          {
+            "type": "text",
+            "id": "id",
+            "label": "Rebuy Id"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Rebuy Widget Add"
+      }
+    ]
+  }
+{% endschema %}

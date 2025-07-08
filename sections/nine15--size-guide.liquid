@@ -1,0 +1,526 @@
+<!-- sections/nine15--size-guide -->
+
+{% liquid
+    
+    assign s                    = section.settings
+    assign sID                  = section.id
+
+    assign sectionCustomCSS     = s.custom_css
+    assign class                = 'section--' | append: sID
+    assign cssClass             = '.' | append: class
+
+    assign ttl                  = s.title
+    assign txt                  = s.text
+
+    assign open_first           = true 
+
+    assign sep                  = "|###|" 
+    assign sepRow               = "|===|" 
+    assign mostCols             = 0 
+    assign totalRows            = -1 
+
+    assign blankSpace           = 'BLANK' 
+
+    assign grps                 = '' 
+    assign grpsColTtls          = '' 
+    assign grpsRows             = '' 
+    assign bigSplit             = '<!-- split -->' 
+    assign spltSt               = '<!-- replace_' 
+    assign spltEnd              = ' -->' 
+    assign spltBig              = spltEnd | append: bigSplit 
+
+    for block in section.blocks 
+        assign b                = block.settings 
+        assign ven              = b.vendor | strip | handleize 
+        assign tgs              = b.tags | strip | remove_newline|handleize 
+        assign groupHandle      = ven | append: '-' | append: tgs 
+        assign rplc             = spltSt | append: groupHandle | append: spltBig 
+        unless grps contains rplc 
+            assign grps         = grps | append: rplc 
+            assign grpsRows     = grpsRows | append: rplc 
+        endunless 
+        if block.type == 'title' 
+            assign mainTtl      = b.main_title 
+            assign mainTxt      = b.main_text 
+            assign mainImg      = b.main_image 
+            assign hdrTtl       = b.table_title 
+            assign colTtls      = b.column_titles 
+            assign grp          = mainTtl | append: sep | append: hdrTtl | append: sep | append: colTtls | append: sep | append: mainTxt | append: sep | append: mainImg | append: rplc  
+            assign grps         = grps | replace: rplc, grp 
+        endif 
+        if block.type == 'row'   
+            assign rowCol       = b.row_title | append: sep | append: b.column_info | append: sepRow | append: rplc  
+            assign grpsRows     = grpsRows | replace: rplc, rowCol 
+        endif 
+    endfor 
+
+    assign grps                 = grps | split: bigSplit  
+
+%}
+
+<div class="page--size-guide {{class}}">
+    
+    {{ 'nine15-section--size-guide.css' | asset_url | stylesheet_tag }}
+
+    <div class="page-width ">
+
+        {% if ttl != blank or img != blank or txt != blank %}
+            <div class="section--title text-center {% if ttl != blank and img == blank and txt == blank and use_lnk == true %}inline--link{% endif %}">
+              
+                {% if ttl != blank %}
+                    <h2>{{ttl}}</h2>
+                {% endif %}
+              
+                {% if txt != blank %}
+                    <div class="rte">{{txt}}</div>
+                {% endif %}
+                      
+            </div>
+        {% endif %}
+
+        <div class=" acc-container">
+            
+            {% for i in grps %}
+
+                {% liquid
+        
+                        assign mostCols             = 0 
+                        assign mostRows             = 0 
+                        assign thisLoop             = forloop.index0 
+
+                        comment 
+                    Split Group Content 
+                        endcomment 
+
+                        assign contSplt             = i | split: spltSt 
+                        assign hndl                 = contSplt | last | split: spltEnd | first 
+                        assign cont                 = contSplt | first | split: sep 
+
+                        comment 
+                    Set Handle 
+                        endcomment 
+
+                        assign fullSplit            = spltSt | append: hndl | append: spltEnd 
+                        
+                        comment 
+                    Group Settings  
+                        endcomment 
+
+                        assign mainTtl              = cont[0] 
+                        assign hdrTtl               = cont[1] 
+                        assign colTtls              = cont[2] | newline_to_br | split: '<br />' 
+                        assign mainTxt              = cont[3] 
+                        assign mainImg              = cont[4] 
+
+                        assign thisBlock            = section.blocks | where: 'type', 'title' 
+
+                        assign mainImg              = thisBlock[thisLoop].settings.main_image
+                        assign botText              = thisBlock[thisLoop].settings.bot_text
+
+                        comment 
+                    Split Row Content 
+                        endcomment 
+
+                        assign splitCols            = grpsRows | split: bigSplit 
+                        assign totalRows            = splitCols[thisLoop] | split: sepRow | size | minus: 2 
+
+                        comment 
+                    Most Columns Count 
+                        endcomment 
+
+                        if colTtls.size > mostCols 
+                            assign mostCols         = colTtls.size 
+                        endif 
+                        for i in (0..totalRows) 
+                            assign ind              = i | plus: 0 
+                            assign thisRow          = splitCols[thisLoop] | split: fullSplit | first | split: sepRow 
+                            assign thisRow          = thisRow[i] | split: sep              
+                            assign rowCols          = thisRow[1] | newline_to_br | split: '<br />' 
+                            if i == 0 
+                                assign rowTtl       = thisRow[0] 
+                            endif 
+                            if rowCols.size > mostCols 
+                                assign mostCols     = rowCols.size 
+                            endif 
+                        endfor 
+
+                        comment 
+                    Minus one to fix overflow 
+                        endcomment 
+
+                        assign mostCols             = mostCols | minus: 1 
+
+                        assign openItem             = false 
+                        if forloop.first == true and open_first == true 
+                            assign openItem         = true 
+                        endif 
+
+                %}
+
+                {% comment %}{% assign openItem = true %}{% endcomment %}
+
+                {% capture imgItm %}
+                    {% include 'snippet--image', 
+                        img: mainImg, 
+                        extraClass: 'header-image',
+                        useBG: false 
+                    %}
+                {% endcapture %}
+
+                {% capture ttlItm %}
+                    <!-- <h2 class="h3">{{ mainTtl }}</h2> -->
+                    {% if mainTxt != blank %}
+                        <div class="rte">
+                            {{mainTxt}}
+                        </div>
+                    {% endif %}
+                {% endcapture %}
+
+                <div class="guide-row">                    
+
+                    {% comment %}
+                    <div>1: {{section.blocks[thisLoop].settings.main_image|json}}</div>
+                    <div>1: {{section.blocks[thisLoop].settings|json}}</div>
+                    <div>1: {{thisBlock.settings.main_image|json}}</div>
+                    <div>1: {{thisBlock.settings|json}}</div>
+                    <div>1: {{section.blocks[thisLoop]|json}}</div>
+                    <div>1: {{section|json}}</div>
+                    {% endcomment %}
+
+                    
+                    <div class="acc-btn">
+                        <h3 class="{% if openItem %}selected{% endif %}">{{ mainTtl }}{% comment %}{% if hdrTtl != blank %} <Br><i>({{hdrTtl|replace:'<br>',' | '}})</i>{% endif %}{% endcomment %}</h3>
+                        <div class="img {% if openItem %}selected{% endif %}">
+                            {% include 'icon-accordion-buttons' %}
+                        </div>
+                    </div>
+
+                    <div class="acc-content {% if openItem %}open{% endif %}">
+                        <div class="acc-content-inner">
+                            <div class="content_inner">
+
+                                <div class="desktop-table medium-down--hide">
+
+                                    <div class="cell cell_margin_bottom vert-top {% if mainImg != blank %}use-grid{% endif %}">
+                                        {% if mainImg != blank %}
+                                            <div class="cell__item large-up--one-third">
+                                                {{imgItm}}
+                                            </div>
+                                        {% endif %}
+                                        <div class="cell__item {% if mainImg != blank %}large-up--two-thirds{% endif %} small--text-center">
+                                            {{ttlItm}}
+                                            <table class="">
+                                                <thead>
+                                                    <tr>
+                                                        <th>{{hdrTtl}}</th>
+                                                        {% for i in (0..mostCols) %}
+                                                            <th class="text-center">{{- colTtls[i] -}}</th>
+                                                        {% endfor %}
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for i in (0..totalRows) %}
+                                                        {% assign ind = i | plus: 0 %}
+
+                                                        {% assign thisRow  = splitCols[thisLoop] | split: fullSplit | first | split: sepRow %}
+                                                        {% assign thisRow  = thisRow[i] | split: sep %}                 
+
+                                                        {% comment %} Row Settings {% endcomment %}
+                                                        {% assign rowTtl    = thisRow[0] %}
+                                                        {% assign rowCols   = thisRow[1] | newline_to_br | split: '<br />' %}
+
+                                                        <tr class="{{ forloop.index | modulo:2 | plus:1 | pluralize: 'even','odd' }}">
+                                                            <td>
+                                                                {% unless rowTtl contains '(cont.)' %}{{ rowTtl }}{% endunless %}
+                                                                
+                                                            </td>
+                                                            {% for i in (0..mostCols) %}
+                                                                <td class="text-center" {{hLight}}>{{- rowCols[i] | replace: blankSpace,'' -}}</td>
+                                                            {% endfor %}
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+
+                                            {% if botText != blank %}
+                                                <div class="rte bot-text">{{botText}}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="large-up--hide">
+                                    {{hdr}}
+                                    <div class="cell cell_margin_bottom vert-top">
+                                        {% for i in (0..totalRows) %}
+                                            {% assign ind = i | plus: 0 %}
+
+                                            {% assign thisRow  = splitCols[thisLoop] | split: fullSplit | first | split: sepRow %}
+                                            {% assign thisRow  = thisRow[i] | split: sep %}                 
+
+                                            {% comment %} Row Settings {% endcomment %}
+                                            {% assign rowTtl    = thisRow[0] %}
+                                            {% assign rowCols   = thisRow[1] | newline_to_br | split: '<br />' %}
+                                            <div class="cell__item narrow--one-whole one-half">
+                                                <table class="">
+                                                    {% if rowTtl != blank %}
+                                                        <thead class="">
+                                                            <tr>
+                                                                <th colspan="2" class="text-center">{{ rowTtl }}</th>
+                                                            </tr>
+                                                        </thead>
+                                                    {% endif %}
+                                                    <tbody>
+                                                        {% comment %}<tr class="{{ forloop.index | modulo:2 | plus:1 | pluralize: '','odd' }}">
+                                                            <td class="dark">
+                                                                Size
+                                                            </td>
+                                                            <td class="dark">
+                                                                Inches
+                                                            </td>
+                                                        </tr>{% endcomment %}
+                                                        {% for i in (0..mostCols) %}
+                                                            <tr class="{{ forloop.index | modulo:2 | plus:1 | pluralize: '','odd' }}">
+                                                                <td class="col-title">
+                                                                    {{ colTtls[i] }}
+                                                                </td>
+                                                                <td >
+                                                                    {{ rowCols[i] | replace: blankSpace,'' }}
+                                                                </td>
+                                                            </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        {% endfor %}
+                                        
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+ 
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+    
+    {% include 'custom-css', 
+        css: sectionCustomCSS, 
+        class: cssClass 
+    %}
+
+</div>
+
+
+
+
+
+
+
+
+
+
+{% comment %}{
+                        "type": "html",
+                        "id": "tags",
+                        "label": "Only show for Vendor items with Tags (optional)",
+                        "info": "One Per Line. Type exactly as it appears in Product Admin. If left blank then will show on all Products with Vendor.",
+                        "placeholder": "Boys\nBlue\nBubbles"
+                    },{% endcomment %}
+
+
+{% comment %}{
+                        "type": "html",
+                        "id": "tags",
+                        "label": "Only show for Vendor items with Tags (optional)",
+                        "info": "One Per Line. Type exactly as it appears in Product Admin. If left blank then will show on all Products with Vendor.",
+                        "placeholder": "Boys\nBlue\nBubbles"
+                    },{% endcomment %}
+
+
+
+{% schema %}
+    {
+        "name": "Size Guides - NINE15",
+        "class": "section--size-guides",
+        "settings": [
+            {
+                "type":"text",
+                "id":"title",
+                "label":"Title"
+            },
+            {
+                "type":"richtext",
+                "id":"text",
+                "label":"Text"
+            },
+            {
+                "type":"header",
+                "content": "Custom CSS Rules"
+            },
+            {
+                "type":"paragraph",
+                "content": "Explanation of Custom CSS rules below input."
+            },
+            {
+                "type": "liquid",
+                "id": "custom_css",
+                "label": "Custom CSS"
+            },
+            {
+                "type":"paragraph",
+                "content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+            },
+            {
+                "type":"paragraph",
+                "content": "Ex: '== h2 { font-size: 20px; }'"
+            },
+            {
+                "type":"paragraph",
+                "content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+            },
+            {
+                "type":"paragraph",
+                "content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+            },
+            {
+                "type":"paragraph",
+                "content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+            }
+        ],
+        "max_blocks": 200,
+        "blocks": [
+            {
+                "type": "title",
+                "name": "Title Info",
+                "settings": [
+                    {
+                        "type": "header",
+                        "content": "Block Type: Title Block"
+                    },
+                    {
+                        "type": "header",
+                        "content": "Assign to settings"
+                    },
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Tab Title",
+                        "placeholder": "Standard Size Guide",
+                        "info": "This is only for giving a title in Theme Editor"
+                    },
+                    {
+                        "type": "text",
+                        "id": "vendor",
+                        "label": "Assign to Group",
+                        "placeholder": "Standard"
+                    },
+                    {
+                        "type": "header",
+                        "content": "Title / Header Content"
+                    },
+                    {
+                        "type": "text",
+                        "id": "main_title",
+                        "label": "Title for Size Guide",
+                        "placeholder": "Classic Whimsy Size Chart",
+                        "info": "Appears above tables"
+                    },
+                    {
+                        "type": "image_picker",
+                        "id": "main_image",
+                        "label": "Image for Size Guide",
+                        "info": "Appears above tables"
+                    }, 
+                    {
+                        "type": "richtext",
+                        "id": "main_text",
+                        "label": "Text for Size Guide",
+                        "info": "Appears above tables"
+                    }, 
+                    {
+                        "type": "richtext",
+                        "id": "bot_text",
+                        "label": "Bottom Text for Size Guide",
+                        "info": "Appears below tables"
+                    }, 
+                    {
+                        "type": "text",
+                        "id": "table_title",
+                        "label": "Title for header row",
+                        "placeholder": "Girls",
+                        "info": "Appears in header row of table"
+                    }, 
+                    {
+                        "type": "html",
+                        "id": "column_titles",
+                        "label": "Title for columns",
+                        "placeholder": "3M\n6M\n9m",
+                        "info": "One title per line"
+                    }
+                ]
+            },
+            {
+                "type": "row",
+                "name": "Row Info",
+                "settings": [
+                    {
+                        "type": "header",
+                        "content": "Block Type: Row Block"
+                    },
+                    {
+                        "type": "header",
+                        "content": "Assign to settings"
+                    },
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Tab Title",
+                        "placeholder": "Standard - 16mm",
+                        "info": "This is only for giving a title in Theme Editor"
+                    },
+                    {
+                        "type": "text",
+                        "id": "vendor",
+                        "label": "Assign to Group",
+                        "placeholder": "Standard"
+                    },
+                    {
+                        "type": "header",
+                        "content": "Row Content"
+                    },
+                    {
+                        "type": "text",
+                        "id": "row_title",
+                        "label": "Row Title",
+                        "placeholder": "1 PC Swimsuit",
+                        "info": "Appears above tables"
+                    },
+                    {
+                        "type": "html",
+                        "id": "column_info",
+                        "label": "Info for columns",
+                        "placeholder": "13-13.5in.\n13-14.5in.\nBLANK\n14-14.5in.",
+                        "info": "One input per line. Type 'BLANK' to leave empty spot."
+                    }
+                ]
+            }
+        ],
+        "presets": [
+            {
+                "name": "Size Guides - NINE15",
+                "category": "2 - NINE15"
+            }
+        ]
+    }
+{% endschema %}

@@ -1,0 +1,324 @@
+<!-- sections/nine15--featured-products -->
+
+{% include 'master--lookbook' %}
+
+
+{% comment %}
+
+
+,
+          {
+            "type":"header",
+            "content": "Product 3"
+          },
+          {
+            "type":"product",
+            "id":"product_3",
+            "label":"Product"
+          },
+          {
+            "type": "range",
+            "id": "vert_align_3",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "Vertical Align",
+            "default": 50,
+            "info": "50 is centered"
+          },
+          {
+            "type": "range",
+            "id": "hor_align_3",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "Horizontal Align",
+            "default": 10,
+            "info": "50 is centered"
+          },
+          {
+            "type":"paragraph",
+            "content": "Product 3 - Optional Overrides"
+          },
+          {
+            "type":"image_picker",
+            "id":"image_3",
+            "label":"Image"
+          },
+          {
+            "type":"text",
+            "id":"title_3",
+            "label":"Title"
+          },
+          {
+            "type":"text",
+            "id":"price_3",
+            "label":"Price"
+          }
+
+          
+{% endcomment %}
+
+{% schema %}
+  {
+  	"name": "Lookbook",
+  	"class": "index-section",
+  	"settings": [
+      {
+        "type":"liquid",
+        "id":"title",
+        "label":"Title"
+      },
+      {
+        "type":"liquid",
+        "id":"text",
+        "label":"Text"
+      },
+      {
+        "type":"header",
+        "content": "Color Rules"
+      },
+      {
+        "type": "select",
+        "id": "btn_style",
+        "label": "Button Type",
+        "options": [
+          {
+            "value": "primary",
+            "label": "Primary"
+          },
+          {
+            "value": "secondary",
+            "label": "Secondary"
+          },
+          {
+            "value": "arrow-link",
+            "label": "Arrow Link"
+          }
+        ],
+        "default": "primary"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color_background",
+        "id": "gradient",
+        "label": "Gradient Background"
+      },
+      {
+  			"type":"header",
+  			"content": "Slider Settings"
+  		},
+      {
+        "type":"checkbox",
+        "id":"use_slider",
+        "label":"Use Slider",
+        "info": "Applies to Mobile as well."
+      },
+      {
+        "type":"checkbox",
+        "id":"use_dots_desktop",
+        "label":"Use Dots on Desktop"
+      },
+      {
+        "type":"checkbox",
+        "id":"use_dots_mobile",
+        "label":"Use Dots on Mobile"
+      },
+      {
+        "type":"checkbox",
+        "id":"use_arrows",
+        "label":"Use Arrows"
+      },
+      {
+        "type":"checkbox",
+        "id":"auto_slide",
+        "label":"Auto Slide"
+      },
+      {
+        "type":"checkbox",
+        "id":"infinite",
+        "label":"Infinite slider",
+        "default": true
+      },
+      {
+        "type":"checkbox",
+        "id":"use_fade",
+        "label":"Use Fade Slide transition"
+      },
+  		{
+  			"type":"header",
+  			"content": "Custom CSS Rules"
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Explanation of Custom CSS rules below input."
+  		},
+  		{
+  			"type": "liquid",
+  			"id": "custom_css",
+  			"label": "Custom CSS"
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Ex: '== h2 { font-size: 20px; }'"
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+  		}
+  	],
+  	"blocks": [
+      {
+        "type":"look",
+        "name":"Look",
+        "settings":[
+          {
+            "type":"liquid",
+            "id":"title",
+            "label":"Title"
+          },
+          {
+            "type":"liquid",
+            "id":"text",
+            "label":"Text"
+          },
+          {
+            "type":"text",
+            "id":"button_text",
+            "label":"Button Text"
+          },
+          {
+            "type":"url",
+            "id":"url",
+            "label":"Button Url"
+          },
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Main Image"
+          },
+          {
+            "type":"header",
+            "content": "Product 1"
+          },
+         	{
+            "type":"product",
+            "id":"product_1",
+            "label":"Product"
+          },
+          {
+            "type": "range",
+            "id": "vert_align_1",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "Vertical Align",
+            "default": 50,
+            "info": "50 is centered"
+          },
+          {
+            "type": "range",
+            "id": "hor_align_1",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "Horizontal Align",
+            "default": 10,
+            "info": "50 is centered"
+          },
+          {
+  					"type":"paragraph",
+  					"content": "Product 1 - Optional Overrides"
+  				},
+          {
+            "type":"image_picker",
+            "id":"image_1",
+            "label":"Image"
+          },
+          {
+            "type":"text",
+            "id":"title_1",
+            "label":"Title"
+          },
+          {
+            "type":"text",
+            "id":"price_1",
+            "label":"Price"
+          },
+          {
+            "type":"header",
+            "content": "Product 2"
+          },
+          {
+            "type":"product",
+            "id":"product_2",
+            "label":"Product"
+          },
+          {
+            "type": "range",
+            "id": "vert_align_2",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "Vertical Align",
+            "default": 50,
+            "info": "50 is centered"
+          },
+          {
+            "type": "range",
+            "id": "hor_align_2",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "label": "Horizontal Align",
+            "default": 10,
+            "info": "50 is centered"
+          },
+          {
+            "type":"paragraph",
+            "content": "Product 2 - Optional Overrides"
+          },
+          {
+            "type":"image_picker",
+            "id":"image_2",
+            "label":"Image"
+          },
+          {
+            "type":"text",
+            "id":"title_2",
+            "label":"Title"
+          },
+          {
+            "type":"text",
+            "id":"price_2",
+            "label":"Price"
+          }
+        ]
+      }
+  	],
+  	"presets": [
+  		{
+  			"name": "Lookbook - NINE15",
+  			"category": "2 - NINE15"
+  		}
+  	]
+  }
+{% endschema %}
+

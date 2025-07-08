@@ -1,0 +1,241 @@
+.swiper-container {
+  display: flex;
+  max-width: 800px;
+  padding: 20px;
+  width: 100%;
+  gap: 30px;
+  padding-left: 0px !important;
+}
+
+product-gallery-component {
+  flex-direction: column !important;
+}
+
+.swiper-container-thumbs {
+  width: 100px;
+  height: 550px;
+  overflow: hidden;
+  position: relative;
+  margin-right: 10px;
+  position: relative;
+}
+
+.swiper-container-thumbs img {
+  max-height: 100px;
+  width: auto;
+}
+
+.swiper-container-main {
+  width: calc(100% - 100px);
+}
+
+.swiper-slide {
+  max-height: 500px;
+  height: auto;
+}
+
+.swiper-slide .image--outer {
+  height: 100%;
+}
+
+.swiper img {
+  position: relative !important;
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.swiper-slide .image--inner {
+  padding-top: 0px !important;
+  --image-natural-height: 0% !important;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.swiper-controler {
+  display: flex;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.swiper-button-prev {
+  position: relative !important;
+  top: auto !important;
+  left: unset !important;
+  right: unset !important;
+  width: 15px !important;
+  height: 15px !important;
+  margin-top: unset !important;
+}
+
+.swiper-button-next {
+  position: relative !important;
+  left: unset !important;
+  right: unset !important;
+  top: auto !important;
+  width: 15px !important;
+  height: 15px !important;
+  margin-top: unset !important;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  height: 10px !important;
+  width: 6px !important;
+  font-size: 10px !important;
+  color: black;
+}
+
+.jwplayer.jw-stretch-uniform .jw-media video {
+  object-fit: cover !important;
+}
+
+[data-section-type="full-video"] {
+  height: 100%;
+}
+
+.video-inline {
+  height: 100%;
+}
+
+.video-inline .wrapper {
+  height: 100%;
+}
+
+.jwplayer {
+  height: 100%;
+  width: auto !important;
+}
+
+.swiper-container-thumbs .swiper-slide.video::after {
+  content: " ";
+  background-image: url(./play.svg);
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  z-index: 1;
+}
+
+.swiper-container-main {
+  height: 500px;
+}
+
+.swiper-pagination {
+  top: auto !important;
+  display: none;
+  position: relative !important;
+  width: unset !important;
+  align-items: center;
+  gap: 5px;
+}
+
+.swiper-pagination-bullet::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background: black;
+  border-radius: 50%;
+}
+
+product-gallery-component {
+  margin-bottom: 20px !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: black !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  display: none !important;
+}
+
+.swiper-pagination-bullet {
+  background: white !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  height: 15px !important;
+  width: 15px !important;
+  border: 1px solid RGBA(var(--color-base-text), 0) !important;
+  border-radius: 150% !important;
+  border-color: RGBA(var(--color-base-text), 1) !important;
+}
+
+.jw-wrapper {
+  background-color: unset !important;
+}
+
+.jw-reset,
+.jw-reset-text {
+  background-color: unset !important;
+}
+
+[data-section-type="full-video"] {
+  object-fit: cover !important;
+  background-size: cover !important;
+  background-image: none !important;
+}
+
+@media (max-width: 989px) {
+  .swiper-container-thumbs {
+    display: none !important;
+  }
+
+  .swiper-pagination {
+    display: flex;
+  }
+
+  .swiper-container-main {
+    width: 100%;
+  }
+
+  product-gallery-component {
+    align-items: center;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: flex !important;
+  }
+
+  .swiper-container {
+    padding-left: 20px !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .swiper-container {
+    height: 425px;
+  }
+
+  .swiper-container-main {
+    height: 100%;
+  }
+
+  .swiper-container {
+    padding: 0px !important;
+  }
+
+  .swiper-controler {
+    margin-top: 20px;
+  }
+}

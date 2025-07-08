@@ -1,0 +1,29 @@
+{%- comment -%}
+  
+  Outputs both the HEX and RGB values for a color, and formats the var.
+  The RGB output only includes the number values so it can be used in RGB or RGBA properties.
+
+    input: 
+      {% include 'snippet--color-var', color: '#0c703e', name: '--color--brand-green' %}
+
+    output:
+      --color--brand-green      : #0c703e;
+      --color--brand-green-rgb  : 12, 112, 62;
+
+
+    examples:
+      color: var( --color--brand-green);
+      color: RGB(var( --color--brand-green-rgb));
+      color: RGBA(var( --color--brand-green-rgb),0.5);
+
+
+{%- endcomment -%}
+{%- liquid
+  assign clr      = color
+  assign clrRGB   = clr | color_to_rgb | replace: 'rgb(','' | replace: ')',''
+  assign nme      = name
+-%}
+{%- if clr != blank %}
+{{nme}}: {{clr}};
+{{nme}}-rgb: {{clrRGB}};
+{% endif -%}

@@ -1,0 +1,74 @@
+{% liquid
+
+  assign el           = 'div'
+  assign attr         = ''
+  if cardBtnTxt == blank and cardBtnUrl != blank 
+    assign el         = 'a'
+    assign attr       = 'href="' | append: cardBtnUrl | append: '"'
+  endif
+
+  assign cardCstmCSS  = cardCSS
+  assign cardClass    = 'card--' | append: section.id | append: block.id | append: i.id
+  assign cssCardClass = '.' | append: cardClass
+
+%}
+
+{% if cardTxtClr != blank or cardBgClr != blank %}
+  {% capture clrCSS %}
+    {% if cardBgClr != blank %}
+    == {
+      --color--bg: {{cardBgClr}};
+      background: var(--color--bg);
+    }
+    {% endif %}
+    {% if cardTxtClr != blank %}
+    == {
+      --color--text: {{cardTxtClr}};
+    }
+    == .rte,
+    == .rte *,
+    == h2,
+    == h3 {
+      color: var(--color--text);
+    }
+    {% endif %}
+  {% endcapture %}
+  {% assign cardCstmCSS = clrCSS | append: cardCSS %}
+{% endif %}
+
+{% if 
+  cardImage != blank or 
+  cardTitle != blank or
+  cardText != blank or
+  cardBtnTxt != blank or
+  cardBtnUrl != blank or
+  cardBtnStyle != blank or
+  cardTxtClr != blank or
+  cardBgClr != blank
+%}
+  <!-- snippets/card-promo -->
+
+  <{{el}} {{attr}} class="inner-container cta-card {{cardClass}}">
+    
+    {% include 'snippet--image', img: img, extraClass: 'card-image--cta', cf: img_CF, useBG: false %} 
+    
+    {% if cardTitle != blank %}
+      <h3>{{cardTitle}}</h3>
+    {% endif %}
+
+    {% if cardText != blank %}
+      <div class="rte">{{cardText}}</div>
+    {% endif %}
+
+    {% if cardBtnTxt != blank and cardBtnUrl != blank %}
+      <a href="{{cardBtnUrl}}" class="btn button button--{{cardBtnStyle}}">{{cardBtnTxt}}</a>
+    {% endif %}
+
+  </{{el}}>
+
+  {% include 'custom-css', 
+    css: cardCstmCSS, 
+    class: cssCardClass 
+  %}
+
+{% endif %}

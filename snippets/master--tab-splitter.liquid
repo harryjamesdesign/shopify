@@ -1,0 +1,107 @@
+<!-- snippets/master--tab-splitter -->
+{% liquid
+
+	assign desc                 = content
+
+	assign splt                 = '</h6>'
+	assign spltSt               = splt | replace: '/',''
+
+	assign dscs                 = desc | strip | split: spltSt
+
+	assign open                 = true
+
+	assign sel                  = 'current'
+	assign opn                  = 'tab--active'
+
+%}
+
+{% if dscs.size > 1 %}
+
+  <div class="tabs-container">
+
+    {% if dscs[0] != blank %}
+      {% capture tabTtls %}
+        <a href="#" class="tab-trig {{sel}}" data-tab="tab-0">
+          Description
+        </a>
+      {% endcapture %}
+      {% capture tabCont %}
+        <div id="tab-0" class="tab-content {{opn}} ">
+          <div class="rte">
+            {{ dscs[0] }}
+          </div>
+        </div>
+      {% endcapture %}
+      {% assign open     = false %}
+    {% endif %}
+
+    {% for d in dscs offset: 1 %}
+      {% liquid
+        assign ttl 			= d | split: splt | first
+        assign dsc 			= d | remove: ttl | replace: splt, ''
+        if forloop.first == true and open == true
+          assign open     = false
+          assign setSel 	= sel
+          assign setOpn 	= opn
+        else
+          assign setSel 	= ''
+          assign setOpn 	= ''
+        endif
+      %}
+      {% capture tabTtls %}
+        {{tabTtls}}
+        <a href="#" class="tab-trig {{setSel}}" data-tab="tab-{{ forloop.index }}">
+          {{ ttl }}
+        </a>
+      {% endcapture %}
+      {% capture tabCont %}
+        {{tabCont}}
+        <div id="tab-{{ forloop.index }}" class="tab-content {{setOpn}} ">
+          <div class="rte">
+            {{ dsc }}
+          </div>
+        </div>
+      {% endcapture %}
+    {% endfor %}
+
+    <div class="tabs">
+      {{tabTtls}}
+    </div>
+
+    {{tabCont}}
+
+  </div>
+{% elsif desc != blank %}
+    <div class="rte">
+        {{ desc }}
+    </div>
+{% endif %}
+
+<script type="text/javascript">
+  waitFor_jQuery(function () {
+
+    var section = '.tabs-container',
+      tab_trigger = '.tab-trig',
+      content = '.tab-content',
+      tab_active = 'current',
+      cont_active = 'tab--active';
+
+    $(section+' '+tab_trigger).click(function(e){
+      
+      e.preventDefault();
+      var tab = $(this),
+        par = tab.closest(section),
+        tab_id = tab.attr('data-tab'),
+        cont = $(section+" #"+tab_id);
+
+      // Removes classes from siblings
+      par.find(tab_trigger).removeClass(tab_active);
+      par.find(content).removeClass(cont_active);
+
+      // Adds class to only selected tabs
+      tab.addClass(tab_active);
+      cont.addClass(cont_active);
+
+    })
+  })
+</script>

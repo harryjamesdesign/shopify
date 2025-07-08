@@ -1,0 +1,297 @@
+<!-- snippets/master--featured-blog-posts -->
+
+{% liquid 
+    
+    assign arts                 = ''
+    assign s                    = section.settings
+    assign sID                  = section.id
+
+    assign sectionCustomCSS     = s.custom_css
+    assign class                = 'section--' | append: sID
+    assign cssClass             = '.' | append: class
+
+    assign totalRows            = s.total_rows | plus: 0 
+    assign perRow               = s.per_row | plus: 0 
+
+    assign b                    = block
+    assign lp                   = section.blocks
+    assign blks                 = lp.size
+    assign total                = 200
+
+    if perRow == 0 and blks > 0
+        assign perRow           = blks
+    endif 
+    
+    assign lnk_url              = s.link_url
+    assign lnk_txt              = s.link_text
+    assign use_lnk              = false
+
+    assign btn_url              = s.button_url
+    assign btn_txt              = s.button_text
+    assign btnStyle             = s.btn_style
+
+    assign use_btn              = false
+    if btn_url != blank and btn_txt != blank
+        assign use_btn          = true
+    endif
+
+    if blks == 0 
+        assign blg              = blogs[s.blog]
+        assign b                = article
+        assign lp               = blg.articles
+        assign lnk_url          = lnk_txt | default: blg.url
+        comment 
+        assign lnk_txt          = lnk_txt | default: 'View All'
+        endcomment 
+        assign total            = totalRows | times: perRow
+    endif 
+
+    assign ttl                  = s.title
+    assign txt                  = s.text 
+
+    if lnk_url != blank and lnk_txt != blank
+        assign use_lnk          = true
+    endif
+
+    assign clrTxt               = s.text_color
+    assign clrBG                = s.gradient
+
+    assign useSlider            = s.use_slider
+    assign useSliderMob         = s.use_slider_mobile_only
+    assign useArrows            = s.use_arrows
+    assign useDots              = s.use_dots
+    assign autoSlide            = s.auto_slide
+
+    case perRow
+        when 1  
+            assign width    = ''
+            assign max      = 1
+        when 2 
+            assign width    = 'not-narrow--one-half medium-up--one-half'
+            assign max      = 2
+        when 3  
+            assign width    = 'not-narrow--one-half medium-up--one-third'
+            assign max      = 3
+        when 5 or 9 or 10 
+            assign width    = 'not-narrow--one-half medium--one-third large-up--one-fifth'
+            assign max      = 5
+        when 6 or 11 or 12 
+            assign width    = 'not-narrow--one-half medium--one-third large-up--one-sixth'
+            assign max      = 6
+        else  
+            assign width    = 'not-narrow--one-half medium-up--one-half large-up--one-quarter'
+            assign max      = 4
+    endcase 
+    
+%}
+
+{% if clrTxt != blank or clrBG != blank %}
+    {% capture clrCSS %}
+        {% if clrBG != blank %}
+        == {
+            --color--bg: {{clrBG}};
+            background: var(--color--bg);
+        }
+        {% endif %}
+        {% if clrTxt != blank %}
+        == {
+            --color--text: {{clrTxt}};
+        }
+        == .rte,
+        == .rte *,
+        == h2,
+        == h3 {
+            color: var(--color--text);
+        }
+        == .slick-dots li button:before {
+            background: transparent;
+            color: var(--color--text);
+            border-color: var(--color--text);
+        }
+        == .slick-dots li.slick-active button:before, 
+        == .slick-dots li:hover button:before {
+            background-color: var(--color--text);
+        }
+        {% endif %}
+    {% endcapture %}
+{% endif %}
+
+{% for b in lp limit: total %}
+    {% liquid 
+        assign article          = b
+        if blks > 0 
+            assign bs           = b.settings
+            assign article      = articles[bs.article]
+            assign aImg         = bs.image
+            assign mfArt        = bs.metafield
+            if articles[mfArt].title != blank
+                assign article  = articles[mfArt]
+            endif
+        endif 
+    %}
+    {% assign years = '2023,2022,2021,2020,2019,2018' %} 
+    {% for tag in article.tags %}
+        {% if years contains tag %}
+            {% assign year = tag %}
+        {% endif %}
+    {% endfor %}
+    {% if article.title != blank %}
+        {% capture arts %}
+            {{arts}}
+            <div class="cell__item {{width}} article-column" id="article-{{ forloop.index | plus:paginate.current_offset }}" data-title="{{article.title | downcase }}" data-location="{{article.metafields.custom.location | downcase }}" data-year="{{year}}">
+                {% render 'article-card', 
+                    blog: s.blog, 
+                    article: article, 
+                    media_aspect_ratio: 1.66, 
+                    show_image: s.show_image, 
+                    show_date: s.show_date, 
+                    show_author: s.show_author, 
+                    show_excerpt: s.show_excerpt
+                %}                            
+            </div>
+        {% endcapture %}
+    {% endif %}
+{% endfor %}
+
+{% if arts != '' %}
+    <div class="section--featured-blog {{class}}" data-section-id="{{ sID }}">
+          
+        <link rel="stylesheet" href="{{ 'component-card.css' | asset_url }}" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="{{ 'component-article-card.css' | asset_url }}" media="print" onload="this.media='all'">
+        <link rel="stylesheet" href="{{ 'nine15-section--featured-blog.css' | asset_url }}" media="print" onload="this.media='all'">
+
+        <noscript>{{ 'component-card.css' | asset_url | stylesheet_tag }}</noscript>
+        <noscript>{{ 'component-article-card.css' | asset_url | stylesheet_tag }}</noscript>
+        <noscript>{{ 'nine15-section--featured-blog.css' | asset_url | stylesheet_tag }}</noscript>
+
+        <div class="page-width">
+
+            {% if ttl != blank or img != blank or txt != blank %}
+                <div class="section--title text-center {% if ttl != blank and img == blank and txt == blank and use_lnk == true %}inline--link{% endif %}">
+                    
+                    {% if ttl != blank %}
+                        <h2>{{ttl}}</h2>
+                    {% endif %}
+                  
+                    {% if txt != blank %}
+                        <div class="rte">{{txt}}</div>
+                    {% endif %}
+
+                    {% if use_lnk == true %}
+                        <a href="{{lnk_url}}" class="btn button button--{{btnStyle}}">{{lnk_txt}}</a>
+                    {% endif %}
+                          
+                </div>
+            {% endif %}
+
+            <div class="cell vert-top cell_margin_bottom text-center match-row" id="blog-grid" >
+                
+                {{arts}}
+                
+                {% if template.name == 'blog' and section.blocks.size == 0 %}
+                  {% if paginate.next %}
+                    <div class="cell__item text-center" id="more">
+                      <p class="hide">&darr; <a href="{{ paginate.next.url }}">More</a></p>
+                      {% render 'pagination', paginate: paginate, anchor: '' %}
+                    </div>        
+                  {% endif %}
+                {% endif %}
+            </div>
+
+            {% if use_btn == true %}
+                <div class="text-center btn-container">
+                    <a href="{{btn_url}}" class="btn button button--{{btnStyle}}">{{btn_txt}}</a>
+                </div>
+            {% endif %}
+
+        </div>
+
+        {% include 'custom-css', 
+            css: clrCSS, 
+            class: cssClass,
+            important: false
+        %}
+        {% include 'custom-css', 
+            css: sectionCustomCSS, 
+            class: cssClass 
+        %}
+
+        {% if useSlider == true or useSliderMob == true %}
+            {% if lp.size > 0 %}
+                <script type="text/javascript">
+                      $(document).ready(function () {
+                        // slider
+                        var slds = $('{{cssClass}} .cell'),
+                            slidesCount = slds.find('.cell__item').length,
+                            settings_slider = {
+                                autoplay: {{autoSlide}},
+                                dots: {{useDots}},
+                                arrows: {{useArrows}},
+                                slidesToShow: ( {{max}} >= +slidesCount ? +slidesCount : {{max}} ),
+                                rows: 0, 
+                                infinite: true,
+                                responsive: [
+                                    {
+                                        breakpoint: 990,
+                                        settings: {
+                                            slidesToShow: ( {{max|at_most:3}} >= +slidesCount ? +slidesCount : {{max|at_most:3}} )
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 750,
+                                        settings: {
+                                            slidesToShow: ( {{max|at_most:2}} >= +slidesCount ? +slidesCount : {{max|at_most:2}} )
+                                        }
+                                    },
+                                    {
+                                        breakpoint: 560,
+                                        settings: {
+                                            slidesToShow: 1
+                                        }
+                                    }
+                                ]
+                            },
+                            settings_slider_mobile = {
+                                autoplay: {{autoSlide}},
+                                dots: {{useDots}},
+                                arrows: {{useArrows}},
+                                slidesToShow: ( {{max|at_most:2}} >= +slidesCount ? +slidesCount : {{max|at_most:2}} ),
+                                rows: 0, 
+                                infinite: true,
+                                responsive: [
+                                    {
+                                        breakpoint: 560,
+                                        settings: {
+                                            slidesToShow: 1
+                                        }
+                                    }
+                                ]
+                            };
+                        // slick on mobile
+                        function slick_on_mobile(slider, settings){
+                            $(window).on('load resize', function() {
+                                if ($(window).width() > 750) {
+                                    if (slider.hasClass('slick-initialized')) {
+                                        slider.slick('unslick');
+                                    }
+                                    return
+                                }
+                                if (!slider.hasClass('slick-initialized')) {
+                                    return slider.slick(settings);
+                                }
+                            });
+                        };
+                        if ( slidesCount > 1 ) {
+                            {% if useSliderMob == true %}
+                                slick_on_mobile( slds, settings_slider_mobile);
+                            {% else %}
+                                slds.slick(settings_slider);
+                            {% endif %}
+                        }
+                    });
+                </script>
+            {% endif %}
+        {% endif %}
+        
+    </div>
+{% endif %}

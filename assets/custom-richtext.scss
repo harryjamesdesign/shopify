@@ -1,0 +1,42 @@
+.rich-text {
+  .rich-text__wrapper {
+    .rich-text__blocks {
+      .rich-text__heading {
+        &.hxl {
+          font-family: var(--font--graphik-cond);
+          font-size: 90px;
+          @media screen and (max-width: 768px) {
+            font-size: 64px;
+          }
+        }
+      }
+      .rich-text__text {
+        h4 {
+          font-weight: 400;
+          font-style: italic;
+          font-family: var(--font-body-family);
+        }
+        ul {
+          padding: 0;
+          li {
+            display: inline;
+            &:first-child {
+              &::before {
+                content: none;
+              }
+            }
+            &::before {
+              content: "";
+              width: 4px;
+              height: 4px;
+              display: inline-block;
+              background: black;
+              border-radius: 50%;
+              margin: 2px 5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

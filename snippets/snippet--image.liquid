@@ -1,0 +1,76 @@
+{% if img != blank %}
+  {% comment %}
+
+    {% include 'snippet--image', 
+      img: s.image, 
+      useBG: false,
+      cf: false,
+      customStyle: style,
+      extraClass: xtra
+    %}
+
+  {% endcomment %}
+  <!-- snippets/snippet--image -->
+  {% liquid 
+    assign imgAlt = img.alt
+    if alt != blank  
+      assign imgAlt = alt
+    endif 
+  %}
+  {% if useBG == true %}
+    {% liquid 
+      assign imgSrc = img | img_url: '50x'
+      if cf == true 
+        assign imgSrc = img
+      endif 
+      if noLazy == true
+        assign image_size = imgSize | default: 'master'
+        assign imgSrc = img | img_url: image_size
+      endif 
+    %}
+    <noscript>
+      <div class="bg_image {{extraClass}}" style="background-image: url({{ imgSrc }});{{customStyle}}"></div>
+    </noscript>
+    <div class="bg_image {% if cf != true and noLazy != true %}lazyload{% endif %} {{extraClass}}"
+      style="background-image: url({{ imgSrc }});{{customStyle}}"
+      {% if cf != true or noLazy == true %} 
+      data-bgset="{% include 'bgset', image: img %}"
+      data-sizes="auto"
+      data-parent-fit="cover"
+      {% endif %}
+      >
+    </div>
+  {% else %}
+    {% liquid 
+      assign imgSrc = img | img_url: '50x'
+      assign img_url = img | img_url: '1x1' | replace: '_1x1.', '_{width}x.'
+      assign paddingTop = 1 | divided_by: img.aspect_ratio | times: 100 | append: '%'
+      if cf == true 
+        assign paddingTop = '100%'
+        assign imgSrc = img
+      endif 
+      if noLazy == true
+        assign image_size = imgSize | default: 'master'
+        assign imgSrc = img | img_url: image_size
+      endif 
+    %}
+    <noscript>
+      <img src="{{ imgSrc }}" alt="{{ imgAlt }}" class="image-content__image" {% if customStyle %}style="{{customStyle}}"{% endif %}>
+    </noscript>
+    <div class="image--outer image-content__image-container {% if hidden == true %}hidden{% endif %} {{extraClass}}" {% if customStyle %}style="{{customStyle}}"{% endif %} >
+      <div class=" image--inner image-content__image-wrapper" style="padding-top:{{paddingTop}};--image-natural-height: {{paddingTop}};">
+        <img class="image-content__image {% if cf != true and noLazy != true %}lazyload{% endif %}"
+          {% if cf != true and noLazy != true %} 
+            src="{{img | img_url: '100x'}}"
+            data-src="{{ img_url }}"
+            data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
+            data-aspectratio="{{ img.aspect_ratio }}"
+            data-sizes="auto"
+          {% else %}
+            src="{{imgSrc}}"
+          {% endif %}
+          alt="{{ imgAlt | escape }}">
+      </div>
+    </div>
+  {% endif %}
+{% endif %}

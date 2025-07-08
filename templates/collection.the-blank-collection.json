@@ -1,0 +1,248 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "background-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "blocks": {
+        "e61bd7fa-f95a-41e8-9a98-96c39c24cdbc": {
+          "type": "ad",
+          "settings": {
+            "title": "ALL BAGS PROMO TILE",
+            "placement": "14",
+            "after": false,
+            "show_on_collection": "/collections/bags",
+            "exclude_from_collection": "collections/new,\n/collections/accessories,\n/collections/bag-bestsellers,\n/collections/gifts,\n/collections/handbags,\n/collections/totes,\n/collections/crossbodies,\n/collections/shakers,\n/collections/sunglass-case,\n/collections/stickers-patches,\n/collections/charms,\n/collections/pens-markers,\n/collections/notebooks,\n/collections/bag-accessories,\n/collections/bag-straps,\n/collections/beach-towels,\n/collections/drinkware,\n/collections/cosmetic-cases,\n/collections/wallets,\n/collections/accessories-bestsellers,\n/collections/grab-n-go,\n/collections/travel-bags,\n/collections/clutches,",
+            "content_title": "Free Shipping on orders over $99",
+            "text": "",
+            "btn_text": "",
+            "btn_url": "shopify://collections/bags",
+            "bg_image": "shopify://shop_images/All_Bags_74001610-2832-4e48-801e-3addbc78b718.jpg",
+            "text_color": "#ffffff",
+            "gradient": "linear-gradient(0deg,rgba(0,0,0,.62),transparent)",
+            "btn_style": "primary",
+            "custom_css": "== {\n  justify-content: flex-end;\n  align-items: flex-start;\n}\n\n== h3 {\n  font-family: var(--font--graphik-cond);\n  text-transform: uppercase;\n  font-style: normal;\n  letter-spacing: 0.05em;\n  font-size: 55px;\n  line-height: 1;\n  text-align: left;\n}\n\n/widescreen/ {\n  == h3 {\n    font-size: 75px;\n  }\n}"
+          }
+        },
+        "eb5baf57-6715-46f5-b2c6-892bc24a2709": {
+          "type": "ad",
+          "settings": {
+            "title": "Handbags PROMO TILE",
+            "placement": "14",
+            "after": false,
+            "show_on_collection": "/collections/handbags",
+            "exclude_from_collection": "/collections/new,\n/collections/bags,\n/collections/accessories,\n/collections/gifts,\n/collections/totes,\n/collections/crossbodies,\n/collections/shakers,\n/collections/sunglass-case,\n/collections/stickers-patches,\n/collections/charms,\n/collections/pens-markers,\n/collections/notebooks,\n/collections/bag-accessories,\n/collections/bag-straps,\n/collections/beach-towels,\n/collections/drinkware,\n/collections/cosmetic-cases,\n/collections/wallets,\n/collections/accessories-bestsellers,\n/collections/grab-n-go,\n/collections/travel-bags,\n/collections/clutches,",
+            "content_title": "SHOP WALLETS",
+            "text": "",
+            "btn_text": "",
+            "btn_url": "",
+            "bg_image": "shopify://shop_images/Handbags_d68e0757-06b5-4a15-9798-8274563300d9.jpg",
+            "text_color": "#ffffff",
+            "gradient": "linear-gradient(0deg,rgba(0,0,0,.62),transparent)",
+            "btn_style": "primary",
+            "custom_css": "== {\n  justify-content: flex-end;\n  align-items: flex-start;\n}\n\n== h3 {\n  font-family: var(--font--graphik-cond);\n  text-transform: uppercase;\n  font-style: normal;\n  letter-spacing: 0.05em;\n  font-size: 55px;\n  line-height: 1;\n  text-align: left;\n}\n\n/widescreen/ {\n  == h3 {\n    font-size: 75px;\n  }\n}"
+          }
+        },
+        "a6cdc0b8-9cdd-413c-acf9-d2bc27154251": {
+          "type": "ad",
+          "settings": {
+            "title": "TOTES PROMO TILE",
+            "placement": "14",
+            "after": false,
+            "show_on_collection": "/collections/totes",
+            "exclude_from_collection": "/COLLECTIONS/NEW,\n/collections/bag-bestsellers,\n/collections/accessories,\n/collections/gifts,\n/collections/handbags,\n/collections/crossbodies,\n/collections/shakers,\n/collections/sunglass-case,\n/collections/stickers-patches,\n/collections/charms,\n/collections/pens-markers,\n/collections/notebooks,\n/collections/bag-accessories,\n/collections/bag-straps,\n/collections/beach-towels,\n/collections/drinkware,\n/collections/cosmetic-cases,\n/collections/wallets,\n/collections/accessories-bestsellers,\n/collections/grab-n-go,\n/collections/travel-bags,\n/collections/clutches,",
+            "content_title": "Free Shipping on orders over $99",
+            "text": "",
+            "btn_text": "",
+            "btn_url": "",
+            "bg_image": "shopify://shop_images/All_Totes_32a73440-45a5-466a-a0d6-0d736bcb2ef6.jpg",
+            "text_color": "#ffffff",
+            "gradient": "linear-gradient(0deg,rgba(0,0,0,.62),transparent)",
+            "btn_style": "primary",
+            "custom_css": "== {\n  justify-content: flex-end;\n  align-items: flex-start;\n}\n\n== h3 {\n  font-family: var(--font--graphik-cond);\n  text-transform: uppercase;\n  font-style: normal;\n  letter-spacing: 0.05em;\n  font-size: 55px;\n  line-height: 1;\n  text-align: left;\n}\n\n/widescreen/ {\n  == h3 {\n    font-size: 75px;\n  }\n}"
+          }
+        },
+        "e7ebc5d2-5292-4d93-891c-93c4cab3d92f": {
+          "type": "ad",
+          "settings": {
+            "title": "NEW PROMO TILE",
+            "placement": "14",
+            "after": false,
+            "show_on_collection": "/collections/new",
+            "exclude_from_collection": "/collections/totes,\n/collections/accessories,\n/collections/gifts,\n/collections/bag-bestsellers,\n/collections/handbags,\n/collections/crossbodies,\n/collections/shakers,\n/collections/sunglass-case,\n/collections/stickers-patches,\n/collections/charms,\n/collections/pens-markers,\n/collections/notebooks,\n/collections/bag-accessories,\n/collections/bag-straps,\n/collections/beach-towels,\n/collections/drinkware,\n/collections/cosmetic-cases,\n/collections/wallets,\n/collections/accessories-bestsellers,\n/collections/grab-n-go,\n/collections/travel-bags,\n/collections/clutches,",
+            "content_title": "Shop Bestsellers",
+            "text": "",
+            "btn_text": "",
+            "btn_url": "shopify://collections/bag-bestsellers",
+            "bg_image": "shopify://shop_images/Whats_New.jpg",
+            "text_color": "#ffffff",
+            "gradient": "linear-gradient(0deg,rgba(0,0,0,.62),transparent)",
+            "btn_style": "primary",
+            "custom_css": "== {\n  justify-content: flex-end;\n  align-items: flex-start;\n}\n\n== h3 {\n  font-family: var(--font--graphik-cond);\n  text-transform: uppercase;\n  font-style: normal;\n  letter-spacing: 0.05em;\n  font-size: 47.2px;\n  line-height: 1;\n  text-align: left;\n}\n\n/widescreen/ {\n  == h3 {\n    font-size: 75px;\n  }\n}"
+          }
+        },
+        "ced8b3ba-50dd-41fb-a68c-a29517f00b46": {
+          "type": "ad",
+          "settings": {
+            "title": "CROSSBODIES PROMO TILE",
+            "placement": "14",
+            "after": false,
+            "show_on_collection": "/collections/crossbodies,",
+            "exclude_from_collection": "/collections/totes,\n/collections/accessories,\n/collections/gifts,\n/collections/bag-bestsellers,\n/collections/handbags,\n/collections/shakers,\n/collections/sunglass-case,\n/collections/stickers-patches,\n/collections/charms,\n/collections/pens-markers,\n/collections/notebooks,\n/collections/bag-accessories,\n/collections/bag-straps,\n/collections/beach-towels,\n/collections/drinkware,\n/collections/cosmetic-cases,\n/collections/wallets,\n/collections/accessories-bestsellers,\n/collections/grab-n-go,\n/collections/travel-bags,\n/collections/clutches,",
+            "content_title": "Shop Bag Straps",
+            "text": "",
+            "btn_text": "",
+            "btn_url": "shopify://collections/bag-straps",
+            "bg_image": "shopify://shop_images/Crossbodies_e26a9a10-c4b8-4c5e-918b-c0f5fd895bfc.jpg",
+            "text_color": "#ffffff",
+            "gradient": "linear-gradient(0deg,rgba(0,0,0,.62),transparent)",
+            "btn_style": "primary",
+            "custom_css": "== {\n  justify-content: flex-end;\n  align-items: flex-start;\n}\n\n== h3 {\n  font-family: var(--font--graphik-cond);\n  text-transform: uppercase;\n  font-style: normal;\n  letter-spacing: 0.05em;\n  font-size: 55px;\n  line-height: 1;\n  text-align: left;\n}\n\n/widescreen/ {\n  == h3 {\n    font-size: 75px;\n  }\n}"
+          }
+        },
+        "f570c2a5-694e-4c57-a478-32c3c51c6c28": {
+          "type": "ad",
+          "settings": {
+            "title": "TRAVEL BAG PROMO TILE",
+            "placement": "14",
+            "after": false,
+            "show_on_collection": "/collections/travel-bags,",
+            "exclude_from_collection": "/collections/totes,\n/collections/crossbodies,\n/collections/accessories,\n/collections/gifts,\n/collections/bag-bestsellers,\n/collections/handbags,\n/collections/shakers,\n/collections/sunglass-case,\n/collections/stickers-patches,\n/collections/charms,\n/collections/pens-markers,\n/collections/notebooks,\n/collections/bag-accessories,\n/collections/bag-straps,\n/collections/beach-towels,\n/collections/drinkware,\n/collections/cosmetic-cases,\n/collections/wallets,\n/collections/accessories-bestsellers,\n/collections/grab-n-go,\n/collections/clutches,",
+            "content_title": "Shop Accessories",
+            "text": "",
+            "btn_text": "",
+            "btn_url": "shopify://collections/accessories",
+            "bg_image": "shopify://shop_images/Travel_Bags_16b280ac-82ed-40bc-9056-03fa10681cb7.jpg",
+            "text_color": "#FFFFFF",
+            "gradient": "linear-gradient(0deg,rgba(0,0,0,.62),transparent)",
+            "btn_style": "primary",
+            "custom_css": "== {\n  justify-content: flex-end;\n  align-items: flex-start;\n}\n\n== h3 {\n  font-family: var(--font--graphik-cond);\n  text-transform: uppercase;\n  font-style: normal;\n  letter-spacing: 0.05em;\n  font-size: 46.6px;\n  line-height: 1;\n  text-align: left;\n}\n\n/widescreen/ {\n  == h3 {\n    font-size: 75px;\n  }\n}"
+          }
+        },
+        "fae675fd-cce7-42f5-8e53-32964471f214": {
+          "type": "ad",
+          "settings": {
+            "title": "BEST BAG PROMO TILE",
+            "placement": "14",
+            "after": false,
+            "show_on_collection": "/collections/bag-bestsellers,",
+            "exclude_from_collection": "collections/new,\n/collections/accessories,\n/collections/gifts,\n/collections/handbags,\n/collections/totes,\n/collections/crossbodies,\n/collections/shakers,\n/collections/sunglass-case,\n/collections/stickers-patches,\n/collections/charms,\n/collections/bags,\n/collections/pens-markers,\n/collections/notebooks,\n/collections/bag-accessories,\n/collections/bag-straps,\n/collections/beach-towels,\n/collections/drinkware,\n/collections/cosmetic-cases,\n/collections/wallets,\n/collections/accessories-bestsellers,\n/collections/grab-n-go,\n/collections/travel-bags,\n/collections/clutches,",
+            "content_title": "Free Shipping on orders over $99",
+            "text": "",
+            "btn_text": "",
+            "btn_url": "",
+            "bg_image": "shopify://shop_images/Best_Selling_Bags.jpg",
+            "text_color": "#FFFFFF",
+            "gradient": "linear-gradient(0deg,rgba(0,0,0,.62),transparent)",
+            "btn_style": "primary",
+            "custom_css": "== {\n  justify-content: flex-end;\n  align-items: flex-start;\n}\n\n== h3 {\n  font-family: var(--font--graphik-cond);\n  text-transform: uppercase;\n  font-style: normal;\n  letter-spacing: 0.05em;\n  font-size: 55px;\n  line-height: 1;\n  text-align: left;\n}\n\n/widescreen/ {\n  == h3 {\n    font-size: 75px;\n  }\n}"
+          }
+        },
+        "9c064ef4-de8c-42f1-ab31-7994390927d7": {
+          "type": "ad",
+          "settings": {
+            "title": "BEST ACC PROMO TILE",
+            "placement": "14",
+            "after": false,
+            "show_on_collection": "/collections/accessories-bestsellers,",
+            "exclude_from_collection": "collections/new,\n/collections/bag-bestsellers,\n/collections/accessories,\n/collections/gifts,\n/collections/handbags,\n/collections/totes,\n/collections/crossbodies,\n/collections/shakers,\n/collections/sunglass-case,\n/collections/stickers-patches,\n/collections/charms,\n/collections/bags,\n/collections/pens-markers,\n/collections/notebooks,\n/collections/bag-accessories,\n/collections/bag-straps,\n/collections/beach-towels,\n/collections/drinkware,\n/collections/cosmetic-cases,\n/collections/wallets,\n/collections/grab-n-go,\n/collections/travel-bags,\n/collections/clutches,",
+            "content_title": "See what's new",
+            "text": "",
+            "btn_text": "",
+            "btn_url": "shopify://collections/new",
+            "bg_image": "shopify://shop_images/Best_Selling_Accessories.jpg",
+            "text_color": "#FFFFFF",
+            "gradient": "linear-gradient(0deg,rgba(0,0,0,.62),transparent)",
+            "btn_style": "primary",
+            "custom_css": "== {\n  justify-content: flex-end;\n  align-items: flex-start;\n}\n\n== h3 {\n  font-family: var(--font--graphik-cond);\n  text-transform: uppercase;\n  font-style: normal;\n  letter-spacing: 0.03em;\n  font-size: 55px;\n  line-height: 1;\n  text-align: left;\n}\n\n/widescreen/ {\n  == h3 {\n    font-size: 75px;\n  }\n}"
+          }
+        },
+        "4bba54f3-c14e-42b1-96ff-8857943bf1dc": {
+          "type": "ad",
+          "settings": {
+            "title": "PENS & MARKER PROMO TILE",
+            "placement": "14",
+            "after": false,
+            "show_on_collection": "/collections/pens-markers,",
+            "exclude_from_collection": "collections/new,\n/collections/accessories-bestsellers,\n/collections/bag-bestsellers,\n/collections/accessories,\n/collections/gifts,\n/collections/handbags,\n/collections/totes,\n/collections/crossbodies,\n/collections/shakers,\n/collections/sunglass-case,\n/collections/stickers-patches,\n/collections/charms,\n/collections/bags,\n/collections/notebooks,\n/collections/bag-accessories,\n/collections/bag-straps,\n/collections/beach-towels,\n/collections/drinkware,\n/collections/cosmetic-cases,\n/collections/wallets,\n/collections/grab-n-go,\n/collections/travel-bags,\n/collections/clutches,",
+            "content_title": "SHOP NOTEBOOKS",
+            "text": "",
+            "btn_text": "",
+            "btn_url": "shopify://collections/notebooks",
+            "bg_image": "shopify://shop_images/Pen_Markers.jpg",
+            "text_color": "#FFFFFF",
+            "gradient": "linear-gradient(0deg,rgba(0,0,0,.62),transparent)",
+            "btn_style": "primary",
+            "custom_css": "== {\n  justify-content: flex-end;\n  align-items: flex-start;\n}\n\n== h3 {\n  font-family: var(--font--graphik-cond);\n  text-transform: uppercase;\n  font-style: normal;\n  letter-spacing: 0.03em;\n  font-size: 55px;\n  line-height: 1;\n  text-align: left;\n}\n\n/widescreen/ {\n  == h3 {\n    font-size: 75px;\n  }\n}"
+          }
+        },
+        "a9a0134f-b7a6-41c3-8d40-217b26007c1f": {
+          "type": "ad",
+          "settings": {
+            "title": "GIFTS PROMO TILE",
+            "placement": "14",
+            "after": false,
+            "show_on_collection": "/collections/gifts,",
+            "exclude_from_collection": "collections/new,\n/collections/bag-bestsellers,\n/collections/accessories,\n/collections/handbags,\n/collections/totes,\n/collections/crossbodies,\n/collections/shakers,\n/collections/sunglass-case,\n/collections/stickers-patches,\n/collections/charms,\n/collections/bags,\n/collections/pens-markers,\n/collections/notebooks,\n/collections/bag-accessories,\n/collections/bag-straps,\n/collections/beach-towels,\n/collections/drinkware,\n/collections/cosmetic-cases,\n/collections/wallets,\n/collections/grab-n-go,\n/collections/travel-bags,\n/collections/clutches,",
+            "content_title": "#MTRA with a Gift Card",
+            "text": "",
+            "btn_text": "",
+            "btn_url": "shopify://products/e-gift-card",
+            "bg_image": "shopify://shop_images/All_Gifts.jpg",
+            "text_color": "#FFFFFF",
+            "gradient": "linear-gradient(0deg,rgba(0,0,0,.62),transparent)",
+            "btn_style": "primary",
+            "custom_css": "== {\n  justify-content: flex-end;\n  align-items: flex-start;\n}\n\n== h3 {\n  font-family: var(--font--graphik-cond);\n  text-transform: uppercase;\n  font-style: normal;\n  letter-spacing: 0.03em;\n  font-size: 55px;\n  line-height: 1;\n  text-align: left;\n}\n\n/widescreen/ {\n  == h3 {\n    font-size: 75px;\n  }\n}"
+          }
+        }
+      },
+      "block_order": [
+        "e61bd7fa-f95a-41e8-9a98-96c39c24cdbc",
+        "eb5baf57-6715-46f5-b2c6-892bc24a2709",
+        "a6cdc0b8-9cdd-413c-acf9-d2bc27154251",
+        "e7ebc5d2-5292-4d93-891c-93c4cab3d92f",
+        "ced8b3ba-50dd-41fb-a68c-a29517f00b46",
+        "f570c2a5-694e-4c57-a478-32c3c51c6c28",
+        "fae675fd-cce7-42f5-8e53-32964471f214",
+        "9c064ef4-de8c-42f1-ab31-7994390927d7",
+        "4bba54f3-c14e-42b1-96ff-8857943bf1dc",
+        "a9a0134f-b7a6-41c3-8d40-217b26007c1f"
+      ],
+      "settings": {
+        "total_rows": 5,
+        "per_row": 4,
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": true,
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "custom_css": "== .cell__item {\n  --border: 1px solid rgba(var(--color--alto-white-rgb),0.5);\n  border-bottom: var(--border);\n  border-right: var(--border);\n  // margin-top: -1px;\n  // margin-left: -1px;\n}\n\n/medium/ {\n  == .cell__item:not(.old-loader):not(#more) {\n      grid-column-end: span 20;\n  }\n}\n\n/widescreen/ {\n  == .cell__item:not(.old-loader):not(#more) {\n      grid-column-end: span 12;\n  }\n}"
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid"
+  ]
+}

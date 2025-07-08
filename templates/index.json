@@ -1,0 +1,1046 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "1658804312c0b808ea": {
+      "type": "nine15--slider",
+      "blocks": {
+        "b951b487-a2ba-4e81-a2b1-58e8c2c28549": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/JUL1_2025_desktop_HP_01.jpg",
+            "image_mob": "shopify://shop_images/JUL1_2025_mobile_HP_01.jpg",
+            "no_lazyload": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "shopify://collections/crossbodies",
+            "btn_anchor_url": "",
+            "force_slide_link": true,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "center",
+            "bg_color_mob": "#000000",
+            "opacity_mob": 10,
+            "align_text_mob": "center",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "450px",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "b951b487-a2ba-4e81-a2b1-58e8c2c28549"
+      ],
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "165880423781b7813c": {
+      "type": "nine15--slider",
+      "blocks": {
+        "slider_e4KTeR": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/JUL1_2025_desktop_HP_02.jpg",
+            "image_mob": "shopify://shop_images/JUL1_2025_mobile_HP_02.jpg",
+            "no_lazyload": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "shopify://collections/bags",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "slider_e4KTeR"
+      ],
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "165880434187102144": {
+      "type": "nine15--slider",
+      "blocks": {
+        "slider_Nckn8q": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/JUL1_2025_desktop_HP_03.jpg",
+            "image_mob": "shopify://shop_images/JUL1_2025_mobile_HP_03.jpg",
+            "no_lazyload": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "shopify://collections/bag-charms",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "slider_Nckn8q"
+      ],
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "45c42c8e-02ef-49c4-8999-91dcda2a4655": {
+      "type": "nine15--slider",
+      "blocks": {
+        "slider_E9cp6r": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/JUL1_2025_desktop_HP_04.jpg",
+            "image_mob": "shopify://shop_images/JUL1_2025_mobile_HP_04.jpg",
+            "no_lazyload": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "shopify://collections/bag-bestsellers",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "slider_E9cp6r"
+      ],
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "4000",
+        "custom_css": ""
+      }
+    },
+    "1658779456c661ead8": {
+      "type": "nine15--slider",
+      "blocks": {
+        "slider_KX4KTi": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/JUL1_2025_desktop_HP_05.jpg",
+            "image_mob": "shopify://shop_images/JUL1_2025_mobile_HP_05.jpg",
+            "no_lazyload": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "shopify://collections/the-thunderbird-collection",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "slider_KX4KTi"
+      ],
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "8000",
+        "custom_css": ""
+      }
+    },
+    "nine15_ctas_Yimddw": {
+      "type": "nine15--ctas",
+      "blocks": {
+        "icon_z3BmNP": {
+          "type": "icon",
+          "settings": {
+            "hide_mobile": false,
+            "image": "shopify://shop_images/APR3_2025_desktop_HP_05.jpg",
+            "title": "<B>THE NEXT GENERATION</B>",
+            "subtitle": "",
+            "text": "Our vibrant Sophie print returns in brand new silhouettes for spring and summer. Now in the Jetsetter, Tour Crossbody, Zippy Wallet and more, discover the silhouette that helps you to LIVE IN COLOR!",
+            "badge": "",
+            "button_text": "SHOP SOPHIE",
+            "url": "shopify://collections/the-sophie-collection",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "icon_jhxHwK": {
+          "type": "icon",
+          "settings": {
+            "hide_mobile": false,
+            "image": "shopify://shop_images/APR3_2025_desktop_HP_06.jpg",
+            "title": "<B>MEET INDY\n</B>",
+            "subtitle": "",
+            "text": "Sister to our beloved Thunderbird, our iconic snake embossing now comes in a stunning oceanic teal hue. Topped with a curated collection of handcrafted charms, Indy is sure to turn heads.",
+            "badge": "",
+            "button_text": "SHOP INDY",
+            "url": "shopify://collections/the-indy-collection",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "icon_z3BmNP",
+        "icon_jhxHwK"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "text": "",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "#FFF",
+        "per_row": 0,
+        "align_boxes_left": true,
+        "large_images": true,
+        "inline_ctas": false,
+        "match_row": true,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "==.section--ctas.large-images .image--inner {\n  padding-top: 85%;\n}\n}\n== .button {\n  margin-left: auto;\n  margin-right: auto;\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "1658804475efbd842d": {
+      "type": "nine15--slider",
+      "blocks": {
+        "slider_gEbDUq": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/JUN1_2025_desktop_HP_05.jpg",
+            "image_mob": "shopify://shop_images/JUN1_2025_mobile_HP_05.jpg",
+            "no_lazyload": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "shopify://collections/bags",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "slider_gEbDUq"
+      ],
+      "disabled": true,
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "b2eb4e06-3ae3-423f-99ba-d4ea1fdd9ae2": {
+      "type": "nine15--slider",
+      "blocks": {
+        "slider_74jBLK": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/JUL1_2025_desktop_HP_06.jpg",
+            "image_mob": "shopify://shop_images/JUL1_2025_mobile_HP_06.jpg",
+            "no_lazyload": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "shopify://blogs/its-not-about-the-bag",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "slider_74jBLK"
+      ],
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "4000",
+        "custom_css": ""
+      }
+    },
+    "rebuy_widget_add_xxWFfB": {
+      "type": "rebuy-widget-add",
+      "blocks": {
+        "text_M3nrBp": {
+          "type": "text",
+          "settings": {
+            "rebuy_name": "MORE TO LOVE",
+            "show_title": false,
+            "id": "171479"
+          }
+        },
+        "text_GaezVY": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "rebuy_name": "RECENTLY VIEWED",
+            "show_title": true,
+            "id": "171484"
+          }
+        }
+      },
+      "block_order": [
+        "text_M3nrBp",
+        "text_GaezVY"
+      ],
+      "disabled": true,
+      "settings": {
+        "widget_theme_type": false,
+        "show_title": true,
+        "show_ATC": true
+      }
+    },
+    "165888707628185a8b": {
+      "type": "nine15--featured-testimonial",
+      "blocks": {
+        "9dc57006-f9db-4f2c-96e7-84a06b5b5cc3": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/SLNG4844TSELOS_01.png",
+            "title": "Shop the Indy Sling",
+            "stars": "5",
+            "quote": "This Bag is so gorgeous I love it!! It's very well made, I love the leather trim, the bag charms are gorgeous as well!! Consuela bags and accessories are high quality works of art! Fast shipping too! I am extremely happy with my purchase!",
+            "name": "Mar R.",
+            "position": "TX",
+            "url": "shopify://products/indy-sling",
+            "metafield_image": ""
+          }
+        },
+        "82ae0285-6ffa-4dcd-b18f-81c49dcc5bf9": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/MTCB4782SWFUOS_01.png",
+            "title": "Shop the Ceci Midtown Crossbody",
+            "stars": "5",
+            "quote": "I love the purse! It is lightweight and very chic! Love the bright colors!",
+            "name": "Cindi J.",
+            "position": "NC",
+            "url": "shopify://products/ceci-midtown-crossbody",
+            "metafield_image": ""
+          }
+        },
+        "block_cPd8fg": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/UPXB4299MLOPOS_Hero_01.png",
+            "title": "Shop the Emery Uptown Crossbody",
+            "stars": "5",
+            "quote": "I have several Consuela purchases and this is my absolute favorite! I love this crossbody for the colors, sparkles and size of the purse. My iPhone pro max with case fits perfectly inside the pockets.",
+            "name": "Rachel B.",
+            "position": "TX",
+            "url": "shopify://products/emery-uptown-crossbody",
+            "metafield_image": ""
+          }
+        },
+        "807c7444-8f6c-4aa9-b4f9-77ca7fa8b529": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/CLST1570CYSNOS_01_ProductHero.png",
+            "title": "Shop the Clay Classic Tote",
+            "stars": "5",
+            "quote": "I knew when I first saw my friend’s Consuela bag that I had to have one! I love my Clay Classic Tote. The snake skin texture, woven straps, and beaded butterfly tassel add so many textures and color to my style! This tote’s size can carry anything and everything I need! I am in love!",
+            "name": "Lauren G.",
+            "position": "TN",
+            "url": "shopify://products/clay-classic-tote",
+            "metafield_image": ""
+          }
+        },
+        "edba3c61-99b3-49d0-8878-b5a6bdb5b03c": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/6964_HERO_01.png",
+            "title": "Shop the Thunderbird Downtown Crossbody",
+            "stars": "5",
+            "quote": "I am so glad I picked this purse!! It is so unique and the perfect size for me! It’s amazing quality and I love the charms that come with it!! Overall just AMAZING.",
+            "name": "Millard D.",
+            "position": "AL",
+            "url": "shopify://products/thunderbird-downtown-crossbody",
+            "metafield_image": ""
+          }
+        },
+        "a06c02c8-27f9-4a04-85e5-f6e54337ccb2": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/UPXB4270SKADOS_Hero_01.png",
+            "title": "Shop the Lex Uptown Crossbody",
+            "stars": "5",
+            "quote": "I love this purse! It is perfect at keeping the essentials that I need to carry and the crossbody strap is comfortable! I am very happy and keep recommending it to others!",
+            "name": "Tracy C.",
+            "position": "TX",
+            "url": "shopify://products/lex-uptown-crossbody",
+            "metafield_image": ""
+          }
+        },
+        "6a415019-646c-4ef5-92e3-3454e2357319": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/DTXB1355VFSQOS_HERO_01.png",
+            "title": "Shop the Sally Downtown Crossbody",
+            "stars": "5",
+            "quote": "This purse is the perfect size and the pattern is so beautiful! Love it!",
+            "name": "Taylor L.",
+            "position": "MO",
+            "url": "shopify://products/sally-downtown-crossbody",
+            "metafield_image": ""
+          }
+        },
+        "7da300c9-71d8-4456-812f-a55c41b5b3c4": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/7814_1.png",
+            "title": "Shop the  Mona Basic Bag",
+            "stars": "5",
+            "quote": "I love this bag! This is my 1st Consuela bag, and I absolutely love the quality, style, and look",
+            "name": "Tammy L.",
+            "position": "TX",
+            "url": "shopify://products/mona-basic-bag",
+            "metafield_image": ""
+          }
+        },
+        "dc90460d-5eca-4d48-950e-f16757557c06": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/natashaCharmnewLogo.png",
+            "title": "Shop the Natasha Charm",
+            "stars": "5",
+            "quote": "What a lovely vibrant piece! It looks fabulous on my gorgeous bag!",
+            "name": "Jo P.",
+            "position": "TX",
+            "url": "shopify://products/natasha-charm",
+            "metafield_image": ""
+          }
+        }
+      },
+      "block_order": [
+        "9dc57006-f9db-4f2c-96e7-84a06b5b5cc3",
+        "82ae0285-6ffa-4dcd-b18f-81c49dcc5bf9",
+        "block_cPd8fg",
+        "807c7444-8f6c-4aa9-b4f9-77ca7fa8b529",
+        "edba3c61-99b3-49d0-8878-b5a6bdb5b03c",
+        "a06c02c8-27f9-4a04-85e5-f6e54337ccb2",
+        "6a415019-646c-4ef5-92e3-3454e2357319",
+        "7da300c9-71d8-4456-812f-a55c41b5b3c4",
+        "dc90460d-5eca-4d48-950e-f16757557c06"
+      ],
+      "settings": {
+        "title": "Over 25,000 Five STAR REVIEWS\n<span>WHAT PEOPLE ARE SAYING</span>",
+        "btn_text": "",
+        "btn_url": "",
+        "text_color": "#000000",
+        "gradient": "",
+        "use_arrows": true,
+        "use_dots": false,
+        "auto_slide": false,
+        "custom_css": "== h2 {\n  font-size: 14px;\n  font-family: var(--font--graphik-wide);\n  font-weight: 700;\n  letter-spacing: 0.15em;\n\n}\n\n== h2 span {\n  font-size: 64px;\n  font-family: var(--font--graphik-cond);\n  display: block;\n  line-height: 1;\n}\n\n== h3 {\n  font-size: 14px;\n  line-height: 1.7;\n}\n\n/small/ {\n  == {\n    padding-top: var(--base-gutter--double);\n  }\n  == .image--outer {\n    // padding: 0 var(--base-gutter);\n    width: 50%;\n    margin-left: auto;\n    margin-right: auto;\n  }\n  == .slick-arrow {\n    top: 20%;\n    transform: translate(0, -50%) scale(1.3);\n  }\n  == .slick-prev {\n    left: 0;\n  }\n  == .slick-next {\n    right: 0;\n  }\n}\n\n/medium-up/ {\n  == h2 {\n    text-align: left;\n  }\n  == h2 span {\n    font-size: 90px;\n  } \n\n  == h3 {\n    font-weight: 400;\n    font-size: 12px;\n  }\n  == h3 b {\n    font-weight: 700;\n    display: block;\n  }\n}"
+      }
+    },
+    "16631863351757bf5f": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "instagram",
+        "custom_html": "<div class=\"page-width\">\n<h2>MTRA</h2>\n\n<a href=\"https://www.instagram.com/consuelastyle/\">\n  {% render 'icon-instagram' %}\n  <span>Follow Along on Instagram</span>\n</a>\n\n</div>\n\n<script src=\"//foursixty.com/media/scripts/fs.embed.v2.5.js\" data-feed-id=\"consuela\" data-theme=\"showcase_v2_5\" data-page-size=\"8\"></script>\n<style>.fs-has-links { display:none; } .fs-showcase_v2_5.fs-desktop .fs-entry-container { width:25% !important;padding-top:25% !important; } .fs-showcase_v2_5.fs-mobile .fs-entry-container { width:50% !important;padding-top:50% !important; } .fs-wrapper div.fs-text-container .fs-entry-title, div.fs-detail-title { font-family:Times New Roman, serif;font-style:normal;font-weight:normal;font-size:14px; } div.fs-text-container .fs-entry-date, div.fs-detail-container .fs-post-info, div.fs-wrapper div.fs-has-links::after, .fs-text-product, .fs-overlink-text { font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-style:normal;font-weight:normal;font-size:14px; } .fs-wrapper div.fs-text-container * { color:#ffffff; } .fs-wrapper div.fs-text-container { background-color:rgba(0, 0, 0, 0.8);margin:0px; } div.fs-entry-date { display:none; } div.fs-entry-title { display:none; } .fs-showcase_v2_5.fs-wrapper div.fs-timeline-entry { margin:1px; } </style>",
+        "custom_css": "== {\n  background: black;\n}\n\n== * {\n  color: white;\n}\n\n== .page-width {\n  --padding: var(--base-gutter--quarter);\n  padding-top: var(--padding);\n  padding-bottom: var(--padding);\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: space-between;\n  align-items: flex-end;\nmax-width: 100%;\n}\n\n== .page-width ~ div {\n  background: white;\n}\n\n== h2 {\n  margin: 0;\n  color: white;\n  font-size: 64px;\n  font-family: var(--font--graphik-cond);\n  letter-spacing: 0.02em;\n  line-height: 1;\n}\n\n== a {\n  text-decoration: none;\n  font-family: var(--font--graphik-wide);\n  font-weight: 600;\n  letter-spacing: .075em;\n  font-size: 14px;\n}\n\n== a * {\n  display: inline-block;\n  vertical-align: middle;\n  text-decoration: none;\n}\n\n== a * + * {\n  margin-left: 5px;\n}\n\n== svg {\n  width: 15px;\n  height: 15px;\n}\n\n/small/ {\n  == .page-width {\n    --padding: calc(var(--base-gutter--half) * 1.5);\n    justify-content: center;\n  }\n  == h2 {\n    margin-bottom: var(--base-gutter--quarter);\n  }\n}\n\n\n/medium-up/ {\n  == h2 {\n    font-size: 90px;\n  }\n}"
+      }
+    },
+    "7c2dceb6-daa2-4081-846b-1ccaf029c536": {
+      "type": "nine15--slider",
+      "blocks": {
+        "1841df17-be4a-47bb-8310-aa14eeafa1fe": {
+          "type": "slider",
+          "settings": {
+            "no_lazyload": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "shopify://collections/bag-charms",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "1841df17-be4a-47bb-8310-aa14eeafa1fe"
+      ],
+      "disabled": true,
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "16631863389293437d": {
+      "type": "nine15--ctas",
+      "blocks": {
+        "258c7656-1d92-4b9f-880e-6077a148e4ed": {
+          "type": "icon",
+          "settings": {
+            "hide_mobile": false,
+            "title": "<svg class=\"icon\" stroke=\"currentColor\" width=\"43.39\" height=\"23.034\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 43.39 23.034\">\n  <g transform=\"translate(0 0.5)\">\n    <line fill=\"none\" stroke-linejoin=\"round\" x2=\"6.93\" transform=\"translate(4.642 4.642)\"></line>\n    <line fill=\"none\" stroke-linejoin=\"round\" x2=\"4.642\" transform=\"translate(3.465 13.926)\"></line>\n    <g transform=\"translate(-0.654 -0.654)\">\n      <line fill=\"none\" stroke-linejoin=\"round\" x2=\"9.284\" transform=\"translate(0.654 9.938)\"></line>\n      <path fill=\"none\" stroke-linejoin=\"round\" d=\"M57.63,27.565a3.465,3.465,0,1,0-3.465,3.465A3.465,3.465,0,0,0,57.63,27.565Z\" transform=\"translate(-17.552 -8.343)\"></path>\n      <path fill=\"none\" stroke-linejoin=\"round\" d=\"M27.43,27.565a3.465,3.465,0,1,0-3.465,3.465,3.465,3.465,0,0,0,3.465-3.465Z\" transform=\"translate(-7.097 -8.343)\"></path>\n      <line fill=\"none\" stroke-linejoin=\"round\" x1=\"10.82\" transform=\"translate(20.334 19.223)\"></line>\n      <path fill=\"none\" stroke-linejoin=\"round\" d=\"M13.4,1H36.937a3.008,3.008,0,0,1,2.55,1.438l4.054,6.669,2.615,1.308a3.661,3.661,0,0,1,2.027,3.269v4.642A1.177,1.177,0,0,1,47.006,19.5H44.718\" transform=\"translate(-4.639 -0.346)\"></path>\n      <line fill=\"none\" stroke-linejoin=\"round\" x1=\"4.577\" transform=\"translate(8.761 19.222)\"></line>\n      <path fill=\"none\" stroke-linejoin=\"round\" d=\"M53.373,9.107H41.8V1\" transform=\"translate(-14.471 -0.346)\"></path>\n    </g>\n  </g>\n</svg>",
+            "subtitle": "Free Shipping",
+            "text": "Orders over $99 ship for free.",
+            "badge": "",
+            "button_text": "",
+            "url": "https://consuelastyle.com/pages/contact-us#shopify-section-template--14835121717302__1662423265da626889",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "e8e3ff47-571b-4523-a4af-eeeb7c4c58f5": {
+          "type": "icon",
+          "settings": {
+            "hide_mobile": false,
+            "title": "<svg class=\"icon\" stroke=\"currentColor\"  width=\"37.09\" height=\"41.913\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 37.09 41.913\">\n  <g transform=\"translate(0.5 0.354)\">\n    <path d=\"M24.073,45.172,12.5,40.138V28.5l11.573,5.1Z\" transform=\"translate(-4.981 -10.324)\" fill=\"none\" stroke-linejoin=\"round\"></path>\n    <path d=\"M30.2,45.172l10.2-5.034V28.5L30.2,33.6Z\" transform=\"translate(-11.109 -10.324)\" fill=\"none\" stroke-linejoin=\"round\"></path>\n    <path d=\"M12.5,25.834,22.634,20.8l11.638,5.034\" transform=\"translate(-4.981 -7.658)\" fill=\"none\" stroke-linejoin=\"round\"></path>\n    <line x2=\"11.573\" y2=\"5.1\" transform=\"translate(12.619 15.626)\" fill=\"none\" stroke-linejoin=\"round\"></line>\n    <path d=\"M17.084,8.431,19.111,8.3A18.045,18.045,0,1,1,1,26.411\" transform=\"translate(-1 -3.331)\" fill=\"none\" stroke-linejoin=\"round\" stroke-miterlimit=\"10\"></path>\n    <path d=\"M29.734,10.7,24.7,5.734,29.734.7\" transform=\"translate(-9.205 -0.7)\" fill=\"none\" stroke-linejoin=\"round\" stroke-miterlimit=\"6\"></path>\n  </g>\n</svg>",
+            "subtitle": "Free Returns",
+            "text": "Free returns within 60 days",
+            "badge": "",
+            "button_text": "",
+            "url": "https://consuelastyle.com/pages/contact-us#shopify-section-template--14835121717302__166242411351fe5489",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "ea0153d9-78df-4c19-a363-41eeb8cf3d77": {
+          "type": "icon",
+          "settings": {
+            "hide_mobile": true,
+            "title": "<svg class=\"icon\" stroke=\"currentColor\"  width=\"45.167\" height=\"26.55\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 45.167 26.55\">\n  <g transform=\"translate(0.5 0.5)\">\n    <rect fill=\"none\" stroke-linejoin=\"round\" width=\"44.167\" height=\"25.55\" rx=\"3.653\"></rect>\n    <path fill=\"none\" d=\"M3.99,1.89h.826V.112a3.064,3.064,0,0,0,3.122-2.94c0-1.806-1.064-2.464-3.122-2.828v-3.5a1.962,1.962,0,0,1,1.82,1.778H7.728a2.925,2.925,0,0,0-2.912-2.73v-1.274H3.99v1.26a2.857,2.857,0,0,0-2.954,2.7c0,1.68,1.106,2.338,2.954,2.688V-.84A2.134,2.134,0,0,1,1.806-3.052H.63A3.219,3.219,0,0,0,3.99.112ZM6.776-2.744a1.993,1.993,0,0,1-1.96,1.9V-4.592C6.342-4.27,6.776-3.78,6.776-2.744ZM2.142-7.532c0-.868.672-1.54,1.848-1.638V-5.8C2.436-6.118,2.142-6.65,2.142-7.532Z\" transform=\"translate(17.281 17.62)\"></path>\n  </g>\n</svg>",
+            "subtitle": "Gift Cards",
+            "text": "Can’t decide? We’ve got you covered with a Consuela Gift Card.",
+            "badge": "",
+            "button_text": "",
+            "url": "https://consuelastyle.com/products/e-gift-card",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "5f47d20e-19b9-4834-bd7c-a95432b52424": {
+          "type": "icon",
+          "settings": {
+            "hide_mobile": true,
+            "title": "<svg class=\"icon\" stroke=\"currentColor\" width=\"23\" height=\"30.762\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 23 30.762\">\n  <g transform=\"translate(0.5 0.5)\">\n    <path fill=\"none\" stroke-linejoin=\"round\" stroke-miterlimit=\"6\" d=\"M969.317,198.893a11,11,0,0,0-22,0c0,5.589,2.844,7.5,11,18.426C966.459,206.409,969.317,204.488,969.317,198.893Zm-6.555.014a4.445,4.445,0,1,1-4.445-4.444A4.445,4.445,0,0,1,962.762,198.907Z\" transform=\"translate(-947.317 -187.893)\"></path>\n  </g>\n</svg>",
+            "subtitle": "Store Locator",
+            "text": "Find a store near you.",
+            "badge": "",
+            "button_text": "",
+            "url": "https://consuelastyle.com/pages/store-locator",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "258c7656-1d92-4b9f-880e-6077a148e4ed",
+        "e8e3ff47-571b-4523-a4af-eeeb7c4c58f5",
+        "ea0153d9-78df-4c19-a363-41eeb8cf3d77",
+        "5f47d20e-19b9-4834-bd7c-a95432b52424"
+      ],
+      "custom_css": [
+        "@media (max-width: 749px) {.section--ctas .cell:not(.slick-initialized) {display: flex; flex-wrap: wrap; } .rte {font-size: 14px !important; } .inner-container span {display: block; } .inner-container span {font-size: 13px !important; } .cell__item {width: 49% !important; }}"
+      ],
+      "settings": {
+        "title": "",
+        "text": "",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#ffffff",
+        "gradient": "linear-gradient(310deg, rgba(0, 0, 0, 1) 15%, rgba(0, 0, 0, 1) 85%)",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "== {\n  padding: var(--base-gutter) 0;\n}\n\n== svg {\n  // width: var(--base-gutter--double);\n  // height: var(--base-gutter);\n  width: 45px;\n  height: 45px;\n}\n\n== .inner-container {\n  margin: 0 auto;\n  max-width: 250px;\n}\n\n== h4 {\n  font-family: var(--font--graphik-wide);\n  font-weight: 700;\n}\n\n== h4, \n== .rte, \n== .rte * {\n  font-size: 12px;\n}\n\n== .inner-container {\n  transition: opacity .15s ease;\n  opacity: 1;\n}\n\n== .inner-container:hover {\n  opacity: 0.75;\n}\n\n/small/ {\n  == h3,\n  == h4 {\n    margin-bottom: calc(var(--base-gutter--quarter) / 2);\n  }\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    }
+  },
+  "order": [
+    "1658804312c0b808ea",
+    "165880423781b7813c",
+    "165880434187102144",
+    "45c42c8e-02ef-49c4-8999-91dcda2a4655",
+    "1658779456c661ead8",
+    "nine15_ctas_Yimddw",
+    "1658804475efbd842d",
+    "b2eb4e06-3ae3-423f-99ba-d4ea1fdd9ae2",
+    "rebuy_widget_add_xxWFfB",
+    "165888707628185a8b",
+    "16631863351757bf5f",
+    "7c2dceb6-daa2-4081-846b-1ccaf029c536",
+    "16631863389293437d"
+  ]
+}

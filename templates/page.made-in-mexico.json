@@ -1,0 +1,685 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "title_style": "visually-hidden",
+        "loop": "",
+        "custom_css": "== .rte {\n  display: none;\n}"
+      }
+    },
+    "1661998677de148cf9": {
+      "type": "nine15--slider",
+      "blocks": {
+        "bd2f6674-168f-4694-8e1f-255a05b63bb4": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/ATX-MX-1-DESKTOP-min.jpg",
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "bd2f6674-168f-4694-8e1f-255a05b63bb4"
+      ],
+      "settings": {
+        "set_height": true,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "550px",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "16619988590e751604": {
+      "type": "nine15--ctas",
+      "settings": {
+        "title": "MADE IN MEXICO WITH LOVE",
+        "text": "<p>Our products are produced by Mexican-owned factories and by artists and their communities. Since the beginning of Consuela, it has been more than just manufacturing in Mexico; it's been an opportunity to grow together.</p>\n\n<p>We often reminisce with our factory partners and artisans about all the first meetings, working through initial rounds of product, and the challenges of working across two countries. As we've grown and demand has increased, we've worked with our factory partners and artists to support their expansion. We share the honor of uplifting each other and supporting the culture and heart of Mexico.</p>",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "== .rte {\n  max-width: 670px;\n  margin-left: auto;\n  margin-right: auto;\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "16637625486493ed2a": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "",
+        "custom_html": "{%- liquid \n\n  assign vid = \"https://cdn.jwplayer.com/videos/lIwKO5bj-sZAyLL6U.mp4\"\n  assign img = \"https://cdn.jwplayer.com/thumbs/lIwKO5bj-1920.jpg\"\n%}\n{% render 'snippet--video', \n  vidHosted: vid, \n  hostedThumb: img,\n  normalMobile: true,\n  autoPlay: true\n%}",
+        "custom_css": ""
+      }
+    },
+    "1661998994657cf2bc": {
+      "type": "nine15--slider",
+      "blocks": {
+        "db4f7beb-246b-4aee-b9ac-793f086e4877": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/v1i1cq9b-1920.jpg",
+            "title": "placeholder for JW",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 68,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#ffffff",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "db4f7beb-246b-4aee-b9ac-793f086e4877"
+      ],
+      "disabled": true,
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "16619990325d35e006": {
+      "type": "nine15--ctas",
+      "settings": {
+        "title": "HONORING ARTISTS",
+        "text": "When we partner with artist communities in Mexico, we build relationships and are committed to the people we work with. We learn about the history of their artistry, their traditions, and their business needs. Getting to know each other has created many beautiful memories. We spend time working through new ideas while getting to know them, their families, and their communities.",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "== .rte {\n  max-width: 670px;\n  margin-left: auto;\n  margin-right: auto;\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "16619990589c846a5e": {
+      "type": "nine15--slider",
+      "blocks": {
+        "b0f74bf6-457b-4508-a9dd-4b6500c14dd6": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/Group-2861-min.jpg",
+            "image_mob": "shopify://shop_images/Group-2857_2x-min.jpg",
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "b0f74bf6-457b-4508-a9dd-4b6500c14dd6"
+      ],
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "1661999085777b6400": {
+      "type": "nine15--ctas",
+      "blocks": {
+        "a1726f39-8993-4fe2-a823-5ed57b6443ee": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/ATX-MX-BUCKET-1-min.jpg",
+            "title": "ARTIST TECHNIQUES & THEIR COMMUNITIES",
+            "subtitle": "",
+            "text": "We partner with local artists of different techniques, including chaquira beadwork, weaving, paper mâché, and embroidery. The partnership positively impacts their communities through job creation and allows the artists to use traditional techniques handed down through generations, helping keep these traditions alive.",
+            "badge": "",
+            "button_text": "",
+            "url": "",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "2dc012fd-2636-44ac-9d5b-75be6d2350e7": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/ATX-MX-BUCKET-2-min.jpg",
+            "title": "CULTURAL EDUCATION",
+            "subtitle": "",
+            "text": "The artists we work with are entrepreneurs and pillars of their communities and bring invaluable knowledge of their culture and history behind their artistry. Their voices and work mean so much to us. Our goal is to share their stories and support their goals through our product and advocacy.",
+            "badge": "",
+            "button_text": "",
+            "url": "",
+            "btn_style": "primary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "a1726f39-8993-4fe2-a823-5ed57b6443ee",
+        "2dc012fd-2636-44ac-9d5b-75be6d2350e7"
+      ],
+      "settings": {
+        "title": "",
+        "text": "",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": true,
+        "large_images": true,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "==.section--ctas.large-images .image--inner {\n  padding-top: var(--image-natural-height);\n}\n\n== {\n  padding: var(--base-gutter) 0;\n}\n\n/small/ {\n  == .text-left {\n    text-align: center;\n  }\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "16619993366a5abfbe": {
+      "type": "nine15--slider",
+      "blocks": {
+        "919b3365-0d11-4bd1-bfb2-7672178cf033": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/7zb0n4h8-1920.jpg",
+            "title": "placeholder for JW",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 63,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#ffffff",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "919b3365-0d11-4bd1-bfb2-7672178cf033"
+      ],
+      "disabled": true,
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "1663762703f0e75703": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "",
+        "custom_html": "{%- liquid \n\n  assign vid = \"https://cdn.jwplayer.com/videos/rT1ACRRs-sZAyLL6U.mp4\"\n  assign img = \"https://cdn.jwplayer.com/thumbs/rT1ACRRs-1920.jpg\"\n%}\n{% render 'snippet--video', \n  vidHosted: vid, \n  hostedThumb: img,\n  normalMobile: true,\n  autoPlay: true\n%}",
+        "custom_css": ""
+      }
+    },
+    "1661999367ad378891": {
+      "type": "nine15--ctas",
+      "blocks": {
+        "3d883ed3-316c-4ab5-84ba-c95c7179dbfd": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/ROSA-BUCKET-4-min.jpg",
+            "title": "PAPER MACHE",
+            "subtitle": "",
+            "text": "Paper mâché is used to make small hand-held pieces and large sculptures. The layered technique is rich with tradition and carries energy through color, texture, whimsical figures, and playful characters.",
+            "badge": "",
+            "button_text": "Learn More",
+            "url": "shopify://pages/paper-mache-art",
+            "btn_style": "secondary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "70cef090-8b53-4f9e-84f2-37a8275a5351": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/ESTHER-BUCKET-IN-ATXMX-min.jpg",
+            "title": "EMBROIDERY",
+            "subtitle": "",
+            "text": "San Gabriel Chilac's embroidery brings families and the whole town together. There is great pride in continuing their traditions through their art pieces, which travel from San Gabriel Chilac to all over the world.",
+            "badge": "",
+            "button_text": "Learn More",
+            "url": "shopify://pages/embroidery-art",
+            "btn_style": "secondary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "0bc7563d-bf7b-4929-ad16-feafc79a8506": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/ESTHER-BUCKET-4-min.jpg",
+            "title": "CHAQUIRA",
+            "subtitle": "",
+            "text": "A closer look at chaquira beaded pieces reveals the intricate detail and dedication to bringing the art to life. The technique is learned at an early age and has been passed down through many generations.",
+            "badge": "",
+            "button_text": "Learn More",
+            "url": "shopify://pages/chaquira-art",
+            "btn_style": "secondary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        },
+        "915a072d-6500-46ec-9b6a-04a63db3a96a": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/FINAL-VIEW-OTHER-ARTISANS-min.jpg",
+            "title": "WEAVING",
+            "subtitle": "",
+            "text": "Weaving combines creativity with the ability to create patterns with no tool other than the artist's hands. A multitude of colors and intertwined pieces come together to make a beautiful piece.",
+            "badge": "",
+            "button_text": "Learn More",
+            "url": "shopify://pages/woven-bracelets-art",
+            "btn_style": "secondary",
+            "use_modal": false,
+            "video_url": "",
+            "video_hosted": "",
+            "metafield_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "3d883ed3-316c-4ab5-84ba-c95c7179dbfd",
+        "70cef090-8b53-4f9e-84f2-37a8275a5351",
+        "0bc7563d-bf7b-4929-ad16-feafc79a8506",
+        "915a072d-6500-46ec-9b6a-04a63db3a96a"
+      ],
+      "settings": {
+        "title": "",
+        "text": "",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 2,
+        "align_boxes_left": true,
+        "large_images": true,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "==.section--ctas.large-images .image--inner {\n  padding-top: var(--image-natural-height);\n}\n\n\n== .btn {\n  margin-top: var(--base-gutter);\n  margin-bottom: var(--base-gutter);\n} \n\n/small/ {\n  == .text-left {\n    text-align: center;\n  }\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "16619999399ff2185b": {
+      "type": "nine15--slider",
+      "blocks": {
+        "7db809cf-1e3f-434d-a064-943b60e5645d": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/Brand_Banners_MTRA_black_2.jpg",
+            "image_mob": "shopify://shop_images/Brand-Banner-MTRA_black_2.jpg",
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 0,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "7db809cf-1e3f-434d-a064-943b60e5645d"
+      ],
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1661998677de148cf9",
+    "16619988590e751604",
+    "16637625486493ed2a",
+    "1661998994657cf2bc",
+    "16619990325d35e006",
+    "16619990589c846a5e",
+    "1661999085777b6400",
+    "16619993366a5abfbe",
+    "1663762703f0e75703",
+    "1661999367ad378891",
+    "16619999399ff2185b"
+  ]
+}

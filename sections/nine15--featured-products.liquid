@@ -1,0 +1,445 @@
+<!-- sections/nine15--featured-products -->
+
+{% include 'master--featured-products' %}
+
+{% schema %}
+  {
+  	"name": "Featured Products",
+  	"class": "index-section featured-products",
+  	"settings": [
+	    {
+        "type":"collection",
+        "id":"collection",
+        "label":"Collection",
+        "info": "If you add blocks then this is ignored."
+      },
+      {
+        "type":"liquid",
+        "id":"title",
+        "label":"Title",
+        "info": "Will show collection title if left blank."
+      },
+      {
+        "type":"richtext",
+        "id":"text",
+        "label":"Text"
+      },
+      {
+        "type":"header",
+        "content": "Section title link"
+      },
+      {
+        "type":"paragraph",
+        "content": "Only applies when blocks are used."
+      },
+      {
+        "type":"text",
+        "id":"link_text",
+        "label":"Link Text"
+      },
+      {
+        "type":"url",
+        "id":"link_url",
+        "label":"Link Url"
+      },
+      {
+        "type":"header",
+        "content": "Bottom button"
+      },
+      {
+        "type":"text",
+        "id":"button_text",
+        "label":"Button Text"
+      },
+      {
+        "type":"url",
+        "id":"button_url",
+        "label":"Button Url"
+      },
+      {
+        "type": "select",
+        "id": "btn_style",
+        "label": "Button Type",
+        "info": "Button will only show if Button Text and Link are used, and videos are not used.",
+        "options": [
+          {
+            "value": "primary",
+            "label": "Primary"
+          },
+          {
+            "value": "secondary",
+            "label": "Secondary"
+          }
+        ],
+        "default": "primary"
+      },
+      {
+        "type":"header",
+        "content": "Color Rules"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color_background",
+        "id": "gradient",
+        "label": "Gradient Background"
+      },
+      {
+  			"type":"header",
+  			"content": "Row Setting"
+  		},
+      {
+        "type":"paragraph",
+        "content": "Only 50 total products may be loaded using a Collection reference. And only 25 total single when using a Product reference."
+      },
+      {
+        "type":"paragraph",
+        "content": "Any other section that loads a product or collection factors into one calculation. Not separately."
+      },
+
+      {
+        "type":      "range",
+        "id":        "limit",
+        "min":       1,
+        "max":       50,
+        "step":      1,
+        "label":     "Product Limit",
+        "default":   8
+      },
+      {
+        "type":      "range",
+        "id":        "per_row",
+        "min":       0,
+        "max":       6,
+        "step":      1,
+        "label":     "Products per row (on desktop)",
+        "default":   4
+      },
+      {
+        "type":"paragraph",
+        "content": "'Items per row' controls slider as well."
+      },
+      {
+        "type":"checkbox",
+        "id":"use_slider",
+        "label":"Use Slider",
+        "info": "Applies to Mobile as well."
+      },
+      {
+        "type":"checkbox",
+        "id":"use_slider_mobile_only",
+        "label":"Use Slider on Mobile Only",
+        "info":"If checked, then slider will not play on Desktop."
+      },
+      {
+        "type":"checkbox",
+        "id":"use_dots_desktop",
+        "label":"Use Dots on Desktop"
+      },
+      {
+        "type":"checkbox",
+        "id":"use_dots_mobile",
+        "label":"Use Dots on Mobile"
+      },
+      {
+        "type":"checkbox",
+        "id":"use_arrows",
+        "label":"Use Arrows"
+      },
+      {
+        "type":"checkbox",
+        "id":"auto_slide",
+        "label":"Auto Slide"
+      },
+      {
+        "type":"checkbox",
+        "id":"infinite",
+        "label":"Infinite slider",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "t:sections.main-collection-product-grid.settings.header__3.content"
+      },
+      {
+        "type": "select",
+        "id": "image_ratio",
+        "options": [
+          {
+            "value": "adapt",
+            "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
+          },
+          {
+            "value": "portrait",
+            "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
+          },
+          {
+            "value": "square",
+            "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
+          }
+        ],
+        "default": "portrait",
+        "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_secondary_image",
+        "default": true,
+        "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "default": false,
+        "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_rating",
+        "default": true,
+        "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
+        "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_quick_add",
+        "default": true,
+        "label": "t:sections.main-collection-product-grid.settings.enable_quick_buy.label"
+      },
+  		{
+  			"type":"header",
+  			"content": "Custom CSS Rules"
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Explanation of Custom CSS rules below input."
+  		},
+  		{
+  			"type": "liquid",
+  			"id": "custom_css",
+  			"label": "Custom CSS"
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Ex: '== h2 { font-size: 20px; }'"
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+  		},
+  		{
+  			"type":"paragraph",
+  			"content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+  		}
+  	],
+  	"blocks": [
+      {
+        "type":"product",
+        "name":"Product",
+        "settings":[
+         	{
+            "type":"product",
+            "id":"product",
+            "label":"Product"
+          },
+          {
+  					"type":"header",
+  					"content": "Optional Overrides"
+  				},
+          {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Image"
+          },
+          {
+            "type":"image_picker",
+            "id":"second_image",
+            "label":"Second Image"
+          },
+          {
+            "type":"text",
+            "id":"title",
+            "label":"Title"
+          },
+          {
+            "type":"text",
+            "id":"price",
+            "label":"Price"
+          },
+          {
+            "type":"header",
+            "content": "When using Tabs"
+          },
+          {
+            "type":"text",
+            "id":"grid_handle",
+            "label":"Assign to Tab"
+          }
+        ]
+      },
+      {
+        "type":"collection",
+        "name":"Collection/Tab",
+        "settings":[
+          {
+            "type":"collection",
+            "id":"collection",
+            "label":"Collection",
+            "info": "Leave blank if adding Products individually."
+          },
+          {
+            "type":"header",
+            "content": "When using Tabs"
+          },
+          {
+            "type":"text",
+            "id":"grid_handle",
+            "label":"Title / Tab Name"
+          },
+          {
+            "type":"header",
+            "content": "Only for use on Product Pages"
+          },
+          {
+            "type":"paragraph",
+            "content": "Does not work with Ad Blocks!"
+          },
+          {
+            "type":"checkbox",
+            "id":"use_recommended",
+            "label":"Use Recommended",
+            "info": "This implements the Shopify Product Recommendations section."
+          }
+        ]
+      },
+      {
+        "type":"ad",
+        "name":"Ad",
+        "settings":[
+          {
+            "type":"text",
+            "id":"title",
+            "label":"Title"
+          },
+          {
+            "type":"textarea",
+            "id":"text",
+            "label":"Text"
+          },
+          {
+            "type":"text",
+            "id":"btn_text",
+            "label":"Button Text"
+          },
+          {
+            "type":"url",
+            "id":"btn_url",
+            "label":"Button Url"
+          },
+          {
+            "type":"header",
+            "content": "Image / Color Rules"
+          },
+          {
+            "type": "image_picker",
+            "id": "bg_image",
+            "label": "Background Image"
+          },
+          {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color",
+            "default": "#000000"
+          },
+          {
+            "type": "color_background",
+            "id": "gradient",
+            "label": "Gradient Background"
+          },
+          {
+            "type": "select",
+            "id": "btn_style",
+            "label": "Button Type",
+            "info": "Button will only show if Button Text and Link are used, and videos are not used.",
+            "options": [
+              {
+                "value": "primary",
+                "label": "Primary"
+              },
+              {
+                "value": "secondary",
+                "label": "Secondary"
+              },
+              {
+                "value": "arrow-link",
+                "label": "Arrow Link"
+              }
+            ],
+            "default": "primary"
+          },
+          {
+            "type":"header",
+            "content": "When using Tabs"
+          },
+          {
+            "type":"text",
+            "id":"grid_handle",
+            "label":"Assign to Tab"
+          },
+          {
+            "type":"header",
+            "content": "Custom CSS Rules"
+          },
+          {
+            "type":"paragraph",
+            "content": "Explanation of Custom CSS rules below input."
+          },
+          {
+            "type": "liquid",
+            "id": "custom_css",
+            "label": "Custom CSS"
+          },
+          {
+            "type":"paragraph",
+            "content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+          },
+          {
+            "type":"paragraph",
+            "content": "Ex: '== h2 { font-size: 20px; }'"
+          },
+          {
+            "type":"paragraph",
+            "content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+          },
+          {
+            "type":"paragraph",
+            "content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+          },
+          {
+            "type":"paragraph",
+            "content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+          }
+        ]
+      }
+  	],
+  	"presets": [
+  		{
+  			"name": "Featured Products",
+  			"category": "1 - NINE15"
+  		}
+  	]
+  }
+{% endschema %}
+

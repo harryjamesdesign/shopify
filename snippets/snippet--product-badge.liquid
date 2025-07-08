@@ -1,0 +1,131 @@
+<!-- snippet/snippet--product-badges -->
+{% comment %}
+    
+    place this where you want the badge
+
+{% endcomment %}
+
+{{'custom-badge.scss.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+
+  assign clearAll       = '' 
+  assign badge          = clearAll 
+  assign attr           = clearAll 
+  assign cls            = clearAll 
+  assign bdgTxt         = clearAll 
+  assign hideDesk       = clearAll 
+
+  assign cf             = product.metafields.custom_fields 
+  assign badgeType      = cf['badge_type'] | default: clearAll 
+  assign badgeText      = cf['badge_text'] | default: clearAll | replace: '<br>',' ' | replace: '<br/>','' | replace: '<BR>',' '  | replace: '<BR/>',' ' 
+  assign badgeImg       = cf['badge_custom_image'] | default: clearAll 
+  assign badgeBgClr     = cf['badge_custom_color'] | default: clearAll 
+  assign badgeTxClr     = cf['badge_custom_text_color'] | default: clearAll 
+  assign badgeTxSze     = cf['badge_text_size'] | default: clearAll 
+  assign badgeOnPDP     = cf['show_badge_on_product_page'] | default: clearAll 
+
+  comment 
+  assign hideBadge      = false 
+  if template.name contains 'product' 
+    unless badgeOnPDP == 1 or badgeOnPDP == '1' 
+      assign hideBadge  = true 
+    endunless 
+  endif 
+  endcomment 
+
+%}
+
+{% comment %} 
+
+  Show round badge from Custom Fields if content exists.
+
+  'badgeType != clearAll and' ensures that the badge has been turned on before checking for content.
+  This way you can setup badges before turing them on fully or turn off the badge for a short while if needed.
+
+{% endcomment %}
+
+{% unless hideBadge == true %}
+  {% if badgeType != clearAll and badgeText != clearAll or badgeImg != clearAll %}
+    
+    {% comment %} Assign base Badge type {% endcomment %}
+    {% if badgeType == 'Red' %}
+      {% assign cls = 'red' %}
+    {% elsif badgeType == 'Blue' %}
+      {% assign cls = 'blue' %}
+    {% endif %}
+    
+    {% comment %} If custom image {% endcomment %}
+    {% if badgeImg != clearAll %}
+      {% assign cls = 'custom-image' %}
+      {% capture bgImg %}background-image:url({{badgeImg}}); {% endcapture %}
+    {% endif %}
+
+    {% if badgeBgClr != clearAll %}
+      {% assign cls = 'has-bg-color' %}
+      {% capture bgClr %}background-color:{{badgeBgClr}}; {% endcapture %}
+    {% endif %}
+
+    {% if badgeTxClr != clearAll %}
+      {% capture cls %}{{cls}} custom-text-color{% endcapture %}
+      
+      {% comment %} border color will only apply if the custom background color is also applied {% endcomment %}
+      {% capture txClr %}color:{{badgeTxClr}}; --border-color:{{badgeTxClr}}; {% endcapture %}
+    {% endif %}
+
+    {% if badgeTxSze != clearAll %}
+      {% capture cls %}{{cls}} custom-text-size{% endcapture %}
+      {% capture txSze %}font-size:{{badgeTxSze}};{% endcapture %}
+    {% endif %}
+    
+    {% comment %} Set Text / Classes {% endcomment %}
+    {% if badgeText %}
+      {% capture cls %}{{cls}} custom-text {% if badgeText.size > 14 %}long-text{% endif %}{% endcapture %}
+      {% capture bdgTxt %}
+        {{badgeText}}
+      {% endcapture %}
+    {% endif %}
+    
+    {% comment %} Create Attr if needed {% endcomment %}
+    {% if bgImg != clearAll or bgClr != clearAll or txClr != clearAll or txSze != clearAll %}
+      {% capture attr %}style="{{bgImg}}{{bgClr}}{{txClr}}{{txSze}}"{% endcapture %}
+    {% endif %}
+
+    {% if showWhen != blank %}
+      {% assign hideDesk = 'small--hide' %}
+    {% endif %}
+
+    {% if showWhen == 'desktop' or showWhen == blank and badgeText != clearAll %}
+      <div class="pinned card__badge {{cls}} {{hideDesk}}">
+        <div class="badge badge--{{badgeText|handleize}}"  {{attr}}>{{bdgTxt}}</div>
+      </div>
+    {% endif %}
+
+    {% if showWhen contains 'mobile' and badgeImg == clearAll and badgeText != clearAll %}
+      {% assign cleanedText = bdgTxt | replace: '<br>',' ' | replace: '<br/>','' | replace: '<BR>',' '  | replace: '<BR/>',' ' %}
+      <div class="card__badge inline-badge {{cls}} {% if showWhen == 'mobile' %}medium-up--hide{% endif %}" {{attr}}>
+        <div class="badge badge--{{badge|handleize}}">{{cleanedText}}</div>
+      </div>
+    {% endif %}
+
+  
+  {% comment %} Let theme default show {% endcomment %}
+  {% else %}
+    <div class="pinned card__badge {{ settings.badge_position }}">
+      {%- if product.available == false -%}
+        <span class="badge sold-out color-{{ settings.sold_out_badge_color_scheme }}">{{ 'products.product.sold_out' | t }}</span>
+      {%- elsif product.compare_at_price > product.price and product.available -%}
+        <span class="badge {%if template contains 'product' %} medium-up--hide {% endif %} on-sale color-{{ settings.sale_badge_color_scheme }}">{{ 'products.product.on_sale' | t }}</span>
+      {%- endif -%}
+      {% if product.tags contains 'new_badge' %}
+        <span class="badge {%if template contains 'product' %} medium-up--hide {% endif %} on-tag color-{{ settings.tag_badge_color_scheme }}"> 
+          <svg width="12" height="11" viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 1.0234L7.46111 3.63278L7.57374 3.83393L7.79986 3.87889L10.733 4.46215L8.70287 6.65808L8.54637 6.82737L8.57348 7.05631L8.92517 10.0262L6.20936 8.77394L6 8.67741L5.79064 8.77394L3.07483 10.0262L3.42652 7.05631L3.45363 6.82737L3.29713 6.65808L1.26697 4.46215L4.20014 3.87889L4.42626 3.83393L4.53889 3.63278L6 1.0234Z" stroke="white"/>
+          </svg>
+          New
+        </span>
+      {% endif %}
+    </div>
+  {% endif %}
+{% endunless %}
+

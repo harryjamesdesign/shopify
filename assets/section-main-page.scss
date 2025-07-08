@@ -1,0 +1,30 @@
+@import "../assets/mixin--media-queries.scss";
+
+.page-title {
+  margin-top: 0;
+}
+
+.main-page-title {
+  margin-bottom: 3rem;
+}
+
+@include mq($medium-up) {
+  .main-page-title {
+    margin-bottom: 4rem;
+  }
+}
+
+.page-placeholder-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.page-placeholder {
+  width: 52.5rem;
+  height: 52.5rem;
+}
+
+
+[data-section-type="page"] .rte {
+  max-width: 900px;
+}

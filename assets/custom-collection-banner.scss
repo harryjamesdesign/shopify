@@ -1,0 +1,27 @@
+.collection-hero {
+  .collection-hero__inner {
+    .collection-hero__title {
+      color: white;
+       -webkit-text-stroke: initial;
+      font-size: 95px;
+      text-align: center;
+      text-transform: uppercase;
+      font-family: var(--font--graphik-cond);
+      font-weight: 700;
+      letter-spacing: .02em;
+      line-height: 120px;
+      /* margin-top: 0; */
+      @media screen and (max-width: 1200px) {
+        font-size: 70px;
+      }
+      @media screen and (max-width: 749px) {
+        position: relative;
+        font-size: 36px;
+        line-height: 50px;
+        color: white;
+        -webkit-text-stroke: initial;
+        margin: 15px 0;
+      }
+    }
+  }
+}

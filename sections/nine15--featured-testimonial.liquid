@@ -1,0 +1,405 @@
+<!-- sections/nine15--featured-testimonial -->
+
+{% liquid
+
+  assign s            		= section.settings
+  assign sID          		= section.id | replace: '-','_'
+
+  assign qtes             = ''
+  assign imgs             = ''
+
+  assign customCSS    		= s.custom_css
+  
+  assign sectionClass 		= 'section--' | append: sID
+  assign cssClass     		= '.' | append: sectionClass
+
+  assign clrTxt           = s.text_color
+  assign clrBG            = s.gradient
+
+  assign modals 				  = ''
+
+  assign secTtl 				  = s.title
+  assign btnTxt 				  = s.btn_text
+  assign btnUrl 				  = s.btn_url
+	assign bgImg 				    = s.image
+
+  assign useArrows        = s.use_arrows
+  assign useDots          = s.use_dots
+  assign autoSlide        = s.auto_slide
+
+%}
+
+{% if clrTxt != blank or clrBG != blank %}
+  {% capture clrCSS %}
+    {% if clrBG != blank %}
+    == {
+      --color--bg: {{clrBG}};
+      background: var(--color--bg);
+    }
+    {% endif %}
+    {% if clrTxt != blank %}
+    == {
+      --color--text: {{clrTxt}};
+    }
+    == .rte,
+    == .rte *,
+    == h2,
+    == h3 {
+      color: var(--color--text);
+    }
+    {% endif %}
+  {% endcapture %}
+  {% assign customCSS = clrCSS | append: customCSS %}
+{% endif %}
+
+{% for block in section.blocks %}
+					
+	{% liquid
+
+		assign b 			  = block.settings
+    assign img      = b.image
+    assign ttl      = b.title
+		assign qte 			= b.quote
+    assign pos      = b.position
+		assign nme 			= b.name
+    assign lnk      = b.url
+
+    assign img_CF   = false 
+    if b.metafield_image != blank 
+      assign img    = b.metafield_image
+      assign img_CF = true 
+    endif 
+
+    assign el       = 'div'
+    assign attr     = ''
+    if lnk != blank
+      assign el     = 'a'
+      assign attr   = 'href="' | append: lnk | append: '"'
+    endif  
+
+    capture stars 
+      echo b.stars
+    endcapture
+    assign topStars = stars | plus: 0
+
+	%}
+
+	{% if qte != blank %}
+
+    {% capture imgs %}
+      {{imgs}}
+      <{{el}} {{attr}} class="testimonial-image text-center">
+        
+        {% include 'snippet--image', img: img, extraClass: 'main-image', cf:img_CF, useBG: false %}
+        
+        {% if ttl != blank %}
+          <h3 class="title">
+            {{ttl}}
+          </h3>
+        {% endif %} 
+
+      </{{el}}>
+    {% endcapture %}
+
+		{% capture qtes %}
+      {{qtes}}
+			<{{el}} {{attr}} class="testimonial-quote small--text-center">
+
+        {% include 'snippet--image', img: img, extraClass: 'main-image', cf:img_CF, useBG: false %}
+        
+        {% if ttl != blank %}
+          <h3 class="title">
+            {{ttl}}
+          </h3>
+        {% endif %} 
+			
+        {% if topStars > 0 %}
+          <div class="stars">
+            {% for i in (1..topStars) %}
+              {% include 'icon-star' %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% if qte != blank or nme != blank or pos != blank %}
+        	<div class="quote-container">
+            {% include 'icon-quote' %}
+            {% if qte != blank %}
+          		<div class="rte">
+          			“{{qte}}”
+          		</div>
+            {% endif %}
+            {% if nme != blank %}
+          		<div class="name">
+          			{{nme}}
+          		</div>
+            {% endif %}
+            {% if pos != blank %}
+              <div class="position">
+                {{pos}}
+              </div>
+            {% endif %}
+        	</div>
+        {% endif %}
+
+
+			</{{el}}>
+		{% endcapture %}
+
+	{% endif %}
+
+{% endfor %}
+
+{% if qtes != '' %}
+	<div class="section--nine15--featured-testimonial {{sectionClass}}">
+    <link rel="stylesheet" href="{{ 'nine15-section--testimonials.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript>{{ 'nine15-section--testimonials.css' | asset_url | stylesheet_tag }}</noscript>
+			
+		{% include 'snippet--image', img: bgImg, useBG: true, extraClass: 'section-bg' %}
+
+		<div class="page-width with-padding">
+			
+      <div class="testimonial-grid">
+
+  			{% if secTtl != blank or secTxt != blank %}
+          <div class="section--title text-center">
+             
+            {% if secTtl != blank %}
+              <h2>{{secTtl}}</h2>
+            {% endif %}
+          
+            {% if secTxt != blank %}
+              <div class="rte">{{secTxt}}</div>
+            {% endif %}
+                    
+          </div>
+        {% endif %}
+
+        {% if imgs != '' %}
+          <div class="testimonial-images small--hide">
+            {{imgs}}
+            {{imgs}}
+          </div>
+        {% endif %}
+
+        {% if qtes != '' %}
+  				<div class="testimonial-quotes">
+            {{qtes}}
+  					{{qtes}}
+  				</div>
+  			{% endif %}
+  
+  			{% if btnTxt != blank or btnUrl != blank %}
+  				<div class="text-center">
+  					<a href="{{btnUrl}}" class="btn Button Button--primary">{{btnTxt}}</a>
+  				</div>
+  			{% endif %}
+        
+      </div>
+		</div>
+	    
+	  {% include 'custom-css', css: customCSS, class: cssClass %}
+	    
+    <script type="text/javascript">
+	    waitFor_jQuery(function () {
+        $(document).ready(function () {
+        
+
+          var ingredSlider_{{sID}} = '{{cssClass}} .testimonial-quotes',
+              ingredThumbs_{{sID}} = '{{cssClass}} .testimonial-images';
+
+          console.log($(ingredSlider_{{sID}}))
+          console.log($(ingredThumbs_{{sID}}))
+
+          $(ingredSlider_{{sID}}).slick({
+            slidesToShow: 1,
+            autoplay: {{autoSlide}},
+            arrows: {{useArrows}},
+            dots: {{useDots}},
+            slidesToScroll: 1,
+            infinite: true,
+            speed: 500,
+            fade: false,
+            rows: 0,
+            asNavFor: ingredThumbs_{{sID}}
+          });
+
+          $(ingredThumbs_{{sID}}).slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            infinite: true,
+            speed: 500,
+            fade: true,
+            rows: 0,
+            asNavFor: ingredSlider_{{sID}}
+          });
+
+        });
+	    });
+		</script>
+
+	</div>
+
+{% endif %}
+
+{% schema %}
+	{
+		"name": "Featured Testimonial",
+		"class": "index-section",
+		"settings": [
+			{
+				"type": "liquid",
+				"id": "title",
+				"label": "Title"
+			},
+			{
+				"type": "liquid",
+				"id": "btn_text",
+				"label": "Button Text"
+			},
+			{
+				"type": "url",
+				"id": "btn_url",
+				"label": "Button Url"
+			},
+			{
+				"type": "image_picker",
+				"id": "image",
+				"label": "Background Image"
+			},
+      {
+        "type":"header",
+        "content": "Color Rules"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color",
+        "default": "#000000"
+      },
+      {
+        "type": "color_background",
+        "id": "gradient",
+        "label": "Gradient Background"
+      },
+			{
+				"type":"header",
+				"content": "Display Settings"
+			},
+      {
+        "type":"checkbox",
+        "id":"use_arrows",
+        "label":"Use Arrows"
+      },
+      {
+        "type":"checkbox",
+        "id":"use_dots",
+        "label":"Use Dots"
+      },
+      {
+        "type":"checkbox",
+        "id":"auto_slide",
+        "label":"Auto Slide"
+      },
+			{
+				"type":"header",
+				"content": "Custom CSS Rules"
+			},
+			{
+				"type":"paragraph",
+				"content": "Explanation of Custom CSS rules below input."
+			},
+			{
+				"type": "liquid",
+				"id": "custom_css",
+				"label": "Custom CSS"
+			},
+			{
+				"type":"paragraph",
+				"content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+			},
+			{
+				"type":"paragraph",
+				"content": "Ex: '== h2 { font-size: 20px; }'"
+			},
+			{
+				"type":"paragraph",
+				"content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+			},
+			{
+				"type":"paragraph",
+				"content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+			},
+			{
+		    "type":"paragraph",
+		    "content": "Add '-' like '/-MEDIA_QUERY/'' to stack queries."
+		  },
+			{
+				"type":"paragraph",
+				"content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+			}
+		],
+		"blocks": [
+			{
+				"type": "block",
+				"name": "Testimonial",
+				"settings": [
+					{
+						"type": "image_picker",
+						"id": "image",
+						"label": "Image"
+					},
+					{
+						"type": "text",
+						"id": "title",
+						"label": "Title"
+					},
+					{
+						"type": "text",
+						"id": "stars",
+						"label": "Stars",
+						"info": "Type a number 1 - 5 to show stars",
+						"default": "5"
+					},
+					{
+						"type": "liquid",
+						"id": "quote",
+						"label": "Quote",
+						"default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,  exercitation ullamco laboris nisi ut commodo consequat."
+					},
+          {
+            "type": "text",
+            "id": "name",
+            "label": "Name"
+          },
+          {
+            "type": "text",
+            "id": "position",
+            "label": "Position"
+          },
+          {
+            "type": "url",
+            "id": "url",
+            "label": "Link"
+          },
+          {
+              "type":"header",
+              "content": "Developer Only"
+          },
+          {
+              "type": "liquid",
+              "id": "metafield_image",
+              "label": "Metafield Image"
+          }
+				]
+			}
+		],
+		"presets": [
+			{
+				"name": "Featured Testimonial",
+				"category": "1 - NINE15"
+			}
+		]
+	}
+{% endschema %}

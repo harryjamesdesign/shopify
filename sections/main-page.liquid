@@ -1,0 +1,196 @@
+<!-- sections/main-page -->
+{{section.settings.custom_code}}
+
+{{ 'section-main-page.css' | asset_url | stylesheet_tag }}
+{{ 'component-rte.css' | asset_url | stylesheet_tag }}
+
+<noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+
+
+{% liquid 
+
+  assign s                    = section.settings
+  assign sID                  = section.id
+
+  assign sectionCustomCSS     = s.custom_css
+  assign class                = 'section--' | append: sID
+  assign cssClass             = '.' | append: class
+
+  assign cont                 = page.content
+
+  assign selectLoop           = s.loop | plus: 0
+
+  assign descSplt             = '</h6>' 
+  assign descSpltSt           = descSplt | replace: '/','' 
+  assign desc                 = cont | strip | split: descSpltSt 
+
+  if desc.size > 1 and selectLoop == 1
+    assign cont               = desc[0]
+  elsif desc.size > 1 and selectLoop > 1
+    for d in desc
+      if forloop.index == selectLoop
+        assign removeTitle    = d | split: descSplt | first 
+        assign cont           = d | remove: removeTitle | replace: descSplt, '' 
+        break
+      endif 
+    endfor
+  endif 
+
+%}
+
+{%- style -%}
+  {{cssClass}} {
+    --padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    --padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    padding-top: var(--padding-top);
+    padding-bottom: var(--padding-bottom);
+  }
+
+  @media screen and (min-width: 750px) {
+    {{cssClass}} {
+      --padding-top: {{ section.settings.padding_top }}px;
+      --padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<section data-section-id="{{ section.id }}" data-section-type="page" class=" {{class}}">
+  <div class="page-width ">    
+    <header class="section--title page__header page__header--centered page__header--stack header--{{s.title_style}}">
+      <h1 class="page__title heading h1 {{s.title_style}}">{{ page.title }}</h1>
+    </header>
+    {%- if cont != blank -%}
+      <div class="page__content rte">
+        {{ cont }}
+      </div>
+    {%- endif -%}
+    {% include 'custom-css', 
+      css: sectionCustomCSS, 
+      class: cssClass 
+    %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main-page.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    },
+    {
+      "type":"header",
+      "content": "Page Title Rules"
+    },
+    {
+      "type": "select",
+      "id": "title_style",
+      "label": "Title Style",
+      "options": [
+        {
+          "value": "",
+          "label": "Normal"
+        },
+        {
+          "value": "styled",
+          "label": "Styled"
+        },
+        {
+          "value": "visually-hidden",
+          "label": "Hide (but keep for SEO/ADA)"
+        },
+        {
+          "value": "hide",
+          "label": "Remove entirely"
+        }
+      ],
+      "default": ""
+    },
+
+    {
+      "type":"header",
+      "content": "Split Content Rules"
+    },
+    {
+      "type":"paragraph",
+      "content": "IMPORTANT: DO NOT USE ON 'DEFAULT' PAGE TEMPLATE. ONLY ON CUSTOM TEMPLATES."
+    },
+    {
+      "type":"paragraph",
+      "content": "Splitter: '<h6>split</h6>'"
+    },
+    {
+      "type":"paragraph",
+      "content": "In the Admin side for the current page, under Code Edit view, insert '<h6>split</h6>' in between the pieces of content you want split. You may add multiple, but must create a new instance of Page Content."
+    },
+    {
+      "type": "text",
+      "id": "loop",
+      "label": "Which loop to show.",
+      "info": "'1' is before first split, '2' is after first split, '3' is after second split, etc."
+    },
+    {
+      "type":"header",
+      "content": "Custom CSS Rules"
+    },
+    {
+      "type":"paragraph",
+      "content": "Explanation of Custom CSS rules below input."
+    },
+    {
+      "type": "liquid",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    },
+    {
+      "type":"paragraph",
+      "content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+    },
+    {
+      "type":"paragraph",
+      "content": "Ex: '== h2 { font-size: 20px; }'"
+    },
+    {
+      "type":"paragraph",
+      "content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+    },
+    {
+      "type":"paragraph",
+      "content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+    },
+    {
+      "type":"paragraph",
+      "content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+    },
+    {
+      "type": "liquid",
+      "id": "custom_code",
+      "label": "Custom Code"
+    }
+  ]
+}
+{% endschema %}

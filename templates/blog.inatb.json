@@ -1,0 +1,384 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-blog",
+      "disabled": true,
+      "settings": {
+        "layout": "collage",
+        "show_image": true,
+        "image_height": "medium",
+        "show_date": true,
+        "show_author": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1661831542f1038dd3": {
+      "type": "nine15--custom-html",
+      "settings": {
+        "title": "",
+        "custom_html": "<h1 class=\"visually-hidden\">\n{{blog.title}}\n</h1>",
+        "custom_css": ""
+      }
+    },
+    "1661831604116a6daa": {
+      "type": "nine15--slider",
+      "blocks": {
+        "5767498c-d740-440a-9229-9e3e1290418b": {
+          "type": "slider",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/INATB_page_desktop_01_2.jpg",
+            "image_mob": "shopify://shop_images/INATB_page_mobile_01_3.jpg",
+            "no_lazyload": true,
+            "title": "<img width=\"216\" height=\"216\" src=\"{{'INATB-Logo.svg'|file_url}}\" alt=\"\" />",
+            "subtitle": "",
+            "text": "Through our It’s Not About the Bag program, we’re on a mission to celebrate women who impact the world in positive ways through their service, strength, kindness, tenacity, humor, and love. With your nominations, we’ll gift women Consuela bags to both celebrate AND remind them of the good they bring to all of us as we journey through life.",
+            "btn_txt": "",
+            "btn_url": "",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "center",
+            "vert_align": 85,
+            "hor_align": 50,
+            "width": "700px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 18,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 10,
+            "align_text_mob": "center",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": "== .center-content {\n  width: 100%;\n  top: unset;\n  bottom: var(--base-gutter);\n  transform: translateX(-50%);\n}\n\n== .center-content img {\n  margin: 0 auto;\n  max-width: 60%;\n}\n\n== .rte {\n  font-family: var(--font--graphik-wide);\n  font-weight: 600;\n}"
+          }
+        }
+      },
+      "block_order": [
+        "5767498c-d740-440a-9229-9e3e1290418b"
+      ],
+      "settings": {
+        "set_height": true,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "750px",
+        "image_height_mob": "750px",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "01cb13f8-02d6-46f3-9797-521fe93cff12": {
+      "type": "nine15--two-grid",
+      "blocks": {
+        "c2056ccb-abd3-4106-8e73-bbe1361be75f": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/VivaBabe_Grid.jpg",
+            "title": "VIVA BABES!",
+            "top_title": "CALLING ALL",
+            "text": "<p> Nominate somone who inspires you-maybe she's strong and brave. Perhaps she's creative and hilarious. Maybe she's overcome difficult circumstances or has helped you through your own. Whoever the woman, whatever her story, we want to hear it!<p/>",
+            "lnk_txt": "nominate someone today",
+            "lnk_url": "shopify://pages/nominate-form",
+            "show_social": false,
+            "share_item": false,
+            "color_txt": "#ffffff",
+            "color_bg": "#000000",
+            "btn_style": "primary Button--custom",
+            "color_button_text": "#000000",
+            "color_button": "#ffffff",
+            "color_button_border": "#ffffff",
+            "color_button_text_hover": "#ffffff",
+            "color_button_hover": "#000000",
+            "color_button_border_hover": "#ffffff",
+            "image_width": 50,
+            "image_height": 50,
+            "video_url": "",
+            "video_hosted": "",
+            "custom_html": "",
+            "custom_css": "== * {\n  text-align: left;\n}\n\n== .text-content {\n  align-items: flex-start;\n}\n\n== .btn {\n  width: min(100%,400px);\n  margin-top: var(--base-gutter);\n} \n\n\n/small/ {\n  == .image--outer {\n    width: calc(100% - (var(--spacing--padding-mob) * 2));\n    margin-top: var(--spacing--padding-mob);\n    margin-left: auto;\n    margin-right: auto;\n  }\n  == h3 {\n    display: none;\n  }\n}\n\n/medium-up/ {\n  == {\n    padding: var(--spacing--padding-mob);\n  }\n}",
+            "metafield_image": "",
+            "metafield_mobile_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "c2056ccb-abd3-4106-8e73-bbe1361be75f"
+      ],
+      "settings": {
+        "reverse": false,
+        "hide_images": false,
+        "custom_css": ""
+      }
+    },
+    "166187118076903112": {
+      "type": "nine15--slider",
+      "blocks": {
+        "58f15f7b-e1f8-4ef6-b280-b09a9c6d08ad": {
+          "type": "slider",
+          "settings": {
+            "image": "shopify://shop_images/INATB_page_desktop_02.jpg",
+            "image_mob": "shopify://shop_images/INATB_page_mobile_01.jpg",
+            "no_lazyload": false,
+            "title": "",
+            "subtitle": "",
+            "text": "",
+            "btn_txt": "",
+            "btn_url": "shopify://pages/nominate-form",
+            "btn_anchor_url": "",
+            "force_slide_link": false,
+            "stars": "",
+            "align_bg": "center",
+            "bg_color": "#000000",
+            "opacity": 0,
+            "align_text": "left",
+            "vert_align": 50,
+            "hor_align": 10,
+            "width": "450px",
+            "title_color": "#000000",
+            "font_size_title": 60,
+            "subtitle_color": "#000000",
+            "font_size_subtitle": 20,
+            "text_color": "#333333",
+            "font_size_text": 16,
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "align_bg_mob": "inherit",
+            "bg_color_mob": "",
+            "opacity_mob": 10,
+            "align_text_mob": "inherit",
+            "vert_align_mob": 50,
+            "hor_align_mob": 50,
+            "width_mob": "",
+            "title_color_mob": "",
+            "font_size_title_mob": 32,
+            "subtitle_color_mob": "",
+            "font_size_subtitle_mob": 18,
+            "text_color_mob": "",
+            "font_size_text_mob": 16,
+            "btn_style_mob": "inherit",
+            "color_button_text_mob": "",
+            "color_button_mob": "",
+            "color_button_border_mob": "",
+            "color_button_text_hover_mob": "",
+            "color_button_hover_mob": "",
+            "color_button_border_hover_mob": "",
+            "video_ratio": "56",
+            "video_url": "",
+            "video_hosted": "",
+            "btn_txt_modal": "Watch Video",
+            "video_modal": "",
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "58f15f7b-e1f8-4ef6-b280-b09a9c6d08ad"
+      ],
+      "disabled": true,
+      "settings": {
+        "set_height": false,
+        "mob_rel": false,
+        "show_mobile_overlay_sooner": false,
+        "image_height": "clamp(500px,54%,100vh)",
+        "image_height_mob": "",
+        "auto_slide": true,
+        "fade": false,
+        "pause": "5000",
+        "custom_css": ""
+      }
+    },
+    "1662601941f5777306": {
+      "type": "nine15--ctas",
+      "settings": {
+        "title": "Meet the Viva Babes",
+        "text": "",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "per_row": 0,
+        "align_boxes_left": false,
+        "large_images": false,
+        "inline_ctas": false,
+        "match_row": false,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_offset": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "infinite": true,
+        "custom_css": "== .section--title {\n  max-width: 100%;\n}\n== h2 {\n  font-family: var(--font--stay-dreaming);\n  text-transform: initial;\n  font-weight: 400;\n  letter-spacing: 0;\n}\n\n/large-up/ {\n  == h2 {\n    font-size: 140px;\n  }\n}",
+        "metafield_background_image": "",
+        "metafield_video": ""
+      }
+    },
+    "1661871365b3c9c04d": {
+      "type": "nine15--two-grid",
+      "blocks": {
+        "20f6e5c3-1f3a-4985-91c6-5f409cd6bc3d": {
+          "type": "block",
+          "settings": {
+            "image": "shopify://shop_images/Viva_Babe_Stephanie_H.jpg",
+            "title": "Stephanie",
+            "top_title": "",
+            "text": "Let's celebrate our newest Consuela Viva Babe, Stephanie! She was pleasantly surprised with the award by her mom during her birthday month, adding an extra touch of joy and significance. With her bright spirit and unwavering dedication to students as a ridiculously awesome assistant principal, Stephanie truly embodies what it means to be a Viva Babe!",
+            "lnk_txt": "Read Her Story",
+            "lnk_url": "shopify://blogs/its-not-about-the-bag/stephanie-h",
+            "show_social": false,
+            "share_item": true,
+            "color_txt": "#000000",
+            "color_bg": "#ffffff",
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "image_width": 50,
+            "image_height": 50,
+            "video_url": "",
+            "video_hosted": "",
+            "custom_html": "",
+            "custom_css": "== * {\n  text-align: left;\n}\n\n== .text-content {\n  align-items: flex-start;\n}\n\n== .btn {\n  width: min(100%,400px);\n  margin-top: var(--base-gutter);\n} \n\n\n/small/ {\n  == .image--outer {\n    width: calc(100% - (var(--spacing--padding-mob) * 2));\n    margin-top: var(--spacing--padding-mob);\n    margin-left: auto;\n    margin-right: auto;\n  }\n  == h3 {\n    display: none;\n  }\n}\n\n/medium-up/ {\n  == {\n    padding: var(--spacing--padding-mob);\n  }\n}",
+            "metafield_image": "",
+            "metafield_mobile_image": "",
+            "metafield_video": ""
+          }
+        },
+        "block_XrjiYk": {
+          "type": "block",
+          "settings": {
+            "title": "",
+            "top_title": "",
+            "text": "",
+            "lnk_txt": "",
+            "lnk_url": "",
+            "show_social": false,
+            "share_item": false,
+            "color_txt": "#000000",
+            "color_bg": "#ffffff",
+            "btn_style": "primary",
+            "color_button_text": "",
+            "color_button": "",
+            "color_button_border": "",
+            "color_button_text_hover": "",
+            "color_button_hover": "",
+            "color_button_border_hover": "",
+            "image_width": 50,
+            "image_height": 40,
+            "video_url": "",
+            "video_hosted": "",
+            "custom_html": "",
+            "custom_css": "",
+            "metafield_image": "",
+            "metafield_mobile_image": "",
+            "metafield_video": ""
+          }
+        }
+      },
+      "block_order": [
+        "20f6e5c3-1f3a-4985-91c6-5f409cd6bc3d",
+        "block_XrjiYk"
+      ],
+      "settings": {
+        "reverse": true,
+        "hide_images": false,
+        "custom_css": ""
+      }
+    },
+    "16618340269df8f1d8": {
+      "type": "nine15--featured-blog-posts",
+      "settings": {
+        "blog": "its-not-about-the-bag",
+        "title": "",
+        "text": "",
+        "link_text": "",
+        "link_url": "",
+        "button_text": "",
+        "button_url": "",
+        "btn_style": "primary",
+        "text_color": "#000000",
+        "gradient": "",
+        "show_image": true,
+        "show_excerpt": false,
+        "show_date": false,
+        "show_author": false,
+        "total_rows": 10,
+        "per_row": 4,
+        "use_slider": false,
+        "use_slider_mobile_only": false,
+        "use_arrows": false,
+        "use_dots": false,
+        "auto_slide": false,
+        "blog_filter": true,
+        "custom_css": "== {\n  padding: 0;\n}\n\n== .page-width {\n  padding: 0;\n  max-width: 100%;\n}\n\n== .cell {\n  --grid_margin: 0;\n}\n\n== .cell__item {\n  /margin:-1px 0 0 -1px;\n}\n\n/small/ {\n  == .cell__item {\n    grid-column-end: span 30;\n  }\n}"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "1661831542f1038dd3",
+    "1661831604116a6daa",
+    "01cb13f8-02d6-46f3-9797-521fe93cff12",
+    "166187118076903112",
+    "1662601941f5777306",
+    "1661871365b3c9c04d",
+    "16618340269df8f1d8"
+  ]
+}

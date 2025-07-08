@@ -1,0 +1,1260 @@
+{% liquid
+  
+  assign useAcc       = true
+
+  assign s            = section.settings
+  assign sID          = section.id
+
+  assign customCSS    = s.custom_css
+  
+  assign class        = 'section--' | append: sID
+  assign cssClass     = '.' | append: class
+
+%}
+
+{%- style %}
+  .truevault-polaris-optout{
+    display: flex!important;
+    align-items: center;
+  }
+
+  .truevault-polaris-optout span{
+    min-width: 115px;
+  }
+
+  .truevault-polaris-optout span{
+    order: 1!important;
+  }
+
+  /* .copyright-flex p a:nth-of-type(2){
+    display: none!important;
+  }
+
+  .copyright-flex p a:nth-of-type(3){
+    display: none!important;
+  } */
+  
+
+@media (max-width: 820px){
+    .copyright-flex p {
+      column-gap: 20px;
+      row-gap: 8px;
+    }
+
+    .copyright-flex p a, .copyright-flex p span{
+      margin:0px!important;
+    }
+  }
+  
+  @media (max-width: 749px){
+    .truevault-polaris-optout img{
+      width: auto!important;
+      margin-right: 5px!important;
+    }
+  }
+{%- endstyle %}
+
+<footer class="site-footer {{class}}">
+  <link rel="stylesheet" href="{{ 'section-footer.css' | asset_url }}" media="print" onload="this.media='all'">
+  <noscript>{{ 'section-footer.css' | asset_url | stylesheet_tag }}</noscript>
+  <link rel="stylesheet" href="{{ 'nine15-section--accordion.css' | asset_url }}" media="print" onload="this.media='all'">
+  <noscript>{{ 'nine15-section--accordion.css' | asset_url | stylesheet_tag }}</noscript>
+  <div class="page-width padding">
+    <div class="cell cell_margin_bottom text-center">
+      {% for block in section.blocks %}
+
+        {% liquid 
+          assign b          = block.settings
+
+          case b.width
+            when '12%'
+              assign width  = 'medium-up--one-fifth large-up--one-eighth'
+            when '16%'
+              assign width  = 'medium-up--one-quarter large-up--one-sixth'
+            when '20%'
+              assign width  = 'medium-up--one-quarter large-up--one-fifth'
+            when '25%'
+              assign width  = 'medium-up--one-third large-up--one-quarter'
+            when '33%'
+              assign width  = 'medium-up--one-third large-up--one-third'
+            when '40%'
+              assign width  = 'medium-up--one-third large-up--two-fifths'
+            when '50%'
+              assign width  = ' large-up--one-half'
+            when '66%'
+              assign width  = ' large-up--two-thirds'
+            when '75%'
+              assign width  = ' large-up--three-quarters'
+            when '100%'
+              assign width  = 'one-whole'
+          endcase
+
+          assign ttl        = b.title
+          assign txt        = b.text
+
+        %}
+
+        {% case block.type %}
+          {% when 'menu' %}
+            <div class="cell__item cell__item-{{forloop.index}} small--text-center text-left {{ width }} small--one-whole  menu-section " >
+              {% if b.title != blank %}
+                <div class="section-title footer-title {% if useAcc == true %}small--hide{% endif %}">
+                  <h2 class="h5">{{ b.title }}</h2>
+                </div>
+              {% endif %}
+              {% if b.title_group != blank %}
+                <div class="section-title footer-title {% if useAcc == true %}small--hide{% endif %}">
+                  <h2 class="h5">{{ b.title }}</h2>
+                </div>
+              {% endif %}
+              {%- assign list = b.list -%}
+              {% if linklists[list].links.size > 0 %}
+                <div class="site-footer__linklist {% if b.title != blank and useAcc == true %}small--hide{% endif %}">
+                  {% for link in linklists[list].links %}
+                    {% capture lnks %}
+                      {{lnks}}
+                      <a class="site-footer__linklist-item" href="{{ link.url }}">{{ link.title }}</a>
+                  
+                      {% if forloop.last == true and addCart == true %}
+                        <a href="{{ routes.cart_url }}" class="site-footer__linklist-item site-header__icon site-header__cart small--hide">
+                          {% include 'icon-cart-2' %}
+                          <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+                        </a>
+                      {% endif %}
+                    {% endcapture %}
+                  {% endfor %}
+                  {{lnks}}
+                </div>
+              {% endif %}
+
+              {% if b.title != blank and lnks != blank and useAcc == true %}
+                <div class="acc-container {% unless prevBlockType contains 'menu' or prevBlockType contains 'text' %}border{% endunless %}">
+                  <div class="medium-up--hide">
+                    <div class="acc-btn">
+                      <h3 class="">
+                        <span>{{ b.title }}</span>
+                      </h3>
+                      <div class="img">
+                        {% include 'icon-accordion-buttons' %}
+                      </div>
+                    </div>
+                    <div class="acc-content">
+                      <div class="acc-content-inner">
+                        <div class="content_inner">
+                          <div class="footer-linklist site-footer__linklist">
+                            {{lnks}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+              {% assign lnks = blank %}
+
+              {% if b.title_2 != blank %}
+                <div class="section-title footer-title {% if useAcc == true %} %}small--hide{% endif %}">
+                  <h2 class="h5">{{ b.title_2 }}</h2>
+                </div>
+              {% endif %}
+              {% if b.title_group_2 != blank %}
+                <div class="section-title footer-title {% if useAcc == true %}small--hide{% endif %}">
+                  <h2 class="h5">{{ b.title_group_2 }}</h2>
+                </div>
+              {% endif %}
+              {%- assign list = b.list_2 -%}
+              {% if linklists[list].links.size > 0 %}
+                <div class="site-footer__linklist {% if b.title_2 != blank and useAcc == true  %}small--hide{% endif %}">
+                  {% for link in linklists[list].links %}
+                    {% capture lnks %}
+                      {{lnks}}
+                      <a class="site-footer__linklist-item" href="{{ link.url }}">{{ link.title }}</a>
+                    {% endcapture %}
+                  {% endfor %}
+                  {{lnks}}
+                </div>
+              {% endif %}
+
+              {% if b.title_2 != blank and lnks != blank and useAcc == true %}
+                <div class="acc-container {% unless prevBlockType contains 'menu' or prevBlockType contains 'text' %}border{% endunless %}">
+                  <div class="medium-up--hide">
+                    <div class="acc-btn">
+                      <h3 class="">
+                        <span>{{ b.title_2 }}</span>
+                      </h3>
+                      <div class="img">
+                        {% include 'icon-accordion-buttons' %}
+                      </div>
+                    </div>
+                    <div class="acc-content">
+                      <div class="acc-content-inner">
+                        <div class="content_inner">
+                          <div class="footer-linklist site-footer__linklist">
+                            {{lnks}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+              {% assign lnks = blank %}
+
+              {% if b.show_social == true %}
+                  {% include 'snippet--social-icons' %}
+              {% endif %}
+
+            </div>
+          {% when 'text' %}
+            <div class="cell__item cell__item-{{forloop.index}} small--text-center   text-left {{ width }} small--one-whole  text-section " >
+              {% comment %} Desktop List Menu {% endcomment %}
+              {% if ttl != blank %}
+                <div class="section-title footer-title {% if useAcc == true %}small--hide{% endif %}">
+                  <h2 class="h5">{{ ttl }}</h2>
+                </div>
+              {% endif %}
+              {% if txt != blank %}
+                <div class="rte {% if useAcc == true %}small--hide{% endif %}">
+                  {{txt}}
+                </div>
+              {% endif %}
+              {% if b.show_social == true %}
+                <div class="{% if useAcc == true %}small--hide{% endif %}">
+                  {% include 'snippet--social-icons' %}
+                </div>
+              {% endif %}
+              {% comment %} Mobile Accordion Menu {% endcomment %}
+              {% if b.title != '' and  useAcc == true %}
+                <div class="acc-container medium-up--hide {% unless prevBlockType contains 'menu' or prevBlockType contains 'text' %}border{% endunless %}">
+                  <div class="">
+                    <div class="acc-btn">
+                      <h3 class="">
+                        <span>{{ b.title }}</span>
+                      </h3>
+                      <div class="img">
+                        {% include 'icon-accordion-buttons' %}
+                      </div>
+                    </div>
+                    <div class="acc-content">
+                      <div class="acc-content-inner">
+                        <div class="content_inner">
+                          <div class="product-description rte">
+                            {{b.text}}
+                            {% if b.show_social == true %}
+                              <div class="">
+                                {% include 'snippet--social-icons' %}
+                              </div>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            </div>
+          {% when 'newsletter' %}
+            <div class="cell__item cell__item-{{forloop.index}} small--text-center  text-left {{ width }} small--one-whole  footer-newsletter-section  " >
+              {% if b.title != blank %}
+                <div class="section-title footer-title {% if b.title != '' and useAcc == true %}small--hide{% endif %}">
+                  <h2 class="h5">{{ b.title }}</h2>
+                </div>
+              {% endif %}
+
+              {% comment %}
+              {%- assign formId = 'ContactFooter' -%}
+              {% form 'customer', id: formId, novalidate: 'novalidate' %}
+                {%- if form.posted_successfully? -%}
+                  <p class="form-message form-message--success" tabindex="-1" data-form-status>
+                    {{ 'general.newsletter_form.confirmation' | t }}
+                  </p>
+                {%- endif -%}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="input-group {% if form.errors %} input-group--error{% endif %}">
+                  <input type="email"
+                    name="contact[email]"
+                    id="{{ formId }}-email"
+                    class="input-group__field newsletter__input{% if form.errors %} input--error{% endif %}"
+                    value="{{ form.email }}"
+                    placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                    aria-label="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                    aria-required="true"
+                    required
+                    autocorrect="off"
+                    autocapitalize="off"
+                    {% if form.errors %}
+                      aria-invalid="true"
+                      aria-describedby="{{ formId }}-email-error"
+                      data-form-status
+                    {% endif %}>
+                  <span class="input-group__btn">
+                    <button type="submit" class="btn newsletter__submit" name="commit" >
+                      <span class="newsletter__submit-text--large">{{ 'general.newsletter_form.submit' | t }}</span>
+                    </button>
+                  </span>
+                </div>
+                {% if form.errors contains 'email' %}
+                  <span id="{{ formId }}-email-error" class="input-error-message">
+                    <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                    {% include 'icon-error' %}
+                    <span class="site-footer__newsletter-error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                  </span>
+                {% endif %}
+              {% endform %}
+              {% endcomment %}
+  
+              {% capture newsletter %}
+                {% assign formID = 'ContactFooter-' | append: block.id %}
+                {%- form 'customer', id: formID, class: 'footer__newsletter newsletter-form' -%}
+                  <input type="hidden" name="contact[tags]" value="newsletter">
+                  <div class="newsletter-form__field-wrapper">
+                    <div class="field">
+                      <input
+                        id="NewsletterForm--{{ block.id }}"
+                        type="email"
+                        name="contact[email]"
+                        class="field__input"
+                        value="{{ form.email }}"
+                        aria-required="true"
+                        autocorrect="off"
+                        autocapitalize="off"
+                        autocomplete="email"
+                        {% if form.errors %}
+                          autofocus
+                          aria-invalid="true"
+                          aria-describedby="ContactFooter--{{ block.id }}--error"
+                        {% elsif form.posted_successfully? %}
+                          aria-describedby="ContactFooter--{{ block.id }}--success"
+                        {% endif %}
+                        placeholder="{{ 'newsletter.label' | t }}"
+                        required
+                      >
+                      <label class="field__label" for="NewsletterForm--{{ block.id }}">
+                        {{ 'newsletter.label' | t }}
+                      </label>
+                      <button type="submit" class="newsletter-form__button field__button" name="commit" id="Subscribe" aria-label="{{ 'newsletter.button_label' | t }}">
+                        {% comment %}{% render 'icon-accordion-buttons' %}{% endcomment %}
+                        {% render 'icon-arrow-right' %}
+                        <span class="visually-hidden">
+                          {{ 'newsletter.button_label' | t }}
+                        </span>
+                      </button>
+                    </div>
+                    {%- if form.errors -%}
+                      <small class="newsletter-form__message form__message" id="ContactFooter--{{ block.id }}--error">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</small>
+                    {%- endif -%}
+                  </div>
+                  {%- if form.posted_successfully? -%}
+                    <h3 class="newsletter-form__message newsletter-form__message--success form__message" id="ContactFooter--{{ block.id }}--success" tabindex="-1" autofocus>{% render 'icon-success' %}{{ 'newsletter.success' | t }}</h3>
+                 <script>
+                   waitFor_jQuery(function () {
+                     // tatari.track('sign_up');
+                   })
+                 </script>
+                  {%- endif -%}
+                {%- endform -%}
+
+                {% if b.show_social == true %}
+                    {% include 'snippet--social-icons' %}
+                {% endif %}
+
+                <div class="info site-footer__linklist ">
+                  {% for i in (1..5) %}
+                    {% capture lab %}soc_label_{{i}}{% endcapture %}
+                    {% capture lnk %}soc_link_{{i}}{% endcapture %}
+                    {% if b[lab] != blank and b[lnk] != blank %}
+                      <a class="site-nav__link" href="{{b[lnk]}}">
+                        
+                        {% if b[lnk] contains 'tel:' %}
+                          {% include 'icon-phone' %}
+                        {% endif %}
+
+                        <span>{{b[lab]}}</span>
+                      </a>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              {% endcapture %}
+
+              <div class=" {% if b.title != '' and useAcc == true %}small--hide{% endif %}">
+                {{newsletter}}
+              </div>
+
+              {% if b.title != '' and useAcc == true %}
+                <div class="acc-container medium-up--hide {% unless prevBlockType contains 'menu' or prevBlockType contains 'text' %}border{% endunless %}">
+                  <div class="">
+                    <div class="acc-btn">
+                      <h3 class="">
+                        <span>{{ b.title }}</span>
+                      </h3>
+                      <div class="img">
+                        {% include 'icon-accordion-buttons' %}
+                      </div>
+                    </div>
+                    <div class="acc-content">
+                      <div class="acc-content-inner">
+                        <div class="content_inner">
+                          <div class="product-description rte">
+                            {{newsletter}}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+
+            </div>
+          {% when 'social' %}
+            <div class="cell__item cell__item-{{forloop.index}} small--text-center  text-left {{ width }} small--one-whole  social-section  " >
+              
+                {% capture accContent %}
+                  {% include 'snippet--social-icons' %}
+                  {% if b.extra_link != blank %}
+                    {% assign el = 'a' %}
+                    {% assign el_attr = b.extra_link | prepend: ' href="' | append: '" ' %}
+                  {% else %}
+                    {% assign el = 'div' %}
+                  {% endif %}
+                  <{{el}} class="extra-img" {{el_attr}}>
+                    {% if b.extra_image != blank %}
+                      <img src="{{ b.extra_image | img_url: 'large' }}">
+                    {% elsif b.extra_image_svg != blank %}
+                      <img src="{{ b.extra_image_svg }}">
+                    {% endif %}
+                  </{{el}}>
+                {% endcapture %}
+
+                <div class=" {% if useAcc == true %}small--hide{% endif %}">
+                  {% if b.title != blank %}
+                    <div class="section-title footer-title {% if useAcc == true %}small--hide{% endif %}">
+                      <h2 class="h5">{{ b.title }}</h2>
+                    </div>
+                  {% endif %}
+                  {{accContent}}
+                </div>
+
+                {% if b.title != blank and useAcc == true %}
+                  <div class="acc-container {% unless prevBlockType contains 'menu' or prevBlockType contains 'text' %}border{% endunless %}">
+                    <div class="medium-up--hide">
+                      <div class="acc-btn">
+                        <h3 class="">
+                          <span>{{ b.title }}</span>
+                        </h3>
+                        <div class="img">
+                          {% include 'icon-accordion-buttons' %}
+                        </div>
+                      </div>
+                      <div class="acc-content">
+                        <div class="acc-content-inner">
+                          <div class="content_inner">
+                            <div class="footer-linklist site-footer__linklist">
+                              {{accContent}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+
+            </div>
+          {% when 'logo' %}
+            <div class="cell__item cell__item-{{forloop.index}} small--text-center  text-left {{ width }} small--one-whole  logo-section  " >
+              <a href="/" class="logo-link">
+                {% capture site_title %}{% if template.name == 'index' %}<h2 class="visually-hidden" itemscope itemtype="http://schema.org/Organization">{{ shop.name }}</h2>{% else %}<div class="h1 visually-hidden" itemscope itemtype="http://schema.org/Organization">{{ shop.name }}</div>{% endif %}{% endcapture %}
+                {% if b.logo != blank %}
+                  {{ site_title }}
+                  {% capture image_size %}{{ b.logo_max_width }}x{% endcapture %}
+                  <img src="{{ b.logo | img_url: image_size }}"
+                       srcset="{{ b.logo | img_url: image_size }} 1x, {{ b.logo | img_url: image_size, scale: 2 }} 2x"
+                       alt="{{ b.logo.alt | default: shop.name }}"
+                       style="max-width: {{ b.logo_max_width }}px"
+                       itemprop="logo">
+                {% elsif b.logo_svg != blank %}
+                  {{ site_title }}
+                  <div style="max-width: {{ b.logo_max_width }}px">
+                    {{b.logo_svg}}
+                  </div>
+                {% else %}
+                  <h2 itemscope itemtype="http://schema.org/Organization">{{ shop.name }}</h2>
+                {% endif %}
+              </a>
+
+              {% if txt != blank %}
+                <div class="rte ">
+                  {{txt}}
+                </div>
+              {% endif %}
+
+              {% if b.show_social == true %}
+                {% include 'snippet--social-icons' %}
+              {% endif %}
+            </div>
+        {% endcase %}
+        {% assign prevBlockType = block.type %}
+
+      {% endfor %}
+    </div>
+
+  </div>
+
+  {% if s.show_social == true %}
+    <div class="text-center center-social">
+      {% include 'snippet--social-icons' %}
+    </div>
+  {% endif %}
+
+  <div class="copyright-section text-center  ">
+    <div class="page-width">
+      <div class="copyright-flex">
+        
+        <p>
+          <a href="https://privacy.consuelastyle.com/privacy-policy">Privacy Policy</a>
+          {%- assign footer_linklist = s.footer_linklist -%}
+          <!-- {% if linklists[footer_linklist].links.size > 0 %}
+            {% for link in linklists[footer_linklist].links %}
+              <a href="{{ link.url }}">{{ link.title }}</a> 
+            {% endfor %}
+          {% endif %} -->
+
+          {% if s.copyright-text != '' %}
+            <span>{{s.copyright-text}}</span>
+          {% endif %}
+          <a href="/policies/terms-of-service">Terms of Use</a>
+          <a class="truevault-polaris-privacy-notice" href="https://privacy.consuelastyle.com/privacy-policy#california-privacy-notice" noreferrer noopener hidden>California Privacy Notice</a>
+          <a class="truevault-polaris-privacy-notice" href="https://privacy.consuelastyle.com/privacy-policy#financial-incentive" noreferrer noopener hidden>Notice of Financial Incentive</a>
+          <a class="truevault-polaris-optout" href="https://privacy.consuelastyle.com/opt-out" noreferrer noopener hidden>
+            <img src="https://polaris.truevaultcdn.com/static/assets/icons/optout-icon-blue.svg" 
+              alt="California Consumer Privacy Act (CCPA) Opt-Out Icon" 
+              style="vertical-align:middle" height="14px"
+            />
+            <span>Your Privacy Choices</span>
+          </a>
+        </p>
+
+        
+        {% if s.show_payment_icons %}
+          {% unless shop.enabled_payment_types == empty %}
+            {%- assign payment_icons_available = 'amazon_payments,american_express,apple_pay,bitcoin,cirrus,dankort,diners_club,discover,dogecoin,dwolla,forbrugsforeningen,interac,jcb,litecoin,maestro,master,paypal,visa' | split: ',' -%}
+            <span class="visually-hidden">{{ 'layout.footer.payment_methods' | t }}</span>
+            <div class="payment-icons">
+              {%- for type in shop.enabled_payment_types -%}
+                <span class="payment-icon">
+                  {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                </span>
+              {%- endfor -%}
+            </div>
+          {% endunless %}
+        {% endif %}
+
+
+      </div>
+    </div>
+  </div>
+
+  <style type="text/css">
+      .site-footer {
+          background-color:  {{s.bg_color}};
+      }
+      .site-footer .acc-container .acc-btn .img,
+      .site-footer a,
+      .site-footer h2,
+      .site-footer .input-group,
+      /* .site-footer .btn, */
+      .site-footer p {
+          color: {{s.txt_color}} !important;
+      }
+
+      .site-footer ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+          color: {{s.txt_color}} !important;
+      }
+      .site-footer ::-moz-placeholder { /* Firefox 19+ */
+          color: {{s.txt_color}} !important;
+      }
+      .site-footer :-ms-input-placeholder { /* IE 10+ */
+          color: {{s.txt_color}} !important;
+      }
+      .site-footer :-moz-placeholder { /* Firefox 18- */
+          color: {{s.txt_color}} !important;
+      }
+      .site-footer .input-group {
+          border-bottom-color: {{s.txt_color }} !important;
+      }
+      .site-footer a:hover {
+          /*opacity: 0.75;*/
+          
+      }
+  </style>
+
+  {% include 'custom-css', css: customCSS, class: cssClass %}
+
+  {% javascript %}
+    class LocalizationForm extends HTMLElement {
+      constructor() {
+        super();
+        this.elements = {
+          input: this.querySelector('input[name="locale_code"], input[name="country_code"]'),
+          button: this.querySelector('button'),
+          panel: this.querySelector('ul'),
+        };
+        this.elements.button.addEventListener('click', this.openSelector.bind(this));
+        this.elements.button.addEventListener('focusout', this.closeSelector.bind(this));
+        this.addEventListener('keyup', this.onContainerKeyUp.bind(this));
+
+        this.querySelectorAll('a').forEach(item => item.addEventListener('click', this.onItemClick.bind(this)));
+      }
+
+      hidePanel() {
+        this.elements.button.setAttribute('aria-expanded', 'false');
+        this.elements.panel.setAttribute('hidden', true);
+      }
+
+      onContainerKeyUp(event) {
+        if (event.code.toUpperCase() !== 'ESCAPE') return;
+
+        this.hidePanel();
+        this.elements.button.focus();
+      }
+
+      onItemClick(event) {
+        event.preventDefault();
+        const form = this.querySelector('form');
+        this.elements.input.value = event.currentTarget.dataset.value;
+        if (form) form.submit();
+      }
+
+      openSelector() {
+        this.elements.button.focus();
+        this.elements.panel.toggleAttribute('hidden');
+        this.elements.button.setAttribute('aria-expanded', (this.elements.button.getAttribute('aria-expanded') === 'false').toString());
+      }
+
+      closeSelector(event) {
+        const shouldClose = event.relatedTarget && event.relatedTarget.nodeName === 'BUTTON';
+        if (event.relatedTarget === null || shouldClose) {
+          this.hidePanel();
+        }
+      }
+    }
+
+    customElements.define('localization-form', LocalizationForm);
+  {% endjavascript %}
+
+</footer>
+
+
+
+
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "footer_linklist",
+      "label": "Copyright Menu",
+      "default": "footer"
+    },
+    {
+      "type": "liquid",
+      "id": "copyright-text",
+      "label": "Copyright Text",
+      "default": "&copy; {{ 'now' | date: '%Y' }} by {{ shop.name | link_to: routes.root_url }}"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F2F2F2"
+    },
+    {
+      "type": "color",
+      "id": "txt_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "label": "Show social icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": "Show payment icons"
+    },
+    {
+      "type":"header",
+      "content": "Custom CSS Rules"
+    },
+    {
+      "type":"paragraph",
+      "content": "Explanation of Custom CSS rules below input."
+    },
+    {
+      "type": "liquid",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    },
+    {
+      "type":"paragraph",
+      "content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+    },
+    {
+      "type":"paragraph",
+      "content": "Ex: '== h2 { font-size: 20px; }'"
+    },
+    {
+      "type":"paragraph",
+      "content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+    },
+    {
+      "type":"paragraph",
+      "content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+    },
+    {
+      "type":"paragraph",
+      "content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Section Title"
+        },
+        {
+          "type": "link_list",
+          "id": "list",
+          "label": "Menu"
+        },
+        {
+          "type": "text",
+          "id": "title_2",
+          "label": "Section Title 2 (optional below first list)"
+        },
+        {
+          "type": "link_list",
+          "id": "list_2",
+          "label": "Menu 2 (optional below first list)"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "label": "Show social icons"
+        },
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Container width",
+          "default": "16%",
+          "options": [
+            {
+              "value": "12%",
+              "label": "12%"
+            },
+            {
+              "value": "16%",
+              "label": "16%"
+            },
+            {
+              "value": "20%",
+              "label": "20%"
+            },
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Section Title"
+        },
+        {
+          "type": "liquid",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "label": "Show social icons"
+        },
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Container width",
+          "default": "16%",
+          "options": [
+            {
+              "value": "16%",
+              "label": "16%"
+            },
+            {
+              "value": "20%",
+              "label": "20%"
+            },
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Section Title"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "label": "Show social icons"
+        },
+        {
+          "type": "text",
+          "id": "soc_label_1",
+          "label": "Social Label 1"
+        },
+        {
+          "type": "text",
+          "id": "soc_link_1",
+          "label": "Social Link 1"
+        },
+        {
+          "type": "text",
+          "id": "soc_label_2",
+          "label": "Social Label 2"
+        },
+        {
+          "type": "text",
+          "id": "soc_link_2",
+          "label": "Social Link 2"
+        },
+        {
+          "type": "text",
+          "id": "soc_label_3",
+          "label": "Social Label 3"
+        },
+        {
+          "type": "text",
+          "id": "soc_link_3",
+          "label": "Social Link 3"
+        },
+        {
+          "type": "text",
+          "id": "soc_label_4",
+          "label": "Social Label 4"
+        },
+        {
+          "type": "text",
+          "id": "soc_link_4",
+          "label": "Social Link 4"
+        },
+        {
+          "type": "text",
+          "id": "soc_label_5",
+          "label": "Social Label 5"
+        },
+        {
+          "type": "text",
+          "id": "soc_link_5",
+          "label": "Social Link 5"
+        },
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Container width",
+          "default": "16%",
+          "options": [
+            {
+              "value": "16%",
+              "label": "16%"
+            },
+            {
+              "value": "20%",
+              "label": "20%"
+            },
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "social",
+      "name": "Social",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Section Title"
+        },
+        {
+          "type": "image_picker",
+          "id": "extra_image",
+          "label": "Extra image (optional)"
+        },
+        {
+          "type": "text",
+          "id": "extra_image_svg",
+          "label": "Extra image (if SVG)"
+        },
+        {
+          "type": "url",
+          "id": "extra_url",
+          "label": "Extra url (optional)"
+        },
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Container width",
+          "default": "16%",
+          "options": [
+            {
+              "value": "16%",
+              "label": "16%"
+            },
+            {
+              "value": "20%",
+              "label": "20%"
+            },
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "logo",
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo Image"
+        },
+        {
+          "type": "liquid",
+          "id": "logo_svg",
+          "label": "Logo Image(if .SVG)"
+        },
+        {
+          "type": "range",
+          "id": "logo_max_width",
+          "min": 50,
+          "max": 450,
+          "step": 10,
+          "unit": "px",
+          "label": "Custom logo width",
+          "default": 250
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "label": "Show social icons"
+        },
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Container width",
+          "default": "16%",
+          "options": [
+            {
+              "value": "16%",
+              "label": "16%"
+            },
+            {
+              "value": "20%",
+              "label": "20%"
+            },
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
+
+
+
+
+{% comment %},
+            {
+                "type": "link_list",
+                "id": "footer_linklist",
+                "label": "Copyright Menu",
+                "default": "footer"
+            },
+            {
+                "type": "checkbox",
+                "id": "show_payment_icons",
+                "label": "Show payment icons",
+                "default": false
+            }
+
+
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Section Title"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "label": "Show social icons"
+        },
+        {
+          "type": "text",
+          "id": "soc_label_1",
+          "label": "Social Label 1"
+        },
+        {
+          "type": "text",
+          "id": "soc_link_1",
+          "label": "Social Link 1"
+        },
+        {
+          "type": "text",
+          "id": "soc_label_2",
+          "label": "Social Label 2"
+        },
+        {
+          "type": "text",
+          "id": "soc_link_2",
+          "label": "Social Link 2"
+        },
+        {
+          "type": "text",
+          "id": "soc_label_3",
+          "label": "Social Label 3"
+        },
+        {
+          "type": "text",
+          "id": "soc_link_3",
+          "label": "Social Link 3"
+        },
+        {
+          "type": "text",
+          "id": "soc_label_4",
+          "label": "Social Label 4"
+        },
+        {
+          "type": "text",
+          "id": "soc_link_4",
+          "label": "Social Link 4"
+        },
+        {
+          "type": "text",
+          "id": "soc_label_5",
+          "label": "Social Label 5"
+        },
+        {
+          "type": "text",
+          "id": "soc_link_5",
+          "label": "Social Link 5"
+        },
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Container width",
+          "default": "16%",
+          "options": [
+            {
+              "value": "16%",
+              "label": "16%"
+            },
+            {
+              "value": "20%",
+              "label": "20%"
+            },
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        }
+      ]
+    },
+
+{% endcomment %}

@@ -1,0 +1,299 @@
+<!-- sections/nine15--two-grid -->
+
+{% include 'master--two-grid' %}
+
+{% schema %}
+{
+	"name": "Two Grid - NINE15",
+  "class": "index-section index-section--flush",
+	"settings": [
+		{
+      "type":"checkbox",
+      "id":"reverse",
+      "label": "Reverse"
+    },
+    {
+      "type":"checkbox",
+      "id":"hide_images",
+      "label": "Hide images and show Text blocks side by side."
+    },
+		{
+			"type":"header",
+			"content": "Custom CSS Rules"
+		},
+		{
+			"type":"paragraph",
+			"content": "Explanation of Custom CSS rules below input."
+		},
+		{
+			"type": "liquid",
+			"id": "custom_css",
+			"label": "Custom CSS"
+		},
+		{
+			"type":"paragraph",
+			"content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+		},
+		{
+			"type":"paragraph",
+			"content": "Ex: '== h2 { font-size: 20px; }'"
+		},
+		{
+			"type":"paragraph",
+			"content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+		},
+		{
+			"type":"paragraph",
+			"content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+		},
+		{
+			"type":"paragraph",
+			"content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+		}
+	],
+	"blocks": [
+		{
+      "type":"block",
+      "name":"Block",
+      "settings":[
+      	{
+          "type":"image_picker",
+          "id":"image",
+          "label":"Image"
+        },
+        {
+          "type":"image_picker",
+          "id":"image_mob",
+          "label":"Image Mobile (optional)"
+        },
+        {
+          "type":"image_picker",
+          "id":"image_bg",
+          "label":"Background Image behind text (optional)"
+        },
+        {
+          "type":"liquid",
+          "id":"title",
+          "label":"Title"
+        },
+        {
+          "type":"liquid",
+          "id":"top_title",
+          "label":"Top Title"
+        },
+        {
+          "type":"liquid",
+          "id":"text",
+          "label":"Text"
+        },
+        {
+          "type":"liquid",
+          "id":"lnk_txt",
+          "label": "Link Text"
+        },
+        {
+          "type":"url",
+          "id":"lnk_url",
+          "label": "Link Url"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "label": "Show social icons"
+        },
+        {
+          "type": "checkbox",
+          "id": "share_item",
+          "label": "Share Item (when on product or article pages)"
+        },
+        {
+	      	"type": "header",
+	      	"content": "Color Settings"
+		    },
+        {
+          "type":"color",
+          "id":"color_txt",
+          "label":"Text Color",
+          "default": "#000000"
+        },
+        {
+          "type":"color",
+          "id":"color_bg",
+          "label":"Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "select",
+          "id": "btn_style",
+          "label": "Button Type",
+          "options": [
+            {
+              "value": "primary",
+              "label": "Primary"
+            },
+            {
+              "value": "secondary",
+              "label": "Secondary"
+            },
+            {
+              "value": "primary Button--custom",
+              "label": "Custom"
+            },
+            {
+              "value": "arrow-link",
+              "label": "Arrow Link"
+            }
+          ],
+          "default": "primary"
+		    },
+        {
+	      	"type": "paragraph",
+	      	"content": "Button Type be set to Custom to use custom button colors below."
+	      },
+        {
+	        "type": "color",
+	        "id": "color_button_text",
+	        "label": "Text"
+		    },
+		    {
+	        "type": "color",
+	        "id": "color_button",
+	        "label": "Background"
+		    },
+		    {
+	        "type": "color",
+	        "id": "color_button_border",
+	        "label": "Border"
+        },
+	      {
+	        "type": "color",
+	        "id": "color_button_text_hover",
+	        "label": "Text Hover"
+        },
+	      {
+	        "type": "color",
+	        "id": "color_button_hover",
+	        "label": "Background Hover"
+        },
+	      {
+	        "type": "color",
+	        "id": "color_button_border_hover",
+	        "label": "Border Hover"
+        },
+        {
+          "type": "header",
+          "content": "Width Settings"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 10,
+          "max": 90,
+          "step": 1,
+          "label": "Image Width (on desktop)",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "image_height",
+          "min": 10,
+          "max": 100,
+          "step": 1,
+          "label": "Image Height (on desktop)",
+          "default": 40
+        },
+        {
+          "type": "header",
+          "content": "Video Settings"
+        },
+        {
+          "type": "video_url",
+          "id": "video_url",
+          "label": "Video url",
+          "accept": [
+            "youtube",
+            "vimeo"
+          ]
+        },
+        {
+          "type": "text",
+          "id": "video_hosted",
+          "label": "Video url if hosted"
+        },
+        {
+          "type":"header",
+          "content": "Custom HTML"
+        },          
+        {
+          "type":"paragraph",
+          "content": "This outputs raw html so write carefully."
+        },
+        {
+          "type": "liquid",
+          "id": "custom_html",
+          "label": "Custom HTML"
+        },
+        {
+          "type":"header",
+          "content": "Custom CSS Rules"
+        },
+        {
+          "type":"paragraph",
+          "content": "Explanation of Custom CSS rules below input."
+        },
+        {
+          "type": "liquid",
+          "id": "custom_css",
+          "label": "Custom CSS"
+        },
+        {
+          "type":"paragraph",
+          "content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
+        },
+        {
+          "type":"paragraph",
+          "content": "Ex: '== h2 { font-size: 20px; }'"
+        },
+        {
+          "type":"paragraph",
+          "content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
+        },
+        {
+          "type":"paragraph",
+          "content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+        },
+        {
+          "type":"paragraph",
+          "content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
+        },
+        {
+          "type":"header",
+          "content": "Developer Only"
+        },
+        {
+          "type": "liquid",
+          "id": "metafield_image",
+          "label": "Metafield Image"
+        },
+        {
+          "type": "liquid",
+          "id": "metafield_mobile_image",
+          "label": "Metafield Mobile Image"
+        },
+        {
+          "type": "liquid",
+          "id": "metafield_video",
+          "label": "Metafield Video"
+        }
+      ]
+    }
+	],
+	"presets": [
+		{
+			"name": "Two Grid - NINE15",
+			"category": "1 - NINE15"
+		}
+	]	
+}
+{% endschema %}
+
