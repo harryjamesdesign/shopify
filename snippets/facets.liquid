@@ -14,6 +14,7 @@
 {{ 'component-show-more.css' | asset_url | stylesheet_tag }}
 {{ 'custom-price-filter.scss.css' | asset_url | stylesheet_tag }}
 {{ 'custom-price-filter.js' | asset_url | script_tag }}
+{% comment %} --------Select the condition-------------- {% endcomment %}
 {%- liquid
   assign metaLabel = 'Filter - '
   assign prodType = 'Product type'

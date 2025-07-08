@@ -39,6 +39,7 @@ background: white;
 /* } */
 {% endstyle %}
 
+{% comment %} --------Select the condition-------------- {% endcomment %}
 {%- if card_product and card_product != empty -%}
 
 {%- liquid
@@ -61,6 +62,7 @@ assign imgHov = overrideSecondImage | default: card_product.media[imgsLast]
         <span class="visually-hidden">Link to {{overrideTitle | default: card_product.title}}</span>
       </a>
 
+{% comment %} --------Select the condition-------------- {% endcomment %}
       {%- if img -%}
       <div class="card__media">
         <div class="media media--transparent media--hover-effect">
@@ -92,6 +94,7 @@ assign imgHov = overrideSecondImage | default: card_product.media[imgsLast]
 
     <div class="card__content">
 
+{% comment %} --------Select the condition-------------- {% endcomment %}
       {%- if show_quick_add -%}
       <div class="quick-add">
         {%- assign product_form_id = 'quick-add-' | append: section_id | append: card_product.id -%}
