@@ -7,87 +7,88 @@
 <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
 <noscript>{{ 'component-price.css' | asset_url | stylesheet_tag }}</noscript>
 
-<link rel="preload" href="{{ 'component-rte.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="{{ 'component-rte.css' | asset_url }}" as="style"
+  onload="this.onload=null;this.rel='stylesheet'">
 
 {%- if section.settings.enable_quick_add -%}
-  <link rel="stylesheet" href="{{ 'quick-add.css' | asset_url }}" media="print" onload="this.media='all'">
-  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+<link rel="stylesheet" href="{{ 'quick-add.css' | asset_url }}" media="print" onload="this.media='all'">
+<script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 
-{% liquid 
+{% liquid
 
-  assign s                    = section.settings
-  assign sID                  = section.id
+assign s = section.settings
+assign sID = section.id
 
-  assign sectionCustomCSS     = s.custom_css
-  assign class                = 'section--' | append: sID
-  assign cssClass             = '.' | append: class
+assign sectionCustomCSS = s.custom_css
+assign class = 'section--' | append: sID
+assign cssClass = '.' | append: class
 
-  assign totalRows            = s.total_rows | plus: 0 
-  assign perRow               = s.per_row | plus: 0 
+assign totalRows = s.total_rows | plus: 0
+assign perRow = s.per_row | plus: 0
 
-  assign total                = totalRows | times: perRow
-  assign total                = total | at_most: 50
+assign total = totalRows | times: perRow
+assign total = total | at_most: 50
 
-  case perRow
-    when 1  
-      assign width            = ''
-    when 2 
-      assign width            = 'narrow--one-whole one-half medium-up--one-half'
-    when 3  
-      assign width            = 'narrow--one-whole one-half medium-up--one-third'
-    when 5 or 9 or 10 
-      assign width            = 'narrow--one-whole one-half medium--one-third large-up--one-fifth'
-    when 6 or 11 or 12 
-      assign width            = 'narrow--one-whole one-half medium--one-third large-up--one-sixth'
-    else  
-      assign width            = 'narrow--one-whole one-half medium--one-half large-up--one-quarter'
-  endcase 
+case perRow
+when 1
+assign width = ''
+when 2
+assign width = 'narrow--one-whole one-half medium-up--one-half'
+when 3
+assign width = 'narrow--one-whole one-half medium-up--one-third'
+when 5 or 9 or 10
+assign width = 'narrow--one-whole one-half medium--one-third large-up--one-fifth'
+when 6 or 11 or 12
+assign width = 'narrow--one-whole one-half medium--one-third large-up--one-sixth'
+else
+assign width = 'narrow--one-whole one-half medium--one-half large-up--one-quarter'
+endcase
 
-  assign onSide               = s.filter_on_left
-  assign collapse             = s.collapse_on_larger_devices
-  if collapse 
-    assign onSide             = false
-  endif 
-  assign sideFilter           = false
-  assign topFilter            = false
-  assign useFilter            = false
+assign onSide = s.filter_on_left
+assign collapse = s.collapse_on_larger_devices
+if collapse
+assign onSide = false
+endif
+assign sideFilter = false
+assign topFilter = false
+assign useFilter = false
 
-    assign useFilter          = s.enable_filtering
-    if onSide == true and useFilter == true 
-      assign sideFilter       = true
-    endif 
-    if onSide == false and useFilter == true 
-      assign topFilter        = true
-    endif 
-  if results.filters.size > 0 
-  endif
+assign useFilter = s.enable_filtering
+if onSide == true and useFilter == true
+assign sideFilter = true
+endif
+if onSide == false and useFilter == true
+assign topFilter = true
+endif
+if results.filters.size > 0
+endif
 
-  assign adCount              = 0 
-  
-  comment
-    check the total number of ads against 
-    the page total to make sure the grid is clean
-  endcomment
+assign adCount = 0
+
+comment
+check the total number of ads against
+the page total to make sure the grid is clean
+endcomment
 %}
 
 
 
 {%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ s.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ s.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
+.section-{{ section.id }}-padding {
+padding-top: {{ s.padding_top | times: 0.75 | round: 0 }}px;
+padding-bottom: {{ s.padding_bottom | times: 0.75 | round: 0 }}px;
+}
 
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ s.padding_top }}px;
-      padding-bottom: {{ s.padding_bottom }}px;
-    }
-  }
+@media screen and (min-width: 750px) {
+.section-{{ section.id }}-padding {
+padding-top: {{ s.padding_top }}px;
+padding-bottom: {{ s.padding_bottom }}px;
+}
+}
 {%- endstyle -%}
 <div class="{{class}}">
   <div class="section-{{ section.id }}-padding">
@@ -97,183 +98,188 @@
       <noscript>{{ 'component-facets.css' | asset_url | stylesheet_tag }}</noscript>
       <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
       {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
-        <aside aria-labelledby="verticalTitle" class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width full-width {% endif %}" id="main-collection-filters" data-id="{{ section.id }}">
-          {% render 'facets', results: collection, enable_filtering: section.settings.enable_filtering, enable_sorting: section.settings.enable_sorting, filter_type: section.settings.filter_type %}
-        </aside>
+      <aside aria-labelledby="verticalTitle"
+        class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width full-width {% endif %}"
+        id="main-collection-filters" data-id="{{ section.id }}">
+        {% render 'facets', results: collection, enable_filtering: section.settings.enable_filtering, enable_sorting:
+        section.settings.enable_sorting, filter_type: section.settings.filter_type %}
+      </aside>
       {%- endif -%}
 
       <div class="product-grid-container" id="ProductGridContainer">
         {%- paginate collection.products by total -%}
-          {%- if collection.products.size == 0 -%}
-            <div class="collection collection--empty {% comment %}page-width{% endcomment %}" id="product-grid" data-id="{{ section.id }}">
-              <div class="title-wrapper center">
-                <h2 class="title title--primary">
-                  {{ 'sections.collection_template.empty' | t }}<br>
-                  {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class: "underlined-link link" }}
-                </h2>
-              </div>
-            </div>
-          {%- else -%}
-            <div class="collection">
-              <script type="text/javascript">
-                waitFor_jQuery(function () {
-                  function ScrollExecute() {
-                    scrollNode = $('#more').last();
-                    if (scrollNode.length > 0) {
-                      var triggerPoint = scrollNode[0].offsetTop - ($(window).height() * 1.1);
-                      // console.log(triggerPoint - $(document).scrollTop())
-                      // console.log('1: ' + triggerPoint)
-                      // console.log('2: ' + $(document).scrollTop())
-                      if (  triggerPoint < $(document).scrollTop() ) {
-                        scrollURL = $('#more p a').last().attr("href");
-                        $.ajax({
-                          type: 'GET',
-                          url: scrollURL,
-                          beforeSend: function() {
-                            scrollNode.clone().empty().insertAfter(scrollNode).removeAttr('id').addClass('old-loader text-center').append('<img src=\"{{ "ajax-loader.gif" | asset_url }}\" />');
-                            scrollNode.remove();
-                          },
-                          success: function(data) {
-                            // remove loading feedback
-                            $('.old-loader').remove();
-                            var filteredData = $(data).find("#product-grid .cell__item");
-                            filteredData.appendTo($("#product-grid"));
-                            document.dispatchEvent(new CustomEvent("swym:collections-loaded"));
-                          },
-                          dataType: "html"
-                        });
-                      }
-                    }
+        {%- if collection.products.size == 0 -%}
+        <div class="collection collection--empty {% comment %}page-width{% endcomment %}" id="product-grid"
+          data-id="{{ section.id }}">
+          <div class="title-wrapper center">
+            <h2 class="title title--primary">
+              {{ 'sections.collection_template.empty' | t }}<br>
+              {{ 'sections.collection_template.use_fewer_filters_html' | t: link: collection.url, class:
+              "underlined-link link" }}
+            </h2>
+          </div>
+        </div>
+        {%- else -%}
+        <div class="collection">
+          <script type="text/javascript">
+            waitFor_jQuery(function () {
+              function ScrollExecute() {
+                scrollNode = $('#more').last();
+                if (scrollNode.length > 0) {
+                  var triggerPoint = scrollNode[0].offsetTop - ($(window).height() * 1.1);
+                  // console.log(triggerPoint - $(document).scrollTop())
+                  // console.log('1: ' + triggerPoint)
+                  // console.log('2: ' + $(document).scrollTop())
+                  if (triggerPoint < $(document).scrollTop()) {
+                    scrollURL = $('#more p a').last().attr("href");
+                    $.ajax({
+                      type: 'GET',
+                      url: scrollURL,
+                      beforeSend: function () {
+                        scrollNode.clone().empty().insertAfter(scrollNode).removeAttr('id').addClass('old-loader text-center').append('<img src=\"{{ "ajax-loader.gif" | asset_url }}\" />');
+                        scrollNode.remove();
+                      },
+                      success: function (data) {
+                        // remove loading feedback
+                        $('.old-loader').remove();
+                        var filteredData = $(data).find("#product-grid .cell__item");
+                        filteredData.appendTo($("#product-grid"));
+                        document.dispatchEvent(new CustomEvent("swym:collections-loaded"));
+                      },
+                      dataType: "html"
+                    });
                   }
+                }
+              }
 
-                  $(window).scroll(function() {
-                    ScrollExecute()
-                    // $.doTimeout('scroll', 100, ScrollExecute);
-                  });
-                })
-              </script>
-              <ul id="product-grid" data-id="{{ section.id }}" class="cell vert-top no_gutter match-row ">
-                {%- for product in collection.products -%}
-                  {% assign lp = forloop.index %}
-                  {% for block in section.blocks %}
-                    {% liquid
+              $(window).scroll(function () {
+                ScrollExecute()
+                // $.doTimeout('scroll', 100, ScrollExecute);
+              });
+            })
+          </script>
+          <ul id="product-grid" data-id="{{ section.id }}" class="cell vert-top no_gutter match-row ">
+            {%- for product in collection.products -%}
+            {% assign lp = forloop.index %}
+            {% for block in section.blocks %}
+            {% liquid
 
-                      assign b              = block.settings
-                      
-                      assign bID            = block.id
+            assign b = block.settings
 
-                      assign curCol         = canonical_url | split: '.com' | last
-                      assign showOn         = b.show_on_collection
-                      assign exclude        = b.exclude_from_collection
-                      assign plc            = b.placement | plus: 0   
-                      assign after          = b.after
+            assign bID = block.id
 
-                      if plc != 0
-                        assign plc          = plc | times: current_page
-                      endif
+            assign curCol = canonical_url | split: '.com' | last
+            assign showOn = b.show_on_collection
+            assign exclude = b.exclude_from_collection
+            assign plc = b.placement | plus: 0
+            assign after = b.after
 
-                      assign adTtl          = b.content_title 
-                      assign adTxt          = b.text
-                      assign img            = b.bg_image
-                      assign btnTxt         = b.btn_text
-                      assign btnUrl         = b.btn_url
-                      assign btnStl         = b.btn_style
-                      assign txtClr         = b.text_color | replace: 'rgba(0,0,0,0)',''
-                      assign bgClr          = b.gradient
-                      assign blockCustomCSS = b.custom_css
+            if plc != 0
+            assign plc = plc | times: current_page
+            endif
 
-                      assign adMtch       = true
-                      if img == blank and adTtl == blank and topTtl == blank and txt == blank 
-                        assign adMtch     = false
-                      endif 
-                      if showOn != blank 
-                        unless showOn contains curCol
-                          assign adMtch   = false
-                        endunless
-                      endif 
-                      if exclude != blank
-                        if exclude contains curCol
-                          assign adMtch   = false
-                        endif 
-                      endif 
+            assign adTtl = b.content_title
+            assign adTxt = b.text
+            assign img = b.bg_image
+            assign btnTxt = b.btn_text
+            assign btnUrl = b.btn_url
+            assign btnStl = b.btn_style
+            assign txtClr = b.text_color | replace: 'rgba(0,0,0,0)',''
+            assign bgClr = b.gradient
+            assign blockCustomCSS = b.custom_css
 
-                    %}
-                    {% capture ad %}
-                      {% if 
-                        plc == lp and 
-                        adMtch == true
-                      %}
-                        <li class="cell__item {{width}} cta-item {{blockClass}}">
-                          {% include 'card-promo',
-                            cardImage: img,
-                            cardTitle: adTtl,
-                            cardText: adTxt,
-                            cardBtnTxt: btnTxt,
-                            cardBtnUrl: btnUrl,
-                            cardBtnStyle: btnStl,
-                            cardTxtClr: txtClr,
-                            cardBgClr: bgClr,
-                            cardCSS: blockCustomCSS
-                          %}
-                        </li>
-                        {% break %}
-                      {% endif %}
-                    {% endcapture %}
-                  {% endfor %}
+            assign adMtch = true
+            if img == blank and adTtl == blank and topTtl == blank and txt == blank
+            assign adMtch = false
+            endif
+            if showOn != blank
+            unless showOn contains curCol
+            assign adMtch = false
+            endunless
+            endif
+            if exclude != blank
+            if exclude contains curCol
+            assign adMtch = false
+            endif
+            endif
 
-                  {% if after == false %}
-                    {{ad}}
-                  {% endif %}
+            %}
+            {% capture ad %}
+            {% if
+            plc == lp and
+            adMtch == true
+            %}
+            <li class="cell__item {{width}} cta-item {{blockClass}}">
+              {% include 'card-promo',
+              cardImage: img,
+              cardTitle: adTtl,
+              cardText: adTxt,
+              cardBtnTxt: btnTxt,
+              cardBtnUrl: btnUrl,
+              cardBtnStyle: btnStl,
+              cardTxtClr: txtClr,
+              cardBgClr: bgClr,
+              cardCSS: blockCustomCSS
+              %}
+            </li>
+            {% break %}
+            {% endif %}
+            {% endcapture %}
+            {% endfor %}
 
-                  {% unless product.tags contains "hide_test" %}
+            {% if after == false %}
+            {{ad}}
+            {% endif %}
 
-                  <li class="cell__item {{width}}" id="product-{{ forloop.index | plus:paginate.current_offset }}">
-                    {% render 'card-product',
-                      card_product: product,
-                      media_aspect_ratio: s.image_ratio,
-                      show_secondary_image: s.show_secondary_image,
-                      show_vendor: s.show_vendor,
-                      show_rating: s.show_rating,
-                      lazy_load: true,
-                      show_quick_add: section.settings.enable_quick_add,
-                      section_id: section.id
-                    %}
-                  </li>
-                 {% endunless %}
+            {% unless product.tags contains "hide_test" %}
 
-                  {% if after == true %}
-                    {{ad}}
-                  {% endif %}
+            <li class="cell__item {{width}}" id="product-{{ forloop.index | plus:paginate.current_offset }}">
+              {% render 'card-product',
+              card_product: product,
+              media_aspect_ratio: s.image_ratio,
+              show_secondary_image: s.show_secondary_image,
+              show_vendor: s.show_vendor,
+              show_rating: s.show_rating,
+              lazy_load: true,
+              show_quick_add: section.settings.enable_quick_add,
+              section_id: section.id
+              %}
+            </li>
+            {% endunless %}
+
+            {% if after == true %}
+            {{ad}}
+            {% endif %}
 
 
-                {%- endfor -%}
+            {%- endfor -%}
 
-                {% if paginate.next %}
-                  <li class="cell__item one-whole" id="more">
-                    <p class="hide">&darr; <a href="{{ paginate.next.url }}">More</a></p>
-                    {% render 'pagination', paginate: paginate, anchor: '' %}
-                  </li>        
-                {% endif %}
+            {% if paginate.next %}
+            <li class="cell__item one-whole" id="more">
+              <p class="hide">&darr; <a href="{{ paginate.next.url }}">More</a></p>
+              {% render 'pagination', paginate: paginate, anchor: '' %}
+            </li>
+            {% endif %}
 
-              </ul>
-            </div>
-          {%- endif -%}
+          </ul>
+        </div>
+        {%- endif -%}
         {%- endpaginate -%}
       </div>
 
       {% if collection.handle contains 'crossbodies' %}
-        <div class="crossbody_bags_blurb">
-          <h2 class="blurb_title">
-            {{ collection.title }}
-          </h2>
-          <p class="blurb_text">{{ collection.description }}</p> 
-        </div>
+      <div class="crossbody_bags_blurb">
+        <h2 class="blurb_title">
+          {{ collection.title }}
+        </h2>
+        <p class="blurb_text">{{ collection.description }}</p>
+      </div>
       {% endif %}
     </div>
   </div>
-  {% include 'custom-css', 
-    css: sectionCustomCSS, 
-    class: cssClass 
+  {% include 'custom-css',
+  css: sectionCustomCSS,
+  class: cssClass
   %}
 </div>
 
@@ -295,351 +301,358 @@
 
 {% schema %}
 {
-  "name": "t:sections.main-collection-product-grid.name",
-  "class": "section",
-  "settings": [
-    {
-      "type":"header",
-      "content": "Row Setting"
-    },
-    {
-      "type":"paragraph",
-      "content": "Total Rows times Per Row equals total products per page. MAX 50."
-    },
-    {
-      "type":      "range",
-      "id":        "total_rows",
-      "min":       1,
-      "max":       20,
-      "step":      1,
-      "label":     "Total rows on Desktop",
-      "default":   4
-    },
-    {
-      "type":      "range",
-      "id":        "per_row",
-      "min":       0,
-      "max":       5,
-      "step":      1,
-      "label":     "Products per row",
-      "default":   4
-    },
-    {
-      "type": "header",
-      "content": "t:sections.main-collection-product-grid.settings.header__3.content"
-    },
-    {
-      "type": "select",
-      "id": "image_ratio",
-      "options": [
-        {
-          "value": "adapt",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
-        },
-        {
-          "value": "portrait",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
-        },
-        {
-          "value": "square",
-          "label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
-        }
-      ],
-      "default": "square",
-      "label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_secondary_image",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_vendor",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_rating",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.show_rating.label",
-      "info": "t:sections.main-collection-product-grid.settings.show_rating.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_quick_add",
-      "default": false,
-      "label": "t:sections.main-collection-product-grid.settings.enable_quick_buy.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.main-collection-product-grid.settings.header__1.content"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_filtering",
-      "default": true,
-      "label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
-      "info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
-    },
-    {
-      "type": "select",
-      "id": "filter_type",
-      "options": [
-        {
-          "value": "horizontal",
-          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__1.label"
-        },
-        {
-          "value": "vertical",
-          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__2.label"
-        },
-        {
-          "value": "drawer",
-          "label": "t:sections.main-collection-product-grid.settings.filter_type.options__3.label"
-        }
-      ],
-      "default": "horizontal",
-      "label": "t:sections.main-collection-product-grid.settings.filter_type.label",
-      "info": "t:sections.main-collection-product-grid.settings.filter_type.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_sorting",
-      "default": true,
-      "label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.main-collection-product-grid.settings.header_mobile.content"
-    },
-    {
-      "type": "select",
-      "id": "columns_mobile",
-      "default": "2",
-      "label": "t:sections.main-collection-product-grid.settings.columns_mobile.label",
-      "options": [
-        {
-          "value": "1",
-          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__1.label"
-        },
-        {
-          "value": "2",
-          "label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__2.label"
-        }
-      ]
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
-    },
-    {
-      "type":"header",
-      "content": "Custom CSS Rules"
-    },
-    {
-      "type":"paragraph",
-      "content": "Explanation of Custom CSS rules below input."
-    },
-    {
-      "type": "liquid",
-      "id": "custom_css",
-      "label": "Custom CSS"
-    },
-    {
-      "type":"paragraph",
-      "content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
-    },
-    {
-      "type":"paragraph",
-      "content": "Ex: '== h2 { font-size: 20px; }'"
-    },
-    {
-      "type":"paragraph",
-      "content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
-    },
-    {
-      "type":"paragraph",
-      "content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
-    },
-    {
-      "type":"paragraph",
-      "content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "ad",
-      "name": "Collection Ad",
-      "settings": [
-        {
-          "type":"header",
-          "content": "Display Settings"
-        },
-          {
-            "type": "text",
-            "id": "title",
-            "label": "Tab Title",
-            "info": "This is only for giving a title in Theme Editor",
-            "placeholder": "Shop All Collection"
-          },
-          {
-            "type": "text",
-            "id": "placement",
-            "label": "Placement",
-            "info": "'5' places the Ad before the 5th product."
-          },
-          {
-            "type": "checkbox",
-            "id": "after",
-            "label": "Places ad after product instead."
-          },
-          {
-            "type": "textarea",
-            "id": "show_on_collection",
-            "label": "Show on Collections",
-            "info": "Type in the url after '.com'. Ex: '\/collections\/all'. You can add multiple separated by commas."
-          },
-          {
-            "type": "textarea",
-            "id": "exclude_from_collection",
-            "label": "Exclude from Collections",
-            "info": "Type in the url after '.com'. Ex: '\/collections\/all'. You can add multiple separated by commas."
-          },
-        {
-          "type": "header",
-          "content": "CTA"
-        },
-          {
-            "type":"text",
-            "id":"content_title",
-            "label":"Title"
-          },
-          {
-            "type":"textarea",
-            "id":"text",
-            "label":"Text"
-          },
-          {
-            "type":"text",
-            "id":"btn_text",
-            "label":"Button Text"
-          },
-          {
-            "type":"url",
-            "id":"btn_url",
-            "label":"Button Url"
-          },
-          {
-            "type":"header",
-            "content": "Image / Color Rules"
-          },
-          {
-            "type": "image_picker",
-            "id": "bg_image",
-            "label": "Background Image"
-          },
-          {
-            "type": "color",
-            "id": "text_color",
-            "label": "Text Color",
-            "default": "#000000"
-          },
-          {
-            "type": "color_background",
-            "id": "gradient",
-            "label": "Gradient Background"
-          },
-          {
-            "type": "select",
-            "id": "btn_style",
-            "label": "Button Type",
-            "info": "Button will only show if Button Text and Link are used, and videos are not used.",
-            "options": [
-              {
-                "value": "primary",
-                "label": "Primary"
-              },
-              {
-                "value": "secondary",
-                "label": "Secondary"
-              },
-              {
-                "value": "arrow-link",
-                "label": "Arrow Link"
-              }
-            ],
-            "default": "primary"
-          },
-          {
-            "type":"header",
-            "content": "Custom CSS Rules"
-          },
-          {
-            "type":"paragraph",
-            "content": "Explanation of Custom CSS rules below input."
-          },
-          {
-            "type": "liquid",
-            "id": "custom_css",
-            "label": "Custom CSS"
-          },
-          {
-            "type":"paragraph",
-            "content": "Use '==' to reference this block's parent container, that way the css you use only applies to this container. The example below applies font size to only the h2 element in the current block's container."
-          },
-          {
-            "type":"paragraph",
-            "content": "Ex: '== h2 { font-size: 20px; }'"
-          },
-          {
-            "type":"paragraph",
-            "content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media screen and (max-width: 749px)' before the css."
-          },
-          {
-            "type":"paragraph",
-            "content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
-          },
-          {
-            "type":"paragraph",
-            "content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down, ex-large, ex-large-up, ex-large-down, widescreen"
-          }
-      ]
-    }
-  ]
+"name": "t:sections.main-collection-product-grid.name",
+"class": "section",
+"settings": [
+{
+"type":"header",
+"content": "Row Setting"
+},
+{
+"type":"paragraph",
+"content": "Total Rows times Per Row equals total products per page. MAX 50."
+},
+{
+"type": "range",
+"id": "total_rows",
+"min": 1,
+"max": 20,
+"step": 1,
+"label": "Total rows on Desktop",
+"default": 4
+},
+{
+"type": "range",
+"id": "per_row",
+"min": 0,
+"max": 5,
+"step": 1,
+"label": "Products per row",
+"default": 4
+},
+{
+"type": "header",
+"content": "t:sections.main-collection-product-grid.settings.header__3.content"
+},
+{
+"type": "select",
+"id": "image_ratio",
+"options": [
+{
+"value": "adapt",
+"label": "t:sections.main-collection-product-grid.settings.image_ratio.options__1.label"
+},
+{
+"value": "portrait",
+"label": "t:sections.main-collection-product-grid.settings.image_ratio.options__2.label"
+},
+{
+"value": "square",
+"label": "t:sections.main-collection-product-grid.settings.image_ratio.options__3.label"
+}
+],
+"default": "square",
+"label": "t:sections.main-collection-product-grid.settings.image_ratio.label"
+},
+{
+"type": "checkbox",
+"id": "show_secondary_image",
+"default": false,
+"label": "t:sections.main-collection-product-grid.settings.show_secondary_image.label"
+},
+{
+"type": "checkbox",
+"id": "show_vendor",
+"default": false,
+"label": "t:sections.main-collection-product-grid.settings.show_vendor.label"
+},
+{
+"type": "checkbox",
+"id": "show_rating",
+"default": false,
+"label": "t:sections.main-collection-product-grid.settings.show_rating.label",
+"info": "t:sections.main-collection-product-grid.settings.show_rating.info"
+},
+{
+"type": "checkbox",
+"id": "enable_quick_add",
+"default": false,
+"label": "t:sections.main-collection-product-grid.settings.enable_quick_buy.label"
+},
+{
+"type": "header",
+"content": "t:sections.main-collection-product-grid.settings.header__1.content"
+},
+{
+"type": "checkbox",
+"id": "enable_filtering",
+"default": true,
+"label": "t:sections.main-collection-product-grid.settings.enable_filtering.label",
+"info": "t:sections.main-collection-product-grid.settings.enable_filtering.info"
+},
+{
+"type": "select",
+"id": "filter_type",
+"options": [
+{
+"value": "horizontal",
+"label": "t:sections.main-collection-product-grid.settings.filter_type.options__1.label"
+},
+{
+"value": "vertical",
+"label": "t:sections.main-collection-product-grid.settings.filter_type.options__2.label"
+},
+{
+"value": "drawer",
+"label": "t:sections.main-collection-product-grid.settings.filter_type.options__3.label"
+}
+],
+"default": "horizontal",
+"label": "t:sections.main-collection-product-grid.settings.filter_type.label",
+"info": "t:sections.main-collection-product-grid.settings.filter_type.info"
+},
+{
+"type": "checkbox",
+"id": "enable_sorting",
+"default": true,
+"label": "t:sections.main-collection-product-grid.settings.enable_sorting.label"
+},
+{
+"type": "header",
+"content": "t:sections.main-collection-product-grid.settings.header_mobile.content"
+},
+{
+"type": "select",
+"id": "columns_mobile",
+"default": "2",
+"label": "t:sections.main-collection-product-grid.settings.columns_mobile.label",
+"options": [
+{
+"value": "1",
+"label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__1.label"
+},
+{
+"value": "2",
+"label": "t:sections.main-collection-product-grid.settings.columns_mobile.options__2.label"
+}
+]
+},
+{
+"type": "header",
+"content": "t:sections.all.padding.section_padding_heading"
+},
+{
+"type": "range",
+"id": "padding_top",
+"min": 0,
+"max": 100,
+"step": 4,
+"unit": "px",
+"label": "t:sections.all.padding.padding_top",
+"default": 36
+},
+{
+"type": "range",
+"id": "padding_bottom",
+"min": 0,
+"max": 100,
+"step": 4,
+"unit": "px",
+"label": "t:sections.all.padding.padding_bottom",
+"default": 36
+},
+{
+"type":"header",
+"content": "Custom CSS Rules"
+},
+{
+"type":"paragraph",
+"content": "Explanation of Custom CSS rules below input."
+},
+{
+"type": "liquid",
+"id": "custom_css",
+"label": "Custom CSS"
+},
+{
+"type":"paragraph",
+"content": "Use '==' to reference this block's parent container, that way the css you use only applies to this
+container. The example below applies font size to only the h2 element in the current block's container."
+},
+{
+"type":"paragraph",
+"content": "Ex: '== h2 { font-size: 20px; }'"
+},
+{
+"type":"paragraph",
+"content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media
+screen and (max-width: 749px)' before the css."
+},
+{
+"type":"paragraph",
+"content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+},
+{
+"type":"paragraph",
+"content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down,
+ex-large, ex-large-up, ex-large-down, widescreen"
+}
+],
+"blocks": [
+{
+"type": "ad",
+"name": "Collection Ad",
+"settings": [
+{
+"type":"header",
+"content": "Display Settings"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Tab Title",
+"info": "This is only for giving a title in Theme Editor",
+"placeholder": "Shop All Collection"
+},
+{
+"type": "text",
+"id": "placement",
+"label": "Placement",
+"info": "'5' places the Ad before the 5th product."
+},
+{
+"type": "checkbox",
+"id": "after",
+"label": "Places ad after product instead."
+},
+{
+"type": "textarea",
+"id": "show_on_collection",
+"label": "Show on Collections",
+"info": "Type in the url after '.com'. Ex: '\/collections\/all'. You can add multiple separated by commas."
+},
+{
+"type": "textarea",
+"id": "exclude_from_collection",
+"label": "Exclude from Collections",
+"info": "Type in the url after '.com'. Ex: '\/collections\/all'. You can add multiple separated by commas."
+},
+{
+"type": "header",
+"content": "CTA"
+},
+{
+"type":"text",
+"id":"content_title",
+"label":"Title"
+},
+{
+"type":"textarea",
+"id":"text",
+"label":"Text"
+},
+{
+"type":"text",
+"id":"btn_text",
+"label":"Button Text"
+},
+{
+"type":"url",
+"id":"btn_url",
+"label":"Button Url"
+},
+{
+"type":"header",
+"content": "Image / Color Rules"
+},
+{
+"type": "image_picker",
+"id": "bg_image",
+"label": "Background Image"
+},
+{
+"type": "color",
+"id": "text_color",
+"label": "Text Color",
+"default": "#000000"
+},
+{
+"type": "color_background",
+"id": "gradient",
+"label": "Gradient Background"
+},
+{
+"type": "select",
+"id": "btn_style",
+"label": "Button Type",
+"info": "Button will only show if Button Text and Link are used, and videos are not used.",
+"options": [
+{
+"value": "primary",
+"label": "Primary"
+},
+{
+"value": "secondary",
+"label": "Secondary"
+},
+{
+"value": "arrow-link",
+"label": "Arrow Link"
+}
+],
+"default": "primary"
+},
+{
+"type":"header",
+"content": "Custom CSS Rules"
+},
+{
+"type":"paragraph",
+"content": "Explanation of Custom CSS rules below input."
+},
+{
+"type": "liquid",
+"id": "custom_css",
+"label": "Custom CSS"
+},
+{
+"type":"paragraph",
+"content": "Use '==' to reference this block's parent container, that way the css you use only applies to this
+container. The example below applies font size to only the h2 element in the current block's container."
+},
+{
+"type":"paragraph",
+"content": "Ex: '== h2 { font-size: 20px; }'"
+},
+{
+"type":"paragraph",
+"content": "Use '/MEDIA_QUERY/' to create media queries that match css defaults. The example below would output '@media
+screen and (max-width: 749px)' before the css."
+},
+{
+"type":"paragraph",
+"content": "Ex: '/small/ { == h2 { font-size: 20px; } }'"
+},
+{
+"type":"paragraph",
+"content": "Media Queries: narrow, not-narrow, small, medium, medium-up, medium-down, large, large-up, large-down,
+ex-large, ex-large-up, ex-large-down, widescreen"
+}
+]
+}
+]
 }
 {% endschema %}
 
 <style>
-  .crossbody_bags_blurb{
+  .crossbody_bags_blurb {
     text-align: center;
     max-width: 650px;
     margin: auto;
     padding: 20px;
   }
-  .crossbody_bags_blurb h2{
+
+  .crossbody_bags_blurb h2 {
     font-family: var(--font--graphik-wide);
     font-size: 22px;
     font-style: normal;
@@ -647,15 +660,17 @@
     line-height: normal;
     text-transform: uppercase;
   }
-  .crossbody_bags_blurb p{
+
+  .crossbody_bags_blurb p {
     font-family: var(--font--graphik);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
   }
-  @media screen and (max-width:767px){
-    .crossbody_bags_blurb h2{
+
+  @media screen and (max-width:767px) {
+    .crossbody_bags_blurb h2 {
       font-size: 20px;
     }
   }

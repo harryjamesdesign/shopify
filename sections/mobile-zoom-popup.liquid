@@ -90,51 +90,49 @@
 
 <div class="pdp-mobile-zoom-popup Zoomswiper">
     <span class="pdp-mobile-zoom-popup--close">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
     </span>
     <div class="pdp-mobile-zoom-popup--slider-content swiper-wrapper">
         {%- for product_image in product.media -%}
-            {%- unless forloop.first or forloop.last -%}
-                <div class="pdp-mobile-zoom-popup--slider-item swiper-slide">
-                    <div class="swiper-zoom-container">
-                        <img
-                            srcset="{% if product_image.preview_image.width >= 288 %}{{ product_image.preview_image | image_url: width: 288 }} 288w,{% endif %}
+        {%- unless forloop.first or forloop.last -%}
+        <div class="pdp-mobile-zoom-popup--slider-item swiper-slide">
+            <div class="swiper-zoom-container">
+                <img srcset="{% if product_image.preview_image.width >= 288 %}{{ product_image.preview_image | image_url: width: 288 }} 288w,{% endif %}
                                     {% if product_image.preview_image.width >= 576 %}{{ product_image.preview_image | image_url: width: 576 }} 576w,{% endif %}
                                     {% if product_image.preview_image.width >= 550 %}{{ product_image.preview_image | image_url: width: 550 }} 550w,{% endif %}
                                     {% if product_image.preview_image.width >= 1100 %}{{ product_image.preview_image | image_url: width: 1100 }} 1100w,{% endif %}
                                     {{ product_image.preview_image | image_url }} {{ product_image.preview_image.width }}w"
-                            src="{{ product_image | image_url: width: 550, height: 550 }}"
-                            sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
-                            loading="lazy"
-                            width="576"
-                            height="{{ 576 | divided_by: product_image.preview_image.aspect_ratio }}"
-                            alt="{{ product_image.preview_image.alt | escape }}"
-                        >
-                    </div>
-                </div>
-            {%- endunless -%}
+                    src="{{ product_image | image_url: width: 550, height: 550 }}"
+                    sizes="(min-width: 1200px) calc((1200px - 10rem) / 2), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw - 4rem)"
+                    loading="lazy" width="576" height="{{ 576 | divided_by: product_image.preview_image.aspect_ratio }}"
+                    alt="{{ product_image.preview_image.alt | escape }}">
+            </div>
+        </div>
+        {%- endunless -%}
         {%- endfor -%}
     </div>
-    {%- assign number_of_images = product.media.size |  minus: 2 -%}
+    {%- assign number_of_images = product.media.size | minus: 2 -%}
     {%- if number_of_images > 1 -%}
-        <div class="swiper-button-prev-zoom">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M14.71 6.71a1 1 0 00-1.42 0L8 12l5.29 5.29a1 1 0 001.42-1.42L10.83 12l3.88-3.88a1 1 0 000-1.41z"/>
-            </svg>
-        </div>
-        <div class="swiper-button-next-zoom">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M9.29 6.71a1 1 0 011.42 0L16 12l-5.29 5.29a1 1 0 01-1.42-1.42L13.17 12l-3.88-3.88a1 1 0 010-1.41z"/>
-            </svg>
-        </div>
+    <div class="swiper-button-prev-zoom">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14.71 6.71a1 1 0 00-1.42 0L8 12l5.29 5.29a1 1 0 001.42-1.42L10.83 12l3.88-3.88a1 1 0 000-1.41z" />
+        </svg>
+    </div>
+    <div class="swiper-button-next-zoom">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M9.29 6.71a1 1 0 011.42 0L16 12l-5.29 5.29a1 1 0 01-1.42-1.42L13.17 12l-3.88-3.88a1 1 0 010-1.41z" />
+        </svg>
+    </div>
     {%- endif -%}
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", ()=>{
+    document.addEventListener("DOMContentLoaded", () => {
         const swiper = new Swiper('.Zoomswiper', {
             zoom: {
                 maxRatio: 2,
@@ -148,7 +146,7 @@
             slidesPerView: 1,
         });
 
-        document.querySelector(".pdp-mobile-zoom-popup--close").addEventListener("click", ()=>{
+        document.querySelector(".pdp-mobile-zoom-popup--close").addEventListener("click", () => {
             document.querySelector('.mobile-zoom-popup').classList.add('hidden')
             document.body.style.overflow = ''
         })
@@ -157,18 +155,18 @@
 
 {% schema %}
 {
-  "name": "Mobile zoom popup",
-  "tag": "section",
-  "class": "mobile-zoom-popup hidden",
-  "limit": 1,
-  "settings": [
-    
-  ],
-  "presets": [
-    {
-      "name": "Mobile zoom popup",
-      "settings": {}
-    }
-  ]
+"name": "Mobile zoom popup",
+"tag": "section",
+"class": "mobile-zoom-popup hidden",
+"limit": 1,
+"settings": [
+
+],
+"presets": [
+{
+"name": "Mobile zoom popup",
+"settings": {}
+}
+]
 }
 {% endschema %}
