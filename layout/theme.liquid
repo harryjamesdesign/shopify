@@ -3,14 +3,22 @@
 
 <head>
   {% if template contains 'index' %}
+
   <link rel="preload" as="image" href="{{settings.preload_image | img_url: '749x' }}">
+
   {% endif %}
+
   {% if template contains 'blog' %}
+
   <link rel="preload" as="image" href="{{settings.blog_preload_image | img_url: '749x' }}">
+
   {% endif %}
+
   {% if template contains 'collection' %}
   <link rel="preload" as="image" href="{{collection.featured_image | img_url: '749x' }}">
+
   {% endif %}
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -19,130 +27,248 @@
   <meta name="google-site-verification" content="UZUzLcnDU6WTSWlH8Uvilcomr7uh81nPSVwFGAuwGRE" />
   <link rel="canonical" href="{{ canonical_url }}">
   <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+
   {%- if settings.favicon != blank -%}
+
   <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+
   {%- endif -%}
+
   {%- if settings.favicon_svg != blank -%}
+
   <link rel="icon" type="image/svg" href="{{ settings.favicon_svg }}">
+
   {%- endif -%}
   <title>
+
     {{ page_title }}
+
     {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+
     {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+
     {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+
   </title>
+
   {% if page_description %}
+
   <meta name="description" content="{{ page_description | escape }}">
+
   {% endif %}
+
   <link rel="stylesheet" href="{{ 'custom.css' | asset_url }}">
+
   <link rel="stylesheet" href="{{ 'plugins.css' | asset_url }}">
+
   <noscript>{{ 'plugins.css' | asset_url | stylesheet_tag }}</noscript>
+
   <link rel="stylesheet" href="{{ 'base-custom.css' | asset_url }}">
+
   <noscript>{{ 'base-custom.css' | asset_url | stylesheet_tag }}</noscript>
+
   <script src="{{ 'plugins.js' | asset_url }}" defer="defer"></script>
+
   <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+
   <script src="{{ 'custom.js' | asset_url }}" defer="defer"></script>
+
   <script src="{{ 'custom-monitor.js' | asset_url }}" defer="defer"></script>
+
   <link rel="stylesheet" href="{{ 'rebuy-smart-cart-upsell.css' | asset_url }}">
+
   <noscript>{{ 'rebuy-smart-cart-upsell.css' | asset_url | stylesheet_tag }}</noscript>
+
   <script src="{{ 'rebuy-smart-cart-upsell.js' | asset_url }}" defer="defer"></script>
+
   <script src="https://str.rise-ai.com/?shop=consuelastyle.myshopify.com" defer></script>
+
   <script src="https://strn.rise-ai.com/?shop=consuelastyle.myshopify.com" defer></script>
+
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
+
+
   <script>window.Shopify = window.Shopify || { theme: { id: {{ theme.id }}, role: '{{ theme.role }}' } };
+
     window._template = {
+
       directory: "{{ template.directory }}",
+
       name: "{{ template.name }}",
+
       suffix: "{{ template.suffix }}"
+
     };
+
   </script>
+
   <script type="module" blocking="render" fetchpriority="high"
     src="https://cdn.intelligems.io/esm/e57ab1af8efb/bundle.js" async></script>
 
+
+
   <script type="text/javascript">
+
     function waitFor_jQuery(method) {
+
       if (window.jQuery && typeof themeJSisLoaded !== 'undefined') {
+
         method();
+
       } else {
+
         setTimeout(function () { waitFor_jQuery(method) }, 50);
+
       }
+
     }
+
   </script>
+
   {% render 'meta-tags' %}
+
   {% if customer %}
+
   <script src="{{ 'jquery.cookie.js' | asset_url }}" defer="defer"></script>
+
   {% endif %}
+
   {{ content_for_header}}
+
   {% include 'css-variables' %}
+
   {% include 'base-grid' %}
+
   {% include 'base-style' %}
+
   {%- if settings.predictive_search_enabled -%}
+
   <link rel="stylesheet" href="{{ 'component-predictive-search.css' | asset_url }}" media="print"
     onload="this.media='all'">
+
   {%- endif -%}
+
   <script>
+
     document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
     if (Shopify.designMode) {
+
       document.documentElement.classList.add('shopify-design-mode');
+
     }
+
   </script>
+
+
 
   <script defer="defer">
     var current_page = {{ template | json }}
+
     setCookie("previous_page", `${getCookie('current_page')}`, 7)
+
     setCookie('current_page', `${current_page}`, 7)
+
     function setCookie(name, value, days) {
+
       var expires = "";
+
       if (days) {
+
         var date = new Date();
+
         date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+
         expires = "; expires=" + date.toUTCString();
+
       }
+
       document.cookie = name + "=" + (value || "") + expires + "; path=/";
     }
+
     function getCookie(name) {
+
       var nameEQ = name + "=";
+
       var ca = document.cookie.split(';');
+
       for (var i = 0; i < ca.length; i++) {
+
         var c = ca[i];
+
         while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+
       }
+
       return null;
+
     }
+
+
 
     function from_search_page() {
       function eraseCookie(name) {
+
         document.cookie = `${name}=; max-age=0; path=/;`;
+
       }
+
       eraseCookie("collection");
+
     }
 
+
+
   </script>
+
+
 
   {% include 'friendbuy' %}
+
   <script async src="https://ob.segreencolumn.com/i/dadf9d7d85f1c1590627bd61455bec81.js" data-ch="cheq4ppc"
     class="ct_clicktrue_42663">
+
     </script>
+
   <script async="" src="https://tag.simpli.fi/sifitag/62bf6480-bc71-013b-67ad-0cc47a8ffaac"></script>
 
+
+
+
   <script type="text/javascript">
+
     (function (c, l, a, r, i, t, y) {
       c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+
       t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+
       y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+
     })(window, document, "clarity", "script", "hhbhk6rfpz");
+
   </script>
+
   <!-- LiveConnectTag for advertisers -->
   <script type="text/javascript" src="http://b-code.liadm.com/a-0982.min.js" async="true" charset="utf-8"></script>
+
   <!-- LiveConnectTag for advertisers -->
+
   <script>
+
     (function () {
+
+
       var _heatmap_paq = window._heatmap_paq || [];
+
       var heatUrl = window.heatUrl = "https://dashboard.heatmap.com/";
+
       window.heatClientId = "3203";
+
       function heatLoader(url, item) {
         if (typeof handleSinglePagedWebsite !== 'undefined' && item == 'prep')
           return true;
@@ -264,7 +390,8 @@ display: none;
         tabindex="0" style="width: 100%;">
         {%- liquid
         if product.selected_or_first_available_variant.featured_media != null
-        render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image: section.settings.hide_variants
+        render 'product-media', media: media, loop: section.settings.enable_video_looping, variant_image:
+        section.settings.hide_variants
         endif
         -%}
 

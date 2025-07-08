@@ -144,10 +144,8 @@
       }
 
       var items = document.getElementsByClassName('field__input');
-      //console.log("items", items.length)
       for (var i = 0; i < items.length; i++) {
         items[i].addEventListener('focusout', checkPO, true);
-        //console.log('field', i)
       }
       $(document).ready(function() {
         setTimeout(function() {
